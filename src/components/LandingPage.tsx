@@ -45,7 +45,7 @@ const BRAND_BG: Record<Brand, string> = {
 
 // ─── Shared ─────────────────────────────────────────────────────────────────────
 const DottedLine = () => (
-  <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent relative my-10">
+  <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent relative my-6">
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-white/40 rounded-full" />
   </div>
 );
@@ -108,7 +108,7 @@ const FAQ_ITEMS = [
 const FAQSection = () => {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section id="faq" className="py-16 md:py-32 px-6">
+    <section id="faq" className="py-8 md:py-16 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Häufig gestellte Fragen</h2>
@@ -230,7 +230,7 @@ const Proof = ({ color }: { color: string }) => {
   const row2 = ALL_TESTIMONIALS.slice(17);
 
   return (
-    <section id="proof" className="py-16 md:py-32 overflow-hidden">
+    <section id="proof" className="py-8 md:py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Was unsere Mandanten sagen</h2>
@@ -563,7 +563,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Services Grid */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Unsere Expertise</h2>
@@ -589,7 +589,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Value Proposition */}
-      <section id="services" className="py-16 md:py-32 px-6">
+      <section id="services" className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Warum DK Finanzkanzlei?</h2>
@@ -615,7 +615,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Detailed Value */}
-      <section className="py-16 md:py-32 px-6 bg-white/5">
+      <section className="py-8 md:py-16 px-6 bg-white/5">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
           <div>
             <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
@@ -678,7 +678,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <FAQSection />
 
       {/* CTA */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-16 px-6">
         <div className="max-w-5xl mx-auto rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl" style={{ background: `linear-gradient(to bottom, ${color}, #1E293B)`, boxShadow: `0 25px 50px ${color}33` }}>
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
@@ -754,7 +754,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
       <DottedLine />
 
       {/* Services */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Vorsorge-Lösungen</h2>
@@ -777,7 +777,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
       <DottedLine />
 
       {/* Value Proposition */}
-      <section id="services" className="py-16 md:py-32 px-6">
+      <section id="services" className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Warum DK Vorsorge?</h2>
@@ -804,7 +804,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
       <Proof color={color} />
 
       {/* CTA */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-16 px-6">
         <div className="max-w-5xl mx-auto rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl" style={{ background: `linear-gradient(to bottom, ${color}, #14532d)`, boxShadow: `0 25px 50px ${color}33` }}>
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
@@ -880,7 +880,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Services */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Immo-Leistungen</h2>
@@ -903,7 +903,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Value Proposition */}
-      <section id="services" className="py-16 md:py-32 px-6">
+      <section id="services" className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Warum DK Immo?</h2>
@@ -930,7 +930,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <Proof color={color} />
 
       {/* CTA */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-16 px-6">
         <div className="max-w-5xl mx-auto rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl" style={{ background: `linear-gradient(to bottom, ${color}, #7f1d1d)`, boxShadow: `0 25px 50px ${color}33` }}>
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
@@ -1327,7 +1327,7 @@ const UeberUnsContent = () => {
       <DottedLine />
 
       {/* Werte */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Unsere Werte</h2>
@@ -1359,7 +1359,7 @@ const UeberUnsContent = () => {
       <DottedLine />
 
       {/* Team */}
-      <section className="py-16 md:py-32 px-6">
+      <section className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Unser Team</h2>
