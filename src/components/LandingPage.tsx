@@ -381,27 +381,17 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
                 </motion.span>
               </AnimatePresence>
             </div>
-            {/* Brand switcher tabs */}
-            <div className="flex items-center gap-0.5 p-0.5 rounded-lg bg-black/5 border border-black/5">
-              {BRAND_ORDER.map((b) => (
-                <button
-                  key={b}
-                  onClick={() => onBrandChange(b)}
-                  className="relative px-2.5 py-0.5 rounded-md text-[10px] font-bold tracking-wider uppercase transition-colors"
-                  style={{ color: brand === b ? '#fff' : 'rgba(30,41,59,0.4)' }}
-                >
-                  {brand === b && (
-                    <motion.div
-                      layoutId="brandTab"
-                      className="absolute inset-0 rounded-md"
-                      style={{ backgroundColor: cfg.color }}
-                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                    />
-                  )}
-                  <span className="relative z-10">{BRANDS[b].label}</span>
-                </button>
+            {/* Brand switcher slash-nav */}
+            <nav className="slash-nav">
+              {BRAND_ORDER.map((b, i) => (
+                <React.Fragment key={b}>
+                  {i > 0 && <span className="slash-sep">/</span>}
+                  <a className={brand === b ? 'active' : ''} onClick={() => onBrandChange(b)}>
+                    {BRANDS[b].label}
+                  </a>
+                </React.Fragment>
               ))}
-            </div>
+            </nav>
           </div>
         </div>
 
