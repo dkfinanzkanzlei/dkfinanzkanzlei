@@ -616,7 +616,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
 
       {/* Detailed Value */}
       <section className="py-8 md:py-16 px-6 bg-white/5">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-20 items-center">
           <div>
             <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
               Dein Partner für <br /><span style={{ color }}>echte Sicherheit.</span>
@@ -665,8 +665,8 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
                 </div>
               </div>
             </div>
-            <div className="absolute -top-10 -right-10 w-40 h-40 blur-3xl rounded-full" style={{ backgroundColor: color + '33' }} />
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#22C55E]/20 blur-3xl rounded-full" />
+            <div className="absolute -top-4 -right-4 w-24 h-24 blur-2xl rounded-full" style={{ backgroundColor: color + '33' }} />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-[#22C55E]/20 blur-2xl rounded-full" />
           </div>
         </div>
       </section>
