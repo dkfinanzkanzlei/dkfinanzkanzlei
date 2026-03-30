@@ -65,7 +65,7 @@ const LogoMarquee = () => (
   <div className="py-12 overflow-hidden">
     <div className="flex logo-marquee" style={{ width: 'max-content' }}>
       {[...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, i) => (
-        <div key={i} className="flex items-center justify-center mx-12 flex-shrink-0" style={{ width: '160px', height: '56px' }}>
+        <div key={i} className="flex items-center justify-center mx-8 flex-shrink-0" style={{ width: '120px', height: '44px' }}>
           <img
             src={logo.src}
             alt={logo.alt}
@@ -108,7 +108,7 @@ const FAQ_ITEMS = [
 const FAQSection = () => {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section id="faq" className="py-32 px-6">
+    <section id="faq" className="py-16 md:py-32 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Häufig gestellte Fragen</h2>
@@ -230,7 +230,7 @@ const Proof = ({ color }: { color: string }) => {
   const row2 = ALL_TESTIMONIALS.slice(17);
 
   return (
-    <section id="proof" className="py-32 overflow-hidden">
+    <section id="proof" className="py-16 md:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Was unsere Mandanten sagen</h2>
@@ -352,7 +352,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#F8FAFC] backdrop-blur-xl overflow-visible">
-      <div className="max-w-7xl mx-auto px-6 h-28 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 md:h-28 flex items-center justify-between">
 
         {/* Left: Logo + Brand Switcher */}
         <div className="flex items-center gap-4">
@@ -360,7 +360,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
             <img
               src="/dk-logo.png"
               alt="DK"
-              className="h-96 w-auto object-contain"
+              className="h-16 md:h-28 w-auto object-contain"
               style={{ filter: cfg.logoFilter, transition: 'filter 0.6s ease' }}
             />
           </button>
@@ -441,7 +441,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="md:hidden absolute left-0 right-0 bg-[#F8FAFC] border-b border-black/10 p-6 flex flex-col gap-6 text-[#1E293B]"
-          style={{ top: '7rem' }}
+          style={{ top: '4rem' }}
         >
           <div>
             <a href="#services" onClick={() => { setIsOpen(false); onPageChange('home'); }} className="font-semibold">Leistungen</a>
@@ -513,7 +513,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-40 pb-20 px-6 overflow-hidden">
+      <section className="relative pt-24 md:pt-40 pb-10 md:pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[#4d7abd]/20 blur-[120px] rounded-full opacity-50" />
@@ -523,12 +523,12 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
           {/* Left: Text */}
           <motion.div className="flex-1 text-left" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex flex-col items-start gap-0 mb-8">
-              <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="h-24 w-auto object-contain" />
+              <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="h-16 md:h-24 w-auto object-contain" />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Unabhängig & Persönlich
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
               Dein Problem. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Unsere Lösung.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Deine Zukunft.</span>
@@ -563,15 +563,15 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Services Grid */}
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Unsere Expertise</h2>
             <p className="text-white/40">Maßgeschneiderte Lösungen für deine finanziellen Ziele.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[180px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-auto md:auto-rows-[180px]">
             {services.map((s, i) => (
-              <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group ${s.className}`}>
+              <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group min-h-[140px] md:min-h-0 ${s.className}`}>
                 <div className="flex justify-between items-start">
                   <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
                   <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white group-hover:translate-x-1 transition-all" />
@@ -589,7 +589,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Value Proposition */}
-      <section id="services" className="py-32 px-6">
+      <section id="services" className="py-16 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Warum DK Finanzkanzlei?</h2>
@@ -615,7 +615,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Detailed Value */}
-      <section className="py-32 px-6 bg-white/5">
+      <section className="py-16 md:py-32 px-6 bg-white/5">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
           <div>
             <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
@@ -678,7 +678,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <FAQSection />
 
       {/* CTA */}
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-5xl mx-auto rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl" style={{ background: `linear-gradient(to bottom, ${color}, #1E293B)`, boxShadow: `0 25px 50px ${color}33` }}>
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
@@ -715,7 +715,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-40 pb-20 px-6 overflow-hidden">
+      <section className="relative pt-24 md:pt-40 pb-10 md:pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] blur-[120px] rounded-full opacity-40" style={{ backgroundColor: color + '33' }} />
@@ -724,7 +724,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
         <div className="max-w-5xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex flex-col items-center gap-0 mb-8">
-              <img src="/dk-logo-small.png" alt="DK Vorsorge" className="h-24 w-auto object-contain" style={{ filter: BRANDS.vorsorge.logoFilter }} />
+              <img src="/dk-logo-small.png" alt="DK Vorsorge" className="h-16 md:h-24 w-auto object-contain" style={{ filter: BRANDS.vorsorge.logoFilter }} />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Vorsorge & Absicherung
               </span>
@@ -754,15 +754,15 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
       <DottedLine />
 
       {/* Services */}
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Vorsorge-Lösungen</h2>
             <p className="text-white/40">Maßgeschneiderte Absicherung für jede Lebensphase.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[180px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-auto md:auto-rows-[180px]">
             {services.map((s, i) => (
-              <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group ${s.className}`}>
+              <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group min-h-[140px] md:min-h-0 ${s.className}`}>
                 <div className="flex justify-between items-start">
                   <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
                   <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white group-hover:translate-x-1 transition-all" />
@@ -777,7 +777,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
       <DottedLine />
 
       {/* Value Proposition */}
-      <section id="services" className="py-32 px-6">
+      <section id="services" className="py-16 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Warum DK Vorsorge?</h2>
@@ -804,7 +804,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
       <Proof color={color} />
 
       {/* CTA */}
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-5xl mx-auto rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl" style={{ background: `linear-gradient(to bottom, ${color}, #14532d)`, boxShadow: `0 25px 50px ${color}33` }}>
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
@@ -841,7 +841,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-40 pb-20 px-6 overflow-hidden">
+      <section className="relative pt-24 md:pt-40 pb-10 md:pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] blur-[120px] rounded-full opacity-40" style={{ backgroundColor: color + '33' }} />
@@ -850,7 +850,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
         <div className="max-w-5xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex flex-col items-center gap-0 mb-8">
-              <img src="/dk-logo-small.png" alt="DK Immo" className="h-24 w-auto object-contain" style={{ filter: BRANDS.immo.logoFilter }} />
+              <img src="/dk-logo-small.png" alt="DK Immo" className="h-16 md:h-24 w-auto object-contain" style={{ filter: BRANDS.immo.logoFilter }} />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Immobilien & Investments
               </span>
@@ -880,15 +880,15 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Services */}
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Immo-Leistungen</h2>
             <p className="text-white/40">Vom Kauf bis zur Verwaltung – wir begleiten dich bei jedem Schritt.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[180px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-auto md:auto-rows-[180px]">
             {services.map((s, i) => (
-              <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group ${s.className}`}>
+              <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group min-h-[140px] md:min-h-0 ${s.className}`}>
                 <div className="flex justify-between items-start">
                   <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
                   <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white group-hover:translate-x-1 transition-all" />
@@ -903,7 +903,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Value Proposition */}
-      <section id="services" className="py-32 px-6">
+      <section id="services" className="py-16 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Warum DK Immo?</h2>
@@ -930,7 +930,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <Proof color={color} />
 
       {/* CTA */}
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-5xl mx-auto rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl" style={{ background: `linear-gradient(to bottom, ${color}, #7f1d1d)`, boxShadow: `0 25px 50px ${color}33` }}>
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
@@ -1327,7 +1327,7 @@ const UeberUnsContent = () => {
       <DottedLine />
 
       {/* Werte */}
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Unsere Werte</h2>
@@ -1359,7 +1359,7 @@ const UeberUnsContent = () => {
       <DottedLine />
 
       {/* Team */}
-      <section className="py-32 px-6">
+      <section className="py-16 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Unser Team</h2>
