@@ -9,7 +9,7 @@ import {
 // ─── Brand Configuration ────────────────────────────────────────────────────────
 type Brand = 'dk' | 'vorsorge' | 'immo';
 type Page = 'home' | 'ueberuns' | 'impressum' | 'datenschutz' | 'kontakt' | 'leistungen' | 'service';
-type ServiceKey = 'krankenversicherung' | 'arbeitskraft' | 'kfz' | 'sach' | 'gewerbe' | 'rente' | 'hinterbliebene' | 'immobilien' | 'sparprodukte' | 'geldanlagen' | 'vorsorge' | 'finanzierungen' | 'aktien';
+type ServiceKey = 'krankenversicherung' | 'arbeitskraft' | 'kfz' | 'sach' | 'gewerbe' | 'rente' | 'hinterbliebene' | 'immobilien' | 'sparprodukte' | 'geldanlagen' | 'vorsorge' | 'finanzierungen' | 'aktien' | 'vwl';
 
 const BRANDS = {
   dk: {
@@ -336,7 +336,7 @@ const LeistungenDropdown = ({ color, onPageChange, onService }: { color: string;
         {/* Vermögensaufbau */}
         <div className="flex-1">
           <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color }}>Vermögensaufbau</p>
-          {([['Immobilien','immobilien'],['Sparprodukte','sparprodukte'],['Geldanlagen','geldanlagen'],['Vorsorgekonzepte','vorsorge'],['Finanzierungen','finanzierungen'],['Aktien','aktien']] as [string, ServiceKey][]).map(([label, key]) => (
+          {([['Immobilien','immobilien'],['Sparprodukte','sparprodukte'],['Geldanlagen','geldanlagen'],['Vorsorgekonzepte','vorsorge'],['Finanzierungen','finanzierungen'],['Aktien','aktien'],['Vermögenswirksame Leistungen','vwl']] as [string, ServiceKey][]).map(([label, key]) => (
             <button key={key} onClick={() => onService(key)} className="block text-xs tracking-wider uppercase text-[#1E293B]/60 hover:text-[#1E293B] transition-colors py-1.5 text-left w-full">{label}</button>
           ))}
         </div>
@@ -449,7 +449,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
               <p className="text-xs font-bold uppercase" style={{ color: cfg.color }}>Versicherungen</p>
               {['Krankenversicherung','Arbeitskraftabsicherung','KFZ-Versicherung','Sachversicherungen','Gewerbeversicherungen','Private Rentenversicherungen','Hinterbliebenenvorsorge'].map(i => <a key={i} href="#services" onClick={() => setIsOpen(false)}>{i}</a>)}
               <p className="text-xs font-bold uppercase mt-2" style={{ color: cfg.color }}>Vermögensaufbau</p>
-              {['Immobilien','Sparprodukte','Geldanlagen','Vorsorgekonzepte','Finanzierungen','Aktien'].map(i => <a key={i} href="#services" onClick={() => setIsOpen(false)}>{i}</a>)}
+              {['Immobilien','Sparprodukte','Geldanlagen','Vorsorgekonzepte','Finanzierungen','Aktien','Vermögenswirksame Leistungen'].map(i => <a key={i} href="#services" onClick={() => setIsOpen(false)}>{i}</a>)}
             </div>
           </div>
           <button className="text-left" onClick={() => { setIsOpen(false); onPageChange(currentPage === 'ueberuns' ? 'home' : 'ueberuns'); }}>Über uns</button>
@@ -1620,6 +1620,18 @@ const SERVICE_DATA: Record<ServiceKey, { category: string; title: string; hook: 
     solution: 'Wir begleiten dich beim Einstieg in den Kapitalmarkt – mit klarer Strategie, langfristiger Perspektive und wissenschaftlich belegten Ansätzen.',
     cta: 'Kapitalmarkt-Beratung starten',
   },
+  vwl: {
+    category: 'Vermögensaufbau',
+    title: 'Vermögenswirksame Leistungen',
+    hook: 'Dein Arbeitgeber zahlt dir Geld für den Vermögensaufbau – nutzt du es schon?',
+    problems: [
+      'Viele Arbeitnehmer wissen nicht, dass ihr Arbeitgeber bis zu 40 € monatlich als VWL-Zuschuss zahlt – Geld, das einfach verfällt.',
+      'Ohne den richtigen Anlagevertrag fließen die VWL auf ein schlechtverzinstes Konto und verlieren real an Wert.',
+      'Staatliche Arbeitnehmer-Sparzulage wird nicht beantragt, weil niemand über die Voraussetzungen informiert hat.',
+    ],
+    solution: 'Wir richten deinen VWL-Vertrag optimal ein – passend zu deinem Einkommen, deinen staatlichen Förderansprüchen und deiner langfristigen Anlagestrategie. So holst du das Maximum aus deinem Arbeitgeberzuschuss heraus.',
+    cta: 'VWL kostenlos optimieren',
+  },
 };
 
 const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: ServiceKey; color: string; onPageChange: (p: Page) => void }) => {
@@ -1691,16 +1703,17 @@ const VERSICHERUNGEN = [
   { title: 'Hinterbliebenenvorsorge', desc: 'Schütze deine Familie – auch wenn du nicht mehr da bist.' },
 ];
 
-const VERMOEGEN = [
-  { title: 'Immobilien', desc: 'Wir begleiten dich beim Kauf, der Finanzierung und dem Aufbau eines Immobilienportfolios – mit Zugang zu über 500 Banken.' },
-  { title: 'Sparprodukte', desc: 'Vom Tagesgeld bis zum Bausparvertrag – wir finden das Produkt, das zu deinen Zielen passt.' },
-  { title: 'Geldanlagen', desc: 'ETFs, Fonds und mehr: wissenschaftlich fundierte Anlagestrategien für nachhaltigen Vermögensaufbau.' },
-  { title: 'Vorsorgekonzepte', desc: 'Ganzheitliche Planung für deine Rente – damit du im Alter so leben kannst, wie du es dir vorstellst.' },
-  { title: 'Finanzierungen', desc: 'Günstige Finanzierungen für Immobilien, Fahrzeuge und mehr – unabhängig verglichen.' },
-  { title: 'Aktien', desc: 'Direkte Beteiligungen am Kapitalmarkt – mit fundierter Beratung und klarer Strategie.' },
+const VERMOEGEN: { title: string; desc: string; key: ServiceKey }[] = [
+  { key: 'immobilien',    title: 'Immobilien',                      desc: 'Wir begleiten dich beim Kauf, der Finanzierung und dem Aufbau eines Immobilienportfolios – mit Zugang zu über 500 Banken.' },
+  { key: 'sparprodukte',  title: 'Sparprodukte',                    desc: 'Vom Tagesgeld bis zum Bausparvertrag – wir finden das Produkt, das zu deinen Zielen passt.' },
+  { key: 'geldanlagen',   title: 'Geldanlagen',                     desc: 'ETFs, Fonds und mehr: wissenschaftlich fundierte Anlagestrategien für nachhaltigen Vermögensaufbau.' },
+  { key: 'vorsorge',      title: 'Vorsorgekonzepte',                desc: 'Ganzheitliche Planung für deine Rente – damit du im Alter so leben kannst, wie du es dir vorstellst.' },
+  { key: 'finanzierungen',title: 'Finanzierungen',                  desc: 'Günstige Finanzierungen für Immobilien, Fahrzeuge und mehr – unabhängig verglichen.' },
+  { key: 'aktien',        title: 'Aktien',                          desc: 'Direkte Beteiligungen am Kapitalmarkt – mit fundierter Beratung und klarer Strategie.' },
+  { key: 'vwl',           title: 'Vermögenswirksame Leistungen',   desc: 'Arbeitgeberzuschuss und staatliche Förderung optimal nutzen – für maximalen Vermögensaufbau ohne Mehrkosten.' },
 ];
 
-const LeistungenPage = ({ color, onPageChange }: { color: string; onPageChange: (p: Page) => void }) => {
+const LeistungenPage = ({ color, onPageChange, onService }: { color: string; onPageChange: (p: Page) => void; onService: (k: ServiceKey) => void }) => {
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior }); }, []);
 
   return (
@@ -1769,15 +1782,15 @@ const LeistungenPage = ({ color, onPageChange }: { color: string; onPageChange: 
           </div>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {VERMOEGEN.map(({ title, desc }) => (
-            <div key={title} className="group p-7 rounded-2xl bg-white border border-black/5 shadow-sm hover:shadow-md hover:border-black/10 transition-all cursor-pointer" onClick={() => onPageChange('kontakt')}>
+          {VERMOEGEN.map(({ title, desc, key }) => (
+            <div key={title} className="group p-7 rounded-2xl bg-white border border-black/5 shadow-sm hover:shadow-md hover:border-black/10 transition-all cursor-pointer" onClick={() => onService(key)}>
               <div className="flex items-start justify-between mb-4">
                 <h3 className="text-base font-bold text-[#1E293B]">{title}</h3>
                 <ArrowRight className="w-4 h-4 flex-shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color }} />
               </div>
               <p className="text-sm text-[#1E293B]/55 leading-relaxed">{desc}</p>
               <div className="mt-5 pt-4 border-t border-black/5">
-                <span className="text-xs font-semibold" style={{ color }}>Beratung anfragen →</span>
+                <span className="text-xs font-semibold" style={{ color }}>Mehr erfahren →</span>
               </div>
             </div>
           ))}
@@ -1919,7 +1932,7 @@ const PATH_TO_PAGE: Record<string, Page> = {
   '/leistungen':  'leistungen',
 };
 
-const SERVICE_KEYS: ServiceKey[] = ['krankenversicherung','arbeitskraft','kfz','sach','gewerbe','rente','hinterbliebene','immobilien','sparprodukte','geldanlagen','vorsorge','finanzierungen','aktien'];
+const SERVICE_KEYS: ServiceKey[] = ['krankenversicherung','arbeitskraft','kfz','sach','gewerbe','rente','hinterbliebene','immobilien','sparprodukte','geldanlagen','vorsorge','finanzierungen','aktien','vwl'];
 
 function getStateFromPath(): { page: Page; service: ServiceKey } {
   const path = window.location.pathname;
@@ -2036,7 +2049,7 @@ export default function LandingPage() {
           </motion.div>
         ) : page === 'leistungen' ? (
           <motion.div key="leistungen" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.4, ease: 'easeOut' }}>
-            <LeistungenPage color={BRANDS[brand].color} onPageChange={navigate} />
+            <LeistungenPage color={BRANDS[brand].color} onPageChange={navigate} onService={goToService} />
             <Footer color={BRANDS[brand].color} onPageChange={navigate} />
           </motion.div>
         ) : page === 'kontakt' ? (
