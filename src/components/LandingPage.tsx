@@ -574,7 +574,6 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
               <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group min-h-[140px] md:min-h-0 ${s.className}`}>
                 <div className="flex justify-between items-start">
                   <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
-                  <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white group-hover:translate-x-1 transition-all" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2">{s.title}</h3>
@@ -760,7 +759,6 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
               <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group min-h-[140px] md:min-h-0 ${s.className}`}>
                 <div className="flex justify-between items-start">
                   <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
-                  <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white group-hover:translate-x-1 transition-all" />
                 </div>
                 <div><h3 className="text-xl font-bold mb-2">{s.title}</h3><p className="text-sm text-white/40">{s.desc}</p></div>
               </motion.div>
@@ -886,7 +884,6 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
               <motion.div key={i} whileHover={{ scale: 0.98 }} className={`glow-card p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col justify-between group min-h-[140px] md:min-h-0 ${s.className}`}>
                 <div className="flex justify-between items-start">
                   <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
-                  <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white group-hover:translate-x-1 transition-all" />
                 </div>
                 <div><h3 className="text-xl font-bold mb-2">{s.title}</h3><p className="text-sm text-white/40">{s.desc}</p></div>
               </motion.div>
