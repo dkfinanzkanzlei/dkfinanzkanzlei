@@ -301,9 +301,9 @@ const Footer = ({ color, onPageChange }: { color: string; onPageChange: (p: Page
         </ul>
       </div>
     </div>
-    <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/20">
-      <p>© 2026 DK Finanzkanzlei. Alle Rechte vorbehalten.</p>
-      <p>built with ♥ by <a href="https://hookhero.de" target="_blank" rel="noopener noreferrer" className="hover:text-white/60 transition-colors underline underline-offset-2">Hook Hero</a></p>
+    <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col items-center gap-3 text-white/40">
+      <p className="text-sm">© 2026 DK Finanzkanzlei. Alle Rechte vorbehalten.</p>
+      <p className="text-base font-medium">built with ♥ by <a href="https://hookhero.de" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors underline underline-offset-2">Hook Hero</a></p>
     </div>
   </footer>
 );
@@ -1693,14 +1693,14 @@ const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: Se
 };
 
 // ─── Leistungen Page ─────────────────────────────────────────────────────────────
-const VERSICHERUNGEN = [
-  { title: 'Krankenversicherung', desc: 'Gesetzlich oder privat – wir finden die optimale Absicherung für deine Gesundheit und deinen Geldbeutel.' },
-  { title: 'Arbeitskraftabsicherung', desc: 'Deine Arbeitskraft ist dein größtes Kapital. Wir sichern sie ab – bevor es zu spät ist.' },
-  { title: 'KFZ-Versicherung', desc: 'Der beste Schutz für dein Fahrzeug zum besten Preis – unabhängig verglichen.' },
-  { title: 'Sachversicherungen', desc: 'Von Hausrat bis Haftpflicht: umfassender Schutz für dein Eigentum und deine Finanzen.' },
-  { title: 'Gewerbeversicherungen', desc: 'Maßgeschneiderte Absicherung für Selbstständige und Unternehmen – damit du dich aufs Wesentliche konzentrieren kannst.' },
-  { title: 'Private Rentenversicherung', desc: 'Staatlich geförderte Altersvorsorge, die wirklich zu deiner Lebenssituation passt.' },
-  { title: 'Hinterbliebenenvorsorge', desc: 'Schütze deine Familie – auch wenn du nicht mehr da bist.' },
+const VERSICHERUNGEN: { title: string; desc: string; key: ServiceKey }[] = [
+  { key: 'krankenversicherung', title: 'Krankenversicherung',      desc: 'Gesetzlich oder privat – wir finden die optimale Absicherung für deine Gesundheit und deinen Geldbeutel.' },
+  { key: 'arbeitskraft',        title: 'Arbeitskraftabsicherung',  desc: 'Deine Arbeitskraft ist dein größtes Kapital. Wir sichern sie ab – bevor es zu spät ist.' },
+  { key: 'kfz',                 title: 'KFZ-Versicherung',         desc: 'Der beste Schutz für dein Fahrzeug zum besten Preis – unabhängig verglichen.' },
+  { key: 'sach',                title: 'Sachversicherungen',        desc: 'Von Hausrat bis Haftpflicht: umfassender Schutz für dein Eigentum und deine Finanzen.' },
+  { key: 'gewerbe',             title: 'Gewerbeversicherungen',     desc: 'Maßgeschneiderte Absicherung für Selbstständige und Unternehmen – damit du dich aufs Wesentliche konzentrieren kannst.' },
+  { key: 'rente',               title: 'Private Rentenversicherung',desc: 'Staatlich geförderte Altersvorsorge, die wirklich zu deiner Lebenssituation passt.' },
+  { key: 'hinterbliebene',      title: 'Hinterbliebenenvorsorge',   desc: 'Schütze deine Familie – auch wenn du nicht mehr da bist.' },
 ];
 
 const VERMOEGEN: { title: string; desc: string; key: ServiceKey }[] = [
@@ -1757,15 +1757,15 @@ const LeistungenPage = ({ color, onPageChange, onService }: { color: string; onP
           </div>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {VERSICHERUNGEN.map(({ title, desc }) => (
-            <div key={title} className="group p-7 rounded-2xl bg-white border border-black/5 shadow-sm hover:shadow-md hover:border-black/10 transition-all cursor-pointer" onClick={() => onPageChange('kontakt')}>
+          {VERSICHERUNGEN.map(({ title, desc, key }) => (
+            <div key={title} className="group p-7 rounded-2xl bg-white border border-black/5 shadow-sm hover:shadow-md hover:border-black/10 transition-all cursor-pointer" onClick={() => onService(key)}>
               <div className="flex items-start justify-between mb-4">
                 <h3 className="text-base font-bold text-[#1E293B]">{title}</h3>
                 <ArrowRight className="w-4 h-4 flex-shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color }} />
               </div>
               <p className="text-sm text-[#1E293B]/55 leading-relaxed">{desc}</p>
               <div className="mt-5 pt-4 border-t border-black/5">
-                <span className="text-xs font-semibold" style={{ color }}>Beratung anfragen →</span>
+                <span className="text-xs font-semibold" style={{ color }}>Mehr erfahren →</span>
               </div>
             </div>
           ))}
