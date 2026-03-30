@@ -615,41 +615,38 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       <DottedLine />
 
       {/* Detailed Value */}
-      <section className="py-8 md:py-16 px-6 bg-white/5">
+      <section className="py-8 md:py-16 px-6 bg-white/5 overflow-hidden">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-20 items-center">
           <div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
+            <h2 className="text-3xl md:text-6xl font-bold mb-6 leading-tight">
               Dein Partner für <br /><span style={{ color }}>echte Sicherheit.</span>
             </h2>
-            <p className="text-white/60 text-lg mb-12">Wir glauben nicht an Standardlösungen. Jeder Mensch hat andere Ziele, Ängste und Träume. Deshalb ist unsere Beratung so individuell wie dein Fingerabdruck.</p>
-            <div className="space-y-8">
+            <p className="text-white/60 text-base md:text-lg mb-8">Wir glauben nicht an Standardlösungen. Jeder Mensch hat andere Ziele, Ängste und Träume. Deshalb ist unsere Beratung so individuell wie dein Fingerabdruck.</p>
+            <div className="space-y-5">
               {[
                 { title: "Finanzplanung & Strategie", desc: "Ein maßgeschneiderter Fahrplan, der sich deiner Lebenssituation anpasst – nicht umgekehrt.", icon: <PieChart className="w-6 h-6" /> },
                 { title: "Vermögensaufbau (ETFs & Immobilien)", desc: "Wissenschaftlich fundierte Investments für nachhaltiges Wachstum ohne unnötiges Risiko.", icon: <Wallet className="w-6 h-6" /> },
                 { title: "Absicherung & Risikoschutz", desc: "Schütze das, was dir wichtig ist, mit den besten Tarifen am Markt zu fairen Konditionen.", icon: <ShieldCheck className="w-6 h-6" /> },
               ].map((item, i) => (
-                <div key={i} className="flex gap-6">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center border border-white/10">{item.icon}</div>
-                  <div><h4 className="text-xl font-bold mb-2">{item.title}</h4><p className="text-white/50">{item.desc}</p></div>
+                <div key={i} className="flex gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/10">{item.icon}</div>
+                  <div><h4 className="text-lg font-bold mb-1">{item.title}</h4><p className="text-white/50 text-sm">{item.desc}</p></div>
                 </div>
               ))}
             </div>
           </div>
           <div className="relative">
-            <div className="rounded-3xl bg-gradient-to-br from-[#4d7abd]/20 to-[#22C55E]/20 border border-white/10 p-8">
-              <div className="rounded-2xl bg-[#1E293B]/60 backdrop-blur-xl border border-white/10 p-8">
-                {/* Header */}
-                <div className="flex items-center gap-2 mb-6">
+            <div className="rounded-3xl bg-gradient-to-br from-[#4d7abd]/20 to-[#22C55E]/20 border border-white/10 p-4 md:p-8">
+              <div className="rounded-2xl bg-[#1E293B]/60 backdrop-blur-xl border border-white/10 p-5 md:p-8">
+                <div className="flex items-center gap-2 mb-4">
                   <div className="w-2 h-2 rounded-full bg-[#22c55e]" />
                   <span className="text-xs text-white/40 tracking-widest uppercase">Ø Ersparnis pro Kunde</span>
                 </div>
-                {/* Counter */}
                 <ErsparniCounter />
-                <p className="text-sm text-white/40 mt-2 mb-8">pro Jahr — durch optimierte Steuer- &amp; Förderstrategien</p>
-                {/* Stats row */}
-                <div className="border-t border-white/10 pt-6 flex gap-6">
+                <p className="text-sm text-white/40 mt-2 mb-6">pro Jahr — durch optimierte Steuer- &amp; Förderstrategien</p>
+                <div className="border-t border-white/10 pt-4 flex gap-4">
                   <div>
-                    <p className="text-xs text-white/30 uppercase tracking-widest mb-1">Steueroptimierung</p>
+                    <p className="text-xs text-white/30 uppercase tracking-widest mb-1">Steuer</p>
                     <p className="text-sm font-semibold">€742</p>
                   </div>
                   <div className="w-px bg-white/10" />
@@ -665,8 +662,6 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
                 </div>
               </div>
             </div>
-            <div className="absolute -top-4 -right-4 w-24 h-24 blur-2xl rounded-full" style={{ backgroundColor: color + '33' }} />
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-[#22C55E]/20 blur-2xl rounded-full" />
           </div>
         </div>
       </section>
