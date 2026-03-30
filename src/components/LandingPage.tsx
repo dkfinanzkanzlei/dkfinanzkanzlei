@@ -45,7 +45,7 @@ const BRAND_BG: Record<Brand, string> = {
 
 // ─── Shared ─────────────────────────────────────────────────────────────────────
 const DottedLine = () => (
-  <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent relative my-20">
+  <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent relative my-10">
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-white/40 rounded-full" />
   </div>
 );
@@ -290,7 +290,7 @@ const Footer = ({ color, onPageChange }: { color: string; onPageChange: (p: Page
           <li><button onClick={() => onPageChange('ueberuns')} className="hover:text-white transition-colors text-left">Über uns</button></li>
           <li><button onClick={() => onPageChange('leistungen')} className="hover:text-white transition-colors text-left">Leistungen</button></li>
           <li><button onClick={() => onPageChange('home')} className="hover:text-white transition-colors text-left">Erfolge</button></li>
-          <li><button onClick={() => { onPageChange('home'); setTimeout(() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="hover:text-white transition-colors">FAQ</button></li>
+          <li><button onClick={() => { onPageChange('home'); setTimeout(() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' }), 400); }} className="hover:text-white transition-colors">FAQ</button></li>
         </ul>
       </div>
       <div>
