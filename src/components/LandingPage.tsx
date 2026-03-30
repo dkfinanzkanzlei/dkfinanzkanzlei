@@ -352,20 +352,20 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#F8FAFC] backdrop-blur-xl overflow-visible">
-      <div className="max-w-7xl mx-auto px-6 h-16 md:h-28 flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto px-6 h-16 md:h-28 flex items-center justify-between">
 
         {/* Left: Logo */}
         <button onClick={() => onPageChange('home')} className="cursor-pointer flex-shrink-0">
           <img
             src="/dk-logo.png"
             alt="DK"
-            className="h-16 md:h-36 w-auto object-contain"
+            className="h-20 md:h-48 w-auto object-contain"
             style={{ filter: cfg.logoFilter, transition: 'filter 0.6s ease' }}
           />
         </button>
 
-        {/* Center: Brand slash-nav (absolutely centered) */}
-        <nav className="slash-nav absolute left-1/2 -translate-x-1/2">
+        {/* Brand slash-nav */}
+        <nav className="slash-nav">
           {BRAND_ORDER.map((b, i) => (
             <React.Fragment key={b}>
               {i > 0 && <span className="slash-sep">/</span>}
