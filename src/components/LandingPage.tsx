@@ -352,7 +352,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#F8FAFC] backdrop-blur-xl overflow-visible">
-      <div className="max-w-7xl mx-auto px-6 h-16 md:h-28 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-14 md:h-20 flex items-center justify-between">
 
         {/* Left: Logo */}
         <button onClick={() => onPageChange('home')} className="cursor-pointer flex-shrink-0">
