@@ -2,7 +2,7 @@
 
 .slash-nav { display: flex; align-items: center; }
 .slash-nav a { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(30,41,59,0.35); text-decoration: none; transition: color 0.15s; padding: 0 14px; cursor: pointer; }
-.slash-nav a.active { color: #1E293B; }
+.slash-nav a.active { font-weight: 700; }
 .slash-nav a:hover:not(.active) { color: rgba(30,41,59,0.65); }
 .slash-sep { color: rgba(30,41,59,0.15); font-size: 18px; font-weight: 200; }
 

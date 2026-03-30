@@ -352,48 +352,33 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#F8FAFC] backdrop-blur-xl overflow-visible">
-      <div className="max-w-7xl mx-auto px-6 h-16 md:h-28 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 md:h-28 flex items-center justify-between relative">
 
-        {/* Left: Logo + Brand Switcher */}
-        <div className="flex items-center gap-4">
-          <button onClick={() => onPageChange('home')} className="cursor-pointer">
-            <img
-              src="/dk-logo.png"
-              alt="DK"
-              className="h-16 md:h-28 w-auto object-contain"
-              style={{ filter: cfg.logoFilter, transition: 'filter 0.6s ease' }}
-            />
-          </button>
-          <div className="flex flex-col gap-1.5">
-            {/* Animated brand name */}
-            <div className="h-5 overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={brand}
-                  initial={{ y: -18, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 18, opacity: 0 }}
-                  transition={{ duration: 0.22, ease: 'easeInOut' }}
-                  className="block text-sm font-bold tracking-tight"
-                  style={{ color: cfg.color }}
-                >
-                  {cfg.name}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-            {/* Brand switcher slash-nav */}
-            <nav className="slash-nav">
-              {BRAND_ORDER.map((b, i) => (
-                <React.Fragment key={b}>
-                  {i > 0 && <span className="slash-sep">/</span>}
-                  <a className={brand === b ? 'active' : ''} onClick={() => onBrandChange(b)}>
-                    {BRANDS[b].label}
-                  </a>
-                </React.Fragment>
-              ))}
-            </nav>
-          </div>
-        </div>
+        {/* Left: Logo */}
+        <button onClick={() => onPageChange('home')} className="cursor-pointer flex-shrink-0">
+          <img
+            src="/dk-logo.png"
+            alt="DK"
+            className="h-16 md:h-36 w-auto object-contain"
+            style={{ filter: cfg.logoFilter, transition: 'filter 0.6s ease' }}
+          />
+        </button>
+
+        {/* Center: Brand slash-nav (absolutely centered) */}
+        <nav className="slash-nav absolute left-1/2 -translate-x-1/2">
+          {BRAND_ORDER.map((b, i) => (
+            <React.Fragment key={b}>
+              {i > 0 && <span className="slash-sep">/</span>}
+              <a
+                className={brand === b ? 'active' : ''}
+                style={brand === b ? { color: BRANDS[b].color } : undefined}
+                onClick={() => onBrandChange(b)}
+              >
+                {BRANDS[b].label}
+              </a>
+            </React.Fragment>
+          ))}
+        </nav>
 
         {/* Right: Nav + CTA */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#1E293B]/70">
