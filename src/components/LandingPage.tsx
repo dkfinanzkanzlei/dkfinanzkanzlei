@@ -602,9 +602,6 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40 mb-2 block">{card.tag}</span>
                 <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                 <p className="text-white/60 leading-relaxed">{card.description}</p>
-                <div className="mt-8 flex items-center gap-2 text-sm font-semibold text-white/40 group-hover:text-white transition-colors cursor-pointer">
-                  Mehr erfahren <ArrowRight className="w-4 h-4" />
-                </div>
               </motion.div>
             ))}
           </div>
@@ -784,9 +781,6 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40 mb-2 block">{card.tag}</span>
                 <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                 <p className="text-white/60 leading-relaxed">{card.description}</p>
-                <div className="mt-8 flex items-center gap-2 text-sm font-semibold text-white/40 group-hover:text-white transition-colors cursor-pointer">
-                  Mehr erfahren <ArrowRight className="w-4 h-4" />
-                </div>
               </motion.div>
             ))}
           </div>
@@ -909,9 +903,6 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40 mb-2 block">{card.tag}</span>
                 <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                 <p className="text-white/60 leading-relaxed">{card.description}</p>
-                <div className="mt-8 flex items-center gap-2 text-sm font-semibold text-white/40 group-hover:text-white transition-colors cursor-pointer">
-                  Mehr erfahren <ArrowRight className="w-4 h-4" />
-                </div>
               </motion.div>
             ))}
           </div>
