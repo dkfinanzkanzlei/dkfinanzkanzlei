@@ -290,7 +290,7 @@ const Footer = ({ color, onPageChange }: { color: string; onPageChange: (p: Page
           <li><button onClick={() => onPageChange('ueberuns')} className="hover:text-white transition-colors text-left">Über uns</button></li>
           <li><button onClick={() => onPageChange('leistungen')} className="hover:text-white transition-colors text-left">Leistungen</button></li>
           <li><button onClick={() => onPageChange('home')} className="hover:text-white transition-colors text-left">Erfolge</button></li>
-          <li><a href="#faq" onClick={() => onPageChange('home')} className="hover:text-white transition-colors">FAQ</a></li>
+          <li><button onClick={() => { onPageChange('home'); setTimeout(() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="hover:text-white transition-colors">FAQ</button></li>
         </ul>
       </div>
       <div>
