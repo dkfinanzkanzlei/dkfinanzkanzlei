@@ -1899,15 +1899,76 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
   );
 };
 
+// ─── URL routing ─────────────────────────────────────────────────────────────────
+const PAGE_TO_PATH: Record<Page, string> = {
+  home:        '/',
+  ueberuns:    '/ueber-uns',
+  impressum:   '/impressum',
+  datenschutz: '/datenschutz',
+  kontakt:     '/kontakt',
+  leistungen:  '/leistungen',
+  service:     '/leistungen', // overridden per-service below
+};
+
+const PATH_TO_PAGE: Record<string, Page> = {
+  '/':            'home',
+  '/ueber-uns':   'ueberuns',
+  '/impressum':   'impressum',
+  '/datenschutz': 'datenschutz',
+  '/kontakt':     'kontakt',
+  '/leistungen':  'leistungen',
+};
+
+const SERVICE_KEYS: ServiceKey[] = ['krankenversicherung','arbeitskraft','kfz','sach','gewerbe','rente','hinterbliebene','immobilien','sparprodukte','geldanlagen','vorsorge','finanzierungen','aktien'];
+
+function getStateFromPath(): { page: Page; service: ServiceKey } {
+  const path = window.location.pathname;
+  // e.g. /leistungen/krankenversicherung
+  if (path.startsWith('/leistungen/')) {
+    const key = path.replace('/leistungen/', '') as ServiceKey;
+    if (SERVICE_KEYS.includes(key)) {
+      return { page: 'service', service: key };
+    }
+    return { page: 'leistungen', service: 'krankenversicherung' };
+  }
+  const p = PATH_TO_PAGE[path] ?? 'home';
+  return { page: p, service: 'krankenversicherung' };
+}
+
 // ─── Main Export ─────────────────────────────────────────────────────────────────
 export default function LandingPage() {
   const [brand, setBrand] = useState<Brand>('dk');
   const [prevIndex, setPrevIndex] = useState(0);
-  const [page, setPage] = useState<Page>('home');
-  const [currentService, setCurrentService] = useState<ServiceKey>('krankenversicherung');
 
-  const navigate = (p: Page) => { setPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  const goToService = (key: ServiceKey) => { setCurrentService(key); navigate('service'); };
+  const initial = getStateFromPath();
+  const [page, setPage] = useState<Page>(initial.page);
+  const [currentService, setCurrentService] = useState<ServiceKey>(initial.service);
+
+  const navigate = (p: Page) => {
+    const url = PAGE_TO_PATH[p];
+    window.history.pushState({ page: p }, '', url);
+    setPage(p);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const goToService = (key: ServiceKey) => {
+    const url = `/leistungen/${key}`;
+    window.history.pushState({ page: 'service', service: key }, '', url);
+    setCurrentService(key);
+    setPage('service');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    const onPopState = () => {
+      const { page: p, service } = getStateFromPath();
+      setPage(p);
+      setCurrentService(service);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
 
   const direction = BRAND_ORDER.indexOf(brand) >= prevIndex ? 1 : -1;
 
