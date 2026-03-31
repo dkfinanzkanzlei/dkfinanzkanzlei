@@ -1285,13 +1285,13 @@ const UeberUnsContent = () => {
     { name: 'Tommy Melcher', role: 'Fachberater', img: '/Tommy.png', linkedin: 'https://www.linkedin.com/in/tommy-melcher-8b2419326/' },
     { name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png', linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/' },
     { name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png', linkedin: '' },
-    { name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png', linkedin: '' },
+    { name: 'Aleyna Uysal', role: 'Fachberaterin', img: '/Aleyna 2.png', linkedin: '' },
     { name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png', linkedin: '' },
     { name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png', linkedin: '' },
     { name: 'Tamaz Tordia', role: 'Social Media Manager', img: '/Gio.png', linkedin: 'https://www.linkedin.com/in/tamaz-tordia-362935367/' },
     { name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png', linkedin: '' },
     { name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png', linkedin: '' },
-    { name: 'Aleyna Uysal', role: 'Fachberaterin', img: '/Aleyna 2.png', linkedin: '' },
+    { name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png', linkedin: '' },
   ];
 
   return (
