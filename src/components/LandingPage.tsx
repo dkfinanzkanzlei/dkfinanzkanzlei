@@ -352,20 +352,20 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#F8FAFC] backdrop-blur-xl overflow-visible">
-      <div className="max-w-7xl mx-auto px-6 h-14 md:h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 md:h-20 flex items-center justify-between">
 
         {/* Left: Logo */}
         <button onClick={() => onPageChange('home')} className="cursor-pointer flex-shrink-0">
           <img
             src="/dk-logo.png"
             alt="DK"
-            className="h-20 md:h-48 w-auto object-contain"
+            className="h-10 md:h-48 w-auto object-contain"
             style={{ filter: cfg.logoFilter, transition: 'filter 0.6s ease' }}
           />
         </button>
 
-        {/* Brand slash-nav */}
-        <nav className="slash-nav">
+        {/* Brand slash-nav – desktop only */}
+        <nav className="slash-nav hidden md:flex">
           {BRAND_ORDER.map((b, i) => (
             <React.Fragment key={b}>
               {i > 0 && <span className="slash-sep">/</span>}
@@ -416,8 +416,21 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="md:hidden absolute left-0 right-0 bg-[#F8FAFC] border-b border-black/10 p-6 flex flex-col gap-6 text-[#1E293B]"
-          style={{ top: '4rem' }}
+          style={{ top: '3.5rem' }}
         >
+          {/* Brand switcher in mobile menu */}
+          <div className="flex items-center gap-3 pb-2 border-b border-black/10">
+            {BRAND_ORDER.map((b) => (
+              <button
+                key={b}
+                onClick={() => { onBrandChange(b); setIsOpen(false); }}
+                className={`text-xs font-bold tracking-widest uppercase transition-colors ${brand === b ? '' : 'text-[#1E293B]/40'}`}
+                style={brand === b ? { color: BRANDS[b].color } : undefined}
+              >
+                {BRANDS[b].label}
+              </button>
+            ))}
+          </div>
           <div>
             <a href="#services" onClick={() => { setIsOpen(false); onPageChange('home'); }} className="font-semibold">Leistungen</a>
             <div className="mt-3 pl-3 flex flex-col gap-2 text-sm text-[#1E293B]/60">
