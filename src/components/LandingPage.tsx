@@ -351,6 +351,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
   const cfg = BRANDS[brand];
 
   return (
+    <>
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#F8FAFC] backdrop-blur-xl overflow-visible">
       <div className="max-w-7xl mx-auto px-4 lg:px-6 h-14 lg:h-20 flex items-center justify-between">
 
@@ -411,14 +412,17 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
         </button>
       </div>
 
+    </nav>
+
+      {/* Mobile menu – rendered outside <nav> as its own fixed layer so iOS Safari passes touch events correctly */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden absolute left-0 right-0 z-50 bg-[#F8FAFC] border-b border-black/10 p-6 flex flex-col gap-5 text-[#1E293B] overflow-y-auto"
-          style={{ top: '100%', maxHeight: 'calc(100vh - 3.5rem)' }}
+          className="fixed left-0 right-0 z-40 bg-[#F8FAFC] border-b border-black/10 p-6 flex flex-col gap-5 text-[#1E293B] overflow-y-auto lg:hidden"
+          style={{ top: '3.5rem', maxHeight: 'calc(100dvh - 3.5rem)' }}
         >
-          {/* Brand switcher in mobile menu */}
+          {/* Brand switcher */}
           <div className="flex items-center gap-4 pb-3 border-b border-black/10">
             {BRAND_ORDER.map((b) => (
               <button
@@ -436,22 +440,22 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
             <div className="mt-3 pl-3 flex flex-col gap-2 text-sm text-[#1E293B]/60">
               <p className="text-xs font-bold uppercase" style={{ color: cfg.color }}>Versicherungen</p>
               {(['Krankenversicherung','Arbeitskraftabsicherung','KFZ-Versicherung','Sachversicherungen','Gewerbeversicherungen','Private Rentenversicherungen','Hinterbliebenenvorsorge'] as const).map(i => (
-                <button key={i} className="text-left py-1" onClick={() => setIsOpen(false)}>{i}</button>
+                <button key={i} className="text-left py-2 w-full" onClick={() => setIsOpen(false)}>{i}</button>
               ))}
               <p className="text-xs font-bold uppercase mt-2" style={{ color: cfg.color }}>Vermögensaufbau</p>
               {(['Immobilien','Sparprodukte','Geldanlagen','Vorsorgekonzepte','Finanzierungen','Aktien','Vermögenswirksame Leistungen'] as const).map(i => (
-                <button key={i} className="text-left py-1" onClick={() => setIsOpen(false)}>{i}</button>
+                <button key={i} className="text-left py-2 w-full" onClick={() => setIsOpen(false)}>{i}</button>
               ))}
             </div>
           </div>
           <button className="text-left" onClick={() => { setIsOpen(false); onPageChange(currentPage === 'ueberuns' ? 'home' : 'ueberuns'); }}>Über uns</button>
-          <a href="#proof" onClick={() => { setIsOpen(false); onPageChange('home'); }}>Erfolge</a>
+          <button className="text-left" onClick={() => { setIsOpen(false); onPageChange('home'); }}>Erfolge</button>
           <button onClick={() => { setIsOpen(false); onPageChange('kontakt'); }} className="w-full py-3 text-white rounded-lg font-semibold" style={{ backgroundColor: cfg.color }}>
             {cfg.ctaText}
           </button>
         </motion.div>
       )}
-    </nav>
+    </>
   );
 };
 
