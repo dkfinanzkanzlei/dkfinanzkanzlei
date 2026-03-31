@@ -352,20 +352,20 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#F8FAFC] backdrop-blur-xl overflow-visible">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 md:h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 lg:px-6 h-14 lg:h-20 flex items-center justify-between">
 
         {/* Left: Logo */}
         <button onClick={() => onPageChange('home')} className="cursor-pointer flex-shrink-0">
           <img
             src="/dk-logo.png"
             alt="DK"
-            className="h-10 md:h-48 w-auto object-contain"
+            className="h-10 lg:h-48 w-auto object-contain"
             style={{ filter: cfg.logoFilter, transition: 'filter 0.6s ease' }}
           />
         </button>
 
         {/* Brand slash-nav – desktop only */}
-        <nav className="slash-nav hidden md:flex">
+        <nav className="slash-nav hidden lg:flex">
           {BRAND_ORDER.map((b, i) => (
             <React.Fragment key={b}>
               {i > 0 && <span className="slash-sep">/</span>}
@@ -381,7 +381,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
         </nav>
 
         {/* Right: Nav + CTA */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#1E293B]/70">
+        <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#1E293B]/70">
           <div className="relative" onMouseEnter={() => setLeistungenOpen(true)} onMouseLeave={() => setLeistungenOpen(false)}>
             <button onClick={() => onPageChange('home')} className="flex items-center gap-1 hover:text-[#1E293B] transition-colors">
               Leistungen <ChevronRight className={`w-3.5 h-3.5 transition-transform ${leistungenOpen ? 'rotate-90' : ''}`} />
@@ -406,20 +406,20 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
           </button>
         </div>
 
-        <button className="md:hidden text-[#1E293B]" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-[#1E293B]" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X /> : <Menu />}
         </button>
       </div>
 
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute left-0 right-0 bg-[#F8FAFC] border-b border-black/10 p-6 flex flex-col gap-6 text-[#1E293B]"
-          style={{ top: '3.5rem' }}
+          className="lg:hidden absolute left-0 right-0 z-50 bg-[#F8FAFC] border-b border-black/10 p-6 flex flex-col gap-5 text-[#1E293B] overflow-y-auto"
+          style={{ top: '100%', maxHeight: 'calc(100vh - 3.5rem)' }}
         >
           {/* Brand switcher in mobile menu */}
-          <div className="flex items-center gap-3 pb-2 border-b border-black/10">
+          <div className="flex items-center gap-4 pb-3 border-b border-black/10">
             {BRAND_ORDER.map((b) => (
               <button
                 key={b}
@@ -432,12 +432,16 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
             ))}
           </div>
           <div>
-            <a href="#services" onClick={() => { setIsOpen(false); onPageChange('home'); }} className="font-semibold">Leistungen</a>
+            <button onClick={() => { setIsOpen(false); onPageChange('home'); }} className="font-semibold text-left w-full">Leistungen</button>
             <div className="mt-3 pl-3 flex flex-col gap-2 text-sm text-[#1E293B]/60">
               <p className="text-xs font-bold uppercase" style={{ color: cfg.color }}>Versicherungen</p>
-              {['Krankenversicherung','Arbeitskraftabsicherung','KFZ-Versicherung','Sachversicherungen','Gewerbeversicherungen','Private Rentenversicherungen','Hinterbliebenenvorsorge'].map(i => <a key={i} href="#services" onClick={() => setIsOpen(false)}>{i}</a>)}
+              {(['Krankenversicherung','Arbeitskraftabsicherung','KFZ-Versicherung','Sachversicherungen','Gewerbeversicherungen','Private Rentenversicherungen','Hinterbliebenenvorsorge'] as const).map(i => (
+                <button key={i} className="text-left py-1" onClick={() => setIsOpen(false)}>{i}</button>
+              ))}
               <p className="text-xs font-bold uppercase mt-2" style={{ color: cfg.color }}>Vermögensaufbau</p>
-              {['Immobilien','Sparprodukte','Geldanlagen','Vorsorgekonzepte','Finanzierungen','Aktien','Vermögenswirksame Leistungen'].map(i => <a key={i} href="#services" onClick={() => setIsOpen(false)}>{i}</a>)}
+              {(['Immobilien','Sparprodukte','Geldanlagen','Vorsorgekonzepte','Finanzierungen','Aktien','Vermögenswirksame Leistungen'] as const).map(i => (
+                <button key={i} className="text-left py-1" onClick={() => setIsOpen(false)}>{i}</button>
+              ))}
             </div>
           </div>
           <button className="text-left" onClick={() => { setIsOpen(false); onPageChange(currentPage === 'ueberuns' ? 'home' : 'ueberuns'); }}>Über uns</button>
