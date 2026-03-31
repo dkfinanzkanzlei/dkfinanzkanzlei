@@ -436,15 +436,31 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
             ))}
           </div>
           <div>
-            <button onClick={() => { setIsOpen(false); onPageChange('home'); }} className="font-semibold text-left w-full">Leistungen</button>
-            <div className="mt-3 pl-3 flex flex-col gap-2 text-sm text-[#1E293B]/60">
-              <p className="text-xs font-bold uppercase" style={{ color: cfg.color }}>Versicherungen</p>
-              {(['Krankenversicherung','Arbeitskraftabsicherung','KFZ-Versicherung','Sachversicherungen','Gewerbeversicherungen','Private Rentenversicherungen','Hinterbliebenenvorsorge'] as const).map(i => (
-                <button key={i} className="text-left py-2 w-full" onClick={() => setIsOpen(false)}>{i}</button>
+            <button onClick={() => { setIsOpen(false); onPageChange('leistungen'); }} className="font-semibold text-left w-full">Leistungen</button>
+            <div className="mt-3 pl-3 flex flex-col gap-1 text-sm text-[#1E293B]/60">
+              <p className="text-xs font-bold uppercase mb-1" style={{ color: cfg.color }}>Versicherungen</p>
+              {([
+                ['Krankenversicherung', 'krankenversicherung'],
+                ['Arbeitskraftabsicherung', 'arbeitskraft'],
+                ['KFZ-Versicherung', 'kfz'],
+                ['Sachversicherungen', 'sach'],
+                ['Gewerbeversicherungen', 'gewerbe'],
+                ['Private Rentenversicherung', 'rente'],
+                ['Hinterbliebenenvorsorge', 'hinterbliebene'],
+              ] as [string, ServiceKey][]).map(([label, key]) => (
+                <button key={key} className="text-left py-2 w-full hover:text-[#1E293B] transition-colors" onClick={() => { setIsOpen(false); onService(key); }}>{label}</button>
               ))}
-              <p className="text-xs font-bold uppercase mt-2" style={{ color: cfg.color }}>Vermögensaufbau</p>
-              {(['Immobilien','Sparprodukte','Geldanlagen','Vorsorgekonzepte','Finanzierungen','Aktien','Vermögenswirksame Leistungen'] as const).map(i => (
-                <button key={i} className="text-left py-2 w-full" onClick={() => setIsOpen(false)}>{i}</button>
+              <p className="text-xs font-bold uppercase mt-2 mb-1" style={{ color: cfg.color }}>Vermögensaufbau</p>
+              {([
+                ['Immobilien', 'immobilien'],
+                ['Sparprodukte', 'sparprodukte'],
+                ['Geldanlagen', 'geldanlagen'],
+                ['Vorsorgekonzepte', 'vorsorge'],
+                ['Finanzierungen', 'finanzierungen'],
+                ['Aktien', 'aktien'],
+                ['Vermögenswirksame Leistungen', 'vwl'],
+              ] as [string, ServiceKey][]).map(([label, key]) => (
+                <button key={key} className="text-left py-2 w-full hover:text-[#1E293B] transition-colors" onClick={() => { setIsOpen(false); onService(key); }}>{label}</button>
               ))}
             </div>
           </div>
