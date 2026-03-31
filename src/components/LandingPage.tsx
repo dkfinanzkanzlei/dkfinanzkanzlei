@@ -1278,6 +1278,7 @@ const UeberUnsContent = () => {
   const team = [
     { name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/Joel Logo.png', linkedin: 'https://www.linkedin.com/in/joel-dakaj-11766239b/' },
     { name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/Flamur 4.png', linkedin: 'https://www.linkedin.com/in/flamur-kastrati-75864839b/' },
+    { name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png', linkedin: '' },
     { name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/Muyooo.png', linkedin: 'https://www.linkedin.com/in/muayyad-anis-b159211b9/' },
     { name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png', linkedin: 'https://www.linkedin.com/in/philipp-scott-jagiella-07ba7233b/' },
     { name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/Jannik 3.png', linkedin: 'https://www.linkedin.com/in/jannik-f%C3%B6rster-9a8b5722a/' },
@@ -1291,7 +1292,6 @@ const UeberUnsContent = () => {
     { name: 'Tamaz Tordia', role: 'Social Media Manager', img: '/Gio.png', linkedin: 'https://www.linkedin.com/in/tamaz-tordia-362935367/' },
     { name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png', linkedin: '' },
     { name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png', linkedin: '' },
-    { name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png', linkedin: '' },
   ];
 
   return (
