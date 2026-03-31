@@ -111,7 +111,7 @@ const FAQSection = () => {
     <section id="faq" className="py-8 md:py-16 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Häufig gestellte Fragen</h2>
+          <h2 className="text-2xl md:text-5xl font-bold mb-4">Häufig gestellte Fragen</h2>
           <p className="text-white/50">Hier findest du die Antworten auf deine Fragen</p>
         </div>
         <div>
@@ -540,7 +540,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
                 Unabhängig & Persönlich
               </span>
             </div>
-            <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-3xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
               Dein Problem. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Unsere Lösung.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Deine Zukunft.</span>
@@ -687,7 +687,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
           </div>
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }}>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">Bereit für deine <br /> finanzielle Freiheit?</h2>
+            <h2 className="text-3xl md:text-6xl font-bold mb-8">Bereit für deine <br /> finanzielle Freiheit?</h2>
             <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto">Sichere dir jetzt dein kostenloses Erstgespräch und lass uns gemeinsam herausfinden, wie viel Potenzial in deinen Finanzen steckt.</p>
             <button onClick={() => onPageChange('kontakt')} className="px-10 py-5 bg-white text-[#1E293B] rounded-full font-bold text-xl hover:shadow-xl hover:shadow-white/20 transition-all active:scale-95">
               Kostenlose Beratung buchen
@@ -732,7 +732,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
                 Vorsorge & Absicherung
               </span>
             </div>
-            <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-3xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.1]">
               Deine Vorsorge. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Heute planen.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Sicher leben.</span>
@@ -809,7 +809,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
           </div>
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }}>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">Bereit für deine <br /> sichere Zukunft?</h2>
+            <h2 className="text-3xl md:text-6xl font-bold mb-8">Bereit für deine <br /> sichere Zukunft?</h2>
             <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto">Starte jetzt deinen kostenlosen Vorsorgecheck und erfahre, wie gut du wirklich abgesichert bist.</p>
             <button onClick={() => onPageChange('kontakt')} className="px-10 py-5 bg-white rounded-full font-bold text-xl hover:shadow-xl hover:shadow-white/20 transition-all active:scale-95" style={{ color: '#14532d' }}>
               Vorsorgecheck starten
@@ -854,7 +854,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
                 Immobilien & Investments
               </span>
             </div>
-            <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-3xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.1]">
               Immobilien. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Intelligent.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Rentabel.</span>
@@ -931,7 +931,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
           </div>
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }}>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">Bereit für dein <br /> nächstes Objekt?</h2>
+            <h2 className="text-3xl md:text-6xl font-bold mb-8">Bereit für dein <br /> nächstes Objekt?</h2>
             <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto">Starte jetzt deine kostenlose Immobilienberatung und erfahre, welche Objekte wirklich zu deiner Strategie passen.</p>
             <button onClick={() => onPageChange('kontakt')} className="px-10 py-5 bg-white rounded-full font-bold text-xl hover:shadow-xl hover:shadow-white/20 transition-all active:scale-95" style={{ color: '#7f1d1d' }}>
               Immobilienberatung anfragen
@@ -949,7 +949,7 @@ const ImpressumContent = () => (
   <section className="pt-48 pb-32 px-6">
     <div className="max-w-3xl mx-auto">
       <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">Impressum</h1>
+        <h1 className="text-3xl md:text-6xl font-bold mb-4">Impressum</h1>
         <div className="w-16 h-1 rounded-full mb-12" style={{ backgroundColor: '#4d7abd' }} />
         <div className="text-white/70 leading-relaxed space-y-10 text-base">
 
@@ -1023,7 +1023,7 @@ const DatenschutzContent = () => (
   <section className="pt-48 pb-32 px-6">
     <div className="max-w-3xl mx-auto">
       <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">Datenschutzerklärung</h1>
+        <h1 className="text-3xl md:text-6xl font-bold mb-4">Datenschutzerklärung</h1>
         <div className="w-16 h-1 rounded-full mb-12" style={{ backgroundColor: '#4d7abd' }} />
         <div className="text-white/70 leading-relaxed space-y-10 text-base">
 
@@ -1308,7 +1308,7 @@ const UeberUnsContent = () => {
               <Users className="w-3.5 h-3.5" style={{ color }} />
               Wer wir sind
             </span>
-            <h1 className="text-5xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-8">
+            <h1 className="text-3xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-8">
               Unser Team macht<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">den Unterschied.</span>
             </h1>
@@ -1653,7 +1653,7 @@ const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: Se
 
         {/* Header */}
         <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color }}>{data.category}</p>
-        <h1 className="text-5xl md:text-7xl font-bold text-[#1E293B] mb-8 leading-tight">{data.title}</h1>
+        <h1 className="text-3xl md:text-7xl font-bold text-[#1E293B] mb-8 leading-tight">{data.title}</h1>
 
         {/* Hook */}
         <p className="text-xl md:text-2xl text-[#1E293B]/80 leading-relaxed mb-16 max-w-3xl font-medium">{data.hook}</p>
@@ -1722,7 +1722,7 @@ const LeistungenPage = ({ color, onPageChange, onService }: { color: string; onP
       {/* Hero */}
       <div className="max-w-7xl mx-auto px-6 mb-20">
         <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color }}>Was wir für dich tun</p>
-        <h1 className="text-5xl md:text-7xl font-bold text-[#1E293B] mb-6 leading-tight">Unsere Leistungen</h1>
+        <h1 className="text-3xl md:text-7xl font-bold text-[#1E293B] mb-6 leading-tight">Unsere Leistungen</h1>
         <p className="text-[#1E293B]/60 text-lg max-w-2xl leading-relaxed">
           Jahrelanges Vertrauen von tausenden Kunden bekommt man nicht geschenkt. Wir beraten unabhängig, wissenschaftlich fundiert und vollständig digital – für das beste Ergebnis für dich.
         </p>
@@ -1831,7 +1831,7 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
 
           {/* ── Left: Contact Form ── */}
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#1E293B] mb-6">Kontaktformular</h1>
+            <h1 className="text-2xl md:text-5xl font-bold text-[#1E293B] mb-6">Kontaktformular</h1>
             <p className="text-[#1E293B]/70 mb-10 leading-relaxed max-w-lg">
               Wir freuen uns sehr, dass du dich entschieden hast zu handeln und deine offenen Fragen zu klären. Schreibe uns hier kurz deine Nachricht und wir melden uns spätestens nach 48 Stunden bei dir zurück, um mit dir einen Termin für ein kostenloses Erstgespräch zu vereinbaren.
             </p>
