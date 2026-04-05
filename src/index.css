@@ -99,12 +99,12 @@ body::after {
 }
 
 .marquee-left {
-  animation: marquee-left 40s linear infinite;
+  animation: marquee-left 80s linear infinite;
   will-change: transform;
 }
 
 .marquee-right {
-  animation: marquee-right 40s linear infinite;
+  animation: marquee-right 80s linear infinite;
   will-change: transform;
 }
 

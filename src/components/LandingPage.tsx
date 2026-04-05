@@ -252,7 +252,7 @@ const Proof = ({ color }: { color: string }) => {
 
       {/* Row 2 – scrolls right */}
       <div className="relative">
-        <div className="flex marquee-right" style={{ width: 'max-content' }}>
+        <div className="flex marquee-right" style={{ width: 'max-content', animationDuration: '165s' }}>
           {[...row2, ...row2].map((t, i) => <ReviewCard key={i} t={t} />)}
         </div>
         <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#1E293B] to-transparent z-10" />
