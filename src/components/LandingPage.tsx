@@ -262,7 +262,7 @@ const Proof = ({ color }: { color: string }) => {
   );
 };
 
-const Footer = ({ color, onPageChange }: { color: string; onPageChange: (p: Page) => void }) => (
+const Footer = ({ color, onPageChange }: { color: string; onPageChange: (p: Page, scrollTarget?: string) => void }) => (
   <footer className="py-20 px-6 border-t border-white/10">
     <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
       <div className="col-span-2">
@@ -290,7 +290,7 @@ const Footer = ({ color, onPageChange }: { color: string; onPageChange: (p: Page
           <li><button onClick={() => onPageChange('ueberuns')} className="hover:text-white transition-colors text-left">Über uns</button></li>
           <li><button onClick={() => onPageChange('leistungen')} className="hover:text-white transition-colors text-left">Leistungen</button></li>
           <li><button onClick={() => onPageChange('home')} className="hover:text-white transition-colors text-left">Erfolge</button></li>
-          <li><button onClick={() => { onPageChange('home'); setTimeout(() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' }), 400); }} className="hover:text-white transition-colors">FAQ</button></li>
+          <li><button onClick={() => onPageChange('home', 'faq')} className="hover:text-white transition-colors">FAQ</button></li>
         </ul>
       </div>
       <div>
@@ -1956,12 +1956,27 @@ export default function LandingPage() {
   const initial = getStateFromPath();
   const [page, setPage] = useState<Page>(initial.page);
   const [currentService, setCurrentService] = useState<ServiceKey>(initial.service);
+  const [pendingScrollTarget, setPendingScrollTarget] = useState<string | null>(null);
 
-  const navigate = (p: Page) => {
+  useEffect(() => {
+    if (pendingScrollTarget && page === 'home') {
+      const t = setTimeout(() => {
+        document.getElementById(pendingScrollTarget)?.scrollIntoView({ behavior: 'smooth' });
+        setPendingScrollTarget(null);
+      }, 500);
+      return () => clearTimeout(t);
+    }
+  }, [page, pendingScrollTarget]);
+
+  const navigate = (p: Page, scrollTarget?: string) => {
     const url = PAGE_TO_PATH[p];
     window.history.pushState({ page: p }, '', url);
     setPage(p);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (scrollTarget) {
+      setPendingScrollTarget(scrollTarget);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const goToService = (key: ServiceKey) => {
