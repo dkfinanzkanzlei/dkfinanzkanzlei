@@ -1287,6 +1287,7 @@ const UeberUnsContent = () => {
     { name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png', linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/' },
     { name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png', linkedin: '' },
     { name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png', linkedin: '' },
+    { name: 'Tabita Mbolo', role: 'Fachberaterin', img: '/Tabita.png', linkedin: '' },
     { name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png', linkedin: '' },
     { name: 'Aleyna Uysal', role: 'Fachberaterin', img: '/Aleyna 2.png', linkedin: '' },
     { name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png', linkedin: '' },
