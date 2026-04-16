@@ -534,7 +534,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-12">
           {/* Left: Text – appears below image on mobile */}
           <motion.div className="flex-1 text-left order-2 md:order-1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex flex-col items-start gap-0 mb-4 md:mb-8">
+            <div className="hidden md:inline-flex flex-col items-start gap-0 mb-4 md:mb-8">
               <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="h-16 md:h-24 w-auto object-contain" />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Unabhängig & Persönlich
@@ -558,7 +558,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             </div>
           </motion.div>
           {/* Right: Team image – appears above text on mobile */}
-          <motion.div className="flex-1 flex self-stretch order-1 md:order-2 h-[30vh] md:h-auto" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+          <motion.div className="flex-1 flex self-stretch order-1 md:order-2 h-[40vh] md:h-auto" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl w-full h-full">
               <img src="/joel-flamur.png" alt="DK Finanzkanzlei" className="w-full h-full object-cover object-top" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B]/60 via-transparent to-transparent" />
