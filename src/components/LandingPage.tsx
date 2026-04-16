@@ -558,7 +558,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             </div>
           </motion.div>
           {/* Right: Team image – appears above text on mobile */}
-          <motion.div className="flex-1 flex self-stretch order-1 md:order-2 h-[45vh] md:h-auto" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+          <motion.div className="flex-1 flex self-stretch order-1 md:order-2 h-[30vh] md:h-auto" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl w-full h-full">
               <img src="/joel-flamur.png" alt="DK Finanzkanzlei" className="w-full h-full object-cover object-top" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B]/60 via-transparent to-transparent" />
