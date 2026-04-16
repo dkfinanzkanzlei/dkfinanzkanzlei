@@ -407,7 +407,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
           </button>
         </div>
 
-        <button className="lg:hidden text-[#1E293B]" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-[#1E293B] min-w-[44px] min-h-[44px] flex items-center justify-center" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X /> : <Menu />}
         </button>
       </div>
@@ -525,41 +525,41 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-24 md:pt-40 pb-10 md:pb-20 px-6 overflow-hidden">
+      <section className="relative pt-16 md:pt-40 pb-6 md:pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[#4d7abd]/20 blur-[120px] rounded-full opacity-50" />
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#22C55E]/10 blur-[100px] rounded-full opacity-30" />
         </div>
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          {/* Left: Text */}
-          <motion.div className="flex-1 text-left" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex flex-col items-start gap-0 mb-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-12">
+          {/* Left: Text – appears below image on mobile */}
+          <motion.div className="flex-1 text-left order-2 md:order-1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="inline-flex flex-col items-start gap-0 mb-4 md:mb-8">
               <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="h-16 md:h-24 w-auto object-contain" />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Unabhängig & Persönlich
               </span>
             </div>
-            <h1 className="text-3xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-3xl md:text-7xl font-bold tracking-tight mb-4 md:mb-8 leading-[1.1]">
               Dein Problem. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Unsere Lösung.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Deine Zukunft.</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/60 max-w-xl mb-12 leading-relaxed">
+            <p className="text-lg md:text-xl text-white/60 max-w-xl mb-6 md:mb-12 leading-relaxed">
               Wir hören zu, denken mit und handeln. Damit aus deinem Problem von heute dein Erfolg von morgen wird.
             </p>
-            <div className="flex items-center">
-              <button onClick={() => onPageChange('kontakt')} className="group relative px-8 py-4 bg-white text-black rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
-                <span className="relative z-10 flex items-center gap-2">
+            <div className="flex items-center w-full md:w-auto">
+              <button onClick={() => onPageChange('kontakt')} className="group relative w-full md:w-auto px-8 py-4 bg-white text-black rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+                <span className="relative z-10 flex items-center justify-center gap-2">
                   Kostenlose Beratung sichern <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <div className="border-beam" />
               </button>
             </div>
           </motion.div>
-          {/* Right: Team image */}
-          <motion.div className="flex-1 hidden md:flex self-stretch" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl w-full">
+          {/* Right: Team image – appears above text on mobile */}
+          <motion.div className="flex-1 flex self-stretch order-1 md:order-2 h-[45vh] md:h-auto" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl w-full h-full">
               <img src="/joel-flamur.png" alt="DK Finanzkanzlei" className="w-full h-full object-cover object-top" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B]/60 via-transparent to-transparent" />
             </div>
