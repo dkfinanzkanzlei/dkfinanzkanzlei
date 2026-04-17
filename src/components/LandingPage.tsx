@@ -345,6 +345,55 @@ const LeistungenDropdown = ({ color, onPageChange, onService }: { color: string;
   </motion.div>
 );
 
+// ─── Cookie Banner ────────────────────────────────────────────────────────────
+const CookieBanner = ({ onDatenschutz }: { onDatenschutz: () => void }) => {
+  const [accepted, setAccepted] = useState(() =>
+    typeof window !== 'undefined' && localStorage.getItem('dk-cookie-consent') === 'true'
+  );
+
+  if (accepted) return null;
+
+  const accept = () => {
+    localStorage.setItem('dk-cookie-consent', 'true');
+    setAccepted(true);
+  };
+
+  return (
+    <>
+      <div className="fixed inset-0 z-[998] bg-black/50 backdrop-blur-sm" />
+      <motion.div
+        initial={{ y: 120, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className="fixed bottom-0 left-0 right-0 z-[999] bg-[#1E293B] border-t border-white/10 px-6 py-6 shadow-[0_-8px_40px_rgba(0,0,0,0.4)]"
+      >
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-5">
+          <div className="flex-1">
+            <p className="text-white font-semibold text-base mb-1">Diese Website verwendet Cookies</p>
+            <p className="text-white/60 text-sm leading-relaxed">
+              Wir nutzen Cookies, um dir das bestmögliche Erlebnis zu bieten und unsere Website zu verbessern.
+              Mit dem Klick auf „Akzeptieren" stimmst du unserer{' '}
+              <button
+                onClick={onDatenschutz}
+                className="underline text-[#4d7abd] hover:text-white transition-colors"
+              >
+                Datenschutzerklärung
+              </button>{' '}
+              zu.
+            </p>
+          </div>
+          <button
+            onClick={accept}
+            className="w-full md:w-auto flex-shrink-0 px-8 py-3 bg-[#4d7abd] hover:bg-[#3d6aad] text-white rounded-full font-semibold transition-colors shadow-[0_0_20px_rgba(77,122,189,0.4)]"
+          >
+            Alle akzeptieren
+          </button>
+        </div>
+      </motion.div>
+    </>
+  );
+};
+
 const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: { brand: Brand; onBrandChange: (b: Brand) => void; onPageChange: (p: Page) => void; currentPage: Page; onService: (k: ServiceKey) => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [leistungenOpen, setLeistungenOpen] = useState(false);
@@ -2041,6 +2090,7 @@ export default function LandingPage() {
         />
       </AnimatePresence>
 
+      <CookieBanner onDatenschutz={() => navigate('datenschutz')} />
       <Navbar brand={brand} onBrandChange={(b) => { handleBrandChange(b); navigate('home'); }} onPageChange={navigate} currentPage={page} onService={goToService} />
       <AnimatePresence mode="wait" custom={direction}>
         {page === 'ueberuns' ? (
