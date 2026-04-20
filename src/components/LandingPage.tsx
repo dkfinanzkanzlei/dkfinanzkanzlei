@@ -583,16 +583,8 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-12">
           {/* Left: Text – appears below image on mobile */}
           <motion.div className="flex-1 text-left order-2 md:order-1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 className="text-3xl md:text-7xl font-bold tracking-tight mb-4 md:mb-8 leading-[1.1]">
-              Dein Problem. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Unsere Lösung.</span> <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Deine Zukunft.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/60 max-w-xl mb-6 md:mb-12 leading-relaxed">
-              Wir hören zu, denken mit und handeln. Damit aus deinem Problem von heute dein Erfolg von morgen wird.
-            </p>
-            <div className="flex flex-col items-start w-full md:w-auto">
-              <div className="hidden md:inline-flex flex-col items-center gap-0 mb-2">
+            <div className="flex flex-col items-start w-full md:w-auto mb-4 md:mb-8">
+              <div className="inline-flex flex-col items-center gap-0 mb-2">
                 <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="h-16 md:h-24 w-auto object-contain" />
                 <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                   Eigenständig & Persönlich
@@ -605,6 +597,14 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
                 <div className="border-beam" />
               </button>
             </div>
+            <h1 className="text-3xl md:text-7xl font-bold tracking-tight mb-4 md:mb-8 leading-[1.1]">
+              Dein Problem. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Unsere Lösung.</span> <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Deine Zukunft.</span>
+            </h1>
+            <p className="text-lg md:text-xl text-white/60 max-w-xl mb-6 md:mb-12 leading-relaxed">
+              Wir hören zu, denken mit und handeln. Damit aus deinem Problem von heute dein Erfolg von morgen wird.
+            </p>
           </motion.div>
           {/* Right: Team image – appears above text on mobile */}
           <motion.div className="flex-1 flex self-stretch order-1 md:order-2 h-[40vh] md:h-auto" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
