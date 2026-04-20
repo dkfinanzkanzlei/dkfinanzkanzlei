@@ -1936,7 +1936,7 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
             </div>
           </div>
 
-          {/* ── Right: Calendly ── */}
+          {/* ── Right: Google Calendar ── */}
           <div className="lg:sticky lg:top-36">
             <div className="mb-4">
               <p className="text-xs font-bold tracking-widest uppercase mb-1 text-[#1E293B]/40">Oder direkt</p>
@@ -1945,7 +1945,7 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
             </div>
             <div className="rounded-2xl overflow-hidden border border-black/10 shadow-lg bg-white" style={{ height: 680 }}>
               <iframe
-                src="https://calendly.com/zulage"
+                src="https://calendar.google.com/calendar/u/0/appointments/AcZssZ0XOK3fyXkX0sX-D4_HMuAMb4zUDce51Bb9wKg="
                 width="100%"
                 height="100%"
                 frameBorder="0"
