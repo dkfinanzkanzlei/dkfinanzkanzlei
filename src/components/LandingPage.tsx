@@ -583,7 +583,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-12">
           {/* Left: Text – appears below image on mobile */}
           <motion.div className="flex-1 text-left order-2 md:order-1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="flex flex-col items-center gap-2 mb-4 md:mb-8 w-full">
+            <div className="flex flex-col items-start gap-2 mb-4 md:mb-8 w-full">
               <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="h-16 md:h-24 w-auto object-contain" />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Eigenständig & Persönlich
