@@ -584,10 +584,12 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
           {/* Left: Text – appears below image on mobile */}
           <motion.div className="flex-1 text-left order-2 md:order-1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="flex flex-col items-start gap-2 mb-4 md:mb-8 w-full">
-              <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="h-16 md:h-24 w-auto object-contain" />
-              <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
-                Eigenständig & Persönlich
-              </span>
+              <div className="inline-flex flex-col items-center gap-0">
+                <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="h-16 md:h-24 w-auto object-contain" />
+                <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
+                  Eigenständig & Persönlich
+                </span>
+              </div>
               <button onClick={() => onPageChange('kontakt')} className="group relative w-full md:w-auto px-8 py-4 bg-white text-black rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Kostenlose Beratung sichern <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
