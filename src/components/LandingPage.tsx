@@ -767,7 +767,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-24 md:pt-40 pb-10 md:pb-20 px-6 overflow-hidden">
+      <section className="relative pt-12 md:pt-20 pb-6 md:pb-12 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] blur-[120px] rounded-full opacity-40" style={{ backgroundColor: color + '33' }} />
@@ -775,18 +775,18 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
         </div>
         <div className="max-w-5xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex flex-col items-center gap-0 mb-8">
-              <img src="/dk-logo-small.png" alt="DK Vorsorge" className="h-16 md:h-24 w-auto object-contain" style={{ filter: BRANDS.vorsorge.logoFilter }} />
+            <div className="inline-flex flex-col items-center gap-0 mb-4">
+              <img src="/dk-logo-small.png" alt="DK Vorsorge" className="h-14 md:h-20 w-auto object-contain" style={{ filter: BRANDS.vorsorge.logoFilter }} />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Vorsorge & Absicherung
               </span>
             </div>
-            <h1 className="text-3xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-3xl md:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
               Deine Vorsorge. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Heute planen.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Sicher leben.</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-6 leading-relaxed">
               Die Mehrheit unterschätzt den Wert frühzeitiger Absicherung. Wir analysieren deine Situation und entwickeln eine maßgeschneiderte Vorsorgsstrategie für dein Leben.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -889,7 +889,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-24 md:pt-40 pb-10 md:pb-20 px-6 overflow-hidden">
+      <section className="relative pt-12 md:pt-20 pb-6 md:pb-12 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] blur-[120px] rounded-full opacity-40" style={{ backgroundColor: color + '33' }} />
@@ -897,18 +897,18 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
         </div>
         <div className="max-w-5xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex flex-col items-center gap-0 mb-8">
-              <img src="/dk-logo-small.png" alt="DK Immo" className="h-16 md:h-24 w-auto object-contain" style={{ filter: BRANDS.immo.logoFilter }} />
+            <div className="inline-flex flex-col items-center gap-0 mb-4">
+              <img src="/dk-logo-small.png" alt="DK Immo" className="h-14 md:h-20 w-auto object-contain" style={{ filter: BRANDS.immo.logoFilter }} />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Immobilien & Investments
               </span>
             </div>
-            <h1 className="text-3xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-3xl md:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
               Immobilien. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Intelligent.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Rentabel.</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-6 leading-relaxed">
               Immobilien sind eine der sichersten Anlageformen – wenn man weiß, wie. Wir analysieren den Markt und finden die richtigen Objekte für dein Portfolio.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
