@@ -99,10 +99,6 @@ const FAQ_ITEMS = [
     q: 'Wie kann ich mir das unverbindliche Beratungsgespräch sichern?',
     a: 'Klicke einfach auf den Button „Kostenlose Beratung buchen" und wähle einen Termin aus, der dir passt. In weniger als 2 Minuten bist du dabei.',
   },
-  {
-    q: 'Seid ihr wirklich unabhängig?',
-    a: 'Ja – wir sind nicht an eine Bank oder Versicherung gebunden. Wir vergleichen Hunderte von Anbietern und empfehlen ausschließlich das, was objektiv am besten zu deiner Situation passt.',
-  },
 ];
 
 const FAQSection = () => {
@@ -405,7 +401,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
       <div className="max-w-7xl mx-auto px-4 lg:px-6 h-14 lg:h-20 flex items-center justify-between">
 
         {/* Left: Logo */}
-        <button onClick={() => onPageChange('home')} className="cursor-pointer flex-shrink-0">
+        <button onClick={() => { onBrandChange('dk'); onPageChange('home'); }} className="cursor-pointer flex-shrink-0">
           <img
             src="/dk-logo.png"
             alt="DK"
@@ -567,7 +563,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
     { title: "Langfristige Begleitung", desc: "Wir bleiben an deiner Seite, wenn sich das Leben ändert.", icon: <CheckCircle2 className="w-6 h-6 text-orange-400" />, className: "md:col-span-1 md:row-span-1" },
   ];
   const valueCards = [
-    { title: "Unabhängige Beratung", description: "Wir sind an keine Bank oder Versicherung gebunden. Unser einziger Maßstab ist dein finanzieller Erfolg.", icon: <ShieldCheck className="w-8 h-8" style={{ color }} />, tag: "Objektivität" },
+    { title: "Eigenständige Beratung", description: "Mit Zugang zu Hunderten von Anbietern beraten wir dich frei von Banken und Versicherungen. Kein Exklusivvertrag, kein Interessenkonflikt – nur das Beste für dich.", icon: <ShieldCheck className="w-8 h-8" style={{ color }} />, tag: "Objektivität" },
     { title: "Steueroptimierung", description: "Nutze staatliche Förderungen und Steuervorteile, die 90% der Menschen ignorieren. Dein Geld gehört dir.", icon: <Calculator className="w-8 h-8 text-[#22C55E]" />, tag: "Effizienz" },
     { title: "Strategischer Aufbau", description: "Kein Glücksspiel, sondern mathematisch fundierte Strategien mit ETFs und Immobilien für langfristige Freiheit.", icon: <TrendingUp className="w-8 h-8" style={{ color }} />, tag: "Wachstum" },
   ];
@@ -741,7 +737,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             <button onClick={() => onPageChange('kontakt')} className="px-10 py-5 bg-white text-[#1E293B] rounded-full font-bold text-xl hover:shadow-xl hover:shadow-white/20 transition-all active:scale-95">
               Kostenlose Beratung buchen
             </button>
-            <p className="mt-6 text-sm text-white/60">Unverbindlich • 100% Unabhängig • In 2 Minuten erledigt</p>
+            <p className="mt-6 text-sm text-white/60">Unverbindlich • 100% Eigenständig • In 2 Minuten erledigt</p>
           </motion.div>
         </div>
       </section>
@@ -760,44 +756,44 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
     { title: "Pflegevorsorge", desc: "Frühzeitig und günstig absichern – bevor es zu spät ist.", icon: <Users className="w-6 h-6" style={{ color }} />, className: "md:col-span-1 md:row-span-1" },
   ];
   const valueCards = [
-    { title: "Unabhängige Beratung", description: "Kein Versicherungsvertreter – wir sind ausschließlich deinen Interessen verpflichtet.", icon: <ShieldCheck className="w-8 h-8" style={{ color }} />, tag: "Unabhängigkeit" },
+    { title: "Eigenständige Beratung", description: "Wir wählen aus Hunderten von Anbietern das aus, was objektiv am besten zu dir passt.", icon: <ShieldCheck className="w-8 h-8" style={{ color }} />, tag: "Eigenständigkeit" },
     { title: "Steueroptimierte Vorsorge", description: "Nutze staatliche Förderungen wie Riester, Rürup und bAV vollumfänglich aus.", icon: <Calculator className="w-8 h-8" style={{ color }} />, tag: "Steuervorteile" },
     { title: "Lebenslange Begleitung", description: "Deine Vorsorge wächst mit dir – wir passen sie an jede Lebensphase an.", icon: <TrendingUp className="w-8 h-8" style={{ color }} />, tag: "Langfristig" },
   ];
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-12 md:pt-20 pb-6 md:pb-12 px-6 overflow-hidden">
+      <section className="relative px-6 overflow-hidden min-h-[calc(100vh-64px)] flex flex-col justify-center">
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] blur-[120px] rounded-full opacity-40" style={{ backgroundColor: color + '33' }} />
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] blur-[100px] rounded-full opacity-30" style={{ backgroundColor: color + '1a' }} />
         </div>
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center py-16 md:py-24">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex flex-col items-center gap-0 mb-4">
-              <img src="/dk-logo-small.png" alt="DK Vorsorge" className="h-14 md:h-20 w-auto object-contain" style={{ filter: BRANDS.vorsorge.logoFilter }} />
-              <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
+            <div className="inline-flex flex-col items-center gap-0 mb-8">
+              <img src="/dk-logo-small.png" alt="DK Vorsorge" className="h-16 md:h-28 w-auto object-contain" style={{ filter: BRANDS.vorsorge.logoFilter }} />
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Vorsorge & Absicherung
               </span>
             </div>
-            <h1 className="text-3xl md:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
+            <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 md:mb-10 leading-[1.1]">
               Deine Vorsorge. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Heute planen.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Sicher leben.</span>
             </h1>
-            <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-6 leading-relaxed">
+            <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 md:mb-14 leading-relaxed">
               Die Mehrheit unterschätzt den Wert frühzeitiger Absicherung. Wir analysieren deine Situation und entwickeln eine maßgeschneiderte Vorsorgsstrategie für dein Leben.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button onClick={() => onPageChange('kontakt')} className="group relative px-8 py-4 text-white rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95" style={{ backgroundColor: color }}>
+              <button onClick={() => onPageChange('kontakt')} className="group relative px-10 py-5 text-white rounded-full font-bold text-xl overflow-hidden transition-all hover:scale-105 active:scale-95" style={{ backgroundColor: color }}>
                 <span className="relative z-10 flex items-center gap-2">
                   Vorsorgecheck starten <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
             </div>
           </motion.div>
-          <div className="mt-32 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
+          <div className="mt-16 md:mt-24 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
           </div>
         </div>
@@ -863,7 +859,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
             <button onClick={() => onPageChange('kontakt')} className="px-10 py-5 bg-white rounded-full font-bold text-xl hover:shadow-xl hover:shadow-white/20 transition-all active:scale-95" style={{ color: '#14532d' }}>
               Vorsorgecheck starten
             </button>
-            <p className="mt-6 text-sm text-white/60">Unverbindlich • 100% Unabhängig • In 2 Minuten erledigt</p>
+            <p className="mt-6 text-sm text-white/60">Unverbindlich • 100% Eigenständig • In 2 Minuten erledigt</p>
           </motion.div>
         </div>
       </section>
@@ -889,37 +885,37 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-12 md:pt-20 pb-6 md:pb-12 px-6 overflow-hidden">
+      <section className="relative px-6 overflow-hidden min-h-[calc(100vh-64px)] flex flex-col justify-center">
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] blur-[120px] rounded-full opacity-40" style={{ backgroundColor: color + '33' }} />
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] blur-[100px] rounded-full opacity-30" style={{ backgroundColor: color + '1a' }} />
         </div>
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center py-16 md:py-24">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex flex-col items-center gap-0 mb-4">
-              <img src="/dk-logo-small.png" alt="DK Immo" className="h-14 md:h-20 w-auto object-contain" style={{ filter: BRANDS.immo.logoFilter }} />
-              <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
+            <div className="inline-flex flex-col items-center gap-0 mb-8">
+              <img src="/dk-logo-small.png" alt="DK Immo" className="h-16 md:h-28 w-auto object-contain" style={{ filter: BRANDS.immo.logoFilter }} />
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Immobilien & Investments
               </span>
             </div>
-            <h1 className="text-3xl md:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
+            <h1 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 md:mb-10 leading-[1.1]">
               Immobilien. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Intelligent.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Rentabel.</span>
             </h1>
-            <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-6 leading-relaxed">
+            <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 md:mb-14 leading-relaxed">
               Immobilien sind eine der sichersten Anlageformen – wenn man weiß, wie. Wir analysieren den Markt und finden die richtigen Objekte für dein Portfolio.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button onClick={() => onPageChange('kontakt')} className="group relative px-8 py-4 text-white rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95" style={{ backgroundColor: color }}>
+              <button onClick={() => onPageChange('kontakt')} className="group relative px-10 py-5 text-white rounded-full font-bold text-xl overflow-hidden transition-all hover:scale-105 active:scale-95" style={{ backgroundColor: color }}>
                 <span className="relative z-10 flex items-center gap-2">
                   Immobilienberatung anfragen <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
             </div>
           </motion.div>
-          <div className="mt-32 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
+          <div className="mt-16 md:mt-24 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
           </div>
         </div>
@@ -1290,6 +1286,22 @@ const DatenschutzContent = () => (
 // ─── Über Uns Content ────────────────────────────────────────────────────────────
 const UeberUnsContent = () => {
   const color = '#4d7abd';
+  const [bewerbungOpen, setBewerbungOpen] = useState(false);
+  const [bewForm, setBewForm] = useState({ name: '', email: '', telefon: '', nachricht: '' });
+  const [bewFile, setBewFile] = useState<File | null>(null);
+  const [bewSubmitted, setBewSubmitted] = useState(false);
+
+  const handleBewerbungSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Bewerbung von ${bewForm.name}`);
+    const fileInfo = bewFile ? `\nAnhang: ${bewFile.name} (bitte manuell anhängen)` : '';
+    const body = encodeURIComponent(
+      `Name: ${bewForm.name}\nE-Mail: ${bewForm.email}\nTelefon: ${bewForm.telefon}${fileInfo}\n\nNachricht / Motivation:\n${bewForm.nachricht}`
+    );
+    window.open(`mailto:info@dk-finanzkanzlei.de?subject=${subject}&body=${body}`);
+    setBewSubmitted(true);
+  };
+  const resetBew = () => { setBewerbungOpen(false); setBewSubmitted(false); setBewForm({ name: '', email: '', telefon: '', nachricht: '' }); setBewFile(null); };
 
   const values = [
     {
@@ -1457,49 +1469,121 @@ const UeberUnsContent = () => {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl overflow-hidden grid md:grid-cols-2 gap-0"
+            className="rounded-3xl overflow-hidden"
             style={{ background: 'linear-gradient(135deg, #4d7abd 0%, #3a5f9a 60%, #2a4a7f 100%)' }}
           >
-            {/* Bild links */}
-            <div className="relative min-h-[340px] md:min-h-[420px]">
-              <img
-                src="/Team.jpg"
-                alt="DK Finanzkanzlei Team"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#3a5f9a]/60 md:block hidden" />
-            </div>
+            <AnimatePresence mode="wait">
+              {!bewerbungOpen ? (
+                <motion.div
+                  key="default"
+                  className="grid md:grid-cols-2 gap-0"
+                  exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                >
+                  {/* Bild links – fährt nach oben raus */}
+                  <motion.div
+                    className="relative min-h-[340px] md:min-h-[420px] overflow-hidden"
+                    exit={{ y: '-100%', opacity: 0, transition: { duration: 0.5, ease: [0.4, 0, 1, 1] } }}
+                  >
+                    <img src="/Team.jpg" alt="DK Finanzkanzlei Team" className="absolute inset-0 w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#3a5f9a]/60 md:block hidden" />
+                  </motion.div>
 
-            {/* Text rechts */}
-            <div className="p-10 md:p-14 flex flex-col justify-center">
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
-                Werde Teil<br />unseres Teams
-              </h2>
-              <p className="text-white/80 text-lg mb-8 leading-relaxed">
-                Wir sind immer auf der Suche nach talentierten Menschen, die unsere Werte teilen und mit uns gemeinsam wachsen möchten.
-              </p>
-              <div className="grid grid-cols-2 gap-x-8 gap-y-3 mb-10">
-                {[
-                  'Flexible Arbeitszeiten',
-                  'Homeoffice-Möglichkeit',
-                  'Mitarbeiter-Rabatt',
-                  'Flache Hierarchien',
-                  'Spannende Aufgaben',
-                  'Kaffee ohne Ende',
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-white/90 text-sm">
-                    <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-white" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-              <a
-                href="mailto:dakaj@dk-finanzkanzlei.de"
-                className="inline-flex items-center gap-2 text-white font-bold text-base hover:gap-3 transition-all"
-              >
-                Jetzt bewerben <ArrowRight className="w-5 h-5" />
-              </a>
-            </div>
+                  {/* Text rechts – fährt nach unten raus */}
+                  <motion.div
+                    className="p-10 md:p-14 flex flex-col justify-center"
+                    exit={{ y: '100%', opacity: 0, transition: { duration: 0.5, ease: [0.4, 0, 1, 1] } }}
+                  >
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
+                      Werde Teil<br />unseres Teams
+                    </h2>
+                    <p className="text-white/80 text-lg mb-8 leading-relaxed">
+                      Wir sind immer auf der Suche nach talentierten Menschen, die unsere Werte teilen und mit uns gemeinsam wachsen möchten.
+                    </p>
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-3 mb-10">
+                      {['Flexible Arbeitszeiten','Homeoffice-Möglichkeit','Mitarbeiter-Rabatt','Flache Hierarchien','Spannende Aufgaben','Kaffee ohne Ende'].map((item) => (
+                        <div key={item} className="flex items-center gap-2 text-white/90 text-sm">
+                          <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-white" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => setBewerbungOpen(true)}
+                      className="inline-flex items-center gap-2 text-white font-bold text-base hover:gap-3 transition-all w-fit"
+                    >
+                      Jetzt bewerben <ArrowRight className="w-5 h-5" />
+                    </button>
+                  </motion.div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="form"
+                  className="flex flex-col"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {/* Formular – kommt aus der Mitte */}
+                  <motion.div
+                    className="p-6 md:p-10 min-h-[340px] md:min-h-[420px] flex flex-col justify-center"
+                    initial={{ y: '40px', opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.55, ease: [0, 0, 0.2, 1], delay: 0.1 }}
+                  >
+                    {!bewSubmitted ? (
+                      <>
+                        <h2 className="text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Deine Bewerbung</h2>
+                        <p className="text-white/60 text-sm mb-5">Füll das Formular aus – wir melden uns so schnell wie möglich.</p>
+                        <form onSubmit={handleBewerbungSubmit} className="grid md:grid-cols-3 gap-3">
+                          <div className="flex flex-col gap-1">
+                            <label className="text-white/50 text-[10px] font-semibold tracking-wider uppercase">Name *</label>
+                            <input required type="text" value={bewForm.name} onChange={e => setBewForm(f => ({ ...f, name: e.target.value }))} placeholder="Max Mustermann"
+                              className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/50 transition-colors" />
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <label className="text-white/50 text-[10px] font-semibold tracking-wider uppercase">E-Mail *</label>
+                            <input required type="email" value={bewForm.email} onChange={e => setBewForm(f => ({ ...f, email: e.target.value }))} placeholder="max@beispiel.de"
+                              className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/50 transition-colors" />
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <label className="text-white/50 text-[10px] font-semibold tracking-wider uppercase">Telefon</label>
+                            <input type="tel" value={bewForm.telefon} onChange={e => setBewForm(f => ({ ...f, telefon: e.target.value }))} placeholder="+49 123 456789"
+                              className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/50 transition-colors" />
+                          </div>
+                          <div className="md:col-span-3 flex flex-col gap-1">
+                            <label className="text-white/50 text-[10px] font-semibold tracking-wider uppercase">Warum DK Finanzkanzlei? *</label>
+                            <textarea required rows={2} value={bewForm.nachricht} onChange={e => setBewForm(f => ({ ...f, nachricht: e.target.value }))}
+                              placeholder="Erzähl uns von dir, deiner Motivation und was dich auszeichnet …"
+                              className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/50 transition-colors resize-none" />
+                          </div>
+                          <div className="md:col-span-3 flex flex-col gap-1">
+                            <label className="text-white/50 text-[10px] font-semibold tracking-wider uppercase">Bewerbung & Lebenslauf (PDF)</label>
+                            <label className="flex items-center gap-3 bg-white/10 border border-white/20 border-dashed rounded-lg px-3 py-2.5 cursor-pointer hover:border-white/40 transition-colors">
+                              <ArrowRight className="w-4 h-4 text-white/50 rotate-90 flex-shrink-0" />
+                              <span className="text-sm text-white/50">{bewFile ? bewFile.name : 'Datei auswählen …'}</span>
+                              <input type="file" accept=".pdf,.doc,.docx" className="hidden" onChange={e => setBewFile(e.target.files?.[0] ?? null)} />
+                            </label>
+                          </div>
+                          <div className="md:col-span-3 flex items-center gap-4 pt-1">
+                            <button type="submit" className="px-6 py-2.5 bg-white text-[#3a5f9a] rounded-full font-bold text-sm hover:shadow-lg hover:shadow-white/20 transition-all active:scale-95">
+                              Bewerbung absenden
+                            </button>
+                            <button type="button" onClick={resetBew} className="text-white/40 text-sm hover:text-white/70 transition-colors">Abbrechen</button>
+                          </div>
+                        </form>
+                      </>
+                    ) : (
+                      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="text-center py-6">
+                        <CheckCircle2 className="w-12 h-12 text-white mx-auto mb-3" />
+                        <h3 className="text-xl font-bold text-white mb-2">Bewerbung gesendet!</h3>
+                        <p className="text-white/60 text-sm mb-6">Vielen Dank, {bewForm.name}. Wir melden uns in Kürze.</p>
+                        <button onClick={resetBew} className="text-white/50 text-sm hover:text-white/80 transition-colors">Zurück</button>
+                      </motion.div>
+                    )}
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </section>
@@ -1522,7 +1606,7 @@ const SERVICE_DATA: Record<ServiceKey, { category: string; title: string; hook: 
       'Viele wechseln nie – obwohl sie mit einem anderen Tarif Hunderte Euro im Jahr sparen könnten.',
       'Selbstständige riskieren alles, wenn sie falsch versichert sind.',
     ],
-    solution: 'Wir vergleichen unabhängig alle Anbieter und finden den Tarif, der wirklich zu dir passt – gesetzlich oder privat. Keine Provision, keine Bevorzugung.',
+    solution: 'Wir vergleichen eigenständig alle Anbieter und finden den Tarif, der wirklich zu dir passt – gesetzlich oder privat. Keine Provision, keine Bevorzugung.',
     cta: 'Kostenlose Analyse starten',
   },
   arbeitskraft: {
@@ -1547,7 +1631,7 @@ const SERVICE_DATA: Record<ServiceKey, { category: string; title: string; hook: 
       'Im Schadensfall zeigt sich erst, ob deine Versicherung wirklich zahlt.',
       'Wer nie vergleicht, verschenkt im Schnitt über 300 € pro Jahr.',
     ],
-    solution: 'Wir vergleichen für dich unabhängig und finden den optimalen Schutz für dein Fahrzeug – zum besten Preis.',
+    solution: 'Wir vergleichen für dich eigenständig und finden den optimalen Schutz für dein Fahrzeug – zum besten Preis.',
     cta: 'Jetzt Tarif vergleichen',
   },
   sach: {
@@ -1631,7 +1715,7 @@ const SERVICE_DATA: Record<ServiceKey, { category: string; title: string; hook: 
       'Ohne Strategie und Diversifikation ist jede Geldanlage ein Glücksspiel.',
       'Banken empfehlen oft die Produkte, die ihnen am meisten einbringen – nicht dir.',
     ],
-    solution: 'Wir entwickeln eine wissenschaftlich fundierte Anlagestrategie mit ETFs, Fonds und weiteren Instrumenten – unabhängig und auf dich zugeschnitten.',
+    solution: 'Wir entwickeln eine wissenschaftlich fundierte Anlagestrategie mit ETFs, Fonds und weiteren Instrumenten – eigenständig und auf dich zugeschnitten.',
     cta: 'Anlagestrategie erstellen',
   },
   vorsorge: {
@@ -1746,7 +1830,7 @@ const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: Se
 const VERSICHERUNGEN: { title: string; desc: string; key: ServiceKey }[] = [
   { key: 'krankenversicherung', title: 'Krankenversicherung',      desc: 'Gesetzlich oder privat – wir finden die optimale Absicherung für deine Gesundheit und deinen Geldbeutel.' },
   { key: 'arbeitskraft',        title: 'Arbeitskraftabsicherung',  desc: 'Deine Arbeitskraft ist dein größtes Kapital. Wir sichern sie ab – bevor es zu spät ist.' },
-  { key: 'kfz',                 title: 'KFZ-Versicherung',         desc: 'Der beste Schutz für dein Fahrzeug zum besten Preis – unabhängig verglichen.' },
+  { key: 'kfz',                 title: 'KFZ-Versicherung',         desc: 'Der beste Schutz für dein Fahrzeug zum besten Preis – eigenständig verglichen.' },
   { key: 'sach',                title: 'Sachversicherungen',        desc: 'Von Hausrat bis Haftpflicht: umfassender Schutz für dein Eigentum und deine Finanzen.' },
   { key: 'gewerbe',             title: 'Gewerbeversicherungen',     desc: 'Maßgeschneiderte Absicherung für Selbstständige und Unternehmen – damit du dich aufs Wesentliche konzentrieren kannst.' },
   { key: 'rente',               title: 'Private Rentenversicherung',desc: 'Staatlich geförderte Altersvorsorge, die wirklich zu deiner Lebenssituation passt.' },
@@ -1758,7 +1842,7 @@ const VERMOEGEN: { title: string; desc: string; key: ServiceKey }[] = [
   { key: 'sparprodukte',  title: 'Sparprodukte',                    desc: 'Vom Tagesgeld bis zum Bausparvertrag – wir finden das Produkt, das zu deinen Zielen passt.' },
   { key: 'geldanlagen',   title: 'Geldanlagen',                     desc: 'ETFs, Fonds und mehr: wissenschaftlich fundierte Anlagestrategien für nachhaltigen Vermögensaufbau.' },
   { key: 'vorsorge',      title: 'Vorsorgekonzepte',                desc: 'Ganzheitliche Planung für deine Rente – damit du im Alter so leben kannst, wie du es dir vorstellst.' },
-  { key: 'finanzierungen',title: 'Finanzierungen',                  desc: 'Günstige Finanzierungen für Immobilien, Fahrzeuge und mehr – unabhängig verglichen.' },
+  { key: 'finanzierungen',title: 'Finanzierungen',                  desc: 'Günstige Finanzierungen für Immobilien, Fahrzeuge und mehr – eigenständig verglichen.' },
   { key: 'aktien',        title: 'Aktien',                          desc: 'Direkte Beteiligungen am Kapitalmarkt – mit fundierter Beratung und klarer Strategie.' },
   { key: 'vwl',           title: 'Vermögenswirksame Leistungen',   desc: 'Arbeitgeberzuschuss und staatliche Förderung optimal nutzen – für maximalen Vermögensaufbau ohne Mehrkosten.' },
 ];
@@ -1774,7 +1858,7 @@ const LeistungenPage = ({ color, onPageChange, onService }: { color: string; onP
         <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color }}>Was wir für dich tun</p>
         <h1 className="text-3xl md:text-7xl font-bold text-[#1E293B] mb-6 leading-tight">Unsere Leistungen</h1>
         <p className="text-[#1E293B]/60 text-lg max-w-2xl leading-relaxed">
-          Jahrelanges Vertrauen von tausenden Kunden bekommt man nicht geschenkt. Wir beraten unabhängig, wissenschaftlich fundiert und vollständig digital – für das beste Ergebnis für dich.
+          Jahrelanges Vertrauen von tausenden Kunden bekommt man nicht geschenkt. Wir beraten eigenständig, wissenschaftlich fundiert und vollständig digital – für das beste Ergebnis für dich.
         </p>
       </div>
 
