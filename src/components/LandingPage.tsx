@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence, useInView } from 'motion/react';
 import {
   TrendingUp, ShieldCheck, PieChart, ArrowRight, CheckCircle2, ChevronRight,
   Menu, X, Wallet, Calculator, Building2, Home, Heart, BarChart3, Users,
@@ -219,6 +219,158 @@ const ReviewCard = ({ t }: { t: { name: string; date: string; text: string; star
       <p className="text-xs text-white/30">{t.date}</p>
     </div>
   </div>
+);
+
+// ─── Testimonial Cards ───────────────────────────────────────────────────────────
+const TESTIMONIAL_CARDS_DATA = [
+  {
+    badge: 'Selbstständiger',
+    name: 'Max Berger',
+    role: 'Online-Marketing Berater',
+    text: 'Ich habe mich vorher selbst um meine Finanzen gekümmert, aber viele Vorteile einfach nicht genutzt. Durch den Wechsel von der gesetzlichen in die private Krankenkasse spare ich jetzt rund 4.000€ pro Jahr. Zusätzlich wurde meine Altersvorsorge optimiert, sodass ich durch staatliche Förderungen etwa 30% mehr Rentenkapital aufbaue.',
+    stats: [
+      { value: 4000, suffix: '€', label: 'Ersparnis durch PKV-Wechsel' },
+      { value: 30,   suffix: '%', label: 'mehr Rentenkapital' },
+      { value: 5300, suffix: '€', label: 'Gesamtersparnis p.a.' },
+    ],
+    result: 'Gesamtersparnis: ca. 5.300€ pro Jahr',
+  },
+  {
+    badge: 'Azubi',
+    name: 'Leon Weber',
+    role: 'Auszubildender Industriekaufmann',
+    text: 'Als Azubi hätte ich nie gedacht, dass ich überhaupt so viele Vorteile nutzen kann. Meine Berufsunfähigkeitsversicherung ist jetzt etwa 25% günstiger durch Zuschüsse der Krankenkasse. Zusätzlich bekomme ich 480€ jährlich vom Arbeitgeber.',
+    stats: [
+      { value: 25,   suffix: '%', label: 'günstigere BU-Versicherung' },
+      { value: 480,  suffix: '€', label: 'Arbeitgeberzuschuss' },
+      { value: 1080, suffix: '€', label: 'Gesamtersparnis p.a.' },
+    ],
+    result: 'Gesamtersparnis: ca. 1.080€ pro Jahr',
+  },
+  {
+    badge: 'Arbeitnehmer',
+    name: 'Daniel Schneider',
+    role: 'Projektingenieur Maschinenbau',
+    text: 'Ich verdiene über 3.000€ netto und dachte, ich hätte alles gut geregelt. Durch die Optimierung spare ich jetzt rund 3.721€ an Steuern und erhalte zusätzlich etwa 2.500€ staatliche Förderung.',
+    stats: [
+      { value: 3721, suffix: '€', label: 'Steuerersparnis' },
+      { value: 2500, suffix: '€', label: 'staatliche Förderung' },
+      { value: 6221, suffix: '€', label: 'Gesamtersparnis p.a.' },
+    ],
+    result: 'Gesamtersparnis: ca. 6.221€ pro Jahr',
+  },
+];
+
+const AnimatedCounter = ({ value, suffix, color }: { value: number; suffix: string; color: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [count, setCount] = useState(0);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+
+  useEffect(() => {
+    if (!isInView) return;
+    const duration = 1600;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * value));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [isInView, value]);
+
+  return (
+    <span ref={ref} className="font-bold text-base tabular-nums" style={{ color }}>
+      {count.toLocaleString('de-DE')}{suffix}
+    </span>
+  );
+};
+
+const TestimonialCards = ({ color }: { color: string }) => (
+  <section className="py-8 md:py-16 px-6">
+    <div className="max-w-7xl mx-auto">
+      <div className="text-center mb-12">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-5xl font-bold mb-4"
+        >
+          Echte Ergebnisse unserer Mandanten
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-white/50 max-w-xl mx-auto"
+        >
+          Konkrete Zahlen, echte Menschen – das erreichen wir gemeinsam.
+        </motion.p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {TESTIMONIAL_CARDS_DATA.map((card, i) => (
+          <motion.div
+            key={card.name}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
+            className="flex flex-col rounded-2xl border border-white/8 bg-white/[0.03] p-7"
+          >
+            {/* Badge */}
+            <span
+              className="inline-flex self-start text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-5 border"
+              style={{ color, borderColor: `${color}55`, background: `${color}18` }}
+            >
+              {card.badge}
+            </span>
+
+            {/* Quote */}
+            <p className="text-white/60 text-sm leading-relaxed mb-6 flex-1">
+              „{card.text}"
+            </p>
+
+            {/* Animated stats */}
+            <div className="space-y-3 mb-5">
+              {card.stats.map((s) => (
+                <div key={s.label} className="flex items-center justify-between gap-4">
+                  <span className="text-xs text-white/40 leading-tight">{s.label}</span>
+                  <AnimatedCounter value={s.value} suffix={s.suffix} color={color} />
+                </div>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-white/10 mb-5" />
+
+            {/* Result line */}
+            <p
+              className="testimonial-result-pulse text-sm font-bold text-center py-2.5 px-4 rounded-lg mb-5"
+              style={{ color, background: `${color}18` }}
+            >
+              {card.result}
+            </p>
+
+            {/* Name + role */}
+            <div className="flex items-center gap-3">
+              <div
+                className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: `${color}28`, color }}
+              >
+                {card.name.charAt(0)}
+              </div>
+              <div>
+                <p className="text-sm font-bold leading-tight">{card.name}</p>
+                <p className="text-xs text-white/40 leading-tight mt-0.5">{card.role}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
 );
 
 const Proof = ({ color }: { color: string }) => {
@@ -720,6 +872,9 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       </section>
 
       <DottedLine />
+      <TestimonialCards color={color} />
+
+      <DottedLine />
       <Proof color={color} />
 
       <DottedLine />
@@ -845,6 +1000,9 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
       </section>
 
       <DottedLine />
+      <TestimonialCards color={color} />
+
+      <DottedLine />
       <Proof color={color} />
 
       {/* CTA */}
@@ -965,6 +1123,9 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
           </div>
         </div>
       </section>
+
+      <DottedLine />
+      <TestimonialCards color={color} />
 
       <DottedLine />
       <Proof color={color} />
@@ -1587,6 +1748,9 @@ const UeberUnsContent = () => {
           </motion.div>
         </div>
       </section>
+
+      <DottedLine />
+      <TestimonialCards color={color} />
 
       <DottedLine />
       <Proof color={color} />

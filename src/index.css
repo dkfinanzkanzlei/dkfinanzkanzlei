@@ -152,3 +152,12 @@ body::after {
   offset-path: rect(0 auto auto 0 round 100px);
   animation: border-beam 4s linear infinite;
 }
+
+@keyframes testimonial-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(77, 122, 189, 0.25); }
+  50%       { box-shadow: 0 0 22px rgba(77, 122, 189, 0.5); }
+}
+
+.testimonial-result-pulse {
+  animation: testimonial-pulse 2.6s ease-in-out infinite;
+}
