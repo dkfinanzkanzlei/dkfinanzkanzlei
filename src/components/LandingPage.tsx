@@ -278,10 +278,6 @@ const TestimonialCards = ({ color }: { color: string }) => (
 
       {/* Section header */}
       <div className="text-center mb-14">
-        <div className="flex items-center justify-center gap-2 mb-4" style={{ color }}>
-          <CheckCircle2 className="w-4 h-4" />
-          <span className="text-xs font-bold uppercase tracking-widest">Echte Ergebnisse unserer Mandanten</span>
-        </div>
         <h2 className="text-3xl md:text-5xl font-bold mb-4">Erfolge</h2>
         <p className="text-white/45 max-w-lg mx-auto text-base">
           Konkrete Zahlen, echte Menschen – das erreichen wir gemeinsam.
