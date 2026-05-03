@@ -156,58 +156,23 @@ const StarRating = ({ stars = 5 }: { stars?: number }) => (
 );
 
 const ALL_TESTIMONIALS = [
-  { name: "Hedi Abid", date: "Mai 2025", text: "Herrn Jannik Förster kann man nicht genug loben – absolute Top-Beratung! Fachlich brillant, extrem kompetent, alles lief reibungslos und professionell. Seine Empfehlungen waren punktgenau. Einfach stark!" },
-  { name: "Patrick Decker", date: "Mai 2025", text: "Ich hatte heute eine Beratung bei Jannik Förster, super freundlich und professionell, sehr angenehmer Gesprächsfluss. Hab absolut nichts negatives zu sagen, top." },
   { name: "Jonas Klang", date: "Mai 2025", text: "Wirklich nette, transparente und vor allem sinnige Beratung. Die Terminzeiten sind wirklich flexibel – 10–21 Uhr. Von solchen Zeiten können sich Banken eine Scheibe abschneiden." },
-  { name: "Lilli Gruschka", date: "Mai 2025", text: "Ich hatte eine kompetente Beratung mit Tamaz Tordia, kann ich nur weiterempfehlen!!" },
-  { name: "Lara Schomaker", date: "Mai 2025", text: "Ich hatte ein Gespräch mit Jannik Förster über vermögenswirksame Leistungen. Durch seine lockere und persönliche Art war es ein super Gespräch. Er hat alles sofort erledigt und bei Fragen steht er jederzeit zur Verfügung. Einfach toll!!" },
-  { name: "Yasmin Rothinger", date: "Mai 2025", text: "Ich hatte ein sehr nettes Meeting mit dem Herrn Tordia. Sehr informativ und wirklich freundlich. Konnte alle meine Fragen super beantworten 👍" },
-  { name: "Michelle Bartel", date: "Mai 2025", text: "Mein Gespräch mit Tamaz Tordia war sehr nett. Er hat alle meine Fragen beantwortet und mir weitere Tipps gegeben. Ich habe mich gut aufgehoben gefühlt." },
-  { name: "Julian Weinberg", date: "Mai 2025", text: "Sehr gute und schnelle Beratung! Vielen Dank nochmal Jannik!" },
-  { name: "Munavar C K", date: "Mai 2025", text: "Die Beraterin Aleyna Uysal war unglaublich freundlich, geduldig und hat sich viel Zeit genommen. Man fühlt sich hier wirklich gut aufgehoben – absolut empfehlenswert!" },
-  { name: "Lars Heckmann", date: "Mai 2025", text: "Ich hatte ein Meeting mit dem Herrn Tordia über Vermögenswirksame Leistungen. Eine sehr nette und kompetente Beratung. Er konnte mir alle Fragen super beantworten." },
-  { name: "A Haideri", date: "Apr. 2025", text: "Tamaz Tordia war super hilfsbereit. Hat mir alle Fragen und inhaltlichen Themen super erklärt. Jederzeit wieder!" },
-  { name: "H. Brühl", date: "Apr. 2025", text: "Ich hatte ein tolles Beratungsgespräch mit J. Förster. Er hat mir alles gut erklärt und alle Fragen beantwortet. Sehr weiter zu empfehlen." },
-  { name: "Max Wohlfahrt", date: "Apr. 2025", text: "Beratungsgespräch mit Herrn Tordia: Sehr aufklärendes Gespräch, es wurde auf alle Fragen eingegangen. Die Atmosphäre war die ganze Zeit über entspannt. 5/5★" },
-  { name: "Wambo 809", date: "Apr. 2025", text: "Tamaz Tordia ist mit mir alle Punkte nochmals ausführlich durchgegangen und war sehr nett und kompetent." },
-  { name: "Philipp", date: "Apr. 2025", text: "Tamaz Tordia hat mich super beraten. Tolle Erklärungen. Sehr verständlich." },
-  { name: "Skripton", date: "Apr. 2025", text: "Tamaz Tordia hat mich freundlich beraten und ist individuell auf mich persönlich eingegangen. Sehr geduldig und angenehm." },
   { name: "Nesrin K", date: "Apr. 2025", text: "Super Beratung. Nichts auszusetzen ☺" },
   { name: "Tabea Burska", date: "Apr. 2025", text: "Als Auszubildende ist es eine große Erleichterung professionelle Hilfe zu bekommen. Alle Themen wurden mir genau erklärt mit ihren Vor- und Nachteilen. Ich finde es sehr gut, dass diese Möglichkeit kostenlos angeboten wird." },
   { name: "Christopher Lange", date: "Mär. 2025", text: "Ich habe sehr gute Erfahrungen gemacht. Das Kundengespräch war sehr aufschlussreich und unkompliziert. Der Berater Denis Martynewski war sehr nett und hat jede Frage beantwortet." },
   { name: "Alex", date: "Mär. 2025", text: "Ich wurde als Azubi zu verschiedensten Themen von Philipp Jagiella beraten und bin sehr zufrieden. Ich konnte alles mögliche an Fragen stellen und es wurde sich zu jeder Frage ausführlich geäußert." },
   { name: "Jason P", date: "Feb. 2025", text: "Ein kompetentes und engagiertes Team. Stets höflich und zuvorkommend. Im Videocall mit Herrn Jagiella gesprochen, welcher stets hilfsbereit war und Ahnung von seinen Themen hatte. Nur weiterzuempfehlen!" },
   { name: "Jieuigyeom Luka Hwang", date: "Feb. 2025", text: "Hatte Beratung bei Phillip Jagiella. Bei diesem jungen Mann sieht man, dass er hochqualifiziert ist und auch Spaß hat in diesem Beruf. Gerne wieder!" },
-  { name: "Franek Hitzing", date: "Feb. 2025", text: "Ich hatte einen Beratungstermin als Auszubildender. Ich habe mich gut beraten gefühlt und wurde sehr freundlich durch das Antragsformular geführt von Herrn Tamaz Tordia." },
   { name: "martha wt", date: "Feb. 2025", text: "Die Beratung war toll! Ich habe mit Denis Martynewski gesprochen und er war total zuvorkommend und freundlich! Kann ich nur empfehlen 😊" },
   { name: "Yunes Abdullah", date: "Feb. 2025", text: "Ich wurde von Denis Martynewski beraten. Das freundliche Gespräch hat mir sehr weitergeholfen. Er war sehr sachlich und hat mir jede Frage sehr gut beantworten können. Auf jeden Fall weiter zu empfehlen." },
-  { name: "Volodya Yeranosyan", date: "Feb. 2025", text: "Tamaz Tordia und Philipp Jagiella haben mich erstklassig beraten. Sie sind genau auf meine Anliegen eingegangen. Alles ging schneller als erwartet." },
   { name: "Firat Özel", date: "Jan. 2025", text: "Ich möchte aufmerksam machen für die tolle Arbeit von Philipp. Er ist sehr kompetent und konnte mich sehr gut aufklären bzw. beraten. Sehr empfehlenswert ⭐⭐⭐⭐⭐" },
   { name: "Dominik Loh", date: "Jan. 2025", text: "Sehr kompetente und faire Beratung. Zu empfehlen." },
   { name: "Maia-Teodora Cireap", date: "Dez. 2024", text: "Ich hatte das Glück, von Phillip Jagiella beraten zu werden. Seine Informationen sind beeindruckend. Besonders schätze ich seine freundliche Kommunikation. Würde ich auf jeden Fall weiterempfehlen!" },
-  { name: "Schadowdream | Luca", date: "Mai 2025", text: "Danke an J. Förster. Hat sehr gut beraten und hat sich meiner Skepsis ehrlich und offen gezeigt und mich gut aufgeklärt." },
-  { name: "der zoblix", date: "Mai 2025", text: "Ich hatte ein Meeting mit Herrn Förster. Es war sehr informativ, unkompliziert, leicht zu verstehen. Würd ihn weiterempfehlen, sehr sympathisch!" },
-  { name: "7VelqEnte", date: "Mai 2025", text: "Ich hatte ein Meeting mit Jannik Förster und kann ihn nur weiterempfehlen. Super nett und hilfsbereit und konnte es super einfach erklären." },
   { name: "Nesrin K", date: "Apr. 2025", text: "Super Beratung. Nichts auszusetzen ☺" },
-  { name: "silakto", date: "Jan. 2025", text: "War ein informativ reiches Gespräch und bin sehr zufrieden mit dem Service. Alles wurde direkt aufgeklärt und jede Frage ausführlich beantwortet. Hab vieles herausgefunden was ich noch nicht wusste über die Förderung. Bin sehr zufrieden mit dem Herr Förster als Berater – immer schnell und einfach." },
-  { name: "Jule Cappelmann", date: "Jan. 2025", text: "Jannik hat mir eine Top Beratung gegeben und mir geholfen in Minuten Papiere durchzugehen, für die ich ewig gebraucht hätte. Kann ich jedem nur weiter empfehlen." },
-  { name: "Bär HD", date: "Jan. 2025", text: "Super Beratung bei Herr Förster. Auch im Nachhinein immer meine Fragen zufriedenstellend beantwortet." },
-  { name: "Paula Jacob", date: "Nov. 2024", text: "Tolle und freundliche Beratung durch Jannik Förster mit guten Einblicken für eine weitere Zusammenarbeit. Vielen Dank für die Möglichkeiten :)" },
-  { name: "Sky Hachmann", date: "Nov. 2024", text: "War eine sehr gute Beratung mit Jannik :) Hat mich gefreut." },
-  { name: "Alina Trumpf", date: "Nov. 2024", text: "Herr Förster war ein sehr freundlicher, kompetenter, lustiger Berater. Er hat mir von Anfang bis Ende super beraten und mir für meine Fragen viel Zeit genommen. Dank ihm bin ich über Vermögenswirksame Leistungen um einiges schlauer geworden. Kann Herrn Förster nur weiterempfehlen – bei ihm ist man in sehr guten Händen." },
   { name: "Naomi Barry", date: "Nov. 2024", text: "Ist cool da, sympathische Leute und top Beratung." },
-  { name: "Das Kommentar", date: "Dez. 2024", text: "Sehr gut beraten worden! Alles wird ausführlich erklärt und es wird auf alle Fragen eingegangen. Vielen Dank noch mal an Tamaz Tordia der mich beraten hat." },
-  { name: "jette", date: "Dez. 2024", text: "Tamaz Tordia hat mich sehr gut, souverän und freundlich beraten. Gerne wieder :)" },
-  { name: "Daniel Wolf", date: "Dez. 2024", text: "Mit Humor und sehr detaillierten Erklärungen ein sehr informatives Gespräch gehabt. Tamaz Tordia hat alle Themen nach einer gut geplanten Struktur erklärt, so dass man jedem Schritt wirklich gut folgen konnte. Danke nochmal." },
-  { name: "André Franke", date: "Dez. 2024", text: "Ich bin sehr zufrieden mit dem Service. Tamaz war mein Berater und hat alles bis ins kleinste Detail genauestens erläutert. Der Umgang ist stets freundlich und respektvoll. Super Arbeit, weiter so!" },
   { name: "Tunahan Ercetin", date: "Dez. 2024", text: "Bester Berater 100% Weiterempfehlung – immer hilfsbereit und immer erreichbar." },
-  { name: "Semion Kraus", date: "Jan. 2025", text: "Ich wurde von Herr Förster beraten. Es war ein unglaublich nettes und aufschlussreiches Gespräch. Er konnte mir jede Frage gut erklären und es wurde auch nicht langweilig. Kann man insgesamt einfach nur weiterempfehlen." },
   { name: "Benja", date: "Jan. 2025", text: "Ein Team von jungen kompetenten Beratern, auf die man sich verlassen kann. Absolut empfehlenswert!" },
-  { name: "Marvin Barsch", date: "Jan. 2025", text: "Hatte ein sehr nettes Gespräch mit einem jungen Mann namens Jannik. Klasse Team wirklich." },
-  { name: "Luca Kaufmann", date: "Jan. 2025", text: "Top zufrieden mit der Beratung von Tamaz Tordia – sehr sympathisch der Mann!!!" },
-  { name: "Roman K", date: "2024", text: "Tamaz verfügt über ein beeindruckendes Wissen über Zulagen, Zuschüsse und Förderungen. Er hat mir die verschiedenen finanziellen Vorteile nicht nur verständlich erklärt, sondern auch individuell auf meine Situation eingegangen. Dank seiner wertvollen Tipps konnte ich Fördermöglichkeiten entdecken, die mir zuvor nicht bekannt waren. Ich kann Tamaz uneingeschränkt nur weiterempfehlen." },
   { name: "Sandro B. Vogt", date: "Apr. 2025", stars: 4, text: "Dauerte nach der Anmeldung zwar lange, bis ich eine Rückmeldung erhielt, aber dann wurde ich von Dennis umfassend und informativ beraten." },
-  { name: "Lea Nguyen", date: "Apr. 2025", stars: 4, text: "Jannik Förster war sehr sympathisch und konnte hilfreich meine Fragen beantworten. Ich habe mich sehr wohl gefühlt während der Beratung und konnte ihm auch folgen bei seinen Erklärungen." },
 ];
 
 const ReviewCard = ({ t }: { t: { name: string; date: string; text: string; stars?: number } }) => (
@@ -225,7 +190,7 @@ const ReviewCard = ({ t }: { t: { name: string; date: string; text: string; star
 const TESTIMONIAL_CARDS_DATA = [
   {
     badge: 'Selbstständiger',
-    name: 'Tamaz Tordia',
+    name: 'Max Berger',
     role: 'Online-Marketing Berater',
     text: 'Ich habe mich vorher selbst um meine Finanzen gekümmert, aber viele Vorteile einfach nicht genutzt. Durch den Wechsel von der gesetzlichen in die private Krankenkasse spare ich jetzt rund 4.000€ pro Jahr. Zusätzlich wurde meine Altersvorsorge optimiert, sodass ich durch staatliche Förderungen etwa 30% mehr Rentenkapital aufbaue.',
     stats: [
@@ -461,7 +426,7 @@ const Footer = ({ color, onPageChange }: { color: string; onPageChange: (p: Page
         <ul className="space-y-4 text-sm text-white/60">
           <li><button onClick={() => onPageChange('ueberuns')} className="hover:text-white transition-colors text-left">Über uns</button></li>
           <li><button onClick={() => onPageChange('leistungen')} className="hover:text-white transition-colors text-left">Leistungen</button></li>
-          <li><button onClick={() => onPageChange('home')} className="hover:text-white transition-colors text-left">Erfolge</button></li>
+          <li><button onClick={() => onPageChange('home', 'testimonials')} className="hover:text-white transition-colors text-left">Erfolge</button></li>
           <li><button onClick={() => onPageChange('home', 'faq')} className="hover:text-white transition-colors">FAQ</button></li>
         </ul>
       </div>
@@ -618,7 +583,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
           >
             Über uns
           </button>
-          <a href="#testimonials" onClick={() => onPageChange('home')} className="hover:text-[#1E293B] transition-colors">Erfolge</a>
+          <a href="#testimonials" onClick={() => onPageChange('home', 'testimonials')} className="hover:text-[#1E293B] transition-colors">Erfolge</a>
           <button
             onClick={() => onPageChange('kontakt')}
             className="px-5 py-2 text-white rounded-full text-sm font-semibold"
@@ -686,7 +651,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
             </div>
           </div>
           <button className="text-left" onClick={() => { setIsOpen(false); onPageChange(currentPage === 'ueberuns' ? 'home' : 'ueberuns'); }}>Über uns</button>
-          <button className="text-left" onClick={() => { setIsOpen(false); onPageChange('home'); }}>Erfolge</button>
+          <button className="text-left" onClick={() => { setIsOpen(false); onPageChange('home', 'testimonials'); }}>Erfolge</button>
           <button onClick={() => { setIsOpen(false); onPageChange('kontakt'); }} className="w-full py-3 text-white rounded-lg font-semibold" style={{ backgroundColor: cfg.color }}>
             {cfg.ctaText}
           </button>
@@ -1531,18 +1496,13 @@ const UeberUnsContent = () => {
     { name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png', linkedin: '' },
     { name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/Muyooo.png', linkedin: 'https://www.linkedin.com/in/muayyad-anis-b159211b9/' },
     { name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png', linkedin: 'https://www.linkedin.com/in/philipp-scott-jagiella-07ba7233b/' },
-    { name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/Jannik 3.png', linkedin: 'https://www.linkedin.com/in/jannik-f%C3%B6rster-9a8b5722a/' },
-    { name: 'Norik Dakaj', role: 'Vertriebsleiter', img: '/Norik.png', linkedin: 'https://www.linkedin.com/in/norik-dakaj-694402398/' },
-    { name: 'Tommy Melcher', role: 'Fachberater', img: '/Tommy.png', linkedin: 'https://www.linkedin.com/in/tommy-melcher-8b2419326/' },
     { name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png', linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/' },
     { name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png', linkedin: '' },
     { name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png', linkedin: '' },
     { name: 'Tabita Mbolo', role: 'Fachberaterin', img: '/Tabita.png', linkedin: '' },
     { name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png', linkedin: '' },
-    { name: 'Aleyna Uysal', role: 'Fachberaterin', img: '/Aleyna 2.png', linkedin: '' },
     { name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png', linkedin: '' },
     { name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png', linkedin: '' },
-    { name: 'Tamaz Tordia', role: 'Head of Digital', img: '/Gio.png', linkedin: 'https://www.linkedin.com/in/tamaz-tordia-362935367/' },
   ];
 
   return (
