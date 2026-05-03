@@ -62,7 +62,7 @@ const PARTNER_LOGOS = [
 ];
 
 const LogoMarquee = () => (
-  <div className="py-12 overflow-hidden">
+  <div className="pt-12 pb-6 overflow-hidden">
     <div className="flex logo-marquee" style={{ width: 'max-content' }}>
       {[...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, i) => (
         <div key={i} className="flex items-center justify-center mx-8 flex-shrink-0" style={{ width: '120px', height: '44px' }}>
@@ -978,6 +978,8 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
         </div>
       </section>
 
+      <LogoMarquee />
+
       <DottedLine />
 
       {/* Services */}
@@ -1102,6 +1104,8 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
           </div>
         </div>
       </section>
+
+      <LogoMarquee />
 
       <DottedLine />
 
