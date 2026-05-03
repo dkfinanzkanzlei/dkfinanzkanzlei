@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useInView } from 'motion/react';
 import {
   TrendingUp, ShieldCheck, PieChart, ArrowRight, CheckCircle2, ChevronRight,
   Menu, X, Wallet, Calculator, Building2, Home, Heart, BarChart3, Users,
-  Star, Eye, Zap, Leaf, UserCircle, Briefcase, GraduationCap, Wrench
+  Star, Eye, Zap, Leaf, UserCircle, Briefcase, GraduationCap, Wrench, MousePointerClick, Globe
 } from 'lucide-react';
 
 // ─── Brand Configuration ────────────────────────────────────────────────────────
@@ -1445,6 +1445,135 @@ const DatenschutzContent = () => (
 );
 
 // ─── Über Uns Content ────────────────────────────────────────────────────────────
+// ─── Team Flip Card ─────────────────────────────────────────────────────────
+type TeamMember = {
+  name: string;
+  role: string;
+  img: string;
+  linkedin?: string;
+  website?: string;
+  desc: string;
+  bullets: string[];
+};
+
+function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; color: string }) {
+  const [flipped, setFlipped] = useState(false);
+  const toggle = () => setFlipped(f => !f);
+  const handleKey = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: (i % 4) * 0.07, duration: 0.4 }}
+      whileHover={{ scale: 1.025 }}
+      style={{ perspective: '1200px' }}
+      className="w-full h-[340px] md:h-[360px] relative"
+    >
+      <div
+        className={`flip-card-inner${flipped ? ' is-flipped' : ''}`}
+        onClick={toggle}
+        onKeyDown={handleKey}
+        tabIndex={0}
+        role="button"
+        aria-label={`Mehr über ${member.name} erfahren`}
+        aria-pressed={flipped}
+      >
+        {/* ── Front ── */}
+        <div className="flip-face border border-white/10">
+          <img
+            src={member.img}
+            alt={member.name}
+            className="w-full h-full object-cover transition-transform duration-700 scale-100"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d1829]/90 via-[#0d1829]/20 to-transparent" />
+
+          {/* name + role */}
+          <div className="absolute bottom-0 left-0 right-0 p-5">
+            <h3 className="text-base font-bold leading-tight">{member.name}</h3>
+            <p className="text-xs text-white/50 mt-0.5">{member.role}</p>
+          </div>
+
+          {/* CTA badge */}
+          <div className="flip-cta-pulse absolute top-3.5 right-3.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-sm border border-white/15 text-[10px] font-medium text-white/70 select-none pointer-events-none">
+            <MousePointerClick className="w-3 h-3" />
+            Mehr erfahren
+          </div>
+        </div>
+
+        {/* ── Back ── */}
+        <div className="flip-face flip-face-back">
+          {/* avatar overflowing top */}
+          <div
+            className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full overflow-hidden border-2 z-10 flex-shrink-0"
+            style={{
+              borderColor: color,
+              boxShadow: `0 0 0 3px #0d1829, 0 0 18px ${color}55`,
+            }}
+          >
+            <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
+          </div>
+
+          {/* card body */}
+          <div
+            className="flip-back-body border border-white/10 flex flex-col items-center text-center"
+            style={{ background: 'linear-gradient(160deg, #1a2740 0%, #0d1829 100%)' }}
+          >
+            <div className="pt-12 px-5 pb-5 flex flex-col items-center w-full h-full">
+              <h3 className="text-sm font-bold leading-tight">{member.name}</h3>
+              <p className="text-[11px] mt-0.5 mb-3 font-semibold tracking-wide" style={{ color }}>{member.role}</p>
+              <p className="text-[11px] text-white/50 leading-relaxed mb-3">{member.desc}</p>
+              <ul className="space-y-1.5 text-left w-full mb-4">
+                {member.bullets.map((b, j) => (
+                  <li key={j} className="flex items-start gap-2 text-[11px] text-white/60">
+                    <span className="w-1 h-1 rounded-full mt-[5px] flex-shrink-0" style={{ background: color }} />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+
+              {/* links */}
+              {(member.linkedin || member.website) && (
+                <div className="mt-auto flex gap-2">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                      className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full border transition-all hover:bg-white/10"
+                      style={{ borderColor: `${color}55`, color }}
+                    >
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      LinkedIn
+                    </a>
+                  )}
+                  {member.website && (
+                    <a
+                      href={member.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                      className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full border transition-all hover:bg-white/10"
+                      style={{ borderColor: `${color}55`, color }}
+                    >
+                      <Globe className="w-3 h-3" />
+                      Website
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 const UeberUnsContent = () => {
   const color = '#4d7abd';
   const [bewerbungOpen, setBewerbungOpen] = useState(false);
@@ -1497,20 +1626,78 @@ const UeberUnsContent = () => {
     },
   ];
 
-  const team = [
-    { name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/Joel Logo.png', linkedin: 'https://www.linkedin.com/in/joel-dakaj-11766239b/' },
-    { name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/Flamur 4.png', linkedin: 'https://www.linkedin.com/in/flamur-kastrati-75864839b/' },
-    { name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png', linkedin: '' },
-    { name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/Muyooo.png', linkedin: 'https://www.linkedin.com/in/muayyad-anis-b159211b9/' },
-    { name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png', linkedin: 'https://www.linkedin.com/in/philipp-scott-jagiella-07ba7233b/', website: 'https://philippjagiella.de/' },
-    { name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png', linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/' },
-    { name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png', linkedin: '' },
-    { name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png', linkedin: '' },
-    { name: 'Tabita Mbolo', role: 'Fachberaterin', img: '/Tabita.png', linkedin: '' },
-    { name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png', linkedin: '' },
-    { name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/Sara.png', linkedin: '' },
-    { name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png', linkedin: '' },
-    { name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png', linkedin: '' },
+  const team: TeamMember[] = [
+    {
+      name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/Joel Logo.png',
+      linkedin: 'https://www.linkedin.com/in/joel-dakaj-11766239b/',
+      desc: 'Als Mitgründer von DK Finanzkanzlei verfolgt Joel eine klare Mission: Menschen zu helfen, ihre finanzielle Situation nachhaltig zu verbessern.',
+      bullets: ['Strategische Unternehmensführung', 'Finanzplanung & Versicherungen', 'Kundenberatung auf höchstem Niveau'],
+    },
+    {
+      name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/Flamur 4.png',
+      linkedin: 'https://www.linkedin.com/in/flamur-kastrati-75864839b/',
+      desc: 'Flamur bringt als Mitgründer tiefes Fachwissen in Finanz- und Versicherungsthemen ein und treibt das Wachstum von DK Finanzkanzlei aktiv voran.',
+      bullets: ['Geschäftsentwicklung & Strategie', 'Finanz- und Versicherungsberatung', 'Teamführung & Mentoring'],
+    },
+    {
+      name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png',
+      desc: 'Aydan koordiniert als Assistenz der Geschäftsführung die internen Abläufe und sorgt dafür, dass alles reibungslos funktioniert.',
+      bullets: ['Organisationsmanagement', 'Koordination & Kommunikation', 'Officemanagement'],
+    },
+    {
+      name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/Muyooo.png',
+      linkedin: 'https://www.linkedin.com/in/muayyad-anis-b159211b9/',
+      desc: 'Muayyad verantwortet das Recruiting neuer Talente und sorgt für eine transparente Steuerung der Unternehmenskennzahlen.',
+      bullets: ['Talentakquise & Onboarding', 'Controlling & Reporting', 'Prozessoptimierung'],
+    },
+    {
+      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png',
+      linkedin: 'https://www.linkedin.com/in/philipp-scott-jagiella-07ba7233b/',
+      website: 'https://philippjagiella.de/',
+      desc: 'Philipp leitet das Vertriebsteam und begeistert Mandanten täglich mit fundiertem Fachwissen und einer lösungsorientierten Beratung.',
+      bullets: ['Vertriebssteuerung & Teamcoaching', 'Finanz- und Versicherungsberatung', 'Kundenbindung & Entwicklung'],
+    },
+    {
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png',
+      linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
+      desc: 'Julius begleitet seine Mandanten mit Fachwissen und Empathie auf dem Weg zu mehr finanzieller Sicherheit und Unabhängigkeit.',
+      bullets: ['Versicherungsberatung', 'Altersvorsorge & Vermögensaufbau', 'Individuelle Finanzstrategien'],
+    },
+    {
+      name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png',
+      desc: 'Jamila steht ihren Mandanten als vertrauensvolle Ansprechpartnerin zur Seite und entwickelt maßgeschneiderte Lösungen für ihre finanzielle Zukunft.',
+      bullets: ['Finanzberatung & Vorsorge', 'Versicherungsmanagement', 'Kundenorientierte Betreuung'],
+    },
+    {
+      name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png',
+      desc: 'Denis analysiert die individuelle Situation seiner Mandanten präzise und erarbeitet passgenaue Konzepte für langfristigen Vermögensaufbau.',
+      bullets: ['Vermögensaufbau & Geldanlage', 'Absicherungsstrategien', 'Finanz- und Versicherungsberatung'],
+    },
+    {
+      name: 'Tabita Mbolo', role: 'Fachberaterin', img: '/Tabita.png',
+      desc: 'Tabita berät ihre Mandanten mit Herzblut und Expertise und hilft ihnen, ihre finanziellen Ziele klar zu definieren und systematisch umzusetzen.',
+      bullets: ['Persönliche Finanzplanung', 'Vorsorge & Absicherung', 'Ganzheitliche Beratung'],
+    },
+    {
+      name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png',
+      desc: 'Cesur setzt auf transparente und ehrliche Beratung – mit dem Ziel, seinen Mandanten nachhaltig mehr finanzielle Freiheit zu ermöglichen.',
+      bullets: ['Finanzberatung & Altersvorsorge', 'Bedarfsanalyse & Konzeption', 'Langfristige Kundenbeziehungen'],
+    },
+    {
+      name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/Sara.png',
+      desc: 'Sara bringt Engagement und Fachkompetenz zusammen und unterstützt ihre Mandanten dabei, die richtigen Entscheidungen für ihre Zukunft zu treffen.',
+      bullets: ['Versicherungs- und Finanzberatung', 'Individuelle Vorsorgekonzepte', 'Persönliche Mandantenbetreuung'],
+    },
+    {
+      name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png',
+      desc: 'Ülkem sorgt im Hintergrund für einen reibungslosen Ablauf und ist erste Anlaufstelle für Mandanten und das Team.',
+      bullets: ['Mandantenbetreuung & Empfang', 'Terminkoordination', 'Administrative Unterstützung'],
+    },
+    {
+      name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png',
+      desc: 'Ceylin unterstützt das Team mit Organisationstalent und sorgt dafür, dass Abläufe effizient und strukturiert funktionieren.',
+      bullets: ['Organisation & Koordination', 'Kommunikation & Service', 'Büro- und Dokumentenmanagement'],
+    },
   ];
 
   return (
@@ -1583,42 +1770,7 @@ const UeberUnsContent = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {team.map((member, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: (i % 4) * 0.07, duration: 0.4 }}
-                whileHover={{ y: -6 }}
-                className="group flex flex-col items-center text-center"
-              >
-                <div className="relative mb-5 w-full aspect-square rounded-3xl overflow-hidden border border-white/10">
-                  <img
-                    src={member.img}
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B]/60 via-transparent to-transparent" />
-                  {(member.linkedin || (member as any).website) && (
-                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <div className="flex justify-center gap-3">
-                        {member.linkedin && (
-                          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/10 backdrop-blur flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors" title="LinkedIn">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                          </a>
-                        )}
-                        {(member as any).website && (
-                          <a href={(member as any).website} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/10 backdrop-blur flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors" title="Website">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <h3 className="text-lg font-bold mb-1">{member.name}</h3>
-                <p className="text-sm text-white/45">{member.role}</p>
-              </motion.div>
+              <TeamFlipCard key={i} member={member} i={i} color={color} />
             ))}
 
             {/* CTA – Freie Stelle */}
