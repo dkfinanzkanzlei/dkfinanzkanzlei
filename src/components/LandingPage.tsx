@@ -1743,7 +1743,7 @@ const UeberUnsContent = () => {
       name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png',
       desc: 'Hi, ich bin Ülkem – ich kümmere mich darum, dass alles schnell und unkompliziert läuft:',
       bullets: ['Kundenservice', 'Terminmanagement', 'Schnelle Lösungen'],
-      funFact: 'Trinkt nur Tee',
+      funFact: 'Trinkt ausschließlich mit nem Strohhalm',
     },
     {
       name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png',
