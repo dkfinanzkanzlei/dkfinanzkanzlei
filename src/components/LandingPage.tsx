@@ -205,7 +205,7 @@ const TESTIMONIAL_CARDS_DATA = [
     result: 'Gesamtersparnis: ca. 5.300€ pro Jahr',
   },
   {
-    color: '#4d7abd',
+    color: '#7aabec',
     badge: 'Azubi',
     name: 'Svenja Jansen',
     role: 'Auszubildende Industriekauffrau',
