@@ -238,17 +238,23 @@ const TESTIMONIAL_CARDS_DATA = [
 const AnimatedCounter = ({ value, suffix, color, large }: { value: number; suffix: string; color: string; large?: boolean }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const [count, setCount] = useState(0);
+  const [done, setDone] = useState(false);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
 
   useEffect(() => {
     if (!isInView) return;
-    const duration = 1800;
+    setDone(false);
+    const duration = 1600;
     const startTime = performance.now();
     const tick = (now: number) => {
       const progress = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.round(eased * value));
-      if (progress < 1) requestAnimationFrame(tick);
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        setDone(true);
+      }
     };
     requestAnimationFrame(tick);
   }, [isInView, value]);
@@ -256,8 +262,11 @@ const AnimatedCounter = ({ value, suffix, color, large }: { value: number; suffi
   return (
     <span
       ref={ref}
-      className={`font-bold tabular-nums ${large ? 'text-3xl md:text-4xl' : 'text-lg'}`}
-      style={{ color }}
+      className={`font-bold tabular-nums transition-[text-shadow] duration-700 ${large ? 'text-3xl md:text-4xl' : 'text-lg'}`}
+      style={{
+        color,
+        textShadow: done ? `0 0 18px ${color}90, 0 0 36px ${color}40` : 'none',
+      }}
     >
       {count.toLocaleString('de-DE')}{suffix}
     </span>
@@ -265,11 +274,15 @@ const AnimatedCounter = ({ value, suffix, color, large }: { value: number; suffi
 };
 
 const StarRow = () => (
-  <div className="flex gap-0.5">
+  <motion.div
+    className="flex gap-0.5"
+    whileHover={{ scale: 1.12 }}
+    transition={{ duration: 0.15, ease: 'easeOut' }}
+  >
     {[...Array(5)].map((_, i) => (
       <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
     ))}
-  </div>
+  </motion.div>
 );
 
 const TestimonialCards = ({ color }: { color: string }) => (
@@ -289,35 +302,36 @@ const TestimonialCards = ({ color }: { color: string }) => (
         {TESTIMONIAL_CARDS_DATA.map((card, i) => (
           <motion.div
             key={card.name}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.55, delay: i * 0.14, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{
-              scale: 1.03,
-              y: -6,
-              boxShadow: `0 24px 48px ${color}28, 0 0 0 1px ${color}50`,
+              y: -8,
+              boxShadow: `0 28px 56px ${color}2a, 0 8px 24px ${color}1a, 0 0 0 1px ${color}55`,
+              transition: { duration: 0.2, ease: 'easeOut' },
             }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.45, delay: i * 0.13, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ cursor: 'default' }}
-            className="relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.07] backdrop-blur-xl overflow-hidden"
+            className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.07] backdrop-blur-xl overflow-hidden"
           >
             {/* Top accent bar */}
-            <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${color}, ${color}55)` }} />
+            <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${color}, ${color}44)` }} />
 
             <div className="flex flex-col flex-1 p-7">
               {/* Badge + stars row */}
               <div className="flex items-center justify-between mb-5">
-                <span
+                <motion.span
                   className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border"
                   style={{ color, borderColor: `${color}50`, background: `${color}15` }}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
                 >
                   {card.badge}
-                </span>
+                </motion.span>
                 <StarRow />
               </div>
 
               {/* Large quote mark */}
-              <div className="text-6xl font-serif leading-none mb-1 select-none" style={{ color: `${color}30` }}>"</div>
+              <div className="text-6xl font-serif leading-none mb-1 select-none" style={{ color: `${color}35` }}>"</div>
 
               {/* Quote text */}
               <p className="text-white/65 text-sm leading-relaxed mb-7 flex-1">
@@ -327,30 +341,46 @@ const TestimonialCards = ({ color }: { color: string }) => (
               {/* Stats rows */}
               <div className="space-y-2 mb-5">
                 {card.stats.map((s) => (
-                  <div key={s.label} className="flex items-center justify-between gap-3 py-1.5 border-b border-white/5 last:border-0">
+                  <motion.div
+                    key={s.label}
+                    className="flex items-center justify-between gap-3 py-1.5 border-b border-white/5 last:border-0"
+                    whileHover={{ x: 2, transition: { duration: 0.15 } }}
+                  >
                     <span className="text-xs text-white/40 leading-tight">{s.label}</span>
                     <AnimatedCounter value={s.value} suffix={s.suffix} color={color} />
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
               {/* Total result block */}
-              <div
-                className="testimonial-result-pulse rounded-xl px-5 py-4 mb-6 text-center"
-                style={{ background: `${color}12`, border: `1px solid ${color}35` }}
+              <motion.div
+                animate={{
+                  boxShadow: [
+                    `0 0 10px ${color}20, inset 0 0 16px ${color}08`,
+                    `0 0 26px ${color}45, inset 0 0 24px ${color}12`,
+                    `0 0 10px ${color}20, inset 0 0 16px ${color}08`,
+                  ],
+                }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+                className="rounded-xl px-5 py-5 mb-6 text-center"
+                style={{
+                  background: `linear-gradient(135deg, ${color}1c 0%, ${color}0c 100%)`,
+                  border: `1px solid ${color}45`,
+                }}
               >
-                <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1.5">{card.totalLabel}</p>
+                <p className="text-[10px] uppercase tracking-widest text-white/50 mb-2">{card.totalLabel}</p>
                 <AnimatedCounter value={card.total} suffix="€" color={color} large />
-              </div>
+              </motion.div>
 
               {/* Name + Persona-Icon */}
               <div className="flex items-center gap-3">
-                <div
+                <motion.div
                   className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 border"
                   style={{ background: `${color}18`, borderColor: `${color}40` }}
+                  whileHover={{ scale: 1.08, transition: { duration: 0.15 } }}
                 >
                   <card.icon className="w-5 h-5" style={{ color }} />
-                </div>
+                </motion.div>
                 <div>
                   <p className="text-sm font-bold leading-tight">{card.name}</p>
                   <p className="text-xs text-white/40 leading-tight mt-0.5">{card.role}</p>
