@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useInView } from 'motion/react';
 import {
   TrendingUp, ShieldCheck, PieChart, ArrowRight, CheckCircle2, ChevronRight,
   Menu, X, Wallet, Calculator, Building2, Home, Heart, BarChart3, Users,
-  Star, Eye, Zap, Leaf, UserCircle
+  Star, Eye, Zap, Leaf, UserCircle, Briefcase, GraduationCap, Wrench
 } from 'lucide-react';
 
 // ─── Brand Configuration ────────────────────────────────────────────────────────
@@ -192,6 +192,8 @@ const TESTIMONIAL_CARDS_DATA = [
     badge: 'Selbstständiger',
     name: 'Max Berger',
     role: 'Online-Marketing Berater',
+    icon: Briefcase,
+    iconLabel: 'Selbstständig',
     text: 'Ich habe mich vorher selbst um meine Finanzen gekümmert, aber viele Vorteile einfach nicht genutzt. Durch den Wechsel von der gesetzlichen in die private Krankenkasse spare ich jetzt rund 4.000€ pro Jahr. Zusätzlich wurde meine Altersvorsorge optimiert, sodass ich durch staatliche Förderungen etwa 30% mehr Rentenkapital aufbaue.',
     stats: [
       { value: 4000, suffix: '€', label: 'Ersparnis durch PKV-Wechsel' },
@@ -205,6 +207,8 @@ const TESTIMONIAL_CARDS_DATA = [
     badge: 'Azubi',
     name: 'Leon Weber',
     role: 'Auszubildender Industriekaufmann',
+    icon: GraduationCap,
+    iconLabel: 'Ausbildung',
     text: 'Als Azubi hätte ich nie gedacht, dass ich überhaupt so viele Vorteile nutzen kann. Meine Berufsunfähigkeitsversicherung ist jetzt etwa 25% günstiger durch Zuschüsse der Krankenkasse. Zusätzlich bekomme ich 480€ jährlich vom Arbeitgeber.',
     stats: [
       { value: 25,   suffix: '%', label: 'günstigere BU-Versicherung' },
@@ -218,6 +222,8 @@ const TESTIMONIAL_CARDS_DATA = [
     badge: 'Arbeitnehmer',
     name: 'Daniel Schneider',
     role: 'Projektingenieur Maschinenbau',
+    icon: Wrench,
+    iconLabel: 'Angestellt',
     text: 'Ich verdiene über 3.000€ netto und dachte, ich hätte alles gut geregelt. Durch die Optimierung spare ich jetzt rund 3.721€ an Steuern und erhalte zusätzlich etwa 2.500€ staatliche Förderung.',
     stats: [
       { value: 3721, suffix: '€', label: 'Steuerersparnis' },
@@ -341,13 +347,13 @@ const TestimonialCards = ({ color }: { color: string }) => (
                 <AnimatedCounter value={card.total} suffix="€" color={color} large />
               </div>
 
-              {/* Name + role */}
+              {/* Name + Persona-Icon */}
               <div className="flex items-center gap-3">
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 border"
-                  style={{ background: `${color}20`, color, borderColor: `${color}40` }}
+                  className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 border"
+                  style={{ background: `${color}18`, borderColor: `${color}40` }}
                 >
-                  {card.name.charAt(0)}
+                  <card.icon className="w-5 h-5" style={{ color }} />
                 </div>
                 <div>
                   <p className="text-sm font-bold leading-tight">{card.name}</p>
@@ -358,6 +364,34 @@ const TestimonialCards = ({ color }: { color: string }) => (
           </motion.div>
         ))}
       </div>
+
+      {/* ── Gesamtbilanz-Banner ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mt-10 rounded-2xl border border-white/10 overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${color}18 0%, ${color}08 50%, transparent 100%)` }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
+          <div className="flex flex-col items-center justify-center py-8 px-6 text-center">
+            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-3">Ø Ersparnispotenzial</p>
+            <AnimatedCounter value={4200} suffix="€" color={color} large />
+            <p className="text-xs text-white/30 mt-2">pro Mandant & Jahr</p>
+          </div>
+          <div className="flex flex-col items-center justify-center py-8 px-6 text-center">
+            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-3">Zufriedene Mandanten</p>
+            <AnimatedCounter value={100} suffix="+" color={color} large />
+            <p className="text-xs text-white/30 mt-2">Google-Rezensionen · Ø 5,0 ★</p>
+          </div>
+          <div className="flex flex-col items-center justify-center py-8 px-6 text-center">
+            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-3">Kosten für die Erstberatung</p>
+            <AnimatedCounter value={0} suffix="€" color={color} large />
+            <p className="text-xs text-white/30 mt-2">Kostenlos & unverbindlich</p>
+          </div>
+        </div>
+      </motion.div>
     </div>
   </section>
 );
