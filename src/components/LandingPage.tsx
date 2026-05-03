@@ -365,33 +365,6 @@ const TestimonialCards = ({ color }: { color: string }) => (
         ))}
       </div>
 
-      {/* ── Gesamtbilanz-Banner ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="mt-10 rounded-2xl border border-white/10 overflow-hidden"
-        style={{ background: `linear-gradient(135deg, ${color}18 0%, ${color}08 50%, transparent 100%)` }}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
-          <div className="flex flex-col items-center justify-center py-8 px-6 text-center">
-            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-3">Ø Ersparnispotenzial</p>
-            <AnimatedCounter value={4200} suffix="€" color={color} large />
-            <p className="text-xs text-white/30 mt-2">pro Mandant & Jahr</p>
-          </div>
-          <div className="flex flex-col items-center justify-center py-8 px-6 text-center">
-            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-3">Zufriedene Mandanten</p>
-            <AnimatedCounter value={100} suffix="+" color={color} large />
-            <p className="text-xs text-white/30 mt-2">Google-Rezensionen · Ø 5,0 ★</p>
-          </div>
-          <div className="flex flex-col items-center justify-center py-8 px-6 text-center">
-            <p className="text-[10px] uppercase tracking-widest text-white/40 mb-3">Kosten für die Erstberatung</p>
-            <AnimatedCounter value={0} suffix="€" color={color} large />
-            <p className="text-xs text-white/30 mt-2">Kostenlos & unverbindlich</p>
-          </div>
-        </div>
-      </motion.div>
     </div>
   </section>
 );
