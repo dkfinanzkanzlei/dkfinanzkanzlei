@@ -1606,6 +1606,43 @@ const UeberUnsContent = () => {
                 <p className="text-sm text-white/45">{member.role}</p>
               </motion.div>
             ))}
+
+            {/* CTA – Freie Stelle */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: (team.length % 4) * 0.07, duration: 0.4 }}
+              className="flex flex-col items-center text-center"
+            >
+              <a href="#bewerbung" className="group flex flex-col items-center w-full">
+                {/* Placeholder-Karte */}
+                <div className="relative mb-5 w-full aspect-square rounded-3xl border-2 border-dashed border-white/20 bg-white/[0.03] flex flex-col items-center justify-center gap-2 group-hover:border-white/40 group-hover:bg-white/[0.06] transition-all duration-300">
+                  {/* Person-Icon mit ? im Kopf */}
+                  <svg viewBox="0 0 80 80" className="w-20 h-20 text-white/25 group-hover:text-white/40 transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <circle cx="40" cy="26" r="15" />
+                    <text x="40" y="33" textAnchor="middle" fontSize="17" fontWeight="700" fill="currentColor" stroke="none">?</text>
+                    <path d="M10 72 Q10 54 40 54 Q70 54 70 72" />
+                  </svg>
+                </div>
+
+                <h3 className="text-lg font-bold mb-1 text-white/70 group-hover:text-white transition-colors">Du?</h3>
+                <p className="text-sm text-white/40 mb-4">Fachberater/in</p>
+
+                {/* Pfeil + CTA */}
+                <motion.div
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                  className="flex flex-col items-center gap-0.5 mb-1"
+                >
+                  <ChevronRight className="w-5 h-5 text-[#4d7abd] rotate-90" />
+                  <ChevronRight className="w-5 h-5 text-[#4d7abd]/50 rotate-90 -mt-3" />
+                </motion.div>
+                <span className="text-sm font-bold text-[#4d7abd] group-hover:text-white transition-colors">
+                  Bewirb dich jetzt!
+                </span>
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -1613,7 +1650,7 @@ const UeberUnsContent = () => {
       <DottedLine />
 
       {/* Bewerbungsbereich */}
-      <section className="py-20 px-6">
+      <section id="bewerbung" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
