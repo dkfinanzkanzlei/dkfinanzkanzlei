@@ -190,7 +190,7 @@ const ReviewCard = ({ t }: { t: { name: string; date: string; text: string; star
 const TESTIMONIAL_CARDS_DATA = [
   {
     badge: 'Selbstständiger',
-    name: 'Max Berger',
+    name: 'Tamaz Tordia',
     role: 'Online-Marketing Berater',
     icon: Briefcase,
     iconLabel: 'Selbstständig',
