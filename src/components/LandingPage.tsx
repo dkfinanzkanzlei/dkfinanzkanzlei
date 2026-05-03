@@ -1501,6 +1501,7 @@ const UeberUnsContent = () => {
     { name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png', linkedin: '' },
     { name: 'Tabita Mbolo', role: 'Fachberaterin', img: '/Tabita.png', linkedin: '' },
     { name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png', linkedin: '' },
+    { name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/Sara.png', linkedin: '' },
     { name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png', linkedin: '' },
     { name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png', linkedin: '' },
   ];
