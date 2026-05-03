@@ -189,6 +189,7 @@ const ReviewCard = ({ t }: { t: { name: string; date: string; text: string; star
 // ─── Testimonial Cards ───────────────────────────────────────────────────────────
 const TESTIMONIAL_CARDS_DATA = [
   {
+    color: '#22C55E',
     badge: 'Selbstständiger',
     name: 'Tamaz Tordia',
     role: 'Online-Marketing Berater',
@@ -204,6 +205,7 @@ const TESTIMONIAL_CARDS_DATA = [
     result: 'Gesamtersparnis: ca. 5.300€ pro Jahr',
   },
   {
+    color: '#4d7abd',
     badge: 'Azubi',
     name: 'Svenja Jansen',
     role: 'Auszubildende Industriekauffrau',
@@ -219,6 +221,7 @@ const TESTIMONIAL_CARDS_DATA = [
     result: 'Gesamtersparnis: ca. 1.080€ pro Jahr',
   },
   {
+    color: '#C4A135',
     badge: 'Arbeitnehmer',
     name: 'Daniel Schneider',
     role: 'Projektingenieur Maschinenbau',
@@ -299,7 +302,9 @@ const TestimonialCards = ({ color }: { color: string }) => (
 
       {/* Cards grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {TESTIMONIAL_CARDS_DATA.map((card, i) => (
+        {TESTIMONIAL_CARDS_DATA.map((card, i) => {
+          const c = card.color;
+          return (
           <motion.div
             key={card.name}
             initial={{ opacity: 0, y: 30 }}
@@ -308,21 +313,21 @@ const TestimonialCards = ({ color }: { color: string }) => (
             transition={{ duration: 0.55, delay: i * 0.14, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{
               y: -8,
-              boxShadow: `0 28px 56px ${color}2a, 0 8px 24px ${color}1a, 0 0 0 1px ${color}55`,
+              boxShadow: `0 28px 56px ${c}2a, 0 8px 24px ${c}1a, 0 0 0 1px ${c}55`,
               transition: { duration: 0.2, ease: 'easeOut' },
             }}
             style={{ cursor: 'default' }}
             className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.07] backdrop-blur-xl overflow-hidden"
           >
             {/* Top accent bar */}
-            <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${color}, ${color}44)` }} />
+            <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${c}, ${c}44)` }} />
 
             <div className="flex flex-col flex-1 p-7">
               {/* Badge + stars row */}
               <div className="flex items-center justify-between mb-5">
                 <motion.span
                   className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border"
-                  style={{ color, borderColor: `${color}50`, background: `${color}15` }}
+                  style={{ color: c, borderColor: `${c}50`, background: `${c}15` }}
                   whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
                 >
                   {card.badge}
@@ -331,7 +336,7 @@ const TestimonialCards = ({ color }: { color: string }) => (
               </div>
 
               {/* Large quote mark */}
-              <div className="text-6xl font-serif leading-none mb-1 select-none" style={{ color: `${color}35` }}>"</div>
+              <div className="text-6xl font-serif leading-none mb-1 select-none" style={{ color: `${c}35` }}>"</div>
 
               {/* Quote text */}
               <p className="text-white/65 text-sm leading-relaxed mb-7 flex-1">
@@ -347,7 +352,7 @@ const TestimonialCards = ({ color }: { color: string }) => (
                     whileHover={{ x: 2, transition: { duration: 0.15 } }}
                   >
                     <span className="text-xs text-white/40 leading-tight">{s.label}</span>
-                    <AnimatedCounter value={s.value} suffix={s.suffix} color={color} />
+                    <AnimatedCounter value={s.value} suffix={s.suffix} color={c} />
                   </motion.div>
                 ))}
               </div>
@@ -356,30 +361,30 @@ const TestimonialCards = ({ color }: { color: string }) => (
               <motion.div
                 animate={{
                   boxShadow: [
-                    `0 0 10px ${color}20, inset 0 0 16px ${color}08`,
-                    `0 0 26px ${color}45, inset 0 0 24px ${color}12`,
-                    `0 0 10px ${color}20, inset 0 0 16px ${color}08`,
+                    `0 0 10px ${c}20, inset 0 0 16px ${c}08`,
+                    `0 0 26px ${c}45, inset 0 0 24px ${c}12`,
+                    `0 0 10px ${c}20, inset 0 0 16px ${c}08`,
                   ],
                 }}
                 transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
                 className="rounded-xl px-5 py-5 mb-6 text-center"
                 style={{
-                  background: `linear-gradient(135deg, ${color}1c 0%, ${color}0c 100%)`,
-                  border: `1px solid ${color}45`,
+                  background: `linear-gradient(135deg, ${c}1c 0%, ${c}0c 100%)`,
+                  border: `1px solid ${c}45`,
                 }}
               >
                 <p className="text-[10px] uppercase tracking-widest text-white/50 mb-2">{card.totalLabel}</p>
-                <AnimatedCounter value={card.total} suffix="€" color={color} large />
+                <AnimatedCounter value={card.total} suffix="€" color={c} large />
               </motion.div>
 
               {/* Name + Persona-Icon */}
               <div className="flex items-center gap-3">
                 <motion.div
                   className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 border"
-                  style={{ background: `${color}18`, borderColor: `${color}40` }}
+                  style={{ background: `${c}18`, borderColor: `${c}40` }}
                   whileHover={{ scale: 1.08, transition: { duration: 0.15 } }}
                 >
-                  <card.icon className="w-5 h-5" style={{ color }} />
+                  <card.icon className="w-5 h-5" style={{ color: c }} />
                 </motion.div>
                 <div>
                   <p className="text-sm font-bold leading-tight">{card.name}</p>
@@ -388,7 +393,7 @@ const TestimonialCards = ({ color }: { color: string }) => (
               </div>
             </div>
           </motion.div>
-        ))}
+        );})}
       </div>
 
     </div>
