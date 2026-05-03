@@ -194,7 +194,7 @@ const TESTIMONIAL_CARDS_DATA = [
     role: 'Online-Marketing Berater',
     icon: Briefcase,
     iconLabel: 'Selbstständig',
-    text: 'Ich habe mich vorher selbst um meine Finanzen gekümmert, aber viele Vorteile einfach nicht genutzt. Durch den Wechsel von der gesetzlichen in die private Krankenkasse spare ich jetzt rund 4.000€ pro Jahr. Zusätzlich wurde meine Altersvorsorge optimiert, sodass ich durch staatliche Förderungen etwa 30% mehr Rentenkapital aufbaue.',
+    text: 'Ich habe mich zuvor selbst um meine Finanzen gekümmert, dabei jedoch nicht alle Möglichkeiten ausgeschöpft. In meinem Fall konnte ich durch eine Optimierung meiner Kranken- und Vorsorgestruktur meine monatlichen Kosten deutlich senken und profitiere aktuell von Einsparungen im Bereich von mehreren tausend Euro pro Jahr. Zudem baue ich durch staatliche Förderungen heute spürbar mehr Rentenkapital auf.',
     stats: [
       { value: 4000, suffix: '€', label: 'Ersparnis durch PKV-Wechsel' },
       { value: 30,   suffix: '%', label: 'mehr Rentenkapital' },
