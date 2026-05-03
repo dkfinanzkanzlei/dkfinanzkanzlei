@@ -2511,9 +2511,9 @@ export default function LandingPage() {
   }, []);
 
   const slideVariants = {
-    enter: (dir: number) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
-    center: { x: 0, opacity: 1, transition: { duration: 0.45, ease: 'easeOut' as const } },
-    exit: (dir: number) => ({ x: dir < 0 ? '100%' : '-100%', opacity: 0, transition: { duration: 0.35, ease: 'easeIn' as const } }),
+    enter: (_dir: number) => ({ opacity: 0 }),
+    center: { opacity: 1, transition: { duration: 0.4, ease: 'easeOut' as const } },
+    exit: (_dir: number) => ({ opacity: 0, transition: { duration: 0.25, ease: 'easeIn' as const } }),
   };
 
   return (
@@ -2534,32 +2534,32 @@ export default function LandingPage() {
       <Navbar brand={brand} onBrandChange={(b) => { handleBrandChange(b); navigate('home'); }} onPageChange={navigate} currentPage={page} onService={goToService} />
       <AnimatePresence mode="wait" custom={direction}>
         {page === 'ueberuns' ? (
-          <motion.div key="ueberuns" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.4, ease: 'easeOut' }}>
+          <motion.div key="ueberuns" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             <UeberUnsContent />
             <Footer color={BRANDS[brand].color} onPageChange={navigate} />
           </motion.div>
         ) : page === 'impressum' ? (
-          <motion.div key="impressum" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.4, ease: 'easeOut' }}>
+          <motion.div key="impressum" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             <ImpressumContent />
             <Footer color={BRANDS[brand].color} onPageChange={navigate} />
           </motion.div>
         ) : page === 'datenschutz' ? (
-          <motion.div key="datenschutz" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.4, ease: 'easeOut' }}>
+          <motion.div key="datenschutz" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             <DatenschutzContent />
             <Footer color={BRANDS[brand].color} onPageChange={navigate} />
           </motion.div>
         ) : page === 'service' ? (
-          <motion.div key={`service-${currentService}`} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.4, ease: 'easeOut' }}>
+          <motion.div key={`service-${currentService}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             <ServiceDetailPage serviceKey={currentService} color={BRANDS[brand].color} onPageChange={navigate} />
             <Footer color={BRANDS[brand].color} onPageChange={navigate} />
           </motion.div>
         ) : page === 'leistungen' ? (
-          <motion.div key="leistungen" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.4, ease: 'easeOut' }}>
+          <motion.div key="leistungen" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             <LeistungenPage color={BRANDS[brand].color} onPageChange={navigate} onService={goToService} />
             <Footer color={BRANDS[brand].color} onPageChange={navigate} />
           </motion.div>
         ) : page === 'kontakt' ? (
-          <motion.div key="kontakt" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }} transition={{ duration: 0.4, ease: 'easeOut' }}>
+          <motion.div key="kontakt" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             <KontaktPage color={BRANDS[brand].color} onPageChange={navigate} />
             <Footer color={BRANDS[brand].color} onPageChange={navigate} />
           </motion.div>
