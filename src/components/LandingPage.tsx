@@ -1480,6 +1480,7 @@ type TeamMember = {
   website?: string;
   desc: string;
   bullets: string[];
+  funFact?: string;
 };
 
 function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; color: string }) {
@@ -1497,7 +1498,7 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
       transition={{ delay: (i % 4) * 0.07, duration: 0.4 }}
       whileHover={{ scale: 1.025 }}
       style={{ perspective: '1200px' }}
-      className="w-full h-[340px] md:h-[360px] relative"
+      className="w-full h-[370px] md:h-[390px] relative"
     >
       <div
         className={`flip-card-inner${flipped ? ' is-flipped' : ''}`}
@@ -1548,11 +1549,16 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
             className="flip-back-body border border-white/10 flex flex-col items-center text-center"
             style={{ background: 'linear-gradient(160deg, #1a2740 0%, #0d1829 100%)' }}
           >
-            <div className="pt-12 px-5 pb-5 flex flex-col items-center w-full h-full">
-              <h3 className="text-sm font-bold leading-tight">{member.name}</h3>
-              <p className="text-[11px] mt-0.5 mb-3 font-semibold tracking-wide" style={{ color }}>{member.role}</p>
-              <p className="text-[11px] text-white/50 leading-relaxed mb-3">{member.desc}</p>
-              <ul className="space-y-1.5 text-left w-full mb-4">
+            <div className="pt-11 px-4 pb-4 flex flex-col items-center w-full h-full">
+              {/* Name + Role */}
+              <h3 className="text-[12px] font-bold leading-tight">{member.name}</h3>
+              <p className="text-[10px] mt-0.5 mb-2.5 font-semibold tracking-wide" style={{ color }}>{member.role}</p>
+
+              {/* Intro sentence */}
+              <p className="text-[11px] font-semibold text-white/80 leading-snug mb-3 text-center">{member.desc}</p>
+
+              {/* Bullets */}
+              <ul className="space-y-1 text-left w-full mb-3">
                 {member.bullets.map((b, j) => (
                   <li key={j} className="flex items-start gap-2 text-[11px] text-white/60">
                     <span className="w-1 h-1 rounded-full mt-[5px] flex-shrink-0" style={{ background: color }} />
@@ -1561,19 +1567,27 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
                 ))}
               </ul>
 
-              {/* links */}
+              {/* Fun Fact */}
+              {member.funFact && (
+                <div className="w-full mt-auto pt-2 border-t border-white/[0.07]">
+                  <span className="text-[9px] uppercase tracking-widest text-white/25 block mb-0.5">Fun Fact</span>
+                  <p className="text-[10px] text-white/40 leading-snug">{member.funFact}</p>
+                </div>
+              )}
+
+              {/* Links */}
               {(member.linkedin || member.website) && (
-                <div className="mt-auto flex gap-2">
+                <div className={`flex gap-2 ${member.funFact ? 'mt-2' : 'mt-auto'}`}>
                   {member.linkedin && (
                     <a
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={e => e.stopPropagation()}
-                      className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full border transition-all hover:bg-white/10"
+                      className="flex items-center gap-1.5 text-[10px] font-semibold px-3 py-1 rounded-full border transition-all hover:bg-white/10"
                       style={{ borderColor: `${color}55`, color }}
                     >
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                       LinkedIn
                     </a>
                   )}
@@ -1583,10 +1597,10 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={e => e.stopPropagation()}
-                      className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full border transition-all hover:bg-white/10"
+                      className="flex items-center gap-1.5 text-[10px] font-semibold px-3 py-1 rounded-full border transition-all hover:bg-white/10"
                       style={{ borderColor: `${color}55`, color }}
                     >
-                      <Globe className="w-3 h-3" />
+                      <Globe className="w-2.5 h-2.5" />
                       Website
                     </a>
                   )}
@@ -1656,73 +1670,86 @@ const UeberUnsContent = () => {
     {
       name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/Joel Logo.png',
       linkedin: 'https://www.linkedin.com/in/joel-dakaj-11766239b/',
-      desc: 'Als Mitgründer von DK Finanzkanzlei verfolgt Joel eine klare Mission: Menschen zu helfen, ihre finanzielle Situation nachhaltig zu verbessern.',
-      bullets: ['Strategische Unternehmensführung', 'Finanzplanung & Versicherungen', 'Kundenberatung auf höchstem Niveau'],
+      desc: 'Hey, ich bin Joel, Geschäftsführer der DK Finanzkanzlei – und das sind meine Schwerpunkte:',
+      bullets: ['Strategie & Vermögensaufbau', 'Lebensversicherung & Investment', 'Immobilienlösungen'],
+      funFact: 'Bis zu 10 Urlaube pro Jahr',
     },
     {
       name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/Flamur 4.png',
       linkedin: 'https://www.linkedin.com/in/flamur-kastrati-75864839b/',
-      desc: 'Flamur bringt als Mitgründer tiefes Fachwissen in Finanz- und Versicherungsthemen ein und treibt das Wachstum von DK Finanzkanzlei aktiv voran.',
-      bullets: ['Geschäftsentwicklung & Strategie', 'Finanz- und Versicherungsberatung', 'Teamführung & Mentoring'],
+      desc: 'Hi, ich bin Flamur, Geschäftsführer – ich sorge dafür, dass deine Werte optimal abgesichert sind:',
+      bullets: ['Sachversicherungen optimieren', 'Risikoanalyse für Vermögenswerte', 'Individuelle Absicherungskonzepte'],
+      funFact: 'BMW-Fan',
     },
     {
       name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png',
-      desc: 'Aydan koordiniert als Assistenz der Geschäftsführung die internen Abläufe und sorgt dafür, dass alles reibungslos funktioniert.',
-      bullets: ['Organisationsmanagement', 'Koordination & Kommunikation', 'Officemanagement'],
+      desc: 'Hi, ich bin Aydan – ich halte im Hintergrund alles am Laufen, damit du dich auf das Wesentliche konzentrieren kannst:',
+      bullets: ['Office & Organisation', 'Prozesse & Koordination', 'Ansprechpartnerin im Hintergrund'],
+      funFact: 'Mit mir kann man über alles sprechen',
     },
     {
       name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/Muyooo.png',
       linkedin: 'https://www.linkedin.com/in/muayyad-anis-b159211b9/',
-      desc: 'Muayyad verantwortet das Recruiting neuer Talente und sorgt für eine transparente Steuerung der Unternehmenskennzahlen.',
-      bullets: ['Talentakquise & Onboarding', 'Controlling & Reporting', 'Prozessoptimierung'],
+      desc: 'Hi, ich bin Muayyad – ich sorge dafür, dass die richtigen Menschen im Team sind und alles reibungslos läuft:',
+      bullets: ['Recruiting & Teamaufbau', 'Vertriebssteuerung', 'Prozessoptimierung'],
+      funFact: 'Vater einer kleinen Prinzessin',
     },
     {
       name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png',
       linkedin: 'https://www.linkedin.com/in/philipp-scott-jagiella-07ba7233b/',
       website: 'https://philippjagiella.de/',
-      desc: 'Philipp leitet das Vertriebsteam und begeistert Mandanten täglich mit fundiertem Fachwissen und einer lösungsorientierten Beratung.',
-      bullets: ['Vertriebssteuerung & Teamcoaching', 'Finanz- und Versicherungsberatung', 'Kundenbindung & Entwicklung'],
+      desc: 'Hi, ich bin Philipp – ich unterstütze das Team im Vertrieb und sorge für starke Beratung:',
+      bullets: ['Vertriebsstrategie', 'Individuelle Beratungskonzepte', 'Teamentwicklung'],
+      funFact: 'Liebt Wein',
     },
     {
       name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png',
       linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
-      desc: 'Julius begleitet seine Mandanten mit Fachwissen und Empathie auf dem Weg zu mehr finanzieller Sicherheit und Unabhängigkeit.',
-      bullets: ['Versicherungsberatung', 'Altersvorsorge & Vermögensaufbau', 'Individuelle Finanzstrategien'],
+      desc: 'Hi, ich bin Julius – ich höre genau zu, um die beste Lösung für dich zu finden:',
+      bullets: ['Kundenanalyse durch Zuhören', 'Individuelle Lösungsfindung', 'Vertrauensvolle Beratung'],
+      funFact: 'RS3-Fan',
     },
     {
       name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png',
-      desc: 'Jamila steht ihren Mandanten als vertrauensvolle Ansprechpartnerin zur Seite und entwickelt maßgeschneiderte Lösungen für ihre finanzielle Zukunft.',
-      bullets: ['Finanzberatung & Vorsorge', 'Versicherungsmanagement', 'Kundenorientierte Betreuung'],
+      desc: 'Hi, ich bin Jamila – ich helfe dir, deine Zukunft finanziell sauber aufzustellen:',
+      bullets: ['Altersvorsorge-Strategien', 'Ganzheitliche Finanzanalyse', 'Langfristige Planung'],
+      funFact: 'Führt die Gruppe an',
     },
     {
       name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png',
-      desc: 'Denis analysiert die individuelle Situation seiner Mandanten präzise und erarbeitet passgenaue Konzepte für langfristigen Vermögensaufbau.',
-      bullets: ['Vermögensaufbau & Geldanlage', 'Absicherungsstrategien', 'Finanz- und Versicherungsberatung'],
+      desc: 'Hi, ich bin Denis – ich sorge dafür, dass deine Werte optimal abgesichert sind:',
+      bullets: ['Sachversicherungen', 'Risikoabsicherung', 'Strukturierung von Vermögenswerten'],
+      funFact: 'BMW-Fan durch Flamur',
     },
     {
       name: 'Tabita Mbolo', role: 'Fachberaterin', img: '/Tabita.png',
-      desc: 'Tabita berät ihre Mandanten mit Herzblut und Expertise und hilft ihnen, ihre finanziellen Ziele klar zu definieren und systematisch umzusetzen.',
-      bullets: ['Persönliche Finanzplanung', 'Vorsorge & Absicherung', 'Ganzheitliche Beratung'],
+      desc: 'Hi, ich bin Tabita – bei mir bekommst du eine ruhige und klare Beratung:',
+      bullets: ['Situationsanalyse', 'Umsetzbare Lösungen', 'Strukturierte Beratung'],
+      funFact: 'Powerfrau',
     },
     {
       name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png',
-      desc: 'Cesur setzt auf transparente und ehrliche Beratung – mit dem Ziel, seinen Mandanten nachhaltig mehr finanzielle Freiheit zu ermöglichen.',
-      bullets: ['Finanzberatung & Altersvorsorge', 'Bedarfsanalyse & Konzeption', 'Langfristige Kundenbeziehungen'],
+      desc: 'Hi, ich bin Cesur – ich entwickle mich täglich weiter, um dich bestmöglich zu beraten:',
+      bullets: ['Kundenbetreuung', 'Entwicklung im Vertrieb', 'Lernbereitschaft'],
+      funFact: 'Der netteste Kollege',
     },
     {
       name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/Sara.png',
-      desc: 'Sara bringt Engagement und Fachkompetenz zusammen und unterstützt ihre Mandanten dabei, die richtigen Entscheidungen für ihre Zukunft zu treffen.',
-      bullets: ['Versicherungs- und Finanzberatung', 'Individuelle Vorsorgekonzepte', 'Persönliche Mandantenbetreuung'],
+      desc: 'Hi, ich bin Sara – ich mache komplexe Themen für dich einfach verständlich:',
+      bullets: ['Komplexe Themen erklären', 'Kundenorientierte Beratung', 'Individuelle Lösungen'],
+      funFact: 'Mittagspause mit Aydan',
     },
     {
       name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png',
-      desc: 'Ülkem sorgt im Hintergrund für einen reibungslosen Ablauf und ist erste Anlaufstelle für Mandanten und das Team.',
-      bullets: ['Mandantenbetreuung & Empfang', 'Terminkoordination', 'Administrative Unterstützung'],
+      desc: 'Hi, ich bin Ülkem – ich kümmere mich darum, dass alles schnell und unkompliziert läuft:',
+      bullets: ['Kundenservice', 'Terminmanagement', 'Schnelle Lösungen'],
+      funFact: 'Trinkt nur Tee',
     },
     {
       name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png',
-      desc: 'Ceylin unterstützt das Team mit Organisationstalent und sorgt dafür, dass Abläufe effizient und strukturiert funktionieren.',
-      bullets: ['Organisation & Koordination', 'Kommunikation & Service', 'Büro- und Dokumentenmanagement'],
+      desc: 'Hi, ich bin Ceylin – ich sorge im Hintergrund für Struktur und Ordnung:',
+      bullets: ['Organisation & Dokumente', 'Backoffice-Struktur', 'Sichere Abläufe'],
+      funFact: 'Galatasaray-Fan',
     },
   ];
 
