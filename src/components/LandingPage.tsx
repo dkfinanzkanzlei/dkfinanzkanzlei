@@ -62,7 +62,7 @@ const PARTNER_LOGOS = [
 ];
 
 const LogoMarquee = () => (
-  <div className="pt-12 pb-6 overflow-hidden">
+  <div className="pt-10 pb-4 overflow-hidden">
     <div className="flex logo-marquee" style={{ width: 'max-content' }}>
       {[...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, i) => (
         <div key={i} className="flex items-center justify-center mx-8 flex-shrink-0" style={{ width: '120px', height: '44px' }}>
@@ -332,7 +332,7 @@ const TestimonialCards = ({ color }: { color: string }) => (
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.45, delay: i * 0.13, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ cursor: 'default' }}
-            className="relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] overflow-hidden"
+            className="relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.07] backdrop-blur-xl overflow-hidden"
           >
             {/* Top accent bar */}
             <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${color}, ${color}55)` }} />
@@ -786,10 +786,10 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             </div>
           </motion.div>
         </div>
-        <div className="mt-20 max-w-7xl mx-auto w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
-        </div>
       </section>
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
+      </div>
 
       <LogoMarquee />
 
@@ -972,11 +972,11 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
               </button>
             </div>
           </motion.div>
-          <div className="mt-16 md:mt-24 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
-          </div>
         </div>
       </section>
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
+      </div>
 
       <LogoMarquee />
 
@@ -1099,11 +1099,11 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
               </button>
             </div>
           </motion.div>
-          <div className="mt-16 md:mt-24 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
-          </div>
         </div>
       </section>
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
+      </div>
 
       <LogoMarquee />
 
