@@ -225,14 +225,15 @@ const ReviewCard = ({ t }: { t: { name: string; date: string; text: string; star
 const TESTIMONIAL_CARDS_DATA = [
   {
     badge: 'Selbstständiger',
-    name: 'Max Berger',
+    name: 'Tamaz Tordia',
     role: 'Online-Marketing Berater',
     text: 'Ich habe mich vorher selbst um meine Finanzen gekümmert, aber viele Vorteile einfach nicht genutzt. Durch den Wechsel von der gesetzlichen in die private Krankenkasse spare ich jetzt rund 4.000€ pro Jahr. Zusätzlich wurde meine Altersvorsorge optimiert, sodass ich durch staatliche Förderungen etwa 30% mehr Rentenkapital aufbaue.',
     stats: [
       { value: 4000, suffix: '€', label: 'Ersparnis durch PKV-Wechsel' },
       { value: 30,   suffix: '%', label: 'mehr Rentenkapital' },
-      { value: 5300, suffix: '€', label: 'Gesamtersparnis p.a.' },
     ],
+    total: 5300,
+    totalLabel: 'Gesamtersparnis pro Jahr',
     result: 'Gesamtersparnis: ca. 5.300€ pro Jahr',
   },
   {
@@ -242,9 +243,10 @@ const TESTIMONIAL_CARDS_DATA = [
     text: 'Als Azubi hätte ich nie gedacht, dass ich überhaupt so viele Vorteile nutzen kann. Meine Berufsunfähigkeitsversicherung ist jetzt etwa 25% günstiger durch Zuschüsse der Krankenkasse. Zusätzlich bekomme ich 480€ jährlich vom Arbeitgeber.',
     stats: [
       { value: 25,   suffix: '%', label: 'günstigere BU-Versicherung' },
-      { value: 480,  suffix: '€', label: 'Arbeitgeberzuschuss' },
-      { value: 1080, suffix: '€', label: 'Gesamtersparnis p.a.' },
+      { value: 480,  suffix: '€', label: 'Arbeitgeberzuschuss p.a.' },
     ],
+    total: 1080,
+    totalLabel: 'Gesamtersparnis pro Jahr',
     result: 'Gesamtersparnis: ca. 1.080€ pro Jahr',
   },
   {
@@ -255,20 +257,21 @@ const TESTIMONIAL_CARDS_DATA = [
     stats: [
       { value: 3721, suffix: '€', label: 'Steuerersparnis' },
       { value: 2500, suffix: '€', label: 'staatliche Förderung' },
-      { value: 6221, suffix: '€', label: 'Gesamtersparnis p.a.' },
     ],
+    total: 6221,
+    totalLabel: 'Gesamtersparnis pro Jahr',
     result: 'Gesamtersparnis: ca. 6.221€ pro Jahr',
   },
 ];
 
-const AnimatedCounter = ({ value, suffix, color }: { value: number; suffix: string; color: string }) => {
+const AnimatedCounter = ({ value, suffix, color, large }: { value: number; suffix: string; color: string; large?: boolean }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const [count, setCount] = useState(0);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const isInView = useInView(ref, { once: true, margin: '-60px' });
 
   useEffect(() => {
     if (!isInView) return;
-    const duration = 1600;
+    const duration = 1800;
     const startTime = performance.now();
     const tick = (now: number) => {
       const progress = Math.min((now - startTime) / duration, 1);
@@ -280,90 +283,111 @@ const AnimatedCounter = ({ value, suffix, color }: { value: number; suffix: stri
   }, [isInView, value]);
 
   return (
-    <span ref={ref} className="font-bold text-base tabular-nums" style={{ color }}>
+    <span
+      ref={ref}
+      className={`font-bold tabular-nums ${large ? 'text-3xl md:text-4xl' : 'text-lg'}`}
+      style={{ color }}
+    >
       {count.toLocaleString('de-DE')}{suffix}
     </span>
   );
 };
 
+const StarRow = () => (
+  <div className="flex gap-0.5">
+    {[...Array(5)].map((_, i) => (
+      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+    ))}
+  </div>
+);
+
 const TestimonialCards = ({ color }: { color: string }) => (
-  <section className="py-8 md:py-16 px-6">
+  <section id="testimonials" className="py-8 md:py-20 px-6">
     <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-12">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl md:text-5xl font-bold mb-4"
-        >
-          Echte Ergebnisse unserer Mandanten
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-white/50 max-w-xl mx-auto"
-        >
+
+      {/* Section header */}
+      <div className="text-center mb-14">
+        <div className="flex items-center justify-center gap-2 mb-4" style={{ color }}>
+          <CheckCircle2 className="w-4 h-4" />
+          <span className="text-xs font-bold uppercase tracking-widest">Echte Ergebnisse unserer Mandanten</span>
+        </div>
+        <h2 className="text-3xl md:text-5xl font-bold mb-4">Erfolge</h2>
+        <p className="text-white/45 max-w-lg mx-auto text-base">
           Konkrete Zahlen, echte Menschen – das erreichen wir gemeinsam.
-        </motion.p>
+        </p>
       </div>
+
+      {/* Cards grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {TESTIMONIAL_CARDS_DATA.map((card, i) => (
           <motion.div
             key={card.name}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
-            className="flex flex-col rounded-2xl border border-white/8 bg-white/[0.03] p-7"
+            whileHover={{
+              scale: 1.03,
+              y: -6,
+              boxShadow: `0 24px 48px ${color}28, 0 0 0 1px ${color}50`,
+            }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.45, delay: i * 0.13, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ cursor: 'default' }}
+            className="relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] overflow-hidden"
           >
-            {/* Badge */}
-            <span
-              className="inline-flex self-start text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-5 border"
-              style={{ color, borderColor: `${color}55`, background: `${color}18` }}
-            >
-              {card.badge}
-            </span>
+            {/* Top accent bar */}
+            <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${color}, ${color}55)` }} />
 
-            {/* Quote */}
-            <p className="text-white/60 text-sm leading-relaxed mb-6 flex-1">
-              „{card.text}"
-            </p>
-
-            {/* Animated stats */}
-            <div className="space-y-3 mb-5">
-              {card.stats.map((s) => (
-                <div key={s.label} className="flex items-center justify-between gap-4">
-                  <span className="text-xs text-white/40 leading-tight">{s.label}</span>
-                  <AnimatedCounter value={s.value} suffix={s.suffix} color={color} />
-                </div>
-              ))}
-            </div>
-
-            {/* Divider */}
-            <div className="h-px bg-white/10 mb-5" />
-
-            {/* Result line */}
-            <p
-              className="testimonial-result-pulse text-sm font-bold text-center py-2.5 px-4 rounded-lg mb-5"
-              style={{ color, background: `${color}18` }}
-            >
-              {card.result}
-            </p>
-
-            {/* Name + role */}
-            <div className="flex items-center gap-3">
-              <div
-                className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-                style={{ background: `${color}28`, color }}
-              >
-                {card.name.charAt(0)}
+            <div className="flex flex-col flex-1 p-7">
+              {/* Badge + stars row */}
+              <div className="flex items-center justify-between mb-5">
+                <span
+                  className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border"
+                  style={{ color, borderColor: `${color}50`, background: `${color}15` }}
+                >
+                  {card.badge}
+                </span>
+                <StarRow />
               </div>
-              <div>
-                <p className="text-sm font-bold leading-tight">{card.name}</p>
-                <p className="text-xs text-white/40 leading-tight mt-0.5">{card.role}</p>
+
+              {/* Large quote mark */}
+              <div className="text-6xl font-serif leading-none mb-1 select-none" style={{ color: `${color}30` }}>"</div>
+
+              {/* Quote text */}
+              <p className="text-white/65 text-sm leading-relaxed mb-7 flex-1">
+                {card.text}
+              </p>
+
+              {/* Stats rows */}
+              <div className="space-y-2 mb-5">
+                {card.stats.map((s) => (
+                  <div key={s.label} className="flex items-center justify-between gap-3 py-1.5 border-b border-white/5 last:border-0">
+                    <span className="text-xs text-white/40 leading-tight">{s.label}</span>
+                    <AnimatedCounter value={s.value} suffix={s.suffix} color={color} />
+                  </div>
+                ))}
+              </div>
+
+              {/* Total result block */}
+              <div
+                className="testimonial-result-pulse rounded-xl px-5 py-4 mb-6 text-center"
+                style={{ background: `${color}12`, border: `1px solid ${color}35` }}
+              >
+                <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1.5">{card.totalLabel}</p>
+                <AnimatedCounter value={card.total} suffix="€" color={color} large />
+              </div>
+
+              {/* Name + role */}
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 border"
+                  style={{ background: `${color}20`, color, borderColor: `${color}40` }}
+                >
+                  {card.name.charAt(0)}
+                </div>
+                <div>
+                  <p className="text-sm font-bold leading-tight">{card.name}</p>
+                  <p className="text-xs text-white/40 leading-tight mt-0.5">{card.role}</p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -594,7 +618,7 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
           >
             Über uns
           </button>
-          <a href="#proof" onClick={() => onPageChange('home')} className="hover:text-[#1E293B] transition-colors">Erfolge</a>
+          <a href="#testimonials" onClick={() => onPageChange('home')} className="hover:text-[#1E293B] transition-colors">Erfolge</a>
           <button
             onClick={() => onPageChange('kontakt')}
             className="px-5 py-2 text-white rounded-full text-sm font-semibold"
