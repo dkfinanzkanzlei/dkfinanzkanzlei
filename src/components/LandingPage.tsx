@@ -205,8 +205,8 @@ const TESTIMONIAL_CARDS_DATA = [
   },
   {
     badge: 'Azubi',
-    name: 'Leon Weber',
-    role: 'Auszubildender Industriekaufmann',
+    name: 'Svenja Jansen',
+    role: 'Auszubildende Industriekauffrau',
     icon: GraduationCap,
     iconLabel: 'Ausbildung',
     text: 'Als Azubi hätte ich nie gedacht, dass ich überhaupt so viele Vorteile nutzen kann. Meine Berufsunfähigkeitsversicherung ist jetzt etwa 25% günstiger durch Zuschüsse der Krankenkasse. Zusätzlich bekomme ich 480€ jährlich vom Arbeitgeber.',
