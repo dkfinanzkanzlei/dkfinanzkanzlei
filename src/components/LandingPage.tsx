@@ -1807,7 +1807,15 @@ const UeberUnsContent = () => {
               transition={{ delay: (team.length % 4) * 0.07, duration: 0.4 }}
               className="flex flex-col items-center text-center"
             >
-              <a href="#bewerbung" className="group flex flex-col items-center w-full">
+              <button
+                className="group flex flex-col items-center w-full"
+                onClick={() => {
+                  const el = document.getElementById('bewerbung');
+                  if (!el) return;
+                  const top = el.getBoundingClientRect().top + window.scrollY - 72;
+                  window.scrollTo({ top, behavior: 'smooth' });
+                }}
+              >
                 {/* Placeholder-Karte */}
                 <div className="relative mb-5 w-full aspect-square rounded-3xl border-2 border-dashed border-white/20 bg-white/[0.03] flex flex-col items-center justify-center gap-2 group-hover:border-white/40 group-hover:bg-white/[0.06] transition-all duration-300">
                   {/* Person-Icon mit ? im Kopf */}
@@ -1833,7 +1841,7 @@ const UeberUnsContent = () => {
                 <span className="text-sm font-bold text-[#4d7abd] group-hover:text-white transition-colors">
                   Bewirb dich jetzt!
                 </span>
-              </a>
+              </button>
             </motion.div>
           </div>
         </div>
