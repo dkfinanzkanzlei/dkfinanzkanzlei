@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.dk-finanzkanzlei.de/sitemap.xml

@@ -5,6 +5,7 @@ import {
   Menu, X, Wallet, Calculator, Building2, Home, Heart, BarChart3, Users,
   Star, Eye, Zap, Leaf, UserCircle, Briefcase, GraduationCap, Wrench, MousePointerClick, Globe
 } from 'lucide-react';
+import { applySeo, getSeoForRoute, routeKeyForPage } from '../seo';
 
 // ─── Brand Configuration ────────────────────────────────────────────────────────
 type Brand = 'dk' | 'vorsorge' | 'immo' | 'consulting';
@@ -77,6 +78,8 @@ const LogoMarquee = () => (
           <img
             src={logo.src}
             alt={logo.alt}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-contain"
             style={{ filter: logo.filter, opacity: logo.opacity, transform: `scale(${logo.scale})` }}
           />
@@ -593,14 +596,22 @@ const Navbar = ({ brand, onBrandChange, onPageChange, currentPage, onService }: 
           {/* Mobile: Kreis-Logo */}
           <img
             src="/dk-logo-small.png"
-            alt="DK"
+            alt="DK Finanzkanzlei"
+            width="40"
+            height="40"
+            fetchPriority="high"
+            decoding="async"
             className="block md:hidden h-10 w-auto object-contain"
             style={{ filter: cfg.logoFilter, transition: 'filter 0.6s ease' }}
           />
           {/* Desktop: horizontales Logo */}
           <img
             src="/dk-logo.png"
-            alt="DK"
+            alt="DK Finanzkanzlei"
+            width="256"
+            height="96"
+            fetchPriority="high"
+            decoding="async"
             className="hidden md:block w-64 h-auto object-contain"
             style={{ filter: cfg.logoFilter, transition: 'filter 0.6s ease' }}
           />
@@ -789,7 +800,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
           {/* Left: Text – appears below image on mobile */}
           <motion.div className="flex-1 text-left order-2 md:order-1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex flex-col items-center gap-0 mb-2">
-              <img src="/dk-logo-small.png" alt="DK Finanzkanzlei" className="hidden md:block h-24 w-auto object-contain" />
+              <img src="/dk-logo-small.png" alt="DK Finanzkanzlei Aachen" loading="lazy" decoding="async" className="hidden md:block h-24 w-auto object-contain" />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase md:-mt-3">
                 Eigenständig & Persönlich
               </span>
@@ -814,7 +825,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
           {/* Right: Team image – appears above text on mobile */}
           <motion.div className="flex-1 flex self-stretch order-1 md:order-2 h-[40vh] md:h-auto" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl w-full h-full">
-              <img src="/joel-flamur.png" alt="DK Finanzkanzlei" className="w-full h-full object-cover object-top" />
+              <img src="/joel-flamur.png" alt="Joel Dakaj und Flamur – DK Finanzkanzlei Aachen" fetchPriority="high" decoding="async" className="w-full h-full object-cover object-top" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E293B]/60 via-transparent to-transparent" />
             </div>
           </motion.div>
@@ -982,7 +993,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
         <div className="max-w-5xl mx-auto text-center py-16 md:py-24">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex flex-col items-center gap-0 mb-8">
-              <img src="/dk-logo-small.png" alt="DK Vorsorge" className="h-16 md:h-28 w-auto object-contain" style={{ filter: BRANDS.vorsorge.logoFilter }} />
+              <img src="/dk-logo-small.png" alt="DK Vorsorge Aachen" loading="lazy" decoding="async" className="h-16 md:h-28 w-auto object-contain" style={{ filter: BRANDS.vorsorge.logoFilter }} />
               <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Vorsorge & Absicherung
               </span>
@@ -1110,7 +1121,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
         <div className="max-w-5xl mx-auto text-center py-16 md:py-24">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex flex-col items-center gap-0 mb-8">
-              <img src="/dk-logo-small.png" alt="DK Immo" className="h-16 md:h-28 w-auto object-contain" style={{ filter: BRANDS.immo.logoFilter }} />
+              <img src="/dk-logo-small.png" alt="DK Immo Aachen" loading="lazy" decoding="async" className="h-16 md:h-28 w-auto object-contain" style={{ filter: BRANDS.immo.logoFilter }} />
               <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Immobilien & Investments
               </span>
@@ -1239,7 +1250,7 @@ const ConsultingContent = ({ onPageChange }: { onPageChange: (p: Page) => void }
         <div className="max-w-5xl mx-auto text-center py-16 md:py-24">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex flex-col items-center gap-0 mb-8">
-              <img src="/dk-logo-small.png" alt="DK Consulting" className="h-16 md:h-28 w-auto object-contain" style={{ filter: BRANDS.consulting.logoFilter }} />
+              <img src="/dk-logo-small.png" alt="DK Consulting Aachen" loading="lazy" decoding="async" className="h-16 md:h-28 w-auto object-contain" style={{ filter: BRANDS.consulting.logoFilter }} />
               <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase -mt-3">
                 Unternehmensberatung
               </span>
@@ -1752,7 +1763,9 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
         <div className="flip-face border border-white/10">
           <img
             src={member.img}
-            alt={member.name}
+            alt={`${member.name} – DK Finanzkanzlei`}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 scale-100"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0d1829]/90 via-[#0d1829]/20 to-transparent" />
@@ -1780,7 +1793,7 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
               boxShadow: `0 0 0 3px #0d1829, 0 0 18px ${color}55`,
             }}
           >
-            <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
+            <img src={member.img} alt={`${member.name} – DK Finanzkanzlei`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
           </div>
 
           {/* card body */}
@@ -1914,7 +1927,7 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
       quote: 'DK hat mir die Möglichkeit gegeben, mein volles Potenzial zu entfalten. Innerhalb eines Jahres bin ich vom Berater zum Vertriebsleiter aufgestiegen – das wäre in einer klassischen Firma nicht möglich gewesen.',
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png', tag: 'Quereinsteiger',
+      name: 'Julius Ferreira Schmitz', role: 'Vertriebsleiter', img: '/Julius 2.png', tag: 'Quereinsteiger',
       quote: 'Als junger Quereinsteiger bin ich direkt bei DK eingestiegen – und durch Schulungen, Coaching und meinen eigenen Antrieb in 2 Jahren zu einem der besten Fachberater geworden. Hier zählt nicht wo du herkommst, sondern wohin du willst.',
     },
     {
@@ -2019,7 +2032,7 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
                   <div className="text-4xl font-serif leading-none mb-3 select-none" style={{ color: `${color}55` }}>"</div>
                   <p className="text-white/65 text-sm leading-relaxed italic flex-1 mb-6">„{s.quote}"</p>
                   <div className="flex items-center gap-4 pt-4 border-t border-white/10">
-                    <img src={s.img} alt={s.name} className="w-12 h-12 rounded-full object-cover object-top border border-white/10" />
+                    <img src={s.img} alt={s.name} loading="lazy" decoding="async" className="w-12 h-12 rounded-full object-cover object-top border border-white/10" />
                     <div>
                       <p className="font-bold text-sm">{s.name}</p>
                       <p className="text-xs text-white/40">{s.role}</p>
@@ -2303,7 +2316,7 @@ const UeberUnsContent = () => {
       funFact: 'Liebt Wein',
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png',
+      name: 'Julius Ferreira Schmitz', role: 'Vertriebsleiter', img: '/Julius 2.png',
       linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
       desc: 'Hi, ich bin Julius – ich höre genau zu, um die beste Lösung für dich zu finden:',
       bullets: ['Kundenanalyse durch Zuhören', 'Individuelle Lösungsfindung', 'Vertrauensvolle Beratung'],
@@ -2498,7 +2511,7 @@ const UeberUnsContent = () => {
                     className="relative min-h-[340px] md:min-h-[420px] overflow-hidden"
                     exit={{ y: '-100%', opacity: 0, transition: { duration: 0.5, ease: [0.4, 0, 1, 1] } }}
                   >
-                    <img src="/Team.jpg" alt="DK Finanzkanzlei Team" className="absolute inset-0 w-full h-full object-cover" />
+                    <img src="/Team.jpg" alt="Team der DK Finanzkanzlei Aachen" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#3a5f9a]/60 md:block hidden" />
                   </motion.div>
 
@@ -3788,6 +3801,11 @@ export default function LandingPage() {
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
+
+  // SEO: Titel, Meta-Tags, Canonical & JSON-LD je nach aktueller Route setzen.
+  useEffect(() => {
+    applySeo(getSeoForRoute(routeKeyForPage(page, currentService)));
+  }, [page, currentService]);
 
   const direction = BRAND_ORDER.indexOf(brand) >= prevIndex ? 1 : -1;
 
