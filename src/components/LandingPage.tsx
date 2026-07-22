@@ -1515,10 +1515,15 @@ const DatenschutzContent = () => (
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">2. Erhebung und Verarbeitung personenbezogener Daten</h2>
-            <p className="mb-3">Als Finanzberater verarbeiten wir folgende personenbezogene Daten:</p>
+            <h2 className="text-xl font-bold text-white mb-3">2. Ansprechpartner für den Datenschutz</h2>
+            <p>Für Fragen zum Datenschutz und zur Ausübung Ihrer Rechte erreichen Sie uns unter den oben genannten Kontaktdaten.</p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-white mb-3">3. Welche personenbezogenen Daten wir verarbeiten</h2>
+            <p className="mb-3">Im Rahmen unserer Tätigkeit als Finanz-, Vorsorge-, Immobilien- und Versicherungsberatung verarbeiten wir je nach Anliegen insbesondere:</p>
             <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Name, Anschrift, Kontaktdaten</li>
+              <li>Name, Anschrift und Kontaktdaten (Telefon, E-Mail, ggf. Messenger-Kennung)</li>
               <li>Geburtsdatum und -ort</li>
               <li>Familienstand</li>
               <li>Einkommens- und Vermögensverhältnisse</li>
@@ -1529,117 +1534,24 @@ const DatenschutzContent = () => (
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">3. Zweck der Datenverarbeitung</h2>
-            <p className="mb-3">Die Verarbeitung erfolgt zum Zweck der:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Finanzberatung und Vermittlung von Finanzprodukten</li>
-              <li>Erfüllung vertraglicher Pflichten</li>
-              <li>Gesetzliche Dokumentationspflichten</li>
-              <li>Risikobewertung und Anlageempfehlungen</li>
+            <h2 className="text-xl font-bold text-white mb-3">4. Zwecke und Rechtsgrundlagen der Verarbeitung</h2>
+            <p className="mb-3">Wir verarbeiten Ihre Daten zu folgenden Zwecken:</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60 mb-3">
+              <li>Finanz-, Vorsorge-, Immobilien- und Versicherungsberatung sowie Vermittlung entsprechender Produkte</li>
+              <li>Erfüllung vertraglicher Pflichten und vorvertraglicher Maßnahmen</li>
+              <li>Erfüllung gesetzlicher Dokumentations- und Aufbewahrungspflichten</li>
+              <li>Risikobewertung und Erstellung von Empfehlungen</li>
+              <li>Beantwortung Ihrer Anfragen und Kontaktaufnahme mit Ihnen (siehe Ziffer 5)</li>
             </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-white mb-3">4. Rechtsgrundlagen</h2>
             <p className="mb-3">Die Verarbeitung erfolgt auf Grundlage von:</p>
             <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</li>
-              <li>Art. 6 Abs. 1 lit. c DSGVO (Rechtliche Verpflichtung)</li>
-              <li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-white mb-3">5. Aufbewahrungsfristen</h2>
-            <p className="mb-3">Wir speichern Ihre Daten:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Beratungsprotokolle: 10 Jahre</li>
-              <li>Vertragsdaten: 10 Jahre nach Vertragsende</li>
-              <li>Steuerliche Unterlagen: 10 Jahre</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-white mb-3">6. Ihre Rechte</h2>
-            <p className="mb-3">Sie haben folgende Rechte:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Auskunftsrecht (Art. 15 DSGVO)</li>
-              <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
-              <li>Recht auf Löschung (Art. 17 DSGVO)</li>
-              <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
-              <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
-              <li>Widerspruchsrecht (Art. 21 DSGVO)</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-white mb-3">7. Datensicherheit</h2>
-            <p>Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten gegen Manipulation, Verlust und unberechtigten Zugriff zu schützen.</p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-white mb-3">3. Datenerhebung auf unserer Website</h2>
-
-            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">3.1 Cookies</h3>
-            <p>Unsere Website verwendet Cookies. Dabei handelt es sich um kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Wir nutzen sowohl technisch notwendige Cookies als auch Analyse-Cookies. Sie können in Ihren Browsereinstellungen festlegen, ob Sie alle Cookies akzeptieren, nur technisch notwendige Cookies zulassen oder alle Cookies ablehnen möchten.</p>
-
-            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">3.2 Server-Logfiles</h3>
-            <p className="mb-3">Bei jedem Zugriff auf unsere Website werden automatisch Informationen in Server-Logfiles erfasst. Diese beinhalten:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Browsertyp und -version</li>
-              <li>Verwendetes Betriebssystem</li>
-              <li>Referrer URL (die zuvor besuchte Seite)</li>
-              <li>IP-Adresse des zugreifenden Rechners</li>
-              <li>Uhrzeit der Serveranfrage</li>
+              <li>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung und vorvertragliche Maßnahmen)</li>
+              <li>Art. 6 Abs. 1 lit. c DSGVO (Erfüllung rechtlicher Verpflichtungen)</li>
+              <li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung, z. B. für die Kontaktaufnahme zu Werbezwecken)</li>
+              <li>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse, z. B. Sicherheit unserer Website)</li>
             </ul>
 
-            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">3.3 Kontaktformular</h3>
-            <p className="mb-3">Wenn Sie unser Kontaktformular nutzen, werden folgende Daten verarbeitet:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Name und Anschrift</li>
-              <li>E-Mail-Adresse</li>
-              <li>Telefonnummer</li>
-              <li>Zeitpunkt der Übermittlung</li>
-              <li>Betreff und Inhalt Ihrer Anfrage</li>
-            </ul>
-            <p className="mt-3">Die Daten werden ausschließlich zum Zweck der Kommunikation mit Ihnen verwendet und nach abschließender Bearbeitung Ihrer Anfrage gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
-
-            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">3.4 Newsletter und Marketing</h3>
-            <p className="mb-3">Für unseren Newsletter verwenden wir das Double-Opt-In-Verfahren. Dies bedeutet:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60 mb-3">
-              <li>Nach Ihrer Anmeldung erhalten Sie eine E-Mail mit einem Bestätigungslink</li>
-              <li>Ihre Anmeldung wird erst wirksam, wenn Sie diesen Link anklicken</li>
-              <li>Wir protokollieren Anmeldung, Bestätigung und IP-Adresse</li>
-            </ul>
-            <p className="mb-3">Sie können Ihre Einwilligung jederzeit widerrufen durch:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Klicken des Abmeldelinks im Newsletter</li>
-              <li>E-Mail an unsere Kontaktadresse</li>
-              <li>Nachricht über unser Kontaktformular</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">3.5 Analyse-Tools und Tracking – Google Analytics</h3>
-            <p className="mb-3">Wir nutzen Google Analytics zur Analyse des Nutzerverhaltens. Dabei werden:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>IP-Adressen anonymisiert</li>
-              <li>Keine personenbezogenen Daten an Google übermittelt</li>
-              <li>Cookies mit einer Laufzeit von maximal 14 Monaten gesetzt</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">3.6 Social Media</h3>
-            <p className="mb-3">Auf unserer Website sind Social-Media-Plugins integriert. Diese sind zunächst deaktiviert und übertragen keine Daten. Wir haben Präsenzen in folgenden sozialen Netzwerken:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>LinkedIn</li>
-              <li>XING</li>
-              <li>Facebook</li>
-              <li>Instagram</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-white mb-3">4. Detaillierte Verarbeitungszwecke</h2>
-
-            <h3 className="text-lg font-semibold text-white/90 mt-4 mb-2">4.1 Anlageberatung</h3>
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">4.1 Anlageberatung im Detail</h3>
             <ul className="list-disc list-inside space-y-1 text-white/60">
               <li>Erstellung Ihres Anlegerprofils</li>
               <li>Durchführung der Geeignetheitsprüfung</li>
@@ -1648,7 +1560,7 @@ const DatenschutzContent = () => (
               <li>Regelmäßige Portfolioüberprüfung</li>
             </ul>
 
-            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">4.2 Versicherungsvermittlung</h3>
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">4.2 Versicherungsvermittlung im Detail</h3>
             <ul className="list-disc list-inside space-y-1 text-white/60">
               <li>Risikoanalyse und Bedarfsermittlung</li>
               <li>Einholung von Vergleichsangeboten</li>
@@ -1659,57 +1571,135 @@ const DatenschutzContent = () => (
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">5. Technische Sicherheitsmaßnahmen</h2>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>SSL/TLS-Verschlüsselung der Website</li>
-              <li>Firewall-Systeme</li>
-              <li>Regelmäßige Sicherheitsupdates</li>
-              <li>Zwei-Faktor-Authentifizierung</li>
-              <li>Verschlüsselte Datenspeicherung</li>
-              <li>Regelmäßige Backups</li>
+            <h2 className="text-xl font-bold text-white mb-3">5. Kontaktaufnahme per Telefon, WhatsApp, SMS und E-Mail</h2>
+            <p className="mb-3">Sie können uns Ihre Kontaktdaten über verschiedene Wege übermitteln, insbesondere über:</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60 mb-3">
+              <li>unsere Website bzw. unser Kontakt- und Beratungsformular</li>
+              <li>Meta/Facebook Lead Ads (Kontaktformulare in Werbeanzeigen auf Facebook)</li>
+              <li>Instagram-Lead-Formulare</li>
+              <li>Lead-Formulare bzw. Direktnachrichten auf TikTok</li>
+              <li>Lead-Formulare bzw. Direktnachrichten auf LinkedIn</li>
+              <li>eine von Ihnen begonnene Konversation per WhatsApp</li>
             </ul>
+            <p className="mb-3">In diesen Fällen möchten wir Sie kontaktieren, um Ihre Anfrage zu bearbeiten und Ihnen ein unverbindliches Beratungsangebot zu unterbreiten.</p>
+            <p className="mb-3"><b className="text-white">Maßgeblich ist Ihre Einwilligung, nicht diese Datenschutzerklärung:</b> Ein Recht, Sie zu Werbezwecken zu kontaktieren, ergibt sich nicht aus dieser Datenschutzerklärung, sondern ausschließlich aus der Einwilligung, die Sie uns im jeweiligen Formular bzw. auf dem jeweiligen Kanal erteilen. Diese Datenschutzerklärung informiert lediglich darüber, wie wir Ihre Daten in diesem Zusammenhang verarbeiten.</p>
+            <p className="mb-3">Eine Kontaktaufnahme per <b className="text-white">Telefon, WhatsApp oder SMS</b> erfolgt nur, soweit Sie hierfür eine gesonderte Einwilligung erteilt haben – je nach Ihrer Auswahl für den jeweiligen Kanal. Gleiches gilt für werbliche E-Mails, soweit keine gesetzliche Ausnahme (§ 7 Abs. 3 UWG) greift.</p>
+            <p className="mb-3"><b className="text-white">WhatsApp-Erstkontakt:</b> Eine von uns ausgehende werbliche Nachricht per WhatsApp versenden wir nur, wenn uns zuvor Ihre Einwilligung für den Kanal WhatsApp vorliegt.</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60 mb-3">
+              <li><b className="text-white">Zweck:</b> Beantwortung Ihrer Anfrage, Terminvereinbarung sowie Information über unsere Finanz-, Vorsorge-, Immobilien- und Versicherungsdienstleistungen</li>
+              <li><b className="text-white">Rechtsgrundlage:</b> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) i. V. m. § 7 Abs. 2 UWG</li>
+              <li><b className="text-white">Freiwilligkeit:</b> Die Einwilligung ist freiwillig und keine Voraussetzung dafür, dass wir eine von Ihnen selbst gestellte Anfrage beantworten</li>
+              <li><b className="text-white">Dokumentation:</b> Wir protokollieren Ihre Einwilligung (Zeitpunkt und freigegebene Kanäle) und bewahren den Nachweis gemäß § 7a UWG auf</li>
+              <li><b className="text-white">Widerruf:</b> Jederzeit mit Wirkung für die Zukunft möglich – z. B. per E-Mail an dakaj@dk-finanzkanzlei.de, telefonisch oder durch eine kurze Nachricht über den jeweiligen Kanal (z. B. „STOPP" per WhatsApp/SMS). Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt</li>
+            </ul>
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">Nutzung von WhatsApp</h3>
+            <p>Wenn Sie der Kontaktaufnahme per WhatsApp zustimmen, verarbeiten wir Ihre Daten über den Dienst WhatsApp. Anbieter ist WhatsApp Ireland Limited; dabei kann es zu einer Übermittlung von Daten an Meta Platforms bzw. in Drittländer kommen. Bitte beachten Sie, dass wir auf die Datenverarbeitung durch WhatsApp selbst nur begrenzten Einfluss haben.</p>
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">6. Internationale Datenübermittlung</h2>
-            <p className="mb-3">Eine Datenübermittlung in Drittländer findet nur statt, wenn:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Ein Angemessenheitsbeschluss der EU-Kommission vorliegt</li>
-              <li>Geeignete Garantien bestehen (z.B. EU-Standardvertragsklauseln)</li>
-              <li>Sie ausdrücklich eingewilligt haben</li>
+            <h2 className="text-xl font-bold text-white mb-3">6. Datenerhebung auf unserer Website</h2>
+
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">6.1 Cookies und Einwilligungsverwaltung</h3>
+            <p>Unsere Website verwendet Cookies – kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Technisch notwendige Cookies setzen wir auf Grundlage von § 25 Abs. 2 TDDDG bzw. Art. 6 Abs. 1 lit. f DSGVO ein. Nicht notwendige Cookies (z. B. für Analyse) setzen wir nur, wenn Sie zuvor eingewilligt haben (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO). Ihre Auswahl können Sie jederzeit über Ihre Cookie-Einstellungen ändern.</p>
+
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">6.2 Server-Logfiles</h3>
+            <p className="mb-3">Bei jedem Zugriff auf unsere Website werden automatisch Informationen in Server-Logfiles erfasst. Diese beinhalten:</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60 mb-3">
+              <li>Browsertyp und -version</li>
+              <li>Verwendetes Betriebssystem</li>
+              <li>Referrer URL (die zuvor besuchte Seite)</li>
+              <li>IP-Adresse des zugreifenden Rechners</li>
+              <li>Uhrzeit der Serveranfrage</li>
             </ul>
+            <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sicherer und stabiler Betrieb der Website).</p>
+
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">6.3 Kontakt- und Beratungsformular</h3>
+            <p className="mb-3">Wenn Sie unser Formular nutzen, verarbeiten wir die von Ihnen angegebenen Daten (z. B. Name, E-Mail-Adresse, Telefonnummer, Zeitpunkt der Übermittlung sowie Inhalt Ihrer Anfrage). Diese Daten verwenden wir zur Bearbeitung Ihrer Anfrage und – soweit Sie eingewilligt haben – zur Kontaktaufnahme gemäß Ziffer 5. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bzw. Art. 6 Abs. 1 lit. a DSGVO.</p>
+            <p>Die Daten werden nach abschließender Bearbeitung Ihrer Anfrage gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
+
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">6.4 Newsletter und Marketing</h3>
+            <p className="mb-3">Für unseren Newsletter verwenden wir das Double-Opt-In-Verfahren: Nach Ihrer Anmeldung erhalten Sie eine E-Mail mit einem Bestätigungslink; Ihre Anmeldung wird erst mit dessen Bestätigung wirksam. Wir protokollieren Anmeldung, Bestätigung und IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.</p>
+            <p className="mb-3">Sie können Ihre Einwilligung jederzeit widerrufen durch:</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60">
+              <li>Klicken des Abmeldelinks im Newsletter</li>
+              <li>E-Mail an unsere Kontaktadresse</li>
+              <li>Nachricht über unser Kontaktformular</li>
+            </ul>
+
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">6.5 Webanalyse – Google Analytics</h3>
+            <p>Soweit Sie eingewilligt haben, nutzen wir Google Analytics zur Analyse des Nutzungsverhaltens. Dabei werden Nutzungsdaten (z. B. anonymisierte IP-Adresse, aufgerufene Seiten, Verweildauer) verarbeitet; hierbei kann es zu einer Übermittlung an Google, auch in die USA, kommen. Cookies werden mit einer Laufzeit von maximal 14 Monaten gesetzt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</p>
+
+            <h3 className="text-lg font-semibold text-white/90 mt-5 mb-2">6.6 Social Media und Lead-Formulare</h3>
+            <p className="mb-3">Wir sind in sozialen Netzwerken präsent (u. a. LinkedIn, XING, Facebook, Instagram, TikTok) und schalten dort teilweise Werbeanzeigen mit Kontaktformularen (Lead-Formulare). Tragen Sie sich über ein solches Formular ein, erhalten wir die von Ihnen dort angegebenen Daten und verarbeiten sie zur Kontaktaufnahme gemäß Ziffer 5.</p>
+            <p className="mb-3">Bei Meta/Facebook Lead Ads holen wir die Einwilligung in die werbliche Kontaktaufnahme über ein eigenes, nicht vorausgewähltes Einwilligungsfeld innerhalb des Lead-Formulars der Plattform ein; die dort angegebenen Daten nutzen wir für die Kontaktaufnahme nur, wenn diese Einwilligung vorliegt.</p>
+            <p>Für die Datenverarbeitung auf den Plattformen selbst sind die jeweiligen Anbieter (mit-)verantwortlich; es gelten zusätzlich deren Datenschutzhinweise.</p>
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">7. Besondere Kategorien personenbezogener Daten</h2>
-            <p className="mb-3">Als Finanzberater können wir unter Umständen auch besonders sensible Daten verarbeiten, wie beispielsweise:</p>
-            <ul className="list-disc list-inside space-y-1 text-white/60">
-              <li>Gesundheitsdaten (bei Abschluss von Versicherungen)</li>
-              <li>Informationen über Ihre finanzielle Situation</li>
-              <li>Daten über Ihre familiäre Situation</li>
-            </ul>
-            <p className="mt-3">Diese Daten werden mit besonderer Sorgfalt behandelt und nur verarbeitet, wenn Sie uns hierzu ausdrücklich Ihre Einwilligung erteilt haben oder wenn dies zur Erfüllung des Vertrags notwendig ist.</p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-white mb-3">8. Weitergabe von Daten</h2>
-            <p className="mb-3">Eine Übermittlung Ihrer persönlichen Daten an Dritte erfolgt nur, wenn Sie Ihre ausdrückliche Einwilligung erteilt haben, dies für die Vertragsabwicklung notwendig ist oder eine gesetzliche Verpflichtung besteht. Wir arbeiten mit folgenden Kategorien von Empfängern zusammen:</p>
+            <h2 className="text-xl font-bold text-white mb-3">7. Empfänger und Weitergabe von Daten</h2>
+            <p className="mb-3">Eine Übermittlung Ihrer Daten an Dritte erfolgt nur, wenn Sie eingewilligt haben, dies zur Vertragsabwicklung erforderlich ist oder eine gesetzliche Verpflichtung besteht. Empfänger können sein:</p>
             <ul className="list-disc list-inside space-y-1 text-white/60">
               <li>Versicherungsgesellschaften</li>
               <li>Banken und Finanzinstitute</li>
-              <li>IT-Dienstleister</li>
+              <li>IT-Dienstleister als Auftragsverarbeiter nach Art. 28 DSGVO, insbesondere unser Hosting-Anbieter (Vercel Inc.)</li>
               <li>Wirtschaftsprüfer und Steuerberater</li>
             </ul>
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">9. Datenschutzbeauftragter</h2>
-            <p>Joel Dakaj<br />Eilendorfer Straße 215<br />52078 Aachen<br />Tel.: 0173 1038570<br />E-Mail: dakaj@dk-finanzkanzlei.de</p>
+            <h2 className="text-xl font-bold text-white mb-3">8. Aufbewahrungsfristen</h2>
+            <p className="mb-3">Wir speichern Ihre Daten nur so lange, wie es für die jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungsfristen es vorschreiben, insbesondere:</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60">
+              <li>Beratungsprotokolle: 10 Jahre</li>
+              <li>Vertragsdaten: 10 Jahre nach Vertragsende</li>
+              <li>Steuerlich relevante Unterlagen: 10 Jahre</li>
+              <li>Nachweise zu Werbe-Einwilligungen: gemäß § 7a UWG für die Dauer der Nachweispflicht</li>
+            </ul>
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">10. Beschwerderecht</h2>
-            <p className="mb-3">Sie haben das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten nicht rechtmäßig erfolgt:</p>
+            <h2 className="text-xl font-bold text-white mb-3">9. Internationale Datenübermittlung</h2>
+            <p className="mb-3">Eine Datenübermittlung in Drittländer außerhalb des EWR findet nur statt, wenn:</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60">
+              <li>Ein Angemessenheitsbeschluss der EU-Kommission vorliegt</li>
+              <li>Geeignete Garantien bestehen (z. B. EU-Standardvertragsklauseln)</li>
+              <li>Sie ausdrücklich eingewilligt haben</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-white mb-3">10. Besondere Kategorien personenbezogener Daten</h2>
+            <p className="mb-3">Im Rahmen unserer Tätigkeit können wir besonders sensible Daten verarbeiten, wie beispielsweise:</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60">
+              <li>Gesundheitsdaten (bei Abschluss bestimmter Versicherungen)</li>
+              <li>Informationen über Ihre finanzielle Situation</li>
+              <li>Daten über Ihre familiäre Situation</li>
+            </ul>
+            <p className="mt-3">Diese Daten behandeln wir mit besonderer Sorgfalt und verarbeiten sie nur, wenn Sie ausdrücklich eingewilligt haben (Art. 9 Abs. 2 lit. a DSGVO) oder eine andere gesetzliche Grundlage besteht.</p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-white mb-3">11. Datensicherheit</h2>
+            <p>Wir setzen technische und organisatorische Maßnahmen ein, um Ihre Daten gegen Manipulation, Verlust und unberechtigten Zugriff zu schützen, u. a. SSL-/TLS-Verschlüsselung der Website, gesicherte Systeme, regelmäßige Updates und Backups sowie Zugriffsbeschränkungen. Wir passen diese Maßnahmen fortlaufend an den Stand der Technik an.</p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-white mb-3">12. Ihre Rechte</h2>
+            <p className="mb-3">Sie haben nach der DSGVO folgende Rechte:</p>
+            <ul className="list-disc list-inside space-y-1 text-white/60">
+              <li>Auskunft (Art. 15 DSGVO)</li>
+              <li>Berichtigung (Art. 16 DSGVO)</li>
+              <li>Löschung (Art. 17 DSGVO)</li>
+              <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+              <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+              <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+              <li>Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-white mb-3">13. Beschwerderecht</h2>
+            <p className="mb-3">Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten nicht rechtmäßig erfolgt. Zuständig für uns ist:</p>
             <p>Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen<br />Kavalleriestraße 2–4<br />40213 Düsseldorf<br /><br />Tel.: 0211 38424-0<br />Fax: 0211 38424-10<br />E-Mail: poststelle@ldi.nrw.de</p>
           </div>
 
@@ -3659,14 +3649,16 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
                   <textarea required value={form.nachricht} onChange={e => setForm({...form, nachricht: e.target.value})} placeholder="Liebes DK Finanzkanzlei-Team, ..." rows={5} className="w-full border border-[#1E293B]/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E293B]/50 bg-white resize-none text-[#1E293B] placeholder:text-[#1E293B]/40" />
                 </div>
                 <label className="flex items-start gap-3 cursor-pointer">
-                  <input required type="checkbox" checked={form.datenschutz} onChange={e => setForm({...form, datenschutz: e.target.checked})} className="mt-0.5 w-4 h-4 flex-shrink-0 accent-[#1E293B]" />
+                  <input type="checkbox" checked={form.datenschutz} onChange={e => setForm({...form, datenschutz: e.target.checked})} className="mt-0.5 w-4 h-4 flex-shrink-0 accent-[#1E293B]" />
                   <span className="text-xs text-[#1E293B]/60 leading-relaxed">
-                    Ich bin einverstanden, dass die eingegebenen Daten zur Bearbeitung meines Anliegens verwendet werden. Weitere Informationen findest du in der{' '}
-                    <button type="button" onClick={() => onPageChange('datenschutz')} className="underline" style={{ color }}>Datenschutzerklärung</button>.{' '}
-                    Deine Einwilligung kannst du jederzeit widerrufen. Hierzu genügt eine E-Mail an{' '}
-                    <a href="mailto:info@dk-finanzkanzlei.de" className="underline" style={{ color }}>info@dk-finanzkanzlei.de</a> <span className="text-red-500">*</span>
+                    Ja, die DK Finanzkanzlei (Joel Dakaj) darf mich zu meiner Anfrage und für ein unverbindliches Beratungsangebot kontaktieren – <b>telefonisch, per WhatsApp, per SMS und per E-Mail</b>. Diese Einwilligung ist freiwillig und ich kann sie jederzeit mit Wirkung für die Zukunft widerrufen, z.&nbsp;B. per E-Mail an{' '}
+                    <a href="mailto:info@dk-finanzkanzlei.de" className="underline" style={{ color }}>info@dk-finanzkanzlei.de</a>. Es gilt die{' '}
+                    <button type="button" onClick={() => onPageChange('datenschutz')} className="underline" style={{ color }}>Datenschutzerklärung</button>.
                   </span>
                 </label>
+                <p className="text-xs text-[#1E293B]/40 leading-relaxed">
+                  Hinweis: Deine Anfrage bearbeiten und beantworten wir auch ohne diese Einwilligung. Deine Angaben verwenden wir dafür auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.
+                </p>
                 <button type="submit" className="w-full py-4 text-white font-semibold rounded-xl text-sm tracking-wide hover:opacity-90 transition-opacity" style={{ backgroundColor: color }}>
                   Absenden
                 </button>
