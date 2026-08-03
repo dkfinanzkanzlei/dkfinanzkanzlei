@@ -2318,6 +2318,11 @@ const UeberUnsContent = () => {
       funFact: 'RS3-Fan',
     },
     {
+      name: 'Norik Dakaj', role: 'Fachberater', img: '/Norik.png',
+      desc: 'Hi, ich bin Norik – ich begleite dich zuverlässig auf dem Weg zu deinen finanziellen Zielen:',
+      bullets: ['Persönliche Finanzberatung', 'Individuelle Absicherungskonzepte', 'Langfristige Kundenbetreuung'],
+    },
+    {
       name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png',
       desc: 'Hi, ich bin Jamila – ich helfe dir, deine Zukunft finanziell sauber aufzustellen:',
       bullets: ['Altersvorsorge-Strategien', 'Ganzheitliche Finanzanalyse', 'Langfristige Planung'],
