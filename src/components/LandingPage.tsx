@@ -1917,7 +1917,7 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
       quote: 'DK hat mir die Möglichkeit gegeben, mein volles Potenzial zu entfalten. Innerhalb eines Jahres bin ich vom Berater zum Vertriebsleiter aufgestiegen – das wäre in einer klassischen Firma nicht möglich gewesen.',
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Vertriebsleiter', img: '/Julius 2.png', tag: 'Quereinsteiger',
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png', tag: 'Quereinsteiger',
       quote: 'Als junger Quereinsteiger bin ich direkt bei DK eingestiegen – und durch Schulungen, Coaching und meinen eigenen Antrieb in 2 Jahren zu einem der besten Fachberater geworden. Hier zählt nicht wo du herkommst, sondern wohin du willst.',
     },
     {
@@ -2306,7 +2306,7 @@ const UeberUnsContent = () => {
       funFact: 'Liebt Wein',
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Vertriebsleiter', img: '/Julius 2.png',
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png',
       linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
       desc: 'Hi, ich bin Julius – ich höre genau zu, um die beste Lösung für dich zu finden:',
       bullets: ['Kundenanalyse durch Zuhören', 'Individuelle Lösungsfindung', 'Vertrauensvolle Beratung'],
