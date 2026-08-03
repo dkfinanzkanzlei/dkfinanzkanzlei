@@ -2306,6 +2306,11 @@ const UeberUnsContent = () => {
       funFact: 'Liebt Wein',
     },
     {
+      name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/Jannik.png',
+      desc: 'Hi, ich bin Jannik – ich sorge dafür, dass unser Team stets sorgfältig und auf höchstem Niveau berät:',
+      bullets: ['Qualitätssicherung in der Beratung', 'Weiterbildung & Entwicklung des Teams', 'Verlässliche Beratungsstandards'],
+    },
+    {
       name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 2.png',
       linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
       desc: 'Hi, ich bin Julius – ich höre genau zu, um die beste Lösung für dich zu finden:',
