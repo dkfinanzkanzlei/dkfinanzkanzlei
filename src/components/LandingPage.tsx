@@ -2353,12 +2353,6 @@ const UeberUnsContent = () => {
       funFact: 'Chillige Kollegin',
     },
     {
-      name: 'Ülkem Terzioglu', role: 'Assistentin', img: '/Ulkem.png',
-      desc: 'Hi, ich bin Ülkem – ich kümmere mich darum, dass alles schnell und unkompliziert läuft:',
-      bullets: ['Kundenservice', 'Terminmanagement', 'Schnelle Lösungen'],
-      funFact: 'Social Media Girly',
-    },
-    {
       name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png',
       desc: 'Hi, ich bin Ceylin – ich sorge im Hintergrund für Struktur und Ordnung:',
       bullets: ['Organisation & Dokumente', 'Backoffice-Struktur', 'Sichere Abläufe'],
