@@ -1920,10 +1920,6 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
       name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 3.png', tag: 'Quereinsteiger',
       quote: 'Als junger Quereinsteiger bin ich direkt bei DK eingestiegen – und durch Schulungen, Coaching und meinen eigenen Antrieb in 2 Jahren zu einem der besten Fachberater geworden. Hier zählt nicht wo du herkommst, sondern wohin du willst.',
     },
-    {
-      name: 'Tabita Mbolo', role: 'Fachberaterin', img: '/Tabita.png', tag: 'Karrierewechsel',
-      quote: 'Hier wird man nicht nur als Mitarbeiter gesehen, sondern als Mensch. Das Team, das Coaching und die Freiheit, die eigene Karriere zu gestalten – das ist einzigartig.',
-    },
   ];
 
   const benefits = [
@@ -2005,7 +2001,7 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Echte Geschichten. Echte Karrieren.</h2>
             <p className="text-white/40 max-w-xl mx-auto">Hör von Menschen, die den Schritt gewagt haben – und was daraus wurde.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {stories.map((s, i) => (
               <motion.div
                 key={i}
@@ -2311,16 +2307,16 @@ const UeberUnsContent = () => {
       bullets: ['Qualitätssicherung in der Beratung', 'Weiterbildung & Entwicklung des Teams', 'Verlässliche Beratungsstandards'],
     },
     {
+      name: 'Norik Dakaj', role: 'Vertriebsleiter', img: '/Norik.png',
+      desc: 'Hi, ich bin Norik – ich begleite dich zuverlässig auf dem Weg zu deinen finanziellen Zielen:',
+      bullets: ['Persönliche Finanzberatung', 'Individuelle Absicherungskonzepte', 'Langfristige Kundenbetreuung'],
+    },
+    {
       name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 3.png',
       linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
       desc: 'Hi, ich bin Julius – ich höre genau zu, um die beste Lösung für dich zu finden:',
       bullets: ['Kundenanalyse durch Zuhören', 'Individuelle Lösungsfindung', 'Vertrauensvolle Beratung'],
       funFact: 'RS3-Fan',
-    },
-    {
-      name: 'Norik Dakaj', role: 'Fachberater', img: '/Norik.png',
-      desc: 'Hi, ich bin Norik – ich begleite dich zuverlässig auf dem Weg zu deinen finanziellen Zielen:',
-      bullets: ['Persönliche Finanzberatung', 'Individuelle Absicherungskonzepte', 'Langfristige Kundenbetreuung'],
     },
     {
       name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png',
@@ -2335,12 +2331,6 @@ const UeberUnsContent = () => {
       funFact: 'BMW-Fan durch Flamur',
     },
     {
-      name: 'Tabita Mbolo', role: 'Fachberaterin', img: '/Tabita.png',
-      desc: 'Hi, ich bin Tabita – bei mir bekommst du eine ruhige und klare Beratung:',
-      bullets: ['Situationsanalyse', 'Umsetzbare Lösungen', 'Strukturierte Beratung'],
-      funFact: 'Powerfrau',
-    },
-    {
       name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png',
       desc: 'Hi, ich bin Cesur – ich entwickle mich täglich weiter, um dich bestmöglich zu beraten:',
       bullets: ['Kundenbetreuung', 'Entwicklung im Vertrieb', 'Lernbereitschaft'],
@@ -2351,6 +2341,12 @@ const UeberUnsContent = () => {
       desc: 'Hi, ich bin Sara – ich mache komplexe Themen für dich einfach verständlich:',
       bullets: ['Komplexe Themen erklären', 'Kundenorientierte Beratung', 'Individuelle Lösungen'],
       funFact: 'Chillige Kollegin',
+    },
+    {
+      // ponytail: Platzhalter-Foto – durch /Arda.png ersetzen, sobald das Foto da ist
+      name: 'Arda Askin', role: 'Fachberater', img: '/dk-logo.png',
+      desc: 'Hi, ich bin Arda – ich finde die Absicherung, die wirklich zu dir passt:',
+      bullets: ['Persönliche Bedarfsanalyse', 'Passgenaue Absicherung', 'Verlässliche Betreuung'],
     },
     {
       name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png',
