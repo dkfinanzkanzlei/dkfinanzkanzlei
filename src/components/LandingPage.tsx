@@ -1747,16 +1747,16 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
             decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 scale-100"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d1829]/90 via-[#0d1829]/20 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-[#0d1829]/80 via-[#0d1829]/25 to-transparent" />
 
           {/* name + role */}
           <div className="absolute bottom-0 left-0 right-0 p-5">
-            <h3 className="text-base font-bold leading-tight">{member.name}</h3>
-            <p className="text-xs text-[#0F172A]/60 mt-0.5">{member.role}</p>
+            <h3 className="text-base font-bold leading-tight text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{member.name}</h3>
+            <p className="text-xs text-white/75 mt-0.5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{member.role}</p>
           </div>
 
           {/* CTA badge */}
-          <div className="flip-cta-pulse absolute top-3.5 right-3.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-sm border border-black/8 text-[10px] font-medium text-[#0F172A]/60 select-none pointer-events-none">
+          <div className="flip-cta-pulse absolute top-3.5 right-3.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-sm border border-white/15 text-[10px] font-medium text-white/85 select-none pointer-events-none">
             <MousePointerClick className="w-3 h-3" />
             Mehr erfahren
           </div>
@@ -1782,16 +1782,16 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
           >
             <div className="pt-11 px-4 pb-4 flex flex-col items-center w-full h-full">
               {/* Name + Role */}
-              <h3 className="text-[12px] font-bold leading-tight">{member.name}</h3>
+              <h3 className="text-[12px] font-bold leading-tight text-white">{member.name}</h3>
               <p className="text-[10px] mt-0.5 mb-2.5 font-semibold tracking-wide" style={{ color }}>{member.role}</p>
 
               {/* Intro sentence */}
-              <p className="text-[11px] font-semibold text-[#0F172A]/70 leading-snug mb-3 text-center">{member.desc}</p>
+              <p className="text-[11px] font-semibold text-white/80 leading-snug mb-3 text-center">{member.desc}</p>
 
               {/* Bullets */}
               <ul className="space-y-1 text-left w-full mb-3">
                 {member.bullets.map((b, j) => (
-                  <li key={j} className="flex items-start gap-2 text-[11px] text-[#0F172A]/60">
+                  <li key={j} className="flex items-start gap-2 text-[11px] text-white/70">
                     <span className="w-1 h-1 rounded-full mt-[5px] flex-shrink-0" style={{ background: color }} />
                     {b}
                   </li>
@@ -1801,8 +1801,8 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
               {/* Fun Fact */}
               {member.funFact && (
                 <div className="w-full mt-auto pt-2 border-t border-white/[0.07]">
-                  <span className="text-[9px] uppercase tracking-widest text-[#0F172A]/25 block mb-0.5">Fun Fact</span>
-                  <p className="text-[10px] text-[#0F172A]/45 leading-snug">{member.funFact}</p>
+                  <span className="text-[9px] uppercase tracking-widest text-white/40 block mb-0.5">Fun Fact</span>
+                  <p className="text-[10px] text-white/60 leading-snug">{member.funFact}</p>
                 </div>
               )}
 
@@ -1815,7 +1815,7 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={e => e.stopPropagation()}
-                      className="flex items-center gap-1.5 text-[10px] font-semibold px-3 py-1 rounded-full border transition-all hover:bg-[#0F172A]/[0.05]"
+                      className="flex items-center gap-1.5 text-[10px] font-semibold px-3 py-1 rounded-full border transition-all hover:bg-white/10"
                       style={{ borderColor: `${color}55`, color }}
                     >
                       <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -1828,7 +1828,7 @@ function TeamFlipCard({ member, i, color }: { member: TeamMember; i: number; col
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={e => e.stopPropagation()}
-                      className="flex items-center gap-1.5 text-[10px] font-semibold px-3 py-1 rounded-full border transition-all hover:bg-[#0F172A]/[0.05]"
+                      className="flex items-center gap-1.5 text-[10px] font-semibold px-3 py-1 rounded-full border transition-all hover:bg-white/10"
                       style={{ borderColor: `${color}55`, color }}
                     >
                       <Globe className="w-2.5 h-2.5" />
