@@ -2499,23 +2499,23 @@ const UeberUnsContent = () => {
                     className="p-10 md:p-14 flex flex-col justify-center"
                     exit={{ y: '100%', opacity: 0, transition: { duration: 0.5, ease: [0.4, 0, 1, 1] } }}
                   >
-                    <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-5 leading-tight">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
                       Werde Teil<br />unseres Teams
                     </h2>
-                    <p className="text-[#0F172A]/70 text-lg mb-8 leading-relaxed">
+                    <p className="text-white/70 text-lg mb-8 leading-relaxed">
                       Wir sind immer auf der Suche nach talentierten Menschen, die unsere Werte teilen und mit uns gemeinsam wachsen möchten.
                     </p>
                     <div className="grid grid-cols-2 gap-x-8 gap-y-3 mb-10">
                       {['Flexible Arbeitszeiten','Homeoffice-Möglichkeit','Mitarbeiter-Rabatt','Flache Hierarchien','Spannende Aufgaben','Kaffee ohne Ende'].map((item) => (
-                        <div key={item} className="flex items-center gap-2 text-[#0F172A]/70 text-sm">
-                          <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-[#0F172A]" />
+                        <div key={item} className="flex items-center gap-2 text-white/70 text-sm">
+                          <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-white" />
                           <span>{item}</span>
                         </div>
                       ))}
                     </div>
                     <button
                       onClick={() => setBewerbungOpen(true)}
-                      className="inline-flex items-center gap-2 text-[#0F172A] font-bold text-base hover:gap-3 transition-all w-fit"
+                      className="inline-flex items-center gap-2 text-white font-bold text-base hover:gap-3 transition-all w-fit"
                     >
                       Jetzt bewerben <ArrowRight className="w-5 h-5" />
                     </button>
@@ -2538,35 +2538,35 @@ const UeberUnsContent = () => {
                   >
                     {!bewSubmitted ? (
                       <>
-                        <h2 className="text-lg md:text-2xl font-bold text-[#0F172A] mb-1 leading-tight">Deine Bewerbung</h2>
-                        <p className="text-[#0F172A]/60 text-sm mb-5">Füll das Formular aus – wir melden uns so schnell wie möglich.</p>
+                        <h2 className="text-lg md:text-2xl font-bold text-white mb-1 leading-tight">Deine Bewerbung</h2>
+                        <p className="text-white/60 text-sm mb-5">Füll das Formular aus – wir melden uns so schnell wie möglich.</p>
                         <form onSubmit={handleBewerbungSubmit} className="grid md:grid-cols-3 gap-3">
                           <div className="flex flex-col gap-1">
-                            <label className="text-[#0F172A]/60 text-[10px] font-semibold tracking-wider uppercase">Name *</label>
+                            <label className="text-white/60 text-[10px] font-semibold tracking-wider uppercase">Name *</label>
                             <input required type="text" value={bewForm.name} onChange={e => setBewForm(f => ({ ...f, name: e.target.value }))} placeholder="Max Mustermann"
-                              className="bg-[#0F172A]/[0.03] border border-black/8 rounded-lg px-3 py-2 text-sm text-[#0F172A] placeholder-white/30 focus:outline-none focus:border-black/8 transition-colors" />
+                              className="bg-white/[0.08] border border-white/25 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/25 transition-colors" />
                           </div>
                           <div className="flex flex-col gap-1">
-                            <label className="text-[#0F172A]/60 text-[10px] font-semibold tracking-wider uppercase">E-Mail *</label>
+                            <label className="text-white/60 text-[10px] font-semibold tracking-wider uppercase">E-Mail *</label>
                             <input required type="email" value={bewForm.email} onChange={e => setBewForm(f => ({ ...f, email: e.target.value }))} placeholder="max@beispiel.de"
-                              className="bg-[#0F172A]/[0.03] border border-black/8 rounded-lg px-3 py-2 text-sm text-[#0F172A] placeholder-white/30 focus:outline-none focus:border-black/8 transition-colors" />
+                              className="bg-white/[0.08] border border-white/25 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/25 transition-colors" />
                           </div>
                           <div className="flex flex-col gap-1">
-                            <label className="text-[#0F172A]/60 text-[10px] font-semibold tracking-wider uppercase">Telefon</label>
+                            <label className="text-white/60 text-[10px] font-semibold tracking-wider uppercase">Telefon</label>
                             <input type="tel" value={bewForm.telefon} onChange={e => setBewForm(f => ({ ...f, telefon: e.target.value }))} placeholder="+49 123 456789"
-                              className="bg-[#0F172A]/[0.03] border border-black/8 rounded-lg px-3 py-2 text-sm text-[#0F172A] placeholder-white/30 focus:outline-none focus:border-black/8 transition-colors" />
+                              className="bg-white/[0.08] border border-white/25 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/25 transition-colors" />
                           </div>
                           <div className="md:col-span-3 flex flex-col gap-1">
-                            <label className="text-[#0F172A]/60 text-[10px] font-semibold tracking-wider uppercase">Warum DK Finanzkanzlei? *</label>
+                            <label className="text-white/60 text-[10px] font-semibold tracking-wider uppercase">Warum DK Finanzkanzlei? *</label>
                             <textarea required rows={2} value={bewForm.nachricht} onChange={e => setBewForm(f => ({ ...f, nachricht: e.target.value }))}
                               placeholder="Erzähl uns von dir, deiner Motivation und was dich auszeichnet …"
-                              className="bg-[#0F172A]/[0.03] border border-black/8 rounded-lg px-3 py-2 text-sm text-[#0F172A] placeholder-white/30 focus:outline-none focus:border-black/8 transition-colors resize-none" />
+                              className="bg-white/[0.08] border border-white/25 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/25 transition-colors resize-none" />
                           </div>
                           <div className="md:col-span-3 flex flex-col gap-1">
-                            <label className="text-[#0F172A]/60 text-[10px] font-semibold tracking-wider uppercase">Bewerbung & Lebenslauf (PDF)</label>
-                            <label className="flex items-center gap-3 bg-[#0F172A]/[0.03] border border-black/8 border-dashed rounded-lg px-3 py-2.5 cursor-pointer hover:border-black/15 transition-colors">
-                              <ArrowRight className="w-4 h-4 text-[#0F172A]/60 rotate-90 flex-shrink-0" />
-                              <span className="text-sm text-[#0F172A]/60">{bewFile ? bewFile.name : 'Datei auswählen …'}</span>
+                            <label className="text-white/60 text-[10px] font-semibold tracking-wider uppercase">Bewerbung & Lebenslauf (PDF)</label>
+                            <label className="flex items-center gap-3 bg-white/[0.08] border border-white/25 border-dashed rounded-lg px-3 py-2.5 cursor-pointer hover:border-white/45 transition-colors">
+                              <ArrowRight className="w-4 h-4 text-white/60 rotate-90 flex-shrink-0" />
+                              <span className="text-sm text-white/60">{bewFile ? bewFile.name : 'Datei auswählen …'}</span>
                               <input type="file" accept=".pdf,.doc,.docx" className="hidden" onChange={e => setBewFile(e.target.files?.[0] ?? null)} />
                             </label>
                           </div>
@@ -2574,16 +2574,16 @@ const UeberUnsContent = () => {
                             <button type="submit" className="px-6 py-2.5 bg-white text-[#3a5f9a] rounded-full font-bold text-sm hover:shadow-lg hover:shadow-white/20 transition-all active:scale-95">
                               Bewerbung absenden
                             </button>
-                            <button type="button" onClick={resetBew} className="text-[#0F172A]/45 text-sm hover:text-[#0F172A]/70 transition-colors">Abbrechen</button>
+                            <button type="button" onClick={resetBew} className="text-white/45 text-sm hover:text-white/70 transition-colors">Abbrechen</button>
                           </div>
                         </form>
                       </>
                     ) : (
                       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="text-center py-6">
-                        <CheckCircle2 className="w-12 h-12 text-[#0F172A] mx-auto mb-3" />
-                        <h3 className="text-xl font-bold text-[#0F172A] mb-2">Bewerbung gesendet!</h3>
-                        <p className="text-[#0F172A]/60 text-sm mb-6">Vielen Dank, {bewForm.name}. Wir melden uns in Kürze.</p>
-                        <button onClick={resetBew} className="text-[#0F172A]/60 text-sm hover:text-[#0F172A]/80 transition-colors">Zurück</button>
+                        <CheckCircle2 className="w-12 h-12 text-white mx-auto mb-3" />
+                        <h3 className="text-xl font-bold text-white mb-2">Bewerbung gesendet!</h3>
+                        <p className="text-white/60 text-sm mb-6">Vielen Dank, {bewForm.name}. Wir melden uns in Kürze.</p>
+                        <button onClick={resetBew} className="text-white/60 text-sm hover:text-white/80 transition-colors">Zurück</button>
                       </motion.div>
                     )}
                   </motion.div>
