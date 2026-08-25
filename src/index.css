@@ -203,16 +203,17 @@ body {
 
 /* Punktraster hinter dem Hero */
 .dot-grid {
-  background-image: radial-gradient(rgba(15, 23, 42, 0.17) 1.3px, transparent 1.3px);
-  background-size: 24px 24px;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  background-color: #FBFBFC;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.28) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 80%, transparent 100%);
 }
 
 /* Gleiche Textur ohne Ausblendung – fuer Bloecke, die komplett gerastert sind */
 .dot-grid-full {
-  background-image: radial-gradient(rgba(15, 23, 42, 0.14) 1.3px, transparent 1.3px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.22) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
 }
 
 /* Schwebende Kennzahl-Karten im Hero */
@@ -243,3 +244,25 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .card-float, .marquee-up, .marquee-left, .marquee-right, .logo-marquee { animation: none; }
 }
+
+
+/* ─── Glanzstreifen, der ueber die CTA-Buttons laeuft ──────────────── */
+.shine { position: relative; overflow: hidden; isolation: isolate; }
+.shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -70%;
+  width: 42%;
+  height: 140%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  animation: shine-sweep 4.5s cubic-bezier(.5,0,.3,1) infinite;
+}
+@keyframes shine-sweep {
+  0%   { left: -70%; }
+  45%  { left: 130%; }
+  100% { left: 130%; }
+}
+@media (prefers-reduced-motion: reduce) { .shine::after { animation: none; opacity: 0; } }

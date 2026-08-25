@@ -647,7 +647,7 @@ const Navbar = ({ onPageChange, currentPage, onService }: { onPageChange: (p: Pa
             <button onClick={() => onPageChange(currentPage === 'karriere' ? 'home' : 'karriere')} className={`${link} ${currentPage === 'karriere' ? 'text-[#4d7abd]' : ''}`}>Karriere</button>
             <a href={CONSULTING_URL} className={link}>Consulting</a>
             <button onClick={() => onPageChange('kontakt')}
-              className="group px-5 py-2.5 text-white rounded-full text-sm font-bold inline-flex items-center gap-1.5 hover:opacity-90 transition-opacity shadow-[0_6px_18px_-8px_rgba(77,122,189,0.9)]"
+              className="shine group px-5 py-2.5 text-white rounded-full text-sm font-bold inline-flex items-center gap-1.5 hover:opacity-90 transition-opacity shadow-[0_6px_18px_-8px_rgba(77,122,189,0.9)]"
               style={{ backgroundColor: ACCENT }}>
               Kostenlos starten <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
@@ -798,7 +798,7 @@ const HomeHero = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => voi
 
         <div className="flex flex-col sm:flex-row gap-3">
           <button onClick={() => onPageChange('kontakt')}
-            className="group px-7 py-3.5 rounded-full text-white font-bold text-base inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-[0_14px_32px_-14px_rgba(77,122,189,0.95)]"
+            className="shine group px-7 py-3.5 rounded-full text-white font-bold text-base inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-[0_14px_32px_-14px_rgba(77,122,189,0.95)]"
             style={{ backgroundColor: ACCENT }}>
             Kostenlos starten <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -817,7 +817,7 @@ const HomeHero = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => voi
         <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="relative flex items-end justify-center lg:h-[29rem]">
           {/* Freigestellt: die beiden stehen ohne Rahmen auf der weißen Seite */}
-          <img src="/hero-soft.png" alt="Joel Dakaj und Flamur – DK Finanzkanzlei Aachen" width="1157" height="760" fetchPriority="high" decoding="async"
+          <img src="/hero-sharp.png" alt="Joel Dakaj und Flamur – DK Finanzkanzlei Aachen" width="1600" height="1050" fetchPriority="high" decoding="async"
             className="w-full max-w-[30rem] lg:max-w-none h-auto object-contain"
             style={{ filter: "drop-shadow(0 18px 28px rgba(15,23,42,0.16)) drop-shadow(0 4px 10px rgba(15,23,42,0.10))" }} />
         </motion.div>
@@ -1036,7 +1036,7 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
             {on ? (
               <motion.div key="cta" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
                 <button onClick={() => onPageChange('kontakt')}
-                  className="group px-8 py-3.5 rounded-full bg-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+                  className="shine group px-8 py-3.5 rounded-full bg-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
                   style={{ color: ACCENT }}>
                   Kostenloses Erstgespräch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -1389,7 +1389,7 @@ const FaqSectionBlue = ({ onPageChange }: { onPageChange: (p: Page, t?: string) 
           <h3 className="text-xl font-extrabold text-[#0F172A] mb-2">Noch Fragen?</h3>
           <p className="text-sm text-[#0F172A]/50 mb-6">Wir helfen dir gerne persönlich weiter – kostenlos und unverbindlich.</p>
           <button onClick={() => onPageChange('kontakt')}
-            className="group px-8 py-3.5 rounded-full text-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+            className="shine group px-8 py-3.5 rounded-full text-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
             style={{ backgroundColor: ACCENT }}>
             Kostenlos starten <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -1902,11 +1902,11 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
 
   const stories = [
     {
-      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png', tag: 'Aufsteiger',
+      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/team-philipp.png', tag: 'Aufsteiger',
       quote: 'DK hat mir die Möglichkeit gegeben, mein volles Potenzial zu entfalten. Innerhalb eines Jahres bin ich vom Berater zum Vertriebsleiter aufgestiegen – das wäre in einer klassischen Firma nicht möglich gewesen.',
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 3.png', tag: 'Quereinsteiger',
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/team-julius.png', tag: 'Quereinsteiger',
       quote: 'Als junger Quereinsteiger bin ich direkt bei DK eingestiegen – und durch Schulungen, Coaching und meinen eigenen Antrieb in 2 Jahren zu einem der besten Fachberater geworden. Hier zählt nicht wo du herkommst, sondern wohin du willst.',
     },
   ];
@@ -2256,34 +2256,34 @@ const UeberUnsContent = () => {
 
   const team: TeamMember[] = [
     {
-      name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/Joel Logo.png',
+      name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/team-joel-logo.png',
       linkedin: 'https://www.linkedin.com/in/joel-dakaj-11766239b/',
       desc: 'Hey, ich bin Joel, Geschäftsführer der DK Finanzkanzlei – und das sind meine Schwerpunkte:',
       bullets: ['Strategie & Vermögensaufbau', 'Lebensversicherung & Investment', 'Immobilienlösungen'],
       funFact: 'Chat-GPT als Mensch',
     },
     {
-      name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/Flamur 4.png',
+      name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/team-flamur.png',
       linkedin: 'https://www.linkedin.com/in/flamur-kastrati-75864839b/',
       desc: 'Hi, ich bin Flamur, Geschäftsführer – ich sorge dafür, dass deine Werte optimal abgesichert sind:',
       bullets: ['Sachversicherungen optimieren', 'Risikoanalyse für Vermögenswerte', 'Individuelle Absicherungskonzepte'],
       funFact: 'BMW-Fan',
     },
     {
-      name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png',
+      name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/team-aydan.png',
       desc: 'Hi, ich bin Aydan – ich halte im Hintergrund alles am Laufen, damit du dich auf das Wesentliche konzentrieren kannst:',
       bullets: ['Office & Organisation', 'Prozesse & Koordination', 'Ansprechpartnerin im Hintergrund'],
       funFact: 'Büromama',
     },
     {
-      name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/Muyooo.png',
+      name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/team-muyooo.png',
       linkedin: 'https://www.linkedin.com/in/muayyad-anis-b159211b9/',
       desc: 'Hi, ich bin Muayyad – ich sorge dafür, dass die richtigen Menschen im Team sind und alles reibungslos läuft:',
       bullets: ['Recruiting & Teamaufbau', 'Vertriebssteuerung', 'Prozessoptimierung'],
       funFact: 'Vater einer kleinen Prinzessin',
     },
     {
-      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png',
+      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/team-philipp.png',
       linkedin: 'https://www.linkedin.com/in/philipp-scott-jagiella-07ba7233b/',
       website: 'https://philippjagiella.de/',
       desc: 'Hi, ich bin Philipp – ich unterstütze das Team im Vertrieb und sorge für starke Beratung:',
@@ -2291,42 +2291,42 @@ const UeberUnsContent = () => {
       funFact: 'Liebt Wein',
     },
     {
-      name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/Jannik.png',
+      name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/team-jannik.png',
       desc: 'Hi, ich bin Jannik – ich sorge dafür, dass unser Team stets sorgfältig und auf höchstem Niveau berät:',
       bullets: ['Qualitätssicherung in der Beratung', 'Weiterbildung & Entwicklung des Teams', 'Verlässliche Beratungsstandards'],
     },
     {
-      name: 'Norik Dakaj', role: 'Vertriebsleiter', img: '/Norik.png',
+      name: 'Norik Dakaj', role: 'Vertriebsleiter', img: '/team-norik.png',
       desc: 'Hi, ich bin Norik – ich begleite dich zuverlässig auf dem Weg zu deinen finanziellen Zielen:',
       bullets: ['Persönliche Finanzberatung', 'Individuelle Absicherungskonzepte', 'Langfristige Kundenbetreuung'],
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 3.png',
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/team-julius.png',
       linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
       desc: 'Hi, ich bin Julius – ich höre genau zu, um die beste Lösung für dich zu finden:',
       bullets: ['Kundenanalyse durch Zuhören', 'Individuelle Lösungsfindung', 'Vertrauensvolle Beratung'],
       funFact: 'RS3-Fan',
     },
     {
-      name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png',
+      name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/team-jamila.png',
       desc: 'Hi, ich bin Jamila – ich helfe dir, deine Zukunft finanziell sauber aufzustellen:',
       bullets: ['Altersvorsorge-Strategien', 'Ganzheitliche Finanzanalyse', 'Langfristige Planung'],
       funFact: 'Beste Kundenbindung',
     },
     {
-      name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png',
+      name: 'Denis Martynewski', role: 'Fachberater', img: '/team-denis.png',
       desc: 'Hi, ich bin Denis – ich sorge dafür, dass deine Werte optimal abgesichert sind:',
       bullets: ['Sachversicherungen', 'Risikoabsicherung', 'Strukturierung von Vermögenswerten'],
       funFact: 'BMW-Fan durch Flamur',
     },
     {
-      name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png',
+      name: 'Cesur Ogul', role: 'Fachberater', img: '/team-cesur.png',
       desc: 'Hi, ich bin Cesur – ich entwickle mich täglich weiter, um dich bestmöglich zu beraten:',
       bullets: ['Kundenbetreuung', 'Entwicklung im Vertrieb', 'Lernbereitschaft'],
       funFact: 'Der netteste Kollege',
     },
     {
-      name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/Sara.png',
+      name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/team-sara.png',
       desc: 'Hi, ich bin Sara – ich mache komplexe Themen für dich einfach verständlich:',
       bullets: ['Komplexe Themen erklären', 'Kundenorientierte Beratung', 'Individuelle Lösungen'],
       funFact: 'Chillige Kollegin',
@@ -2338,7 +2338,7 @@ const UeberUnsContent = () => {
       bullets: ['Persönliche Bedarfsanalyse', 'Passgenaue Absicherung', 'Verlässliche Betreuung'],
     },
     {
-      name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png',
+      name: 'Ceylin Demir', role: 'Assistentin', img: '/team-ceylin.png',
       desc: 'Hi, ich bin Ceylin – ich sorge im Hintergrund für Struktur und Ordnung:',
       bullets: ['Organisation & Dokumente', 'Backoffice-Struktur', 'Sichere Abläufe'],
       funFact: 'Galatasaray-Fan',
@@ -2624,7 +2624,7 @@ const CtaBand = ({ color, headline, sub, label, onPageChange }: { color: string;
       <h3 className="text-xl md:text-2xl font-bold text-[#1E293B] mb-2">{headline}</h3>
       <p className="text-sm text-[#1E293B]/55 leading-relaxed">{sub}</p>
     </div>
-    <button onClick={() => onPageChange('kontakt')} className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold rounded-full text-sm hover:opacity-90 transition-opacity shadow-lg" style={{ backgroundColor: color }}>
+    <button onClick={() => onPageChange('kontakt')} className="shine flex-shrink-0 inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold rounded-full text-sm hover:opacity-90 transition-opacity shadow-lg" style={{ backgroundColor: color }}>
       {label} <ArrowRight className="w-4 h-4" />
     </button>
   </div>
@@ -2692,7 +2692,7 @@ const LeadMagnetForm = ({ magnet, color, onPageChange }: { magnet: NonNullable<S
                   <button type="button" onClick={() => onPageChange('datenschutz')} className="underline" style={{ color }}>Datenschutzerklärung</button>.
                 </span>
               </label>
-              <button type="submit" disabled={state === 'sending'} className="w-full py-4 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity disabled:opacity-60" style={{ backgroundColor: color }}>
+              <button type="submit" disabled={state === 'sending'} className="shine w-full py-4 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity disabled:opacity-60" style={{ backgroundColor: color }}>
                 {state === 'sending' ? 'Wird gesendet …' : `${magnet.fileLabel} kostenlos erhalten`}
               </button>
               <p className="text-[11px] text-[#1E293B]/40 leading-relaxed">Kein Newsletter-Abo, keine Weitergabe an Dritte. Du kannst jederzeit widersprechen.</p>
@@ -3384,7 +3384,7 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
                         <ArrowRight className="w-4 h-4 rotate-180" /> Zurück
                       </button>
                       <button onClick={submit} disabled={sending}
-                        className="px-8 py-3.5 rounded-full text-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-60"
+                        className="shine px-8 py-3.5 rounded-full text-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-60"
                         style={{ backgroundColor: ACCENT }}>
                         {sending ? 'Wird gesendet …' : <>Anfrage abschicken <ArrowRight className="w-4 h-4" /></>}
                       </button>
