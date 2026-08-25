@@ -1366,16 +1366,16 @@ const FaqSectionBlue = ({ onPageChange }: { onPageChange: (p: Page, t?: string) 
           {HOME_FAQ.map((item, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="rounded-2xl bg-white/10 hover:bg-white/[0.14] transition-colors overflow-hidden">
+              className="rounded-2xl border border-white/15 bg-white/[0.20] hover:bg-white/[0.27] transition-colors overflow-hidden">
               <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left">
                 <span className="font-semibold text-white">{item.q}</span>
-                <ChevronRight className={`w-4 h-4 flex-shrink-0 text-white/60 transition-transform duration-300 ${open === i ? 'rotate-90' : ''}`} />
+                <ChevronRight className={`w-4 h-4 flex-shrink-0 text-white/80 transition-transform duration-300 ${open === i ? 'rotate-90' : ''}`} />
               </button>
               <AnimatePresence initial={false}>
                 {open === i && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
-                    <p className="px-6 pb-5 text-sm text-white/75 leading-relaxed">{item.a}</p>
+                    <p className="px-6 pb-5 text-sm text-white/85 leading-relaxed">{item.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
