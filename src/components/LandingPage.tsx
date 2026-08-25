@@ -897,57 +897,57 @@ const GuidesBlock = () => (
 );
 
 
-/** Herzstück: ein Schalter, der jede offene Baustelle in ihren gelösten Zustand kippt. */
+/** Herzstück: ein Schalter, der das Chaos in eine Struktur um die DK-Mitte kippt. */
 const SWITCH_ITEMS = [
-  { icon: <ShieldCheck className="w-4 h-4" />, pos: 'lg:left-[56%] lg:top-[0%]', tilt: -1.6,
-    off: { title: 'Versicherung wieder teurer', note: 'Beitrag erneut erhöht' },
-    on:  { title: 'Versicherungen', note: 'Geprüft und optimiert', detail: 'Über 100 Anbieter verglichen' } },
-  { icon: <Calculator className="w-4 h-4" />, pos: 'lg:left-[2%] lg:top-[13%]', tilt: 1.8,
+  { icon: <Calculator className="w-4 h-4" />, tilt: 1.8,
+    scattered: { left: '2%', top: '10%' }, grid: { left: '25%', top: '4%' },
     off: { title: 'Steuervorteile', note: 'Jahr für Jahr verschenkt' },
-    on:  { title: 'Steuervorteile', note: 'Erledigt', detail: 'Ø 742 € Steuer + 545 € Förderung' } },
-  { icon: <Search className="w-4 h-4" />, pos: 'lg:left-[29%] lg:top-[45%]', tilt: -1.2,
+    on:  { title: 'Steuervorteile', note: 'Erledigt' } },
+  { icon: <ShieldCheck className="w-4 h-4" />, tilt: -1.6,
+    scattered: { left: '58%', top: '0%' }, grid: { left: '53%', top: '4%' },
+    off: { title: 'Versicherung teurer', note: 'Beitrag erneut erhöht' },
+    on:  { title: 'Versicherungen', note: 'Geprüft und optimiert' } },
+  { icon: <Search className="w-4 h-4" />, tilt: -1.2,
+    scattered: { left: '26%', top: '44%' }, grid: { left: '4%', top: '42%' },
     off: { title: 'etf sparplan welcher', note: '1.240.000 Ergebnisse' },
-    on:  { title: 'ETF-Sparplan', note: 'Eingerichtet', detail: 'Steueroptimiert und gefördert' } },
-  { icon: <Heart className="w-4 h-4" />, pos: 'lg:left-[72%] lg:top-[29%]', tilt: 1.4,
+    on:  { title: 'ETF-Sparplan', note: 'Eingerichtet' } },
+  { icon: <Heart className="w-4 h-4" />, tilt: 1.4,
+    scattered: { left: '74%', top: '30%' }, grid: { left: '74%', top: '42%' },
     off: { title: 'BU-Schutz', note: 'Seit Jahren aufgeschoben' },
-    on:  { title: 'BU-Schutz', note: 'Steht', detail: 'Anonyme Voranfrage vorab geklärt' } },
-  { icon: <Home className="w-4 h-4" />, pos: 'lg:left-[0%] lg:top-[79%]', tilt: 1.6,
-    off: { title: 'Kapitalanlage Immobilie?', note: 'Eigenkapital fehlt' },
-    on:  { title: 'Immobilie', note: 'In Reichweite', detail: 'Konkreter Finanzierungsplan' } },
-  { icon: <PieChart className="w-4 h-4" />, pos: 'lg:left-[49%] lg:top-[77%]', tilt: -1.8,
+    on:  { title: 'BU-Schutz', note: 'Steht' } },
+  { icon: <Home className="w-4 h-4" />, tilt: 1.6,
+    scattered: { left: '0%', top: '76%' }, grid: { left: '25%', top: '80%' },
+    off: { title: 'Immobilie kaufen?', note: 'Eigenkapital fehlt' },
+    on:  { title: 'Immobilie', note: 'In Reichweite' } },
+  { icon: <PieChart className="w-4 h-4" />, tilt: -1.8,
+    scattered: { left: '50%', top: '74%' }, grid: { left: '53%', top: '80%' },
     off: { title: 'GKV oder PKV?', note: 'Ungeklärt seit Jahren' },
-    on:  { title: 'PKV-Frage', note: 'Geklärt', detail: 'In einem Termin durchgerechnet' } },
+    on:  { title: 'PKV-Frage', note: 'Geklärt' } },
 ];
 
 const SwitchCard = ({ item, on, i }: { item: typeof SWITCH_ITEMS[number]; on: boolean; i: number }) => {
   const s = on ? item.on : item.off;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.5, delay: i * 0.07 }}
-      className={`lg:absolute ${item.pos} w-full lg:w-[21.5rem] z-10`}
+      initial={false}
+      animate={{ ...(on ? item.grid : item.scattered), rotate: on ? 0 : item.tilt }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.03 }}
+      className="lg:absolute w-full lg:w-[22%] z-10"
     >
-      <motion.div
-        animate={{ rotate: on ? 0 : item.tilt }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="rounded-[1.25rem] bg-white shadow-[0_16px_40px_-20px_rgba(15,23,42,0.28)] px-6 py-5 flex items-start gap-4"
-      >
-        <span className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors duration-500"
-          style={on ? { backgroundColor: '#DCFCE7', color: '#16A34A' } : { backgroundColor: 'rgba(15,23,42,0.04)', color: 'rgba(15,23,42,0.45)' }}>
+      <div className={`rounded-full px-5 py-3.5 flex items-center gap-3 transition-shadow duration-500 ${on ? 'bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)]' : 'bg-white shadow-[0_14px_34px_-18px_rgba(15,23,42,0.3)]'}`}>
+        <span className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-500"
+          style={on ? { backgroundColor: ACCENT + '1F', color: ACCENT } : { backgroundColor: 'rgba(15,23,42,0.04)', color: 'rgba(15,23,42,0.45)' }}>
           {on ? <CheckCircle2 className="w-4 h-4" /> : item.icon}
         </span>
         <AnimatePresence mode="wait" initial={false}>
           <motion.div key={on ? 'on' : 'off'}
-            initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.22 }} className="min-w-0">
-            <p className="font-bold text-[#0F172A] leading-snug">{s.title}</p>
-            <p className="text-sm mt-1" style={{ color: on ? '#16A34A' : '#EF4444' }}>{s.note}</p>
-            {on && 'detail' in s && s.detail && <p className="text-sm text-[#0F172A]/40 mt-1.5">{s.detail}</p>}
+            initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.2 }} className="min-w-0">
+            <p className="font-bold text-sm text-[#0F172A] leading-tight">{s.title}</p>
+            <p className="text-xs mt-0.5" style={{ color: on ? '#16A34A' : '#EF4444' }}>{s.note}</p>
           </motion.div>
         </AnimatePresence>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
@@ -955,14 +955,24 @@ const SwitchCard = ({ item, on, i }: { item: typeof SWITCH_ITEMS[number]; on: bo
 const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => void }) => {
   const [on, setOn] = useState(false);
 
+  // Endpunkte der Speichen im 1000x600-Koordinatensystem der SVG
+  const spokes = [[367, 60], [632, 60], [170, 300], [830, 300], [367, 540], [632, 540]];
+
   return (
-    <section className="py-24 md:py-32 px-6 overflow-hidden" style={{ backgroundColor: 'var(--surface)' }}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div {...reveal} className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-[-0.02em] text-[#0F172A] mb-4">
-            {on ? <>Ein Ansprechpartner. <span style={{ color: GOLD }}>Alles geregelt.</span></> : <>Kommt dir das <span style={{ color: GOLD }}>bekannt</span> vor?</>}
+    <motion.section
+      animate={{ backgroundColor: on ? ACCENT : '#F5F7FA' }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="py-16 md:py-20 px-6 overflow-hidden"
+    >
+      <div className="max-w-5xl mx-auto">
+        <motion.div {...reveal} className="text-center mb-8">
+          <h2 className="text-3xl md:text-[2.6rem] font-extrabold tracking-[-0.02em] mb-3 transition-colors duration-500"
+            style={{ color: on ? '#fff' : '#0F172A' }}>
+            {on
+              ? <>Ein Ansprechpartner. <span style={{ color: GOLD }}>Alles geregelt.</span></>
+              : <>Kommt dir das <span style={{ color: GOLD }}>bekannt</span> vor?</>}
           </h2>
-          <p className="text-[#0F172A]/45 max-w-lg mx-auto leading-relaxed">
+          <p className="max-w-lg mx-auto leading-relaxed transition-colors duration-500" style={{ color: on ? 'rgba(255,255,255,0.7)' : 'rgba(15,23,42,0.45)' }}>
             {on
               ? 'Wir kümmern uns. Du behältst mehr Geld, bist besser abgesichert und hast den Kopf frei.'
               : 'Zwischen ungeöffneter Post, offenen Tabs und gutem Vorsatz.'}
@@ -970,47 +980,65 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
         </motion.div>
 
         {/* Schalter */}
-        <motion.div {...reveal} className="flex items-center justify-center gap-5 mb-16 md:mb-20">
-          <span className={`text-lg font-medium transition-colors ${on ? 'text-[#0F172A]/30' : 'text-[#0F172A]'}`}>Ohne</span>
+        <motion.div {...reveal} className="flex items-center justify-center gap-4 mb-10">
+          <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? 'rgba(255,255,255,0.5)' : '#0F172A' }}>Ohne</span>
           <button onClick={() => setOn(!on)} role="switch" aria-checked={on} aria-label="Vorher-Nachher umschalten"
-            className="relative w-[6.5rem] h-[3.25rem] rounded-full transition-colors duration-500 flex-shrink-0"
+            className="relative w-[5rem] h-11 rounded-full transition-colors duration-500 flex-shrink-0"
             style={{
-              backgroundColor: on ? ACCENT : '#1B1D2A',
-              boxShadow: on ? `0 0 0 6px ${ACCENT}1F` : `0 0 0 6px ${GOLD}26`,
+              backgroundColor: on ? '#FFFFFF' : '#1B1D2A',
+              boxShadow: on ? '0 0 0 5px rgba(255,255,255,0.18)' : `0 0 0 5px ${GOLD}26`,
             }}>
             <motion.span layout transition={{ type: 'spring', stiffness: 480, damping: 32 }}
-              className="absolute top-1.5 w-10 h-10 rounded-full bg-white shadow-[0_3px_8px_rgba(0,0,0,0.25)]"
-              style={{ left: on ? 'calc(100% - 2.875rem)' : '0.375rem' }} />
+              className="absolute top-1.5 w-8 h-8 rounded-full shadow-[0_3px_8px_rgba(0,0,0,0.25)]"
+              style={{ left: on ? 'calc(100% - 2.375rem)' : '0.375rem', backgroundColor: on ? ACCENT : '#FFFFFF' }} />
           </button>
-          <span className={`text-lg font-medium transition-colors ${on ? 'text-[#0F172A]' : 'text-[#0F172A]/30'}`}>Mit DK</span>
+          <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? '#fff' : 'rgba(15,23,42,0.3)' }}>Mit DK</span>
         </motion.div>
 
-        {/* Karten – Desktop verstreut mit Verbindungslinien, Mobil gestapelt */}
-        <div className="relative lg:h-[38rem] flex flex-col gap-4 lg:block">
+        {/* Karten – Desktop verstreut bzw. um die Mitte, Mobil gestapelt */}
+        <div className="relative lg:h-[24rem] flex flex-col gap-3 lg:block">
           <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-            {[
-              'M 240 130 C 300 230, 330 250, 380 300',
-              'M 620 70 C 700 90, 760 130, 790 190',
-              'M 830 250 C 800 350, 720 420, 640 470',
-              'M 560 490 C 440 520, 320 530, 210 500',
-              'M 150 470 C 200 420, 260 370, 330 330',
-            ].map((d, i) => (
-              <path key={i} d={d} fill="none" stroke="rgba(15,23,42,0.18)" strokeWidth="1.5" strokeDasharray="6 8" vectorEffect="non-scaling-stroke" />
-            ))}
+            {/* Chaos: lose Kurven */}
+            <g style={{ opacity: on ? 0 : 1, transition: 'opacity .4s' }}>
+              {['M 190 120 C 280 190, 320 210, 360 250', 'M 640 60 C 720 90, 780 140, 810 200',
+                'M 830 320 C 790 400, 700 450, 620 480', 'M 560 500 C 430 530, 300 530, 190 500',
+                'M 150 470 C 190 420, 250 370, 320 300'].map((d, i) => (
+                <path key={i} d={d} fill="none" stroke="rgba(15,23,42,0.18)" strokeWidth="1.5" strokeDasharray="6 8" vectorEffect="non-scaling-stroke" />
+              ))}
+            </g>
+            {/* Struktur: Speichen zur Mitte */}
+            <g style={{ opacity: on ? 1 : 0, transition: 'opacity .5s .15s' }}>
+              {spokes.map(([x, y], i) => (
+                <line key={i} x1="500" y1="300" x2={x} y2={y} stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeDasharray="6 7" vectorEffect="non-scaling-stroke" />
+              ))}
+            </g>
           </svg>
+
+          {/* DK-Logo in der Mitte */}
+          <motion.div
+            initial={false}
+            animate={{ opacity: on ? 1 : 0, scale: on ? 1 : 0.6 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: on ? 0.2 : 0 }}
+            className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full items-center justify-center z-20"
+            style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}
+          >
+            <img src="/dk-mark.png" alt="" width="830" height="830" loading="lazy" decoding="async"
+              className="w-12 h-12 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+          </motion.div>
+
           {SWITCH_ITEMS.map((item, i) => <SwitchCard key={i} item={item} on={on} i={i} />)}
         </div>
 
-        <motion.div {...reveal} className="text-center mt-14 lg:mt-8">
+        <motion.div {...reveal} className="text-center mt-10 lg:mt-4">
           <AnimatePresence mode="wait" initial={false}>
             {on ? (
               <motion.div key="cta" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
                 <button onClick={() => onPageChange('kontakt')}
-                  className="group px-8 py-4 rounded-full text-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity shadow-[0_14px_32px_-14px_rgba(77,122,189,0.95)]"
-                  style={{ backgroundColor: ACCENT }}>
+                  className="group px-8 py-3.5 rounded-full bg-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+                  style={{ color: ACCENT }}>
                   Kostenloses Erstgespräch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <p className="text-xs text-[#0F172A]/40 mt-4">Kostenlos · Unverbindlich · Antwort innerhalb von 48 Stunden</p>
+                <p className="text-xs text-white/60 mt-4">Kostenlos · Unverbindlich · Antwort innerhalb von 48 Stunden</p>
               </motion.div>
             ) : (
               <motion.p key="hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-sm text-[#0F172A]/35">
@@ -1020,7 +1048,7 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
           </AnimatePresence>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
