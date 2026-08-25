@@ -3,6 +3,8 @@
  * Wird sowohl vom Client (LandingPage) als auch vom Prerender-Skript (scripts/prerender.mjs) genutzt.
  */
 
+import { SERVICE_DATA } from './serviceContent';
+
 export const SITE_URL = 'https://www.dk-finanzkanzlei.de';
 export const SITE_NAME = 'DK Finanzkanzlei';
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/dk-logo.png`;
@@ -49,6 +51,18 @@ function breadcrumb(items: Array<{ name: string; path: string }>) {
   };
 }
 
+function faqJsonLd(items: Array<{ q: string; a: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((it) => ({
+      '@type': 'Question',
+      name: it.q,
+      acceptedAnswer: { '@type': 'Answer', text: it.a },
+    })),
+  };
+}
+
 // ─── Services (Detailseiten unter /leistungen/<key>) ────────────────────────────
 export interface ServiceSeo {
   key: string;
@@ -65,7 +79,7 @@ export const SERVICE_SEO: ServiceSeo[] = [
     slug: 'krankenversicherung',
     title: 'Krankenversicherung Aachen – GKV vs. PKV Beratung | DK Finanzkanzlei',
     description:
-      'Private oder gesetzliche Krankenversicherung? Unabhängiger Vergleich über 500+ Tarife – kostenlose Beratung aus Aachen für ganz NRW & Deutschland.',
+      'Private oder gesetzliche Krankenversicherung? Vergleich über 500+ Tarife – kostenlose Beratung aus Aachen für ganz NRW & Deutschland.',
     keywords:
       'Krankenversicherung Aachen, PKV Beratung Aachen, GKV Vergleich, private Krankenversicherung NRW, Krankenkasse wechseln, Zahnzusatzversicherung',
     serviceName: 'Krankenversicherung – PKV & GKV Beratung',
@@ -75,7 +89,7 @@ export const SERVICE_SEO: ServiceSeo[] = [
     slug: 'arbeitskraft',
     title: 'Berufsunfähigkeitsversicherung Aachen | DK Finanzkanzlei',
     description:
-      'Arbeitskraftabsicherung & BU-Versicherung – die richtige Police für deinen Beruf. Unabhängige Beratung aus Aachen, deutschlandweit per Video-Call.',
+      'Arbeitskraftabsicherung & BU-Versicherung – die richtige Police für deinen Beruf. Kundenorientierte Beratung aus Aachen, deutschlandweit per Video-Call.',
     keywords:
       'Berufsunfähigkeitsversicherung Aachen, BU-Versicherung NRW, Arbeitskraftabsicherung, Grundfähigkeitsversicherung, Erwerbsunfähigkeitsversicherung',
     serviceName: 'Arbeitskraftabsicherung & Berufsunfähigkeit',
@@ -95,7 +109,7 @@ export const SERVICE_SEO: ServiceSeo[] = [
     slug: 'sach',
     title: 'Sachversicherungen Aachen – Hausrat, Haftpflicht, Rechtsschutz',
     description:
-      'Hausrat, Privathaftpflicht, Wohngebäude & Rechtsschutz – unabhängiger Tarifvergleich. Kostenlose Beratung aus Aachen für ganz Deutschland.',
+      'Hausrat, Privathaftpflicht, Wohngebäude & Rechtsschutz – Tarifvergleich über 100+ Anbieter. Kostenlose Beratung aus Aachen für ganz Deutschland.',
     keywords:
       'Hausratversicherung Aachen, Haftpflichtversicherung NRW, Wohngebäudeversicherung, Rechtsschutz Aachen',
     serviceName: 'Sachversicherungen',
@@ -115,7 +129,7 @@ export const SERVICE_SEO: ServiceSeo[] = [
     slug: 'rente',
     title: 'Private Altersvorsorge & Rente Aachen | DK Finanzkanzlei',
     description:
-      'Private Rentenversicherung, Rürup, Riester & ETF-Rente – wir vergleichen alle Modelle. Kostenlose, unabhängige Beratung aus Aachen.',
+      'Private Rentenversicherung, Rürup, Riester & ETF-Rente – wir vergleichen alle Modelle. Kostenlose, kundenorientierte Beratung aus Aachen.',
     keywords:
       'private Altersvorsorge Aachen, Rentenversicherung NRW, Rürup-Rente, Riester-Rente, ETF-Rente',
     serviceName: 'Private Altersvorsorge & Rente',
@@ -125,7 +139,7 @@ export const SERVICE_SEO: ServiceSeo[] = [
     slug: 'hinterbliebene',
     title: 'Hinterbliebenenvorsorge & Risikolebensversicherung | DK Finanzkanzlei',
     description:
-      'Risikolebensversicherung & Hinterbliebenenschutz – die richtige Absicherung für deine Familie. Unabhängige Beratung aus Aachen.',
+      'Risikolebensversicherung & Hinterbliebenenschutz – die richtige Absicherung für deine Familie. Kundenorientierte Beratung aus Aachen.',
     keywords:
       'Risikolebensversicherung Aachen, Hinterbliebenenvorsorge, Familienabsicherung NRW',
     serviceName: 'Hinterbliebenenvorsorge',
@@ -155,7 +169,7 @@ export const SERVICE_SEO: ServiceSeo[] = [
     slug: 'geldanlagen',
     title: 'Geldanlage & Vermögensaufbau Aachen | DK Finanzkanzlei',
     description:
-      'ETF, Fonds & strukturierte Geldanlagen – maßgeschneidert für deine Lebenssituation. Unabhängige Beratung aus Aachen.',
+      'ETF, Fonds & strukturierte Geldanlagen – maßgeschneidert für deine Lebenssituation. Kundenorientierte Beratung aus Aachen.',
     keywords:
       'Geldanlage Aachen, ETF Beratung NRW, Fondsanlage, Vermögensaufbau Region Aachen',
     serviceName: 'Vermögensaufbau & Geldanlagen',
@@ -175,7 +189,7 @@ export const SERVICE_SEO: ServiceSeo[] = [
     slug: 'finanzierungen',
     title: 'Finanzierungen & Kredite Aachen | DK Finanzkanzlei',
     description:
-      'Bau-, Auto- und Ratenkredite zum Bestpreis. Vergleich aus 400+ Banken – kostenfrei & unabhängig. Beratung aus Aachen.',
+      'Bau-, Auto- und Ratenkredite zum Bestpreis. Vergleich aus 400+ Banken – kostenfrei & kundenorientiert. Beratung aus Aachen.',
     keywords:
       'Finanzierung Aachen, Kredit Vergleich NRW, Baufinanzierung, Autokredit, Ratenkredit',
     serviceName: 'Finanzierungen',
@@ -195,7 +209,7 @@ export const SERVICE_SEO: ServiceSeo[] = [
     slug: 'vwl',
     title: 'Vermögenswirksame Leistungen (VL) | DK Finanzkanzlei Aachen',
     description:
-      'Hol dir bis zu 480 € Arbeitgeberzuschuss pro Jahr. VL-Sparen sinnvoll anlegen mit unabhängiger Beratung aus Aachen.',
+      'Hol dir bis zu 480 € Arbeitgeberzuschuss pro Jahr. VL-Sparen sinnvoll anlegen mit kundenorientierter Beratung aus Aachen.',
     keywords:
       'Vermögenswirksame Leistungen, VL Sparen, Arbeitgeberzuschuss, VL Aachen',
     serviceName: 'Vermögenswirksame Leistungen',
@@ -265,24 +279,24 @@ const FAQ_HOME = {
 const STATIC_ROUTES: Record<Exclude<RouteKey, `service:${string}`>, SeoData> = {
   home: {
     path: '/',
-    title: 'DK Finanzkanzlei Aachen | Unabhängige Finanzberatung in NRW',
+    title: 'DK Finanzkanzlei Aachen | Kundenorientierte Finanzberatung in NRW',
     description:
-      'Unabhängige Finanzberatung aus Aachen für ganz NRW & Deutschland. Versicherungen, Vorsorge, Immobilien & Vermögensaufbau – persönlich, transparent, kostenlos. 100+ Google-Bewertungen ★ 5,0.',
-    keywords: `Finanzberatung Aachen, Versicherungsmakler Aachen, Finanzkanzlei Aachen, unabhängige Finanzberatung NRW, Altersvorsorge Aachen, ${LOCAL_KEYWORDS_BASE}`,
-    prerenderH1: 'DK Finanzkanzlei – Unabhängige Finanzberatung in Aachen & NRW',
+      'Kundenorientierte Finanzberatung aus Aachen für ganz NRW & Deutschland. Versicherungen, Vorsorge, Immobilien & Vermögensaufbau – persönlich, transparent, kostenlos.',
+    keywords: `Finanzberatung Aachen, Versicherungsmakler Aachen, Finanzkanzlei Aachen, kundenorientierte Finanzberatung NRW, Altersvorsorge Aachen, ${LOCAL_KEYWORDS_BASE}`,
+    prerenderH1: 'DK Finanzkanzlei – Kundenorientierte Finanzberatung in Aachen & NRW',
     prerenderBody:
-      'Versicherungen, Altersvorsorge, Immobilien und Vermögensaufbau – persönlich, transparent und kostenlos. Mit über 100 fünf-Sterne-Bewertungen bei Google ist die DK Finanzkanzlei aus Aachen einer der bestbewerteten Finanzdienstleister in Nordrhein-Westfalen.',
+      'Versicherungen, Altersvorsorge, Immobilien und Vermögensaufbau – persönlich, transparent und kostenlos. Die DK Finanzkanzlei mit Sitz in Aachen-Eilendorf berät Mandanten in der gesamten Städteregion Aachen und deutschlandweit per Video-Call.',
     jsonLd: [FAQ_HOME, breadcrumb([{ name: 'Startseite', path: '/' }])],
   },
   ueberuns: {
     path: '/ueber-uns',
     title: 'Über uns – Team & Werte der DK Finanzkanzlei Aachen',
     description:
-      'Lerne das Team der DK Finanzkanzlei aus Aachen kennen. Junge, unabhängige Finanzexpertinnen und -experten für ganz NRW & Deutschland.',
+      'Lerne das Team der DK Finanzkanzlei aus Aachen kennen. Junge, kundenorientierte Finanzexpertinnen und -experten für ganz NRW & Deutschland.',
     keywords: `Über uns DK Finanzkanzlei, Joel Dakaj Aachen, Finanzberater Team NRW, ${LOCAL_KEYWORDS_BASE}`,
     prerenderH1: 'Über die DK Finanzkanzlei',
     prerenderBody:
-      'Joel Dakaj und das Team der DK Finanzkanzlei beraten unabhängig zu allen Finanzthemen – mit Sitz in Aachen und Mandanten in ganz Deutschland.',
+      'Joel Dakaj und das Team der DK Finanzkanzlei beraten kundenorientiert zu allen Finanzthemen – mit Sitz in Aachen und Mandanten in ganz Deutschland.',
     jsonLd: [
       breadcrumb([
         { name: 'Startseite', path: '/' },
@@ -298,7 +312,7 @@ const STATIC_ROUTES: Record<Exclude<RouteKey, `service:${string}`>, SeoData> = {
     keywords: `Finanzdienstleistungen Aachen, Versicherungen NRW, Vorsorge, Vermögensaufbau, ${LOCAL_KEYWORDS_BASE}`,
     prerenderH1: 'Leistungen der DK Finanzkanzlei',
     prerenderBody:
-      'Von Krankenversicherung über Berufsunfähigkeit, KFZ-, Sach- und Gewerbeversicherungen bis hin zu Altersvorsorge, Immobilienfinanzierung, Geldanlagen und ETF-Sparplänen – alles aus einer Hand, unabhängig und transparent.',
+      'Von Krankenversicherung über Berufsunfähigkeit, KFZ-, Sach- und Gewerbeversicherungen bis hin zu Altersvorsorge, Immobilienfinanzierung, Geldanlagen und ETF-Sparplänen – alles aus einer Hand, kundenorientiert und transparent.',
     jsonLd: [
       breadcrumb([
         { name: 'Startseite', path: '/' },
@@ -330,7 +344,7 @@ const STATIC_ROUTES: Record<Exclude<RouteKey, `service:${string}`>, SeoData> = {
     keywords: `Kontakt DK Finanzkanzlei Aachen, Finanzberatung anfragen, Termin Finanzberater NRW, ${LOCAL_KEYWORDS_BASE}`,
     prerenderH1: 'Kontakt zur DK Finanzkanzlei',
     prerenderBody:
-      'Telefon: +49 173 1038570 · E-Mail: dakaj@dk-finanzkanzlei.de · Adresse: Eilendorfer Straße 215, 52078 Aachen. Wir beraten dich kostenlos und unabhängig.',
+      'Telefon: +49 173 1038570 · E-Mail: dakaj@dk-finanzkanzlei.de · Adresse: Eilendorfer Straße 215, 52078 Aachen. Wir beraten dich kostenlos und kundenorientiert.',
     jsonLd: [
       breadcrumb([
         { name: 'Startseite', path: '/' },
@@ -385,6 +399,7 @@ export function getSeoForRoute(key: RouteKey): SeoData {
         prerenderBody: s.description,
         jsonLd: [
           serviceJsonLd(s),
+          faqJsonLd(SERVICE_DATA[s.key as keyof typeof SERVICE_DATA].faq),
           breadcrumb([
             { name: 'Startseite', path: '/' },
             { name: 'Leistungen', path: '/leistungen' },

@@ -1,4 +1,56 @@
+# DK Finanzkanzlei – https://www.dk-finanzkanzlei.de
+
 User-agent: *
+Allow: /
+
+# ── KI-/Antwortmaschinen ausdruecklich erlauben ───────────────────────────────
+# Diese Crawler fuehren kein JavaScript aus und lesen ausschliesslich das
+# statische HTML (siehe scripts/prerender.mjs).
+
+# OpenAI (ChatGPT-Suche & Training)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google Gemini / AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft Copilot / Bing
+User-agent: bingbot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (Trainingsdatenbasis vieler Modelle)
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://www.dk-finanzkanzlei.de/sitemap.xml

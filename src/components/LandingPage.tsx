@@ -3,14 +3,15 @@ import { motion, AnimatePresence, useInView } from 'motion/react';
 import {
   TrendingUp, ShieldCheck, PieChart, ArrowRight, CheckCircle2, ChevronRight,
   Menu, X, Wallet, Calculator, Building2, Home, Heart, BarChart3, Users,
-  Star, Eye, Zap, Leaf, UserCircle, Briefcase, GraduationCap, Wrench, MousePointerClick, Globe
+  Star, Eye, Zap, Leaf, UserCircle, Briefcase, GraduationCap, Wrench, MousePointerClick, Globe, Download, FileText
 } from 'lucide-react';
 import { applySeo, getSeoForRoute, routeKeyForPage } from '../seo';
+import { SERVICE_DATA, type ServiceKey, type ServicePageData } from '../serviceContent';
 
 // ─── Brand Configuration ────────────────────────────────────────────────────────
 type Brand = 'dk' | 'vorsorge' | 'immo' | 'consulting';
 type Page = 'home' | 'ueberuns' | 'impressum' | 'datenschutz' | 'kontakt' | 'leistungen' | 'service' | 'karriere';
-type ServiceKey = 'krankenversicherung' | 'arbeitskraft' | 'kfz' | 'sach' | 'gewerbe' | 'rente' | 'hinterbliebene' | 'immobilien' | 'sparprodukte' | 'geldanlagen' | 'vorsorge' | 'finanzierungen' | 'aktien' | 'vwl';
+
 
 const BRANDS = {
   dk: {
@@ -43,13 +44,14 @@ const BRANDS = {
   },
 } as const;
 
+const CONSULTING_URL = "https://www.bva-consulting.de/";
 const BRAND_ORDER: Brand[] = ['dk', 'vorsorge', 'immo', 'consulting'];
 
 const BRAND_BG: Record<Brand, string> = {
   dk:         '/DK Finanz BG.jpeg',
   vorsorge:   '/DK Vorsorge.jpeg',
   immo:       '/DK Immo BG.jpeg',
-  consulting: '/DK Consulting BG.png',
+  consulting: '/DK Consulting BG.jpeg',
 };
 
 // ─── Shared ─────────────────────────────────────────────────────────────────────
@@ -422,7 +424,7 @@ const Proof = ({ color }: { color: string }) => {
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Was unsere Mandanten sagen</h2>
           <div className="flex items-center justify-center gap-2 font-bold" style={{ color }}>
             <CheckCircle2 className="w-5 h-5" />
-            <span>100+ Google-Rezensionen · Ø 5,0 Sterne</span>
+            <span>Ausgezeichnet bewertet bei Google</span>
           </div>
         </div>
       </div>
@@ -783,7 +785,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
     { title: "Langfristige Begleitung", desc: "Wir bleiben an deiner Seite, wenn sich das Leben ändert.", icon: <CheckCircle2 className="w-6 h-6 text-orange-400" />, className: "md:col-span-1 md:row-span-1" },
   ];
   const valueCards = [
-    { title: "Eigenständige Beratung", description: "Mit Zugang zu Hunderten von Anbietern beraten wir dich frei von Banken und Versicherungen. Kein Exklusivvertrag, kein Interessenkonflikt – nur das Beste für dich.", icon: <ShieldCheck className="w-8 h-8" style={{ color }} />, tag: "Objektivität" },
+    { title: "Beratung mit über 100 geprüften Anbietern", description: "Wir vergleichen über 100 geprüfte Anbieter und beraten kundenorientiert – kein Exklusivvertrag, kein Interessenkonflikt, nur das Beste für dich.", icon: <ShieldCheck className="w-8 h-8" style={{ color }} />, tag: "Objektivität" },
     { title: "Steueroptimierung", description: "Nutze staatliche Förderungen und Steuervorteile, die 90% der Menschen ignorieren. Dein Geld gehört dir.", icon: <Calculator className="w-8 h-8 text-[#22C55E]" />, tag: "Effizienz" },
     { title: "Strategischer Aufbau", description: "Kein Glücksspiel, sondern mathematisch fundierte Strategien mit ETFs und Immobilien für langfristige Freiheit.", icon: <TrendingUp className="w-8 h-8" style={{ color }} />, tag: "Wachstum" },
   ];
@@ -802,7 +804,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             <div className="inline-flex flex-col items-center gap-0 mb-2">
               <img src="/dk-logo-small.png" alt="DK Finanzkanzlei Aachen" loading="lazy" decoding="async" className="hidden md:block h-24 w-auto object-contain" />
               <span className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium tracking-widest uppercase md:-mt-3">
-                Eigenständig & Persönlich
+                Kundenorientiert & Persönlich
               </span>
             </div>
             <h1 className="text-3xl md:text-7xl font-bold tracking-tight mb-4 md:mb-8 leading-[1.1]">
@@ -836,29 +838,6 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       </div>
 
       <LogoMarquee />
-
-      <DottedLine />
-
-      {/* Services Grid */}
-      <section className="py-8 md:py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Unsere Expertise</h2>
-            <p className="text-white/40">Maßgeschneiderte Lösungen für deine finanziellen Ziele.</p>
-          </div>
-          <div className="flex flex-col gap-4">
-            {services.map((s, i) => (
-              <motion.div key={i} whileHover={{ x: 4 }} className="glow-card px-8 py-6 rounded-3xl border border-white/10 bg-white/5 flex items-center gap-6 group">
-                <div className="flex-shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
-                <div>
-                  <h3 className="text-xl font-bold mb-1">{s.title}</h3>
-                  <p className="text-sm text-white/40">{s.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <DottedLine />
 
@@ -938,6 +917,29 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
       </section>
 
       <DottedLine />
+      {/* Services Grid */}
+      <section className="py-8 md:py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Unsere Expertise</h2>
+            <p className="text-white/40">Maßgeschneiderte Lösungen für deine finanziellen Ziele.</p>
+          </div>
+          <div className="flex flex-col gap-4">
+            {services.map((s, i) => (
+              <motion.div key={i} whileHover={{ x: 4 }} className="glow-card px-8 py-6 rounded-3xl border border-white/10 bg-white/5 flex items-center gap-6 group">
+                <div className="flex-shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-1">{s.title}</h3>
+                  <p className="text-sm text-white/40">{s.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <DottedLine />
+
       <TestimonialCards color={color} />
 
       <DottedLine />
@@ -958,7 +960,7 @@ const DKContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             <button onClick={() => onPageChange('kontakt')} className="px-10 py-5 bg-white text-[#1E293B] rounded-full font-bold text-xl hover:shadow-xl hover:shadow-white/20 transition-all active:scale-95">
               Kostenlose Beratung buchen
             </button>
-            <p className="mt-6 text-sm text-white/60">Unverbindlich • 100% Eigenständig • In 2 Minuten erledigt</p>
+            <p className="mt-6 text-sm text-white/60">Unverbindlich • Über 100 geprüfte Anbieter • In 2 Minuten erledigt</p>
           </motion.div>
         </div>
       </section>
@@ -977,7 +979,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
     { title: "Pflegevorsorge", desc: "Frühzeitig und günstig absichern – bevor es zu spät ist.", icon: <Users className="w-6 h-6" style={{ color }} />, className: "md:col-span-1 md:row-span-1" },
   ];
   const valueCards = [
-    { title: "Eigenständige Beratung", description: "Wir wählen aus Hunderten von Anbietern das aus, was objektiv am besten zu dir passt.", icon: <ShieldCheck className="w-8 h-8" style={{ color }} />, tag: "Eigenständigkeit" },
+    { title: "Beratung mit über 100 geprüften Anbietern", description: "Wir wählen aus über 100 geprüften Anbietern das aus, was objektiv am besten zu dir passt.", icon: <ShieldCheck className="w-8 h-8" style={{ color }} />, tag: "Kundenorientiert" },
     { title: "Steueroptimierte Vorsorge", description: "Nutze staatliche Förderungen wie Riester, Rürup und bAV vollumfänglich aus.", icon: <Calculator className="w-8 h-8" style={{ color }} />, tag: "Steuervorteile" },
     { title: "Lebenslange Begleitung", description: "Deine Vorsorge wächst mit dir – wir passen sie an jede Lebensphase an.", icon: <TrendingUp className="w-8 h-8" style={{ color }} />, tag: "Langfristig" },
   ];
@@ -1024,29 +1026,6 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
 
       <DottedLine />
 
-      {/* Services */}
-      <section className="py-8 md:py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Vorsorge-Lösungen</h2>
-            <p className="text-white/40">Maßgeschneiderte Absicherung für jede Lebensphase.</p>
-          </div>
-          <div className="flex flex-col gap-4">
-            {services.map((s, i) => (
-              <motion.div key={i} whileHover={{ x: 4 }} className="glow-card px-8 py-6 rounded-3xl border border-white/10 bg-white/5 flex items-center gap-6 group">
-                <div className="flex-shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
-                <div>
-                  <h3 className="text-xl font-bold mb-1">{s.title}</h3>
-                  <p className="text-sm text-white/40">{s.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <DottedLine />
-
       {/* Value Proposition */}
       <section id="services" className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
@@ -1062,6 +1041,29 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40 mb-2 block">{card.tag}</span>
                 <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                 <p className="text-white/60 leading-relaxed">{card.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <DottedLine />
+
+      {/* Services */}
+      <section className="py-8 md:py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Vorsorge-Lösungen</h2>
+            <p className="text-white/40">Maßgeschneiderte Absicherung für jede Lebensphase.</p>
+          </div>
+          <div className="flex flex-col gap-4">
+            {services.map((s, i) => (
+              <motion.div key={i} whileHover={{ x: 4 }} className="glow-card px-8 py-6 rounded-3xl border border-white/10 bg-white/5 flex items-center gap-6 group">
+                <div className="flex-shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-1">{s.title}</h3>
+                  <p className="text-sm text-white/40">{s.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -1086,7 +1088,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
             <button onClick={() => onPageChange('kontakt')} className="px-10 py-5 bg-white rounded-full font-bold text-xl hover:shadow-xl hover:shadow-white/20 transition-all active:scale-95" style={{ color: '#14532d' }}>
               Vorsorgecheck starten
             </button>
-            <p className="mt-6 text-sm text-white/60">Unverbindlich • 100% Eigenständig • In 2 Minuten erledigt</p>
+            <p className="mt-6 text-sm text-white/60">Unverbindlich • Über 100 geprüfte Anbieter • In 2 Minuten erledigt</p>
           </motion.div>
         </div>
       </section>
@@ -1098,7 +1100,7 @@ const VorsorgeContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) 
 const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
   const color = BRANDS.immo.color;
   const services = [
-    { title: "Immobilienfinanzierung", desc: "Optimale Konditionen für dein Wunschobjekt – herstellerunabhängig.", icon: <Home className="w-6 h-6" style={{ color }} />, className: "md:col-span-2 md:row-span-1" },
+    { title: "Immobilienfinanzierung", desc: "Optimale Konditionen für dein Wunschobjekt – aus über 100 geprüften Anbietern.", icon: <Home className="w-6 h-6" style={{ color }} />, className: "md:col-span-2 md:row-span-1" },
     { title: "Kapitalanlage", desc: "Renditestarke Investments in Wohn- und Gewerbeimmobilien.", icon: <TrendingUp className="w-6 h-6" style={{ color }} />, className: "md:col-span-1 md:row-span-2" },
     { title: "Vermietungsmanagement", desc: "Professionelle Verwaltung deiner Mietobjekte von A bis Z.", icon: <Building2 className="w-6 h-6" style={{ color }} />, className: "md:col-span-2 md:row-span-1" },
     { title: "Bestandsoptimierung", desc: "Analyse und Optimierung deines bestehenden Immobilienportfolios.", icon: <BarChart3 className="w-6 h-6" style={{ color }} />, className: "md:col-span-2 md:row-span-1" },
@@ -1148,29 +1150,6 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
       </div>
 
-      {/* Services */}
-      <section className="py-8 md:py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Immo-Leistungen</h2>
-            <p className="text-white/40">Vom Kauf bis zur Verwaltung – wir begleiten dich bei jedem Schritt.</p>
-          </div>
-          <div className="flex flex-col gap-4">
-            {services.map((s, i) => (
-              <motion.div key={i} whileHover={{ x: 4 }} className="glow-card px-8 py-6 rounded-3xl border border-white/10 bg-white/5 flex items-center gap-6 group">
-                <div className="flex-shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
-                <div>
-                  <h3 className="text-xl font-bold mb-1">{s.title}</h3>
-                  <p className="text-sm text-white/40">{s.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <DottedLine />
-
       {/* Value Proposition */}
       <section id="services" className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
@@ -1186,6 +1165,29 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40 mb-2 block">{card.tag}</span>
                 <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                 <p className="text-white/60 leading-relaxed">{card.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <DottedLine />
+
+      {/* Services */}
+      <section className="py-8 md:py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Immo-Leistungen</h2>
+            <p className="text-white/40">Vom Kauf bis zur Verwaltung – wir begleiten dich bei jedem Schritt.</p>
+          </div>
+          <div className="flex flex-col gap-4">
+            {services.map((s, i) => (
+              <motion.div key={i} whileHover={{ x: 4 }} className="glow-card px-8 py-6 rounded-3xl border border-white/10 bg-white/5 flex items-center gap-6 group">
+                <div className="flex-shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-1">{s.title}</h3>
+                  <p className="text-sm text-white/40">{s.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -1210,7 +1212,7 @@ const ImmoContent = ({ onPageChange }: { onPageChange: (p: Page) => void }) => {
             <button onClick={() => onPageChange('kontakt')} className="px-10 py-5 bg-white rounded-full font-bold text-xl hover:shadow-xl hover:shadow-white/20 transition-all active:scale-95" style={{ color: '#7f1d1d' }}>
               Immobilienberatung anfragen
             </button>
-            <p className="mt-6 text-sm text-white/60">Unverbindlich • 100% Unabhängig • In 2 Minuten erledigt</p>
+            <p className="mt-6 text-sm text-white/60">Unverbindlich • Über 100 geprüfte Anbieter • In 2 Minuten erledigt</p>
           </motion.div>
         </div>
       </section>
@@ -1282,29 +1284,6 @@ const ConsultingContent = ({ onPageChange }: { onPageChange: (p: Page) => void }
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_white]" />
       </div>
 
-      {/* Services grid */}
-      <section className="py-8 md:py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Consulting-Leistungen</h2>
-            <p className="text-white/40">Alles aus einer Hand – Strategie, Digitalisierung und Vertrieb für nachhaltige Ergebnisse.</p>
-          </div>
-          <div className="flex flex-col gap-4">
-            {services.map((s, i) => (
-              <motion.div key={i} whileHover={{ x: 4 }} className="glow-card px-8 py-6 rounded-3xl border border-white/10 bg-white/5 flex items-center gap-6 group">
-                <div className="flex-shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
-                <div>
-                  <h3 className="text-xl font-bold mb-1">{s.title}</h3>
-                  <p className="text-sm text-white/40">{s.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <DottedLine />
-
       {/* Value Proposition */}
       <section className="py-8 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
@@ -1320,6 +1299,29 @@ const ConsultingContent = ({ onPageChange }: { onPageChange: (p: Page) => void }
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/40 mb-2 block">{card.tag}</span>
                 <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                 <p className="text-white/60 leading-relaxed">{card.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <DottedLine />
+
+      {/* Services grid */}
+      <section className="py-8 md:py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Consulting-Leistungen</h2>
+            <p className="text-white/40">Alles aus einer Hand – Strategie, Digitalisierung und Vertrieb für nachhaltige Ergebnisse.</p>
+          </div>
+          <div className="flex flex-col gap-4">
+            {services.map((s, i) => (
+              <motion.div key={i} whileHover={{ x: 4 }} className="glow-card px-8 py-6 rounded-3xl border border-white/10 bg-white/5 flex items-center gap-6 group">
+                <div className="flex-shrink-0 p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">{s.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-1">{s.title}</h3>
+                  <p className="text-sm text-white/40">{s.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -2615,617 +2617,107 @@ const UeberUnsContent = () => {
 };
 
 // ─── Service Detail Pages ─────────────────────────────────────────────────────────
-type ServicePageData = {
-  category: string; title: string; hook: string; intro: string;
-  stats: { value: string; label: string }[];
-  comparison?: { heading: string; left: { label: string; points: { text: string; pos: boolean }[] }; right: { label: string; points: { text: string; pos: boolean }[] } };
-  types?: { title: string; desc: string; tag?: string }[];
-  problems: string[]; solution: string; cta: string;
-  faq: { q: string; a: string }[];
-};
 
-const SERVICE_DATA: Record<ServiceKey, ServicePageData> = {
-  krankenversicherung: {
-    category: 'Versicherungen', title: 'Krankenversicherung',
-    hook: 'Die falsche Krankenversicherung kostet dich jeden Monat bares Geld – und du merkst es erst, wenn du sie wirklich brauchst.',
-    intro: 'In Deutschland besteht Krankenversicherungspflicht. Die entscheidende Frage ist nicht ob, sondern wie du versichert bist. GKV oder PKV, Basistarif oder Premiumschutz: Wir helfen dir, die richtige Entscheidung zu treffen.',
-    stats: [
-      { value: '11,5 %', label: 'GKV-Beitragssatz 2024' },
-      { value: '66.600 €', label: 'Versicherungspflichtgrenze p.a.' },
-      { value: '∅ 40 %', label: 'bessere Leistungen in der PKV' },
-      { value: '500+', label: 'Tarifoptionen im Vergleich' },
-    ],
-    comparison: {
-      heading: 'GKV vs. PKV im Direktvergleich',
-      left: { label: 'Gesetzliche Krankenversicherung', points: [
-        { text: 'Beitrag abhängig vom Einkommen', pos: false },
-        { text: 'Familienversicherung kostenlos möglich', pos: true },
-        { text: 'Oft monatelange Wartezeiten beim Facharzt', pos: false },
-        { text: 'Begrenzte Leistungen (z.B. Zahnersatz)', pos: false },
-        { text: 'Für alle zugänglich', pos: true },
-      ]},
-      right: { label: 'Private Krankenversicherung', points: [
-        { text: 'Beitrag nach Gesundheitszustand & Alter', pos: true },
-        { text: 'Terminpriorität & Chefarztbehandlung', pos: true },
-        { text: 'Freie Arzt- und Krankenhauswahl', pos: true },
-        { text: 'Individuell konfigurierbare Leistungen', pos: true },
-        { text: 'Nur für bestimmte Personengruppen', pos: false },
-      ]},
-    },
-    types: [
-      { title: 'Gesetzliche KV (GKV)', desc: 'Pflichtversicherung für Angestellte unter der Versicherungspflichtgrenze. Einkommensabhängige Beiträge, kostenlose Familienversicherung möglich.', tag: 'Für Angestellte' },
-      { title: 'Private KV (PKV)', desc: 'Für Selbstständige, Beamte und gutverdienende Angestellte. Bessere Leistungen, freie Arztwahl, Chefarztbehandlung inklusive.', tag: 'Für Selbstständige & Beamte' },
-      { title: 'Kranken-Zusatzversicherung', desc: 'Ergänze deine GKV gezielt: Zahnzusatz, Krankenhaus-Zusatz, Auslandskranken – für die Lücken der gesetzlichen Versicherung.', tag: 'Für GKV-Versicherte' },
-    ],
-    problems: [
-      'Du zahlst hohe Beiträge, bekommst aber Standardleistungen – und weißt nicht, ob du zu viel zahlst.',
-      'Als GKV-Versicherter wartest du Monate auf einen Facharzttermin, während Privatpatienten bevorzugt behandelt werden.',
-      'Selbstständige zahlen in der GKV den vollen Beitrag – ohne Arbeitgeberzuschuss.',
-      'Viele wechseln nie die Krankenkasse und verschenken Jahr für Jahr Hunderte Euro.',
-    ],
-    solution: 'Wir vergleichen eigenständig alle gesetzlichen und privaten Anbieter – ohne Provisionsinteressen. Du bekommst unsere ehrliche Empfehlung, welches Modell wirklich zu deiner Lebenssituation, deinem Einkommen und deinen Gesundheitswünschen passt.',
-    cta: 'Kostenlose Analyse starten',
-    faq: [
-      { q: 'Wer kann in die PKV wechseln?', a: 'Angestellte, die die Versicherungspflichtgrenze (66.600 € Brutto p.a. in 2024) überschreiten, Selbstständige, Beamte und Studenten können sich privat versichern.' },
-      { q: 'Lohnt sich ein Wechsel der gesetzlichen Krankenkasse?', a: 'Ja – Beitragssätze, Zusatzbeiträge und Leistungen unterscheiden sich deutlich. Ein Vergleich kann Hunderte Euro jährlich sparen.' },
-      { q: 'Kann ich aus der PKV zurück in die GKV?', a: 'Das ist möglich, aber schwierig. Unter die Versicherungspflichtgrenze zu fallen (z.B. durch Jobwechsel) oder das Rentenalter zu erreichen sind typische Wege.' },
-      { q: 'Was kostet eine Kranken-Zusatzversicherung?', a: 'Je nach Leistungsumfang und Alter ab ca. 10–50 € monatlich. Zahnzusatz, Krankenhaustagegeld oder Auslandsschutz lassen sich gezielt kombinieren.' },
-    ],
-  },
+// ─── Lead-Erfassung ──────────────────────────────────────────────────────────────
+/** Sendet einen Lead an die Vercel-Function /api/lead. Fehler blockieren die UI nie. */
+async function postLead(payload: Record<string, unknown>): Promise<boolean> {
+  try {
+    const res = await fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
 
-  arbeitskraft: {
-    category: 'Versicherungen', title: 'Arbeitskraftabsicherung',
-    hook: 'Jeder vierte Arbeitnehmer wird berufsunfähig. Der Staat zahlt dann nur ca. 30 % deines letzten Gehalts.',
-    intro: 'Deine Arbeitskraft ist dein größtes Kapital. Ein Unfall, eine Erkrankung, psychische Erschöpfung – und du kannst nicht mehr arbeiten. Wir sichern dich so ab, dass du auch im schlimmsten Fall finanziell stabil bleibst.',
-    stats: [
-      { value: '25 %', label: 'aller Arbeitnehmer werden BU' },
-      { value: '~30 %', label: 'staatliche Absicherung des Gehalts' },
-      { value: '43 %', label: 'BU-Fälle durch psychische Erkrankungen' },
-      { value: '∅ 47', label: 'Jahre – mittleres BU-Eintrittsalter' },
-    ],
-    comparison: {
-      heading: 'Staatliche Absicherung vs. Private BU',
-      left: { label: 'Staatliche Erwerbsminderungsrente', points: [
-        { text: 'Nur ~30 % des letzten Nettogehalts', pos: false },
-        { text: 'Erst nach 5 Jahren Beitragszahlung', pos: false },
-        { text: 'Nur bei vollständiger Erwerbsunfähigkeit', pos: false },
-        { text: 'Keine Absicherung bei Berufsunfähigkeit', pos: false },
-        { text: 'Keine Anpassung an Lebenshaltungskosten', pos: false },
-      ]},
-      right: { label: 'Private Berufsunfähigkeitsversicherung', points: [
-        { text: 'Individuell vereinbarte Rente (z.B. 3.000 €/Monat)', pos: true },
-        { text: 'Zahlt bereits bei 50 % BU im zuletzt ausgeübten Beruf', pos: true },
-        { text: 'Auch bei psychischen Erkrankungen', pos: true },
-        { text: 'Dynamische Beitrags- und Rentenanpassung möglich', pos: true },
-        { text: 'Sofort wirksam nach Abschluss', pos: true },
-      ]},
-    },
-    types: [
-      { title: 'Berufsunfähigkeitsversicherung (BU)', desc: 'Der Goldstandard. Zahlt, wenn du deinen zuletzt ausgeübten Beruf zu mindestens 50 % nicht mehr ausüben kannst.', tag: 'Empfohlen' },
-      { title: 'Grundfähigkeitsversicherung', desc: 'Alternative zur BU bei körperlichen Berufen. Zahlt, wenn grundlegende Fähigkeiten (Sehen, Sprechen, Greifen) dauerhaft verloren gehen.', tag: 'Für Handwerker' },
-      { title: 'Erwerbsunfähigkeitsversicherung (EU)', desc: 'Günstigere Alternative zur BU. Zahlt, wenn du überhaupt keine Arbeit mehr ausüben kannst – strengeres Kriterium, niedrigerer Beitrag.', tag: 'Günstiger Einstieg' },
-      { title: 'Dread Disease / Schwere Krankheiten', desc: 'Einmalzahlung bei Diagnose schwerer Krankheiten (Krebs, Herzinfarkt, Schlaganfall). Ideal als Ergänzung zur BU.', tag: 'Ergänzend' },
-    ],
-    problems: [
-      'Du wirst berufsunfähig – aber deine Miete, Kredite und Lebenshaltungskosten laufen einfach weiter.',
-      'Die staatliche Erwerbsminderungsrente deckt nur einen Bruchteil deines tatsächlichen Bedarfs.',
-      'Viele Berufsgruppen werden abgelehnt oder zahlen überhöhte Prämien – ohne professionelle Beratung.',
-      'Wer zu lange wartet, zahlt deutlich mehr oder bekommt gar keinen Schutz mehr.',
-    ],
-    solution: 'Wir finden für deinen Beruf und deine Gesundheitshistorie den richtigen Schutz – zum besten Preis. Mit anonymer Risikovoranfrage prüfen wir zuerst deine Chancen, bevor ein Antrag gestellt wird.',
-    cta: 'BU-Schutz jetzt prüfen',
-    faq: [
-      { q: 'Wann sollte ich eine BU abschließen?', a: 'So früh wie möglich. Mit 25 Jahren ist der Beitrag deutlich günstiger als mit 35. Außerdem steigt das Risiko, Vorerkrankungen zu haben, die zum Ausschluss führen.' },
-      { q: 'Was passiert, wenn ich Vorerkrankungen habe?', a: 'Durch eine anonyme Risikovoranfrage klären wir, ob und zu welchen Konditionen du versicherbar bist – ohne dass deine Daten gespeichert werden.' },
-      { q: 'Wie hoch sollte die BU-Rente sein?', a: 'Als Faustregel: 70–80 % deines Nettoeinkommens. Bei 3.000 € Netto empfehlen wir eine BU-Rente von mindestens 2.000–2.400 € monatlich.' },
-      { q: 'Gibt es Alternativen zur BU?', a: 'Ja – Grundfähigkeits- und Erwerbsunfähigkeitsversicherungen sind günstiger, bieten aber weniger Schutz. Wir zeigen dir alle Optionen im direkten Vergleich.' },
-    ],
-  },
+/** Wiederverwendbares CTA-Band fuer die Leistungsseiten. */
+const CtaBand = ({ color, headline, sub, label, onPageChange }: { color: string; headline: string; sub: string; label: string; onPageChange: (p: Page) => void }) => (
+  <div className="mb-16 rounded-3xl border p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 justify-between" style={{ backgroundColor: color + '0D', borderColor: color + '30' }}>
+    <div className="max-w-xl">
+      <h3 className="text-xl md:text-2xl font-bold text-[#1E293B] mb-2">{headline}</h3>
+      <p className="text-sm text-[#1E293B]/55 leading-relaxed">{sub}</p>
+    </div>
+    <button onClick={() => onPageChange('kontakt')} className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold rounded-full text-sm hover:opacity-90 transition-opacity shadow-lg" style={{ backgroundColor: color }}>
+      {label} <ArrowRight className="w-4 h-4" />
+    </button>
+  </div>
+);
 
-  kfz: {
-    category: 'Versicherungen', title: 'KFZ-Versicherung',
-    hook: 'Die meisten zahlen für ihre Autoversicherung deutlich zu viel – und erfahren es erst, wenn es zu spät ist.',
-    intro: 'Tausende Tarife, kaum Transparenz. Ob Haftpflicht, Teil- oder Vollkasko – der Unterschied zwischen richtigem und falschem Schutz kann dich im Schadensfall Zehntausende Euro kosten.',
-    stats: [
-      { value: '∅ 300 €', label: 'jährliche Ersparnis durch Vergleich' },
-      { value: '300+', label: 'KFZ-Tarife im Vergleich' },
-      { value: '67 %', label: 'wechseln nie ihren KFZ-Anbieter' },
-      { value: '48h', label: 'schnelle Schadensregulierung' },
-    ],
-    comparison: {
-      heading: 'Welcher KFZ-Schutz ist der richtige?',
-      left: { label: 'Haftpflicht + Teilkasko', points: [
-        { text: 'Deckt Schäden an anderen Fahrzeugen', pos: true },
-        { text: 'Schutz bei Diebstahl, Unwetter, Wildunfall', pos: true },
-        { text: 'Keine Deckung bei selbstverschuldetem Unfall', pos: false },
-        { text: 'Günstigere Prämie', pos: true },
-        { text: 'Empfehlung für ältere Fahrzeuge', pos: true },
-      ]},
-      right: { label: 'Vollkasko', points: [
-        { text: 'Zahlt auch bei selbstverschuldetem Unfall', pos: true },
-        { text: 'Vandalismusschäden abgedeckt', pos: true },
-        { text: 'Schutz bei Fahrerflucht des Verursachers', pos: true },
-        { text: 'Höhere monatliche Prämie', pos: false },
-        { text: 'Empfehlung für Neuwagen & Finanzierungen', pos: true },
-      ]},
-    },
-    types: [
-      { title: 'Kfz-Haftpflicht', desc: 'Gesetzlich vorgeschrieben. Deckt Personen- und Sachschäden, die du anderen im Straßenverkehr zufügst.', tag: 'Pflicht' },
-      { title: 'Teilkasko', desc: 'Ergänzt die Haftpflicht um Schäden durch Diebstahl, Glasbruch, Sturm, Hagel, Überschwemmung und Wildunfälle.', tag: 'Empfohlen' },
-      { title: 'Vollkasko', desc: 'Maximaler Schutz. Deckt zusätzlich selbstverschuldete Unfälle und Vandalismus ab.', tag: 'Für Neuwagen' },
-    ],
-    problems: [
-      'Wer nie vergleicht, verschenkt im Schnitt über 300 € pro Jahr – bei gleichem oder schlechterem Schutz.',
-      'Im Schadensfall streiten viele Versicherer um Zuständigkeiten – du bleibst ohne Hilfe stehen.',
-      'Der falsche Schutzumfang kann dich nach einem Unfall mit Tausenden Euro belasten.',
-    ],
-    solution: 'Wir vergleichen eigenständig über 300 KFZ-Tarife und finden den optimalen Schutz für dein Fahrzeug – zum besten Preis, sofort wirksam.',
-    cta: 'Jetzt KFZ-Tarif vergleichen',
-    faq: [
-      { q: 'Wann lohnt sich Vollkasko?', a: 'Grundsätzlich bei Neuwagen, Fahrzeugen mit einem Wert über 10.000 € oder bei laufenden Finanzierungen und Leasingverträgen.' },
-      { q: 'Kann ich während des Jahres wechseln?', a: 'Ja – bei Beitragserhöhung hast du ein Sonderkündigungsrecht. Auch nach einem Schadensfall oder zum Jahresende kannst du kündigen.' },
-      { q: 'Was beeinflusst meinen KFZ-Beitrag?', a: 'Fahrzeugtyp, Regionalklasse, Schadenfreiheitsklasse (SF), jährliche Kilometer, Fahrerkreis und Abstellplatz.' },
-    ],
-  },
+/** Leadgen-Formular fuer die PDF-Uebersicht einer Leistungsseite. */
+const LeadMagnetForm = ({ magnet, color, onPageChange }: { magnet: NonNullable<ServicePageData['leadMagnet']>; color: string; onPageChange: (p: Page) => void }) => {
+  const [form, setForm] = useState({ name: '', email: '', consent: false });
+  const [state, setState] = useState<'idle' | 'sending' | 'done'>('idle');
 
-  sach: {
-    category: 'Versicherungen', title: 'Sachversicherungen',
-    hook: 'Ein Wasserschaden, ein Einbruch, ein Unfall – und plötzlich stehst du vor Kosten, die dich finanziell Jahre zurückwerfen.',
-    intro: 'Hausrat, Haftpflicht, Wohngebäude, Rechtsschutz – die wenigsten wissen, ob ihre Absicherung wirklich vollständig ist. Wir analysieren deine bestehenden Verträge und schließen Lücken, bevor etwas passiert.',
-    stats: [
-      { value: '∅ 15.000 €', label: 'Kosten eines typischen Wasserschadens' },
-      { value: '3 Mio. €', label: 'typische Haftpflicht-Deckungssumme' },
-      { value: '47 %', label: 'Haushalte ohne ausreichende Absicherung' },
-      { value: '24h', label: 'Schadenmeldung möglich' },
-    ],
-    types: [
-      { title: 'Privathaftpflicht', desc: 'Die wichtigste Versicherung überhaupt. Schützt dich vor Schadensersatzforderungen Dritter – von der zerbrochenen Fensterscheibe bis zum Millionenschaden.', tag: 'Muss-haben' },
-      { title: 'Hausratversicherung', desc: 'Schützt deinen gesamten Hausrat (Möbel, Elektronik, Kleidung) bei Einbruch, Brand, Leitungswasser und Sturm/Hagel.', tag: 'Für Mieter & Eigentümer' },
-      { title: 'Wohngebäudeversicherung', desc: 'Pflicht für Immobilieneigentümer. Schützt das Gebäude selbst gegen Feuer, Leitungswasser und Sturm – inkl. optionaler Elementarschadendeckung.', tag: 'Für Eigentümer' },
-      { title: 'Rechtsschutzversicherung', desc: 'Deckt Anwalts- und Gerichtskosten ab – im Arbeitsrecht, Verkehrsrecht oder bei Mietstreitigkeiten.', tag: 'Optional' },
-    ],
-    problems: [
-      'Hausrat, Haftpflicht, Wohngebäude: Die meisten sind entweder doppelt oder gar nicht richtig versichert.',
-      'Im Schadensfall streiten Versicherer um Zuständigkeiten – du bleibst auf den Kosten sitzen.',
-      'Veraltete Verträge decken moderne Risiken (Starkregen, Elementarschäden) oft nicht ab.',
-    ],
-    solution: 'Wir analysieren deine bestehenden Verträge, schließen Lücken und bündeln sinnvoll – ohne Überversicherung und ohne versteckte Kosten.',
-    cta: 'Absicherung prüfen lassen',
-    faq: [
-      { q: 'Brauche ich wirklich eine Privathaftpflicht?', a: 'Absolut – sie ist eine der wichtigsten Versicherungen. Ohne sie haftest du mit deinem gesamten Privatvermögen für Schäden, die du anderen zufügst. Oft ab 3 € monatlich.' },
-      { q: 'Was ist der Unterschied zwischen Hausrat und Wohngebäude?', a: 'Hausrat versichert alles in der Wohnung (Möbel, Geräte, Kleidung). Wohngebäude versichert das Haus selbst (Wände, Dach, Leitungen).' },
-      { q: 'Lohnt sich eine Elementarschadenversicherung?', a: 'Durch den Klimawandel steigt das Risiko von Überschwemmungen und Starkregen stark. Wir prüfen, ob dein Standort gefährdet ist – kostenlos.' },
-    ],
-  },
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (state === 'sending') return;
+    setState('sending');
+    await postLead({ type: 'leadmagnet', guide: magnet.fileLabel, href: magnet.href, name: form.name, email: form.email, consent: form.consent });
+    setState('done');
+  };
 
-  gewerbe: {
-    category: 'Versicherungen', title: 'Gewerbeversicherungen',
-    hook: 'Ein einziger Fehler in deinem Unternehmen kann dich persönlich ruinieren – wenn du nicht richtig versichert bist.',
-    intro: 'Als Selbstständiger oder Unternehmer trägst du Risiken, die Angestellte nie kennen. Betriebshaftpflicht, Cyber-Risiken, Betriebsausfall – ein maßgeschneidertes Konzept schützt deinen Lebensunterhalt.',
-    stats: [
-      { value: '60 %', label: 'der KMU haben Lücken im Versicherungsschutz' },
-      { value: '∅ 2 Jahre', label: 'bis zur Insolvenz nach Betriebsunterbrechung' },
-      { value: '1 in 5', label: 'Unternehmen Opfer eines Cyberangriffs' },
-      { value: '0 €', label: 'Selbstbeteiligung mit richtigem Vertrag möglich' },
-    ],
-    types: [
-      { title: 'Betriebshaftpflicht', desc: 'Schützt vor Schadenersatzansprüchen Dritter durch deine Betriebstätigkeit. Für Selbstständige und Unternehmen unverzichtbar.', tag: 'Grundlage' },
-      { title: 'Berufshaftpflicht', desc: 'Für beratende Berufe (Anwälte, IT, Architekten). Deckt Vermögensschäden durch Beratungsfehler und Pflichtverletzungen.', tag: 'Für Berater' },
-      { title: 'Cyber-Versicherung', desc: 'Schützt vor den Folgen von Hackerangriffen, Datenverlust und Betriebsunterbrechung durch Cyber-Kriminalität.', tag: 'Zunehmend wichtig' },
-      { title: 'Betriebsunterbrechungsversicherung', desc: 'Wenn dein Betrieb stillsteht – zahlt laufende Kosten und entgangenen Gewinn.', tag: 'Existenzsicherung' },
-    ],
-    problems: [
-      'Betriebshaftpflicht, Cyber, Betriebsunterbrechung: Selbstständige unterschätzen regelmäßig ihre Unternehmensrisiken.',
-      'Standardpolicen passen selten zur tatsächlichen Tätigkeit – im Schadensfall zahlt die Versicherung nicht.',
-      'Ohne Absicherung haftest du als Einzelunternehmer oder GmbH-Geschäftsführer mit deinem Privatvermögen.',
-    ],
-    solution: 'Wir entwickeln ein maßgeschneidertes Versicherungskonzept für dein Unternehmen – mit den richtigen Produkten, der richtigen Deckung und zum besten Preis.',
-    cta: 'Unternehmen jetzt absichern',
-    faq: [
-      { q: 'Muss ich als Freiberufler eine Betriebshaftpflicht haben?', a: 'Nicht gesetzlich vorgeschrieben, aber de facto unverzichtbar. Ohne sie haftest du persönlich und unbegrenzt für Schäden aus deiner Tätigkeit.' },
-      { q: 'Was kostet eine Betriebshaftpflicht?', a: 'Je nach Branche, Umsatz und Deckungssumme ab ca. 100–300 € jährlich. Wir finden den optimalen Preis-Leistungs-Tarif für dich.' },
-      { q: 'Brauche ich als kleines Unternehmen eine Cyber-Versicherung?', a: 'Ja – gerade kleine Unternehmen sind beliebte Ziele, weil sie oft schlechter geschützt sind. Ein Angriff kann den gesamten Betrieb lahmlegen.' },
-    ],
-  },
+  return (
+    <div className="mb-16 rounded-3xl overflow-hidden border border-black/5 shadow-lg bg-[#1E293B]">
+      <div className="grid md:grid-cols-2">
+        {/* Links: Nutzenargumentation */}
+        <div className="p-8 md:p-10">
+          <span className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-5" style={{ backgroundColor: color + '25', color: '#fff' }}>
+            <FileText className="w-3 h-3" /> Kostenloser Download
+          </span>
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">{magnet.title}</h3>
+          <p className="text-white/55 text-sm leading-relaxed mb-6">{magnet.subtitle}</p>
+          <ul className="flex flex-col gap-3">
+            {magnet.bullets.map((b, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-white/75 leading-relaxed">
+                <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color }} />
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-  rente: {
-    category: 'Versicherungen', title: 'Private Rentenversicherung',
-    hook: 'Die gesetzliche Rente wird nicht reichen. Das ist keine Meinung – das sind Zahlen.',
-    intro: 'Das Rentenniveau sinkt seit Jahren. Wer heute 40 ist, kann im Alter nur noch mit etwa 48 % seines letzten Nettogehalts als staatlicher Rente rechnen. Die Lücke musst du selbst schließen – mit dem richtigen Produkt.',
-    stats: [
-      { value: '48 %', label: 'Rentenniveau – Prognose 2040' },
-      { value: '∅ 978 €', label: 'monatliche Nettorente (2023)' },
-      { value: '~500 €', label: 'monatliche Rentenlücke im Schnitt' },
-      { value: '175 €', label: 'Riester-Grundzulage p.a.' },
-    ],
-    comparison: {
-      heading: 'Welche Vorsorge passt zu dir?',
-      left: { label: 'Staatlich gefördert (Riester / Rürup)', points: [
-        { text: 'Staatliche Zulagen & Steuervorteile', pos: true },
-        { text: 'Riester: ideal für Angestellte mit Kindern', pos: true },
-        { text: 'Rürup: ideal für Selbstständige', pos: true },
-        { text: 'Lebenslange Rentenzahlung garantiert', pos: true },
-        { text: 'Weniger flexibel bei Kapitalauszahlung', pos: false },
-      ]},
-      right: { label: 'Private Rente / Fondspolice', points: [
-        { text: 'Maximale Flexibilität & Verfügbarkeit', pos: true },
-        { text: 'Höhere Renditechancen durch Fonds/ETFs', pos: true },
-        { text: 'Auszahlung als Einmalbetrag möglich', pos: true },
-        { text: 'Steueroptimiert in der Rentenphase', pos: true },
-        { text: 'Keine staatliche Förderung', pos: false },
-      ]},
-    },
-    types: [
-      { title: 'Riester-Rente', desc: 'Mit staatlichen Zulagen (175 € Grundzulage, bis zu 300 € Kinderzulage) und Steuervorteilen. Ideal für Angestellte mit Kindern.', tag: 'Für Angestellte' },
-      { title: 'Rürup-Rente (Basisrente)', desc: 'Steuerlich hochattraktiv, besonders für Selbstständige. Beiträge bis zu 27.566 € (2024) jährlich steuerlich absetzbar.', tag: 'Für Selbstständige' },
-      { title: 'Betriebliche Altersvorsorge (bAV)', desc: 'Arbeitgeber zahlt mit. Beiträge direkt vom Bruttolohn – steuer- und sozialabgabenfrei. Seit 2019 muss der Arbeitgeber 15 % zuschießen.', tag: 'Mit Arbeitgeberbeteiligung' },
-      { title: 'Private Rentenversicherung / ETF-Police', desc: 'Maximale Flexibilität, hohe Renditechancen. Keine staatliche Förderung, aber freie Gestaltung von Laufzeit und Auszahlung.', tag: 'Flexibel' },
-    ],
-    problems: [
-      'Das Rentenniveau sinkt seit Jahren – wer heute 40 ist, bekommt im Alter deutlich weniger als erwartet.',
-      'Wer zu spät anfängt, zahlt doppelt so viel für dasselbe Ergebnis.',
-      'Staatliche Förderungen wie Riester, Rürup oder bAV werden massiv unterschätzt und nicht genutzt.',
-    ],
-    solution: 'Wir berechnen deine persönliche Rentenlücke und finden das Vorsorgemodell, das sich für dich wirklich rechnet – steueroptimiert, mit staatlicher Förderung und passend zu deiner Lebenssituation.',
-    cta: 'Rentenlücke jetzt berechnen',
-    faq: [
-      { q: 'Mit welchem Alter sollte ich anfangen?', a: 'So früh wie möglich. Mit 25 Jahren reichen bereits 100 € monatlich für eine ordentliche Zusatzrente. Mit 45 müsstest du über 300 € einzahlen für dasselbe Ergebnis.' },
-      { q: 'Ist Riester noch sinnvoll?', a: 'Ja – besonders für Familien mit Kindern oder wenn dein Steuersatz im Alter geringer ist als heute. Wir rechnen es konkret für dich durch.' },
-      { q: 'Was ist die betriebliche Altersvorsorge (bAV)?', a: 'Du wandelst Teile deines Bruttolohns in Altersvorsorge um – steuer- und sozialabgabenfrei bis zu 3.624 € p.a. Dein Arbeitgeber muss seit 2019 15 % als Zuschuss zahlen.' },
-    ],
-  },
-
-  hinterbliebene: {
-    category: 'Versicherungen', title: 'Hinterbliebenenvorsorge',
-    hook: 'Was passiert mit deiner Familie, wenn du morgen nicht mehr da bist? Bist du sicher, dass sie ohne dich auskommt?',
-    intro: 'Der Gedanke ist unangenehm, aber unvermeidbar. Wer anderen Menschen gegenüber finanzielle Verantwortung trägt, muss sie auch im schlimmsten Fall absichern. Wir helfen dir, das lückenlos zu tun.',
-    stats: [
-      { value: '∅ 200.000 €', label: 'empfohlene Deckungssumme Risikoleben' },
-      { value: '25 %', label: 'gesetzliche Witwen-/Witwerrente vom Rentenanspruch' },
-      { value: '~10 €', label: 'monatlich – schon mit 30 Jahren' },
-      { value: '48h', label: 'schnelle Auszahlung im Todesfall' },
-    ],
-    types: [
-      { title: 'Risikolebensversicherung', desc: 'Zahlt eine festgelegte Summe im Todesfall. Günstig, einfach, effektiv – besonders wichtig bei Krediten, Immobilien oder kleinen Kindern.', tag: 'Empfohlen' },
-      { title: 'Sterbegeldversicherung', desc: 'Deckt die Bestattungskosten ab (∅ 8.000–15.000 €). Sinnvoll für Ältere ohne große Ersparnisse, die Angehörige nicht belasten möchten.', tag: 'Für Ältere' },
-      { title: 'Hinterbliebenenrente (privat)', desc: 'Zahlt deiner Familie monatlich eine Rente statt einer Einmalsumme. Sinnvoll, wenn dein Partner keine eigene Altersvorsorge hat.', tag: 'Langfristiger Schutz' },
-    ],
-    problems: [
-      'Die gesetzliche Witwen- und Waisenrente deckt nur einen Bruchteil des tatsächlichen Bedarfs.',
-      'Kredite, Miete und Lebenshaltungskosten laufen weiter – auch ohne dein Einkommen.',
-      'Viele schieben das Thema auf – und hinterlassen ihre Familie ungeschützt.',
-    ],
-    solution: 'Wir sichern deine Familie mit dem richtigen Produkt ab – Risikolebensversicherung, Sterbegeldversicherung oder Hinterbliebenenrente. Günstig abgeschlossen, schnell wirksam.',
-    cta: 'Familie jetzt absichern',
-    faq: [
-      { q: 'Wie hoch sollte die Risikolebensversicherung sein?', a: 'Als Faustregel: 3–5 Jahreseinkommen. Bei laufenden Krediten mindestens die Restschuld. Wir berechnen den genauen Bedarf für dich.' },
-      { q: 'Brauche ich eine Risikoleben ohne Kinder?', a: 'Wenn dein Partner finanziell von dir abhängig ist oder ihr gemeinsame Kredite habt, ja. Ansonsten ist der Bedarf individuell zu prüfen.' },
-      { q: 'Was kostet eine Risikolebensversicherung?', a: 'Für 300.000 € Deckungssumme mit 25 Jahren zahlen gesunde Menschen oft unter 15 € monatlich. Der Beitrag hängt von Alter, Gesundheit und Laufzeit ab.' },
-    ],
-  },
-  immobilien: {
-    category: 'Vermögensaufbau', title: 'Immobilien',
-    hook: 'Immobilien machen reich – aber nur, wenn man weiß, welche man kauft, wo man finanziert und wann man einsteigt.',
-    intro: 'Immobilien sind eine der kraftvollsten Formen des Vermögensaufbaus. Du investierst Fremdkapital, das andere (deine Mieter) für dich zurückzahlen. Mit dem richtigen Objekt und der richtigen Finanzierung baust du Vermögen, ohne alles aus eigener Tasche zu stemmen.',
-    stats: [
-      { value: '500+', label: 'Bankpartner für beste Konditionen' },
-      { value: '∅ 3 %', label: 'Mietrendite in deutschen Städten' },
-      { value: '110 %', label: 'Finanzierung möglich (ohne Eigenkapital)' },
-      { value: '14+', label: 'Jahre Erfahrung im Immobilienbereich' },
-    ],
-    comparison: {
-      heading: 'Immobilie kaufen vs. weiter mieten',
-      left: { label: 'Weiter mieten', points: [
-        { text: 'Flexibel und kurzfristig kündbar', pos: true },
-        { text: 'Mietzahlung baut kein Vermögen auf', pos: false },
-        { text: 'Miete steigt regelmäßig', pos: false },
-        { text: 'Kein Inflationsschutz', pos: false },
-        { text: 'Keine steuerlichen Vorteile', pos: false },
-      ]},
-      right: { label: 'Immobilie kaufen / investieren', points: [
-        { text: 'Vermögensaufbau mit Fremdkapital', pos: true },
-        { text: 'Inflationsschutz durch Sachwert', pos: true },
-        { text: 'Steuerliche Absetzbarkeit (bei Vermietung)', pos: true },
-        { text: 'Passives Einkommen durch Mieteinnahmen', pos: true },
-        { text: 'Langfristige Vermögensbindung', pos: false },
-      ]},
-    },
-    types: [
-      { title: 'Eigentumswohnung zur Vermietung', desc: 'Klassischer Einstieg. Mieter zahlt die Finanzierung, du baust Eigenkapital auf. Oft mit 10–20 % Eigenkapital realisierbar.', tag: 'Einsteiger' },
-      { title: 'Eigengenutzte Immobilie', desc: 'Du zahlst nicht mehr Miete, sondern tilgst – für dich selbst. Mietfreies Leben im Alter als Ziel.', tag: 'Selbstnutzung' },
-      { title: 'Immobilienportfolio', desc: 'Mehrere Objekte für maximale Streuung und skaliertes passives Einkommen. Mit professioneller Begleitung realisierbar.', tag: 'Fortgeschrittene' },
-    ],
-    problems: [
-      'Wer falsch finanziert, zahlt Zehntausende Euro zu viel über die gesamte Laufzeit.',
-      'Die meisten kaufen emotional statt strategisch – und bereuen es.',
-      'Ohne Marktzugang bekommst du nicht die besten Objekte und nicht die besten Konditionen.',
-    ],
-    solution: 'Wir begleiten dich beim Kauf der richtigen Immobilie – von der Objektanalyse über die Finanzierung bis zum Abschluss. Mit Zugang zu über 500 Banken sichern wir dir die besten Konditionen.',
-    cta: 'Immobilienberatung starten',
-    faq: [
-      { q: 'Wie viel Eigenkapital brauche ich?', a: 'Idealerweise 20–30 % des Kaufpreises plus Kaufnebenkosten (ca. 10 %). In manchen Fällen ist auch eine 110 %-Finanzierung ohne Eigenkapital möglich.' },
-      { q: 'Lohnt sich kaufen statt mieten noch?', a: 'Mit gesunkenen Zinsen und stabilen Preisen in vielen Regionen: ja. Entscheidend sind Standort, Mietrendite und deine Finanzierungskonditionen. Wir rechnen es durch.' },
-      { q: 'Was kostet eure Immobilienberatung?', a: 'Für Käufer ist die Beratung kostenlos – wir werden durch die Finanzierung vergütet. Du profitierst trotzdem von unserem unabhängigen Vergleich.' },
-    ],
-  },
-
-  sparprodukte: {
-    category: 'Vermögensaufbau', title: 'Sparprodukte',
-    hook: 'Geld auf dem Girokonto zu lassen ist keine Strategie – es ist ein schleichender Vermögensverlust durch Inflation.',
-    intro: 'Sparen ist wichtig. Aber wie und wo du sparst, macht einen gewaltigen Unterschied. Vom Tagesgeld bis zum Bausparvertrag – wir helfen dir, das Produkt zu finden, das wirklich zu deinen Zielen und deinem Zeithorizont passt.',
-    stats: [
-      { value: '∅ 2,8 %', label: 'Tagesgeldrendite (2024)' },
-      { value: '26 %', label: 'Kaufkraftverlust bei 3 % Inflation in 10 Jahren' },
-      { value: '100.000 €', label: 'Einlagensicherung pro Kunde pro Bank' },
-      { value: '0 €', label: 'Mindestanlage beim Tagesgeld' },
-    ],
-    comparison: {
-      heading: 'Sicherheit vs. Rendite: Was passt zu dir?',
-      left: { label: 'Sichere Sparprodukte', points: [
-        { text: 'Tagesgeld: 2–4 % Zinsen, täglich verfügbar', pos: true },
-        { text: 'Festgeld: höhere Zinsen bei fester Laufzeit', pos: true },
-        { text: 'Bausparvertrag: staatlich gefördert', pos: true },
-        { text: 'Geringeres Renditepotenzial', pos: false },
-        { text: 'Ideal für kurzfristige Ziele', pos: true },
-      ]},
-      right: { label: 'Renditeorientierte Alternativen', points: [
-        { text: 'ETFs: ∅ 7–9 % p.a. historisch langfristig', pos: true },
-        { text: 'Höhere Renditechancen', pos: true },
-        { text: 'Kurzfristig schwankend (Marktrisiko)', pos: false },
-        { text: 'Ideal für langfristige Ziele (5+ Jahre)', pos: true },
-        { text: 'Steuerliche Freibeträge nutzbar', pos: true },
-      ]},
-    },
-    types: [
-      { title: 'Tagesgeld', desc: 'Täglich verfügbar, aktuell mit 2–4 % verzinst. Ideal als Notgroschen (3–6 Monatsgehälter) und für kurzfristige Ziele.', tag: 'Notgroschen' },
-      { title: 'Festgeld', desc: 'Höhere Zinsen als Tagesgeld für eine feste Laufzeit (3 Monate bis 5 Jahre). Ideal für Geld, das du nicht sofort brauchst.', tag: 'Kurzfristig' },
-      { title: 'Bausparvertrag', desc: 'Staatlich gefördert durch Wohnungsbauprämie. Sichert dir heute einen festen Zinssatz für eine zukünftige Baufinanzierung.', tag: 'Für Eigenheim-Planer' },
-    ],
-    problems: [
-      'Inflation frisst dein Erspartes auf – 3 % Inflation bedeuten in 10 Jahren 26 % weniger Kaufkraft.',
-      'Die meisten Sparer nutzen Produkte, die sich für die Bank rechnen – nicht für sie.',
-      'Ohne Struktur bleibt Sparen zufällig und ineffizient – kein Notgroschen, keine Strategie.',
-    ],
-    solution: 'Wir strukturieren dein Sparverhalten mit den richtigen Produkten – von Tagesgeld bis Bausparvertrag – passend zu deinen Zielen. Kurzfristig verfügbar, mittelfristig verzinst, langfristig renditeorientiert.',
-    cta: 'Sparstrategie entwickeln',
-    faq: [
-      { q: 'Wie viel Notgroschen sollte ich haben?', a: '3–6 Monatsnettogehälter als Rücklage auf einem gut verzinsten Tagesgeldkonto. Danach beginnt der sinnvolle Aufbau von Renditeportfolios.' },
-      { q: 'Ist ein Bausparvertrag noch sinnvoll?', a: 'Wenn du in den nächsten 7–15 Jahren eine Immobilie kaufen oder sanieren möchtest – ja. Der garantierte Kreditzins wird durch die Wohnungsbauprämie staatlich gefördert.' },
-      { q: 'Wie vergleiche ich Tagesgeldkonten?', a: 'Wir übernehmen das für dich. Aktuell gibt es teils erhebliche Unterschiede im Zinssatz – und wechseln lohnt sich fast immer.' },
-    ],
-  },
-
-  geldanlagen: {
-    category: 'Vermögensaufbau', title: 'Geldanlagen',
-    hook: 'Wer sein Geld nicht für sich arbeiten lässt, arbeitet sein Leben lang für Geld.',
-    intro: 'ETFs, Fonds, Anleihen – der Kapitalmarkt bietet viele Möglichkeiten. Entscheidend ist eine wissenschaftlich fundierte Strategie, konsequente Diversifikation und das Vermeiden emotionaler Fehler. Wir begleiten dich dabei.',
-    stats: [
-      { value: '∅ 8 %', label: 'globaler ETF-Ertrag p.a. (MSCI World, langfristig)' },
-      { value: '10 €', label: 'monatlich – so wenig genügt zum Starten' },
-      { value: '2x', label: 'mehr Ertrag durch Zinseszins über 20 Jahre' },
-      { value: '1.000 €', label: 'jährlicher Steuerfreibetrag Kapitalerträge' },
-    ],
-    comparison: {
-      heading: 'ETFs vs. aktiv gemanagte Fonds',
-      left: { label: 'ETFs (passiv)', points: [
-        { text: 'Niedrige Kosten (∅ 0,2 % TER)', pos: true },
-        { text: 'Breite Diversifikation (1.600+ Unternehmen)', pos: true },
-        { text: 'Wissenschaftlich empfohlen', pos: true },
-        { text: 'Kein Fondsmanager-Risiko', pos: true },
-        { text: 'Marktrendite, kein Alpha-Anspruch', pos: false },
-      ]},
-      right: { label: 'Aktiv gemanagte Fonds', points: [
-        { text: 'Höhere Kosten (∅ 1,5–2 % TER)', pos: false },
-        { text: 'Ziel: Markt schlagen', pos: true },
-        { text: 'Nur ~15 % schlagen langfristig den Index', pos: false },
-        { text: 'Abhängig vom Fondsmanager', pos: false },
-        { text: 'Potenzial für überdurchschnittliche Renditen', pos: true },
-      ]},
-    },
-    types: [
-      { title: 'ETF-Sparplan', desc: 'Monatlich automatisch in globale Aktienindizes investieren. Günstig, diversifiziert, wissenschaftlich empfohlen. Ideal für den langfristigen Vermögensaufbau.', tag: 'Empfohlen' },
-      { title: 'Fondsvermögensverwaltung', desc: 'Professionell verwaltetes Portfolio für größere Beträge. Vollautomatische Anpassung, Steueroptimierung und aktives Risikomanagement.', tag: 'Ab 25.000 €' },
-      { title: 'Anleihen & Mischfonds', desc: 'Für konservativere Anleger: mehr Stabilität, weniger Renditeschwankungen. Gut als Beimischung in der Nähe des Ruhestands.', tag: 'Konservativ' },
-    ],
-    problems: [
-      'Die meisten legen ihr Geld zu konservativ an und verlieren real an Wert.',
-      'Ohne Strategie und Diversifikation ist jede Geldanlage ein Glücksspiel.',
-      'Banken empfehlen oft die Produkte, die ihnen am meisten einbringen – nicht die, die dir am meisten nützen.',
-    ],
-    solution: 'Wir entwickeln eine wissenschaftlich fundierte Anlagestrategie mit ETFs und Fonds – eigenständig, auf dich zugeschnitten und ohne Provisionsinteressen. Langfristig, diversifiziert und steueroptimiert.',
-    cta: 'Anlagestrategie erstellen',
-    faq: [
-      { q: 'Wie viel Geld brauche ich, um anzufangen?', a: 'Schon ab 10–25 € monatlich kannst du mit einem ETF-Sparplan starten. Wichtig ist der frühe Beginn, nicht die Höhe der ersten Einzahlung.' },
-      { q: 'Ist der aktuelle Zeitpunkt gut zum Investieren?', a: 'Langfristig spielt der Einstiegszeitpunkt eine untergeordnete Rolle. Regelmäßiges Investieren (Cost-Average-Effekt) ist besser als auf den perfekten Moment zu warten.' },
-      { q: 'Was passiert, wenn der Markt einbricht?', a: 'Kurzfristige Korrekturen sind normal. Historisch hat sich der Markt immer erholt. Wer in der Krise verkauft, realisiert Verluste.' },
-      { q: 'Welcher ETF ist der beste?', a: 'Das hängt von Zeithorizont, Risikobereitschaft und Zielen ab. Wir erstellen dir ein konkretes Portfolio – kostenlos und unverbindlich.' },
-    ],
-  },
-
-  vorsorge: {
-    category: 'Vermögensaufbau', title: 'Vorsorgekonzepte',
-    hook: 'Die Rentenlücke ist real. Und je später du handelst, desto teurer wird es.',
-    intro: 'Viele unterschätzen, wie viel Geld sie im Alter wirklich brauchen. Gleichzeitig werden staatliche Förderungen kaum genutzt. Wir entwickeln dein persönliches Vorsorgekonzept – mit allem, was der Staat dir bietet.',
-    stats: [
-      { value: '~500 €', label: 'monatliche Rentenlücke im Schnitt' },
-      { value: '27.566 €', label: 'steuerlich absetzbar per Rürup (2024)' },
-      { value: '300 €', label: 'Riester-Kinderzulage pro Kind (ab 2008)' },
-      { value: '15 %', label: 'Pflicht-Arbeitgeberzuschuss bei bAV' },
-    ],
-    comparison: {
-      heading: 'Staatlich geförderte Vorsorge im Vergleich',
-      left: { label: 'Riester-Rente', points: [
-        { text: '175 € Grundzulage p.a.', pos: true },
-        { text: 'Bis zu 300 € je Kind (ab 2008 geboren)', pos: true },
-        { text: 'Für rentenversicherungspflichtige Angestellte', pos: true },
-        { text: 'Im Alter vollständig zu versteuern', pos: false },
-        { text: 'Staatliche Garantie der Einzahlungen', pos: true },
-      ]},
-      right: { label: 'Rürup-Rente (Basisrente)', points: [
-        { text: 'Bis zu 27.566 € jährlich absetzbar (2024)', pos: true },
-        { text: 'Ideal für Selbstständige & Gutverdiener', pos: true },
-        { text: 'Nicht kapitalisierbar oder übertragbar', pos: false },
-        { text: 'Im Alter nachgelagert zu versteuern', pos: false },
-        { text: 'Pfändungssicher', pos: true },
-      ]},
-    },
-    types: [
-      { title: 'Riester-Rente', desc: 'Mit staatlichen Zulagen. Ideal für Angestellte, besonders mit Kindern. Steuerlich absetzbar als Sonderausgabe.', tag: 'Für Angestellte' },
-      { title: 'Rürup-Rente', desc: 'Für Selbstständige und Gutverdienende. Hohe steuerliche Absetzbarkeit, lebenslange Rente, pfändungssicher.', tag: 'Für Selbstständige' },
-      { title: 'Betriebliche Altersvorsorge (bAV)', desc: 'Beiträge steuer- und sozialabgabenfrei bis zur Grenze. Arbeitgeber muss seit 2019 mindestens 15 % zuschießen.', tag: 'Arbeitgeberbeteiligung' },
-      { title: 'Private Fondspolice', desc: 'Ohne staatliche Förderung, aber maximale Flexibilität. Renditeorientiert über ETFs, steueroptimiert in der Auszahlphase.', tag: 'Flexibel' },
-    ],
-    problems: [
-      'Viele unterschätzen, wie viel Geld sie im Alter tatsächlich brauchen werden.',
-      'Staatliche Förderungen wie Riester, Rürup oder bAV werden massiv unterschätzt.',
-      'Ohne ganzheitliches Konzept verlierst du bares Geld durch Steuern, Gebühren und falsche Produkte.',
-    ],
-    solution: 'Wir erstellen dein persönliches Vorsorgekonzept – mit allen staatlichen Förderungen, steueroptimiert und auf deine Ziele ausgerichtet. Wir zeigen dir genau, was du heute tun musst, um morgen sorgenfrei zu leben.',
-    cta: 'Vorsorgekonzept erstellen lassen',
-    faq: [
-      { q: 'Wie hoch ist meine Rentenlücke?', a: 'Das hängt von deinem Rentenanspruch, deinem gewünschten Lebensstandard im Alter und deiner Lebenserwartung ab. Wir berechnen sie kostenlos für dich.' },
-      { q: 'Lohnt sich Riester noch?', a: 'Ja – besonders wenn du Kinder hast oder einen niedrigen Steuersatz im Alter erwartest. Mit Kindern kann die staatliche Förderung erheblich sein.' },
-      { q: 'Muss ich bAV nutzen?', a: 'Kein Muss – aber sinnvoll. Durch die Entgeltumwandlung zahlst du weniger Steuern und Sozialabgaben, und dein Arbeitgeber muss mindestens 15 % dazugeben.' },
-    ],
-  },
-
-  finanzierungen: {
-    category: 'Vermögensaufbau', title: 'Finanzierungen',
-    hook: 'Der Unterschied zwischen einer guten und einer schlechten Finanzierung kann dich leicht 50.000 € kosten.',
-    intro: 'Ob Immobilie, Fahrzeug oder Unternehmensinvestition – eine Finanzierung ist sinnvoll, wenn das Kapital produktiv arbeitet. Wir vergleichen für dich über 500 Banken und holen das beste Angebot heraus.',
-    stats: [
-      { value: '500+', label: 'Bankpartner im Vergleich' },
-      { value: '~2.500 €', label: 'Ersparnis pro 0,1 % Zinsvorteil über 20 Jahre' },
-      { value: '∅ 2 %', label: 'niedrigere Zinsen durch Vergleich' },
-      { value: '48h', label: 'Kreditentscheidung möglich' },
-    ],
-    comparison: {
-      heading: 'Hausbank vs. unabhängiger Vergleich',
-      left: { label: 'Direktfinanzierung bei der Hausbank', points: [
-        { text: 'Nur ein Angebot zum Vergleich', pos: false },
-        { text: 'Oft höhere Zinsen ohne Gegendruck', pos: false },
-        { text: 'Bekannte Ansprechpartner vor Ort', pos: true },
-        { text: 'Keine Markttransparenz', pos: false },
-        { text: 'Schnelle Entscheidung möglich', pos: true },
-      ]},
-      right: { label: 'Unabhängiger Vergleich über DK', points: [
-        { text: 'Vergleich von 500+ Banken', pos: true },
-        { text: 'Durchschnittlich 0,2–0,5 % besserer Zins', pos: true },
-        { text: 'Ein Ansprechpartner, alle Angebote', pos: true },
-        { text: 'Volle Markttransparenz', pos: true },
-        { text: 'Komplett kostenlos für dich', pos: true },
-      ]},
-    },
-    types: [
-      { title: 'Immobilienfinanzierung', desc: 'Kauf, Bau oder Anschlussfinanzierung. Wir vergleichen über 500 Banken für alle Objekttypen und holen die besten Konditionen heraus.', tag: 'Immobilien' },
-      { title: 'Konsumentenkredit', desc: 'Für Fahrzeuge, Renovierungen oder größere Anschaffungen. Schnell, unkompliziert und deutlich günstiger als bei der Hausbank.', tag: 'Schnell' },
-      { title: 'Unternehmensfinanzierung', desc: 'Investitionskredite, Betriebsmittellinien, KfW-Förderkredite – wir finden die richtige Finanzierungsstruktur für dein Unternehmen.', tag: 'Für Unternehmen' },
-    ],
-    problems: [
-      'Wer nur bei seiner Hausbank fragt, bekommt selten das beste Angebot.',
-      'Kleine Unterschiede im Zinssatz machen über 20 Jahre einen riesigen Unterschied.',
-      'Ohne Vergleich bezahlst du zu viel – oft ohne es zu merken.',
-    ],
-    solution: 'Wir vergleichen für dich über 500 Banken und Finanzierungspartner – kostenlos und vollständig digital. Ein einziger Antrag, das beste Ergebnis.',
-    cta: 'Jetzt Finanzierung vergleichen',
-    faq: [
-      { q: 'Was kostet eure Finanzierungsvermittlung?', a: 'Für dich gar nichts. Wir werden von der finanzierenden Bank vergütet – das ändert aber nichts daran, dass wir für dich das beste Angebot am Markt suchen.' },
-      { q: 'Wie viel Eigenkapital brauche ich?', a: 'Empfohlen: 20–30 % des Kaufpreises plus Kaufnebenkosten. In Einzelfällen sind auch Vollfinanzierungen möglich – wir prüfen deine Situation.' },
-      { q: 'Wann ist der richtige Zeitpunkt für eine Anschlussfinanzierung?', a: 'Am besten 12–18 Monate vor Ablauf deiner Zinsbindung. So hast du Zeit, den Markt zu vergleichen und die besten Konditionen zu sichern.' },
-    ],
-  },
-
-  aktien: {
-    category: 'Vermögensaufbau', title: 'Aktien',
-    hook: 'Die reichsten Menschen der Welt haben eines gemeinsam: Sie besitzen Unternehmensanteile. Du auch?',
-    intro: 'Aktien sind keine Spekulation – sie sind Eigentumsanteile an Unternehmen. Wer mit Strategie investiert, langfristig denkt und breit diversifiziert, nutzt die kraftvollste Renditemachine der Geschichte.',
-    stats: [
-      { value: '∅ 10 %', label: 'MSCI World Rendite p.a. (50 Jahre)' },
-      { value: '174.000 €', label: '10.000 € werden nach 30 Jahren daraus' },
-      { value: '1.600+', label: 'Unternehmen im MSCI World' },
-      { value: '1.000 €', label: 'jährlicher Steuerfreibetrag Kapitalerträge' },
-    ],
-    comparison: {
-      heading: 'Einzelaktien vs. ETFs',
-      left: { label: 'Einzelaktien', points: [
-        { text: 'Chance auf überdurchschnittliche Rendite', pos: true },
-        { text: 'Hohes Einzelrisiko (Klumpenrisiko)', pos: false },
-        { text: 'Aufwendige Unternehmensanalyse nötig', pos: false },
-        { text: 'Emotionale Entscheidungen häufig', pos: false },
-        { text: 'Für erfahrene Anleger geeignet', pos: true },
-      ]},
-      right: { label: 'ETFs (Indexfonds)', points: [
-        { text: 'Breite Diversifikation mit einem Produkt', pos: true },
-        { text: 'Niedrige Kosten (∅ 0,1–0,3 % p.a.)', pos: true },
-        { text: 'Wissenschaftlich empfohlen', pos: true },
-        { text: 'Kein Fondsmanager-Risiko', pos: true },
-        { text: 'Auch für Einsteiger geeignet', pos: true },
-      ]},
-    },
-    types: [
-      { title: 'ETF-Sparplan', desc: 'Regelmäßig in globale Indizes investieren (z.B. MSCI World). Günstig, diversifiziert, automatisch. Ideal für den langfristigen Vermögensaufbau.', tag: 'Einsteiger & Fortgeschrittene' },
-      { title: 'Einzelaktien-Depot', desc: 'Direkter Kauf von Unternehmensanteilen. Höheres Renditepotenzial bei höherem Risiko. Erfordert Analyse und Disziplin.', tag: 'Für Erfahrene' },
-      { title: 'Dividendenstrategie', desc: 'Fokus auf dividendenstarke Unternehmen für passives Einkommen. Kombination aus Kursgewinnen und regelmäßigen Ausschüttungen.', tag: 'Passives Einkommen' },
-    ],
-    problems: [
-      'Viele trauen sich nicht an Aktien – und verpassen die kraftvollste Form des Vermögensaufbaus.',
-      'Ohne Strategie ist der Aktienmarkt ein Casino. Mit Strategie ist er eine Maschine.',
-      'Wer zu spät einsteigt oder emotional handelt, verliert – systematisch.',
-    ],
-    solution: 'Wir begleiten dich beim Einstieg in den Kapitalmarkt – mit klarer Strategie, langfristiger Perspektive und wissenschaftlich belegten Ansätzen. Kein Rätselraten, keine Emotion.',
-    cta: 'Kapitalmarkt-Beratung starten',
-    faq: [
-      { q: 'Ist jetzt ein guter Zeitpunkt zum Einstieg?', a: 'Langfristig spielt der Einstiegszeitpunkt eine untergeordnete Rolle. Regelmäßiges Investieren (Sparplan) ist besser als auf den perfekten Moment zu warten.' },
-      { q: 'Wie hoch kann ich verlieren?', a: 'Bei breit diversifizierten ETFs ist ein Totalverlust historisch nicht vorgekommen. Kurzfristige Einbrüche von 30–50 % sind aber normal und kein Grund zur Panik.' },
-      { q: 'Muss ich Steuern auf Kursgewinne zahlen?', a: '26,375 % Abgeltungssteuer auf realisierte Gewinne. Der jährliche Freibetrag beträgt 1.000 € (2.000 € für Ehepaare). Nicht realisierte Gewinne sind steuerfrei.' },
-    ],
-  },
-
-  vwl: {
-    category: 'Vermögensaufbau', title: 'Vermögenswirksame Leistungen',
-    hook: 'Dein Arbeitgeber zahlt dir Geld für den Vermögensaufbau – und die meisten lassen es einfach verfallen.',
-    intro: 'Vermögenswirksame Leistungen (VWL) sind Zuschüsse deines Arbeitgebers, die direkt in einen Anlagevertrag fließen – steuer- und sozialabgabenfrei. Mit dem richtigen Vertrag und staatlicher Förderung kannst du das Maximum herausholen.',
-    stats: [
-      { value: '40 €', label: 'maximaler Arbeitgeberzuschuss monatlich' },
-      { value: '480 €', label: 'jährliche VWL – oft ungenutzt verfallend' },
-      { value: '20 %', label: 'staatliche Arbeitnehmer-Sparzulage (Fonds)' },
-      { value: '6 Jahre', label: 'typische Laufzeit mit Sperrfrist' },
-    ],
-    comparison: {
-      heading: 'VWL: Banksparplan vs. Fondssparplan',
-      left: { label: 'Banksparplan (klassisch)', points: [
-        { text: 'Festes, oft sehr niedriges Zinsniveau', pos: false },
-        { text: 'Keine staatliche Arbeitnehmer-Sparzulage', pos: false },
-        { text: 'Kapitalgarantie', pos: true },
-        { text: 'Kaum Rendite über Inflation', pos: false },
-        { text: 'Einfach und verständlich', pos: true },
-      ]},
-      right: { label: 'Fondssparplan (empfohlen)', points: [
-        { text: '20 % staatliche Sparzulage auf bis zu 400 €/Jahr', pos: true },
-        { text: 'Höhere Renditechancen durch Fonds/ETFs', pos: true },
-        { text: 'Langfristig deutlich mehr Vermögen', pos: true },
-        { text: 'Kurzfristige Wertschwankungen möglich', pos: false },
-        { text: 'Einkommensgrenze für Sparzulage beachten', pos: false },
-      ]},
-    },
-    types: [
-      { title: 'Fonds-VWL-Sparplan', desc: 'Empfehlung für alle, die die Einkommensgrenzen erfüllen. Arbeitgeberzuschuss + staatliche Sparzulage + Rendite durch Fonds/ETFs.', tag: 'Empfohlen' },
-      { title: 'Bauspar-VWL', desc: 'VWL in einen Bausparvertrag. Staatlich gefördert durch Wohnungsbauprämie. Ideal, wenn du künftig Wohneigentum anstrebst.', tag: 'Für Eigenheim-Planer' },
-      { title: 'Direkt-VWL (Bank)', desc: 'Einfachste Variante. Arbeitgeberzuschuss fließt auf ein verzinstes Konto. Wenig Renditechancen, aber einfach und sicher.', tag: 'Einfacher Einstieg' },
-    ],
-    problems: [
-      'Viele Arbeitnehmer wissen nicht, dass ihr Arbeitgeber bis zu 40 € monatlich als VWL-Zuschuss zahlt – Geld, das einfach verfällt.',
-      'Ohne den richtigen Anlagevertrag fließen VWL auf ein schlechtverzinstes Konto und verlieren real an Wert.',
-      'Staatliche Arbeitnehmer-Sparzulage wird nicht beantragt, weil niemand über die Voraussetzungen informiert.',
-    ],
-    solution: 'Wir richten deinen VWL-Vertrag optimal ein – passend zu deinem Einkommen, deinen staatlichen Förderansprüchen und deiner langfristigen Anlagestrategie.',
-    cta: 'VWL kostenlos optimieren',
-    faq: [
-      { q: 'Hat jeder Arbeitnehmer Anspruch auf VWL?', a: 'Nein – der Anspruch hängt vom Tarifvertrag oder Arbeitsvertrag ab. Frag deinen Arbeitgeber. Viele wissen nicht, ob sie VWL zahlen.' },
-      { q: 'Wer hat Anspruch auf die Arbeitnehmer-Sparzulage?', a: 'Singles mit maximal 40.000 € zu versteuerndem Jahreseinkommen (Ehepaare 80.000 €) können 20 % staatliche Förderung auf Fonds-VWL erhalten.' },
-      { q: 'Wie lange sind VWL-Verträge gesperrt?', a: 'Die Sperrfrist beträgt 6 Jahre beim Banksparplan bzw. 6+1 Jahre beim Bausparvertrag. Fonds-Sparpläne haben keine gesetzliche Sperrfrist.' },
-    ],
-  },
+        {/* Rechts: Formular */}
+        <div className="bg-white p-8 md:p-10 flex flex-col justify-center">
+          {state === 'done' ? (
+            <div className="text-center">
+              <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color }} />
+              <h4 className="text-xl font-bold text-[#1E293B] mb-2">Fertig – hier ist deine Übersicht</h4>
+              <p className="text-sm text-[#1E293B]/55 mb-6">Wir haben dir den Link zusätzlich per E-Mail geschickt.</p>
+              <a href={magnet.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-8 py-4 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity" style={{ backgroundColor: color }}>
+                <Download className="w-4 h-4" /> {magnet.fileLabel} öffnen
+              </a>
+              <p className="text-xs text-[#1E293B]/40 mt-4">Tipp: Im Browser über „Drucken → Als PDF sichern" speicherst du dir die Übersicht ab.</p>
+            </div>
+          ) : (
+            <form onSubmit={submit} className="flex flex-col gap-4">
+              <div>
+                <h4 className="text-lg font-bold text-[#1E293B] mb-1">Jetzt kostenlos anfordern</h4>
+                <p className="text-xs text-[#1E293B]/50">Name und E-Mail genügen – du bekommst den Link sofort.</p>
+              </div>
+              <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Vorname und Nachname"
+                className="border border-[#1E293B]/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E293B]/50 bg-white text-[#1E293B] placeholder:text-[#1E293B]/40" />
+              <input required type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="E-Mail-Adresse"
+                className="border border-[#1E293B]/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E293B]/50 bg-white text-[#1E293B] placeholder:text-[#1E293B]/40" />
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" required checked={form.consent} onChange={e => setForm({ ...form, consent: e.target.checked })} className="mt-0.5 w-4 h-4 flex-shrink-0 accent-[#1E293B]" />
+                <span className="text-xs text-[#1E293B]/55 leading-relaxed">
+                  Ja, schickt mir die Übersicht per E-Mail. Die DK Finanzkanzlei darf mich dazu einmalig kontaktieren. Es gilt die{' '}
+                  <button type="button" onClick={() => onPageChange('datenschutz')} className="underline" style={{ color }}>Datenschutzerklärung</button>.
+                </span>
+              </label>
+              <button type="submit" disabled={state === 'sending'} className="w-full py-4 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity disabled:opacity-60" style={{ backgroundColor: color }}>
+                {state === 'sending' ? 'Wird gesendet …' : `${magnet.fileLabel} kostenlos erhalten`}
+              </button>
+              <p className="text-[11px] text-[#1E293B]/40 leading-relaxed">Kein Newsletter-Abo, keine Weitergabe an Dritte. Du kannst jederzeit widersprechen.</p>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: ServiceKey; color: string; onPageChange: (p: Page) => void }) => {
@@ -3263,6 +2755,15 @@ const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: Se
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">{data.title}</h1>
             <p className="text-white/55 text-lg md:text-xl max-w-2xl leading-relaxed">{data.hook}</p>
+            <div className="flex flex-col sm:flex-row gap-3 mt-8">
+              <button onClick={() => onPageChange('kontakt')} className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-bold rounded-full text-sm hover:opacity-90 transition-opacity shadow-lg" style={{ backgroundColor: color }}>
+                {data.cta} <ArrowRight className="w-4 h-4" />
+              </button>
+              <a href="tel:+491731038570" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white border border-white/20 hover:bg-white/10 transition-colors">
+                Direkt anrufen
+              </a>
+            </div>
+            <p className="text-white/35 text-xs mt-4">Kostenlos & unverbindlich · Antwort innerhalb von 48 Stunden</p>
           </motion.div>
         </div>
       </div>
@@ -3320,6 +2821,12 @@ const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: Se
           </div>
         )}
 
+        {/* ── Inline-CTA 1 ── */}
+        <CtaBand color={color} onPageChange={onPageChange}
+          headline="Unsicher, welche Variante zu dir passt?"
+          sub="In einem kostenlosen Erstgespräch rechnen wir dir beide Wege mit deinen Zahlen durch – ohne Verkaufsdruck, ohne Verpflichtung."
+          label={data.cta} />
+
         {/* ── Product Types ── */}
         {data.types && (
           <div className="mb-16">
@@ -3363,6 +2870,57 @@ const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: Se
           <p className="text-xl md:text-2xl leading-relaxed font-medium relative">{data.solution}</p>
         </div>
 
+        {/* ── Lead-Magnet ── */}
+        {data.leadMagnet && <LeadMagnetForm magnet={data.leadMagnet} color={color} onPageChange={onPageChange} />}
+
+        {/* ── Deep Dive ── */}
+        {data.deepDive && (
+          <div className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-8">{data.deepDive.heading}</h2>
+            <div className="flex flex-col gap-4">
+              {data.deepDive.sections.map((sec, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.04 }}
+                  className="bg-white rounded-2xl border border-black/5 shadow-sm p-7 md:p-9">
+                  <div className="flex items-baseline gap-4 mb-3">
+                    <span className="text-xs font-bold tabular-nums" style={{ color }}>{String(i + 1).padStart(2, '0')}</span>
+                    <h3 className="text-lg md:text-xl font-bold text-[#1E293B]">{sec.title}</h3>
+                  </div>
+                  <p className="text-[#1E293B]/65 leading-relaxed md:pl-9">{sec.body}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── Inline-CTA 2 ── */}
+        {data.deepDive && (
+          <CtaBand color={color} onPageChange={onPageChange}
+            headline="Klingt nach viel? Ist es auch – deshalb machen wir das für dich."
+            sub="Wir prüfen Bedingungen, Kosten und Anbieter und legen dir am Ende zwei bis drei konkrete Empfehlungen auf den Tisch. Verständlich erklärt."
+            label="Kostenloses Erstgespräch" />
+        )}
+
+        {/* ── Checkliste ── */}
+        {data.checklist && (
+          <div className="mb-16 rounded-3xl border border-black/5 shadow-sm bg-white p-8 md:p-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-3">{data.checklist.heading}</h2>
+            {data.checklist.intro && <p className="text-[#1E293B]/55 mb-8 max-w-2xl leading-relaxed">{data.checklist.intro}</p>}
+            <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
+              {data.checklist.items.map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-white" style={{ backgroundColor: color }}>
+                    <Check />
+                  </div>
+                  <span className="text-sm text-[#1E293B]/70 leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
+            <button onClick={() => onPageChange('kontakt')} className="mt-8 inline-flex items-center gap-2 text-sm font-bold hover:opacity-70 transition-opacity" style={{ color }}>
+              Checkliste gemeinsam durchgehen <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
         {/* ── FAQ ── */}
         <div className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-8">Häufige Fragen</h2>
@@ -3395,6 +2953,16 @@ const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: Se
         </div>
 
       </div>
+
+      {/* ── Sticky CTA (mobil) ── */}
+      <div className="fixed bottom-0 inset-x-0 z-40 md:hidden flex gap-3 px-4 py-3 bg-white/95 backdrop-blur border-t border-black/10">
+        <a href="tel:+491731038570" className="flex-shrink-0 px-5 py-3 rounded-xl text-sm font-bold border border-black/10 text-[#1E293B]">
+          Anrufen
+        </a>
+        <button onClick={() => onPageChange('kontakt')} className="flex-1 py-3 rounded-xl text-sm font-bold text-white" style={{ backgroundColor: color }}>
+          {data.cta}
+        </button>
+      </div>
     </div>
   );
 };
@@ -3403,7 +2971,7 @@ const ServiceDetailPage = ({ serviceKey, color, onPageChange }: { serviceKey: Se
 const VERSICHERUNGEN: { title: string; desc: string; key: ServiceKey }[] = [
   { key: 'krankenversicherung', title: 'Krankenversicherung',      desc: 'Gesetzlich oder privat – wir finden die optimale Absicherung für deine Gesundheit und deinen Geldbeutel.' },
   { key: 'arbeitskraft',        title: 'Arbeitskraftabsicherung',  desc: 'Deine Arbeitskraft ist dein größtes Kapital. Wir sichern sie ab – bevor es zu spät ist.' },
-  { key: 'kfz',                 title: 'KFZ-Versicherung',         desc: 'Der beste Schutz für dein Fahrzeug zum besten Preis – eigenständig verglichen.' },
+  { key: 'kfz',                 title: 'KFZ-Versicherung',         desc: 'Der beste Schutz für dein Fahrzeug zum besten Preis – kundenorientiert verglichen.' },
   { key: 'sach',                title: 'Sachversicherungen',        desc: 'Von Hausrat bis Haftpflicht: umfassender Schutz für dein Eigentum und deine Finanzen.' },
   { key: 'gewerbe',             title: 'Gewerbeversicherungen',     desc: 'Maßgeschneiderte Absicherung für Selbstständige und Unternehmen – damit du dich aufs Wesentliche konzentrieren kannst.' },
   { key: 'rente',               title: 'Private Rentenversicherung',desc: 'Staatlich geförderte Altersvorsorge, die wirklich zu deiner Lebenssituation passt.' },
@@ -3415,7 +2983,7 @@ const VERMOEGEN: { title: string; desc: string; key: ServiceKey }[] = [
   { key: 'sparprodukte',  title: 'Sparprodukte',                    desc: 'Vom Tagesgeld bis zum Bausparvertrag – wir finden das Produkt, das zu deinen Zielen passt.' },
   { key: 'geldanlagen',   title: 'Geldanlagen',                     desc: 'ETFs, Fonds und mehr: wissenschaftlich fundierte Anlagestrategien für nachhaltigen Vermögensaufbau.' },
   { key: 'vorsorge',      title: 'Vorsorgekonzepte',                desc: 'Ganzheitliche Planung für deine Rente – damit du im Alter so leben kannst, wie du es dir vorstellst.' },
-  { key: 'finanzierungen',title: 'Finanzierungen',                  desc: 'Günstige Finanzierungen für Immobilien, Fahrzeuge und mehr – eigenständig verglichen.' },
+  { key: 'finanzierungen',title: 'Finanzierungen',                  desc: 'Günstige Finanzierungen für Immobilien, Fahrzeuge und mehr – kundenorientiert verglichen.' },
   { key: 'aktien',        title: 'Aktien',                          desc: 'Direkte Beteiligungen am Kapitalmarkt – mit fundierter Beratung und klarer Strategie.' },
   { key: 'vwl',           title: 'Vermögenswirksame Leistungen',   desc: 'Arbeitgeberzuschuss und staatliche Förderung optimal nutzen – für maximalen Vermögensaufbau ohne Mehrkosten.' },
 ];
@@ -3439,7 +3007,7 @@ const LeistungenPage = ({ color, onPageChange, onService }: { color: string; onP
               Unsere<br />Leistungen
             </h1>
             <p className="text-white/50 text-lg md:text-xl max-w-2xl leading-relaxed">
-              Jahrelanges Vertrauen bekommt man nicht geschenkt. Wir beraten unabhängig, wissenschaftlich fundiert und vollständig digital – immer für dein bestes Ergebnis.
+              Jahrelanges Vertrauen bekommt man nicht geschenkt. Wir beraten kundenorientiert, wissenschaftlich fundiert und vollständig digital – immer für dein bestes Ergebnis.
             </p>
           </motion.div>
         </div>
@@ -3449,7 +3017,7 @@ const LeistungenPage = ({ color, onPageChange, onService }: { color: string; onP
       <div className="max-w-7xl mx-auto px-6 mt-16 mb-24">
         <div className="grid md:grid-cols-3 gap-5">
           {[
-            { num: '01', icon: <ShieldCheck className="w-6 h-6" />, title: 'Ungebunden', desc: 'Wir sind an keinen Anbieter gebunden und rechtlich zur besten Beratung verpflichtet – ohne versteckte Provisionsinteressen.' },
+            { num: '01', icon: <ShieldCheck className="w-6 h-6" />, title: 'Über 100 Anbieter', desc: 'Wir vergleichen über 100 geprüfte Anbieter und beraten kundenorientiert – ohne versteckte Provisionsinteressen.' },
             { num: '02', icon: <BarChart3 className="w-6 h-6" />, title: 'Wissenschaftlich', desc: 'Unsere Strategien basieren auf Finanzmathematik und bewiesenen Methoden – nicht auf Bauchgefühl oder Provisionshöhe.' },
             { num: '03', icon: <Zap className="w-6 h-6" />,       title: 'Digital & Effizient', desc: 'Durch volldigitale Prozesse sparen wir Zeit und Kosten – und geben diese Vorteile direkt an dich weiter.' },
           ].map(({ num, icon, title, desc }) => (
@@ -3524,7 +3092,7 @@ const LeistungenPage = ({ color, onPageChange, onService }: { color: string; onP
           </div>
         </div>
         <p className="text-[#1E293B]/50 text-base mb-10 ml-5 pl-4 border-l border-black/6 max-w-2xl">
-          Wir vergleichen herstellerunabhängig über alle Anbieter und finden die Absicherung, die wirklich zu dir passt – nicht die, die am meisten Provision bringt.
+          Wir vergleichen über 100 geprüfte Anbieter und finden die Absicherung, die wirklich zu dir passt – nicht die, die am meisten Provision bringt.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {VERSICHERUNGEN.map(({ title, desc, key }, i) => (
@@ -3610,9 +3178,9 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
 
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior }); }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: wire up real form submission
+    await postLead({ type: "kontakt", ...form });
     setSent(true);
   };
 
@@ -3802,6 +3370,8 @@ export default function LandingPage() {
   const direction = BRAND_ORDER.indexOf(brand) >= prevIndex ? 1 : -1;
 
   const handleBrandChange = (b: Brand) => {
+    // DK Consulting laeuft ueber die externe Seite von BVA Consulting.
+    if (b === "consulting") { window.location.href = CONSULTING_URL; return; }
     if (b === brand) return;
     setPrevIndex(BRAND_ORDER.indexOf(brand));
     setBrand(b);
