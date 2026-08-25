@@ -1127,7 +1127,8 @@ const AboutSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =>
             className="rounded-2xl object-cover w-full aspect-square shadow-[0_24px_50px_-30px_rgba(15,23,42,0.5)]"
             style={{ objectPosition: "50% 72%" }} />
           <img src="/DK Finanz BG.jpeg" alt="Standort der DK Finanzkanzlei in Aachen-Eilendorf" loading="lazy" decoding="async"
-            className="rounded-2xl object-cover w-full aspect-[4/5] shadow-[0_24px_50px_-30px_rgba(15,23,42,0.5)]" />
+            className="rounded-2xl object-cover w-full aspect-[4/5] shadow-[0_24px_50px_-30px_rgba(15,23,42,0.5)]"
+            style={{ objectPosition: '16% 50%' }} />
         </div>
       </motion.div>
     </div>
@@ -3500,7 +3501,7 @@ export default function LandingPage() {
     if (scrollTarget) {
       setPendingScrollTarget(scrollTarget);
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
     }
   };
 
@@ -3509,7 +3510,7 @@ export default function LandingPage() {
     window.history.pushState({ page: 'service', service: key }, '', url);
     setCurrentService(key);
     setPage('service');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
@@ -3517,7 +3518,7 @@ export default function LandingPage() {
       const { page: p, service } = getStateFromPath();
       setPage(p);
       setCurrentService(service);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
     };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
