@@ -1180,7 +1180,7 @@ const STEPS = [
     kicker: 'Schritt 2', title: 'Geld behalten.',
     body: 'Steuern und Versicherungen kosten Geld, wenn man sie ignoriert. Die meisten zahlen zu viel oder sind an den falschen Stellen abgesichert – oft ohne es zu merken.',
     body2: 'Wir optimieren, was da ist. Du behältst mehr von dem, was du verdienst – ohne Tricks, sondern mit einer Struktur, die zu deiner Lebenssituation passt.',
-    tags: ['Steueroptimierung', 'Absicherung', 'Fixkosten-Check'], img: '/joel-flamur.png',
+    tags: ['Steueroptimierung', 'Absicherung', 'Fixkosten-Check'], img: '/joel-flamur-crop.png',
     quoteLabel: 'Was sich verändert', quote: '„Zum ersten Mal habe ich das Gefühl, dass mein Geld für mich arbeitet."',
   },
   {
