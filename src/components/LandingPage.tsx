@@ -962,9 +962,11 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
     <motion.section
       animate={{ backgroundColor: on ? ACCENT : '#F5F7FA' }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="py-16 md:py-20 px-6 overflow-hidden"
+      className="relative py-16 md:py-20 px-6 overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto">
+      {/* Punktraster nur im Ohne-Zustand, im Mit-Zustand traegt das Blau */}
+      <div className="absolute inset-0 dot-grid-full pointer-events-none transition-opacity duration-500" style={{ opacity: on ? 0 : 1 }} />
+      <div className="relative max-w-5xl mx-auto">
         <motion.div {...reveal} className="text-center mb-8">
           <h2 className="text-3xl md:text-[2.6rem] font-extrabold tracking-[-0.02em] mb-3 transition-colors duration-500"
             style={{ color: on ? '#fff' : '#0F172A' }}>
