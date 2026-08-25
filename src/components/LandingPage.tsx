@@ -764,8 +764,7 @@ const FloatCard = ({ icon, label, value, sub, className, delay, tone }: {
   </motion.div>
 );
 
-// Jesua fehlt noch als Foto – sobald es da ist, hier ergaenzen.
-const HERO_AVATARS = ['/face-norik.png', '/face-jannik.png', '/face-jamila.png'];
+const HERO_AVATARS = ['/kunde-1.png', '/kunde-2.png', '/kunde-3.png', '/kunde-4.png'];
 
 const HomeHero = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => void }) => (
   <section className="relative pt-24 md:pt-28 pb-8 md:pb-10 px-6 overflow-hidden">
@@ -818,8 +817,9 @@ const HomeHero = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => voi
         <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="relative flex items-end justify-center lg:h-[29rem]">
           {/* Freigestellt: die beiden stehen ohne Rahmen auf der weißen Seite */}
-          <img src="/hero-cut.png" alt="Joel Dakaj und Flamur – DK Finanzkanzlei Aachen" width="1157" height="760" fetchPriority="high" decoding="async"
-            className="w-full max-w-[30rem] lg:max-w-none h-auto object-contain" />
+          <img src="/hero-soft.png" alt="Joel Dakaj und Flamur – DK Finanzkanzlei Aachen" width="1157" height="760" fetchPriority="high" decoding="async"
+            className="w-full max-w-[30rem] lg:max-w-none h-auto object-contain"
+            style={{ filter: "drop-shadow(0 18px 28px rgba(15,23,42,0.16)) drop-shadow(0 4px 10px rgba(15,23,42,0.10))" }} />
         </motion.div>
 
         <FloatCard className="-left-2 md:-left-8 top-[14%]" delay={0.35} tone={GOLD}
@@ -899,22 +899,22 @@ const GuidesBlock = () => (
 
 /** Herzstück: ein Schalter, der jede offene Baustelle in ihren gelösten Zustand kippt. */
 const SWITCH_ITEMS = [
-  { icon: <ShieldCheck className="w-4 h-4" />, pos: 'lg:left-[2%] lg:top-[30%]',
+  { icon: <ShieldCheck className="w-4 h-4" />, pos: 'lg:left-[56%] lg:top-[0%]', tilt: -1.6,
     off: { title: 'Versicherung wieder teurer', note: 'Beitrag erneut erhöht' },
     on:  { title: 'Versicherungen', note: 'Geprüft und optimiert', detail: 'Über 100 Anbieter verglichen' } },
-  { icon: <Calculator className="w-4 h-4" />, pos: 'lg:left-[27%] lg:top-[4%]',
+  { icon: <Calculator className="w-4 h-4" />, pos: 'lg:left-[2%] lg:top-[13%]', tilt: 1.8,
     off: { title: 'Steuervorteile', note: 'Jahr für Jahr verschenkt' },
     on:  { title: 'Steuervorteile', note: 'Erledigt', detail: 'Ø 742 € Steuer + 545 € Förderung' } },
-  { icon: <Search className="w-4 h-4" />, pos: 'lg:left-[57%] lg:top-[0%]',
+  { icon: <Search className="w-4 h-4" />, pos: 'lg:left-[29%] lg:top-[45%]', tilt: -1.2,
     off: { title: 'etf sparplan welcher', note: '1.240.000 Ergebnisse' },
     on:  { title: 'ETF-Sparplan', note: 'Eingerichtet', detail: 'Steueroptimiert und gefördert' } },
-  { icon: <Heart className="w-4 h-4" />, pos: 'lg:left-[76%] lg:top-[26%]',
+  { icon: <Heart className="w-4 h-4" />, pos: 'lg:left-[72%] lg:top-[29%]', tilt: 1.4,
     off: { title: 'BU-Schutz', note: 'Seit Jahren aufgeschoben' },
     on:  { title: 'BU-Schutz', note: 'Steht', detail: 'Anonyme Voranfrage vorab geklärt' } },
-  { icon: <Home className="w-4 h-4" />, pos: 'lg:left-[10%] lg:top-[70%]',
+  { icon: <Home className="w-4 h-4" />, pos: 'lg:left-[0%] lg:top-[79%]', tilt: 1.6,
     off: { title: 'Kapitalanlage Immobilie?', note: 'Eigenkapital fehlt' },
     on:  { title: 'Immobilie', note: 'In Reichweite', detail: 'Konkreter Finanzierungsplan' } },
-  { icon: <PieChart className="w-4 h-4" />, pos: 'lg:left-[52%] lg:top-[62%]',
+  { icon: <PieChart className="w-4 h-4" />, pos: 'lg:left-[49%] lg:top-[77%]', tilt: -1.8,
     off: { title: 'GKV oder PKV?', note: 'Ungeklärt seit Jahren' },
     on:  { title: 'PKV-Frage', note: 'Geklärt', detail: 'In einem Termin durchgerechnet' } },
 ];
@@ -923,28 +923,28 @@ const SwitchCard = ({ item, on, i }: { item: typeof SWITCH_ITEMS[number]; on: bo
   const s = on ? item.on : item.off;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.5, delay: i * 0.06 }}
-      className={`lg:absolute ${item.pos} w-full lg:w-[19rem] z-10`}
+      transition={{ duration: 0.5, delay: i * 0.07 }}
+      className={`lg:absolute ${item.pos} w-full lg:w-[21.5rem] z-10`}
     >
       <motion.div
-        animate={{ rotate: on ? 0 : (i % 2 ? 1.4 : -1.4) }}
+        animate={{ rotate: on ? 0 : item.tilt }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="rounded-2xl bg-white border border-black/5 shadow-[0_18px_40px_-24px_rgba(15,23,42,0.4)] px-5 py-4 flex items-start gap-3"
+        className="rounded-[1.25rem] bg-white shadow-[0_16px_40px_-20px_rgba(15,23,42,0.28)] px-6 py-5 flex items-start gap-4"
       >
-        <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-500"
-          style={on ? { backgroundColor: '#22C55E1A', color: '#22C55E' } : { backgroundColor: 'rgba(15,23,42,0.05)', color: 'rgba(15,23,42,0.4)' }}>
+        <span className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors duration-500"
+          style={on ? { backgroundColor: '#DCFCE7', color: '#16A34A' } : { backgroundColor: 'rgba(15,23,42,0.04)', color: 'rgba(15,23,42,0.45)' }}>
           {on ? <CheckCircle2 className="w-4 h-4" /> : item.icon}
         </span>
         <AnimatePresence mode="wait" initial={false}>
           <motion.div key={on ? 'on' : 'off'}
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.22 }} className="min-w-0">
-            <p className="font-bold text-sm text-[#0F172A] leading-snug">{s.title}</p>
-            <p className="text-xs mt-0.5" style={{ color: on ? '#16A34A' : '#DC2626' }}>{s.note}</p>
-            {on && 'detail' in s && s.detail && <p className="text-xs text-[#0F172A]/45 mt-1.5">{s.detail}</p>}
+            <p className="font-bold text-[#0F172A] leading-snug">{s.title}</p>
+            <p className="text-sm mt-1" style={{ color: on ? '#16A34A' : '#EF4444' }}>{s.note}</p>
+            {on && 'detail' in s && s.detail && <p className="text-sm text-[#0F172A]/40 mt-1.5">{s.detail}</p>}
           </motion.div>
         </AnimatePresence>
       </motion.div>
@@ -956,13 +956,13 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
   const [on, setOn] = useState(false);
 
   return (
-    <section className="py-20 md:py-28 px-6 overflow-hidden" style={{ backgroundColor: 'var(--surface)' }}>
+    <section className="py-24 md:py-32 px-6 overflow-hidden" style={{ backgroundColor: 'var(--surface)' }}>
       <div className="max-w-6xl mx-auto">
-        <motion.div {...reveal} className="text-center mb-10">
+        <motion.div {...reveal} className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-[-0.02em] text-[#0F172A] mb-4">
             {on ? <>Ein Ansprechpartner. <span style={{ color: GOLD }}>Alles geregelt.</span></> : <>Kommt dir das <span style={{ color: GOLD }}>bekannt</span> vor?</>}
           </h2>
-          <p className="text-[#0F172A]/50 max-w-lg mx-auto leading-relaxed">
+          <p className="text-[#0F172A]/45 max-w-lg mx-auto leading-relaxed">
             {on
               ? 'Wir kümmern uns. Du behältst mehr Geld, bist besser abgesichert und hast den Kopf frei.'
               : 'Zwischen ungeöffneter Post, offenen Tabs und gutem Vorsatz.'}
@@ -970,30 +970,38 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
         </motion.div>
 
         {/* Schalter */}
-        <motion.div {...reveal} className="flex items-center justify-center gap-4 mb-14">
-          <span className={`text-sm font-bold transition-colors ${on ? 'text-[#0F172A]/30' : 'text-[#0F172A]'}`}>Ohne</span>
+        <motion.div {...reveal} className="flex items-center justify-center gap-5 mb-16 md:mb-20">
+          <span className={`text-lg font-medium transition-colors ${on ? 'text-[#0F172A]/30' : 'text-[#0F172A]'}`}>Ohne</span>
           <button onClick={() => setOn(!on)} role="switch" aria-checked={on} aria-label="Vorher-Nachher umschalten"
-            className="relative w-[4.5rem] h-9 rounded-full transition-colors duration-500 flex-shrink-0"
-            style={{ backgroundColor: on ? ACCENT : '#0F172A' }}>
-            <motion.span layout transition={{ type: 'spring', stiffness: 500, damping: 34 }}
-              className="absolute top-1 w-7 h-7 rounded-full bg-white shadow-md"
-              style={{ left: on ? 'calc(100% - 2rem)' : '0.25rem' }} />
+            className="relative w-[6.5rem] h-[3.25rem] rounded-full transition-colors duration-500 flex-shrink-0"
+            style={{
+              backgroundColor: on ? ACCENT : '#1B1D2A',
+              boxShadow: on ? `0 0 0 6px ${ACCENT}1F` : `0 0 0 6px ${GOLD}26`,
+            }}>
+            <motion.span layout transition={{ type: 'spring', stiffness: 480, damping: 32 }}
+              className="absolute top-1.5 w-10 h-10 rounded-full bg-white shadow-[0_3px_8px_rgba(0,0,0,0.25)]"
+              style={{ left: on ? 'calc(100% - 2.875rem)' : '0.375rem' }} />
           </button>
-          <span className={`text-sm font-bold transition-colors ${on ? 'text-[#0F172A]' : 'text-[#0F172A]/30'}`}>Mit DK</span>
+          <span className={`text-lg font-medium transition-colors ${on ? 'text-[#0F172A]' : 'text-[#0F172A]/30'}`}>Mit DK</span>
         </motion.div>
 
         {/* Karten – Desktop verstreut mit Verbindungslinien, Mobil gestapelt */}
-        <div className="relative lg:h-[30rem] flex flex-col gap-4 lg:block">
-          <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 480" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M120 190 C 260 120, 300 70, 400 60 S 640 40, 800 150" fill="none" stroke="rgba(15,23,42,0.16)" strokeWidth="1.5" strokeDasharray="5 7" vectorEffect="non-scaling-stroke" />
-            <path d="M800 170 C 720 300, 640 330, 560 330" fill="none" stroke="rgba(15,23,42,0.16)" strokeWidth="1.5" strokeDasharray="5 7" vectorEffect="non-scaling-stroke" />
-            <path d="M540 340 C 400 380, 300 370, 190 350" fill="none" stroke="rgba(15,23,42,0.16)" strokeWidth="1.5" strokeDasharray="5 7" vectorEffect="non-scaling-stroke" />
-            <path d="M150 330 C 90 280, 90 240, 110 205" fill="none" stroke="rgba(15,23,42,0.16)" strokeWidth="1.5" strokeDasharray="5 7" vectorEffect="non-scaling-stroke" />
+        <div className="relative lg:h-[38rem] flex flex-col gap-4 lg:block">
+          <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+            {[
+              'M 240 130 C 300 230, 330 250, 380 300',
+              'M 620 70 C 700 90, 760 130, 790 190',
+              'M 830 250 C 800 350, 720 420, 640 470',
+              'M 560 490 C 440 520, 320 530, 210 500',
+              'M 150 470 C 200 420, 260 370, 330 330',
+            ].map((d, i) => (
+              <path key={i} d={d} fill="none" stroke="rgba(15,23,42,0.18)" strokeWidth="1.5" strokeDasharray="6 8" vectorEffect="non-scaling-stroke" />
+            ))}
           </svg>
           {SWITCH_ITEMS.map((item, i) => <SwitchCard key={i} item={item} on={on} i={i} />)}
         </div>
 
-        <motion.div {...reveal} className="text-center mt-12 lg:mt-6">
+        <motion.div {...reveal} className="text-center mt-14 lg:mt-8">
           <AnimatePresence mode="wait" initial={false}>
             {on ? (
               <motion.div key="cta" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
