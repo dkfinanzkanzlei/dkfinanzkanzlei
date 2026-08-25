@@ -817,7 +817,7 @@ const HomeHero = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => voi
         <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="relative flex items-end justify-center lg:h-[29rem]">
           {/* Freigestellt: die beiden stehen ohne Rahmen auf der weißen Seite */}
-          <img src="/hero-sharp.png" alt="Joel Dakaj und Flamur – DK Finanzkanzlei Aachen" width="1600" height="1050" fetchPriority="high" decoding="async"
+          <img src="/hero-echt.png" alt="Joel Dakaj und Flamur – DK Finanzkanzlei Aachen" width="965" height="633" fetchPriority="high" decoding="async"
             className="w-full max-w-[30rem] lg:max-w-none h-auto object-contain"
             style={{ filter: "drop-shadow(0 18px 28px rgba(15,23,42,0.16)) drop-shadow(0 4px 10px rgba(15,23,42,0.10))" }} />
         </motion.div>
@@ -1902,11 +1902,11 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
 
   const stories = [
     {
-      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/team-philipp.png', tag: 'Aufsteiger',
+      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/team-philipp-v2.png', tag: 'Aufsteiger',
       quote: 'DK hat mir die Möglichkeit gegeben, mein volles Potenzial zu entfalten. Innerhalb eines Jahres bin ich vom Berater zum Vertriebsleiter aufgestiegen – das wäre in einer klassischen Firma nicht möglich gewesen.',
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/team-julius.png', tag: 'Quereinsteiger',
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/team-julius-v2.png', tag: 'Quereinsteiger',
       quote: 'Als junger Quereinsteiger bin ich direkt bei DK eingestiegen – und durch Schulungen, Coaching und meinen eigenen Antrieb in 2 Jahren zu einem der besten Fachberater geworden. Hier zählt nicht wo du herkommst, sondern wohin du willst.',
     },
   ];
@@ -2256,34 +2256,34 @@ const UeberUnsContent = () => {
 
   const team: TeamMember[] = [
     {
-      name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/team-joel-logo.png',
+      name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/team-joel-logo-v2.png',
       linkedin: 'https://www.linkedin.com/in/joel-dakaj-11766239b/',
       desc: 'Hey, ich bin Joel, Geschäftsführer der DK Finanzkanzlei – und das sind meine Schwerpunkte:',
       bullets: ['Strategie & Vermögensaufbau', 'Lebensversicherung & Investment', 'Immobilienlösungen'],
       funFact: 'Chat-GPT als Mensch',
     },
     {
-      name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/team-flamur.png',
+      name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/team-flamur-v2.png',
       linkedin: 'https://www.linkedin.com/in/flamur-kastrati-75864839b/',
       desc: 'Hi, ich bin Flamur, Geschäftsführer – ich sorge dafür, dass deine Werte optimal abgesichert sind:',
       bullets: ['Sachversicherungen optimieren', 'Risikoanalyse für Vermögenswerte', 'Individuelle Absicherungskonzepte'],
       funFact: 'BMW-Fan',
     },
     {
-      name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/team-aydan.png',
+      name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/team-aydan-v2.png',
       desc: 'Hi, ich bin Aydan – ich halte im Hintergrund alles am Laufen, damit du dich auf das Wesentliche konzentrieren kannst:',
       bullets: ['Office & Organisation', 'Prozesse & Koordination', 'Ansprechpartnerin im Hintergrund'],
       funFact: 'Büromama',
     },
     {
-      name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/team-muyooo.png',
+      name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/team-muyooo-v2.png',
       linkedin: 'https://www.linkedin.com/in/muayyad-anis-b159211b9/',
       desc: 'Hi, ich bin Muayyad – ich sorge dafür, dass die richtigen Menschen im Team sind und alles reibungslos läuft:',
       bullets: ['Recruiting & Teamaufbau', 'Vertriebssteuerung', 'Prozessoptimierung'],
       funFact: 'Vater einer kleinen Prinzessin',
     },
     {
-      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/team-philipp.png',
+      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/team-philipp-v2.png',
       linkedin: 'https://www.linkedin.com/in/philipp-scott-jagiella-07ba7233b/',
       website: 'https://philippjagiella.de/',
       desc: 'Hi, ich bin Philipp – ich unterstütze das Team im Vertrieb und sorge für starke Beratung:',
@@ -2291,42 +2291,42 @@ const UeberUnsContent = () => {
       funFact: 'Liebt Wein',
     },
     {
-      name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/team-jannik.png',
+      name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/team-jannik-v2.png',
       desc: 'Hi, ich bin Jannik – ich sorge dafür, dass unser Team stets sorgfältig und auf höchstem Niveau berät:',
       bullets: ['Qualitätssicherung in der Beratung', 'Weiterbildung & Entwicklung des Teams', 'Verlässliche Beratungsstandards'],
     },
     {
-      name: 'Norik Dakaj', role: 'Vertriebsleiter', img: '/team-norik.png',
+      name: 'Norik Dakaj', role: 'Vertriebsleiter', img: '/team-norik-v2.png',
       desc: 'Hi, ich bin Norik – ich begleite dich zuverlässig auf dem Weg zu deinen finanziellen Zielen:',
       bullets: ['Persönliche Finanzberatung', 'Individuelle Absicherungskonzepte', 'Langfristige Kundenbetreuung'],
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/team-julius.png',
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/team-julius-v2.png',
       linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
       desc: 'Hi, ich bin Julius – ich höre genau zu, um die beste Lösung für dich zu finden:',
       bullets: ['Kundenanalyse durch Zuhören', 'Individuelle Lösungsfindung', 'Vertrauensvolle Beratung'],
       funFact: 'RS3-Fan',
     },
     {
-      name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/team-jamila.png',
+      name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/team-jamila-v2.png',
       desc: 'Hi, ich bin Jamila – ich helfe dir, deine Zukunft finanziell sauber aufzustellen:',
       bullets: ['Altersvorsorge-Strategien', 'Ganzheitliche Finanzanalyse', 'Langfristige Planung'],
       funFact: 'Beste Kundenbindung',
     },
     {
-      name: 'Denis Martynewski', role: 'Fachberater', img: '/team-denis.png',
+      name: 'Denis Martynewski', role: 'Fachberater', img: '/team-denis-v2.png',
       desc: 'Hi, ich bin Denis – ich sorge dafür, dass deine Werte optimal abgesichert sind:',
       bullets: ['Sachversicherungen', 'Risikoabsicherung', 'Strukturierung von Vermögenswerten'],
       funFact: 'BMW-Fan durch Flamur',
     },
     {
-      name: 'Cesur Ogul', role: 'Fachberater', img: '/team-cesur.png',
+      name: 'Cesur Ogul', role: 'Fachberater', img: '/team-cesur-v2.png',
       desc: 'Hi, ich bin Cesur – ich entwickle mich täglich weiter, um dich bestmöglich zu beraten:',
       bullets: ['Kundenbetreuung', 'Entwicklung im Vertrieb', 'Lernbereitschaft'],
       funFact: 'Der netteste Kollege',
     },
     {
-      name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/team-sara.png',
+      name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/team-sara-v2.png',
       desc: 'Hi, ich bin Sara – ich mache komplexe Themen für dich einfach verständlich:',
       bullets: ['Komplexe Themen erklären', 'Kundenorientierte Beratung', 'Individuelle Lösungen'],
       funFact: 'Chillige Kollegin',
@@ -2338,7 +2338,7 @@ const UeberUnsContent = () => {
       bullets: ['Persönliche Bedarfsanalyse', 'Passgenaue Absicherung', 'Verlässliche Betreuung'],
     },
     {
-      name: 'Ceylin Demir', role: 'Assistentin', img: '/team-ceylin.png',
+      name: 'Ceylin Demir', role: 'Assistentin', img: '/team-ceylin-v2.png',
       desc: 'Hi, ich bin Ceylin – ich sorge im Hintergrund für Struktur und Ordnung:',
       bullets: ['Organisation & Dokumente', 'Backoffice-Struktur', 'Sichere Abläufe'],
       funFact: 'Galatasaray-Fan',
