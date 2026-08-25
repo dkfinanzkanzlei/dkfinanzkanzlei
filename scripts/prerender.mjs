@@ -172,6 +172,21 @@ function buildSeoFallback(seo, data, stand, routes) {
       );
     }
     if (data.solution) parts.push(`<h2>Unsere Lösung</h2><p>${esc(data.solution)}</p>`);
+    if (data.deepDive) {
+      parts.push(`<h2>${esc(data.deepDive.heading)}</h2>`);
+      for (const sec of data.deepDive.sections) {
+        parts.push(`<h3>${esc(sec.title)}</h3><p>${esc(sec.body)}</p>`);
+      }
+    }
+    if (data.checklist) {
+      parts.push(`<h2>${esc(data.checklist.heading)}</h2>`);
+      if (data.checklist.intro) parts.push(`<p>${esc(data.checklist.intro)}</p>`);
+      parts.push(`<ul>${data.checklist.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`);
+    }
+    if (data.leadMagnet) {
+      parts.push(`<h2>${esc(data.leadMagnet.title)}</h2><p>${esc(data.leadMagnet.subtitle)}</p>`);
+      parts.push(`<p><a href="${escAttr(data.leadMagnet.href)}" style="color:#7dd3fc">${esc(data.leadMagnet.fileLabel)} kostenlos ansehen</a></p>`);
+    }
     parts.push(faqHtml(data.faq));
   } else {
     if (seo.prerenderBody) parts.push(`<p>${esc(seo.prerenderBody)}</p>`);
