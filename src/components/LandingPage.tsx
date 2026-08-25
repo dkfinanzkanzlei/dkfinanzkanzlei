@@ -764,7 +764,7 @@ const FloatCard = ({ icon, label, value, sub, className, delay, tone }: {
   </motion.div>
 );
 
-const HERO_AVATARS = ['/kunde-1.png', '/kunde-2.png', '/kunde-3.png', '/kunde-4.png'];
+const HERO_AVATARS = ['/kunde1-w.png', '/kunde2-w.png', '/kunde3-w.png', '/kunde4-w.png'];
 
 const HomeHero = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => void }) => (
   <section className="relative pt-24 md:pt-28 pb-8 md:pb-10 px-6 overflow-hidden">
