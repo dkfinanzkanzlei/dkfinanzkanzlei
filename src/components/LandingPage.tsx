@@ -990,9 +990,9 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
               backgroundColor: on ? '#FFFFFF' : '#1B1D2A',
               boxShadow: on ? '0 0 0 5px rgba(255,255,255,0.18)' : `0 0 0 5px ${GOLD}26`,
             }}>
-            <motion.span layout transition={{ type: 'spring', stiffness: 480, damping: 32 }}
-              className="absolute top-1.5 w-8 h-8 rounded-full shadow-[0_3px_8px_rgba(0,0,0,0.25)]"
-              style={{ left: on ? 'calc(100% - 2.375rem)' : '0.375rem', backgroundColor: on ? ACCENT : '#FFFFFF' }} />
+            <motion.span animate={{ x: on ? 36 : 0 }} transition={{ type: 'spring', stiffness: 480, damping: 32 }}
+              className="absolute top-1.5 left-1.5 w-8 h-8 rounded-full shadow-[0_3px_8px_rgba(0,0,0,0.25)]"
+              style={{ backgroundColor: on ? ACCENT : '#FFFFFF' }} />
           </button>
           <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? '#fff' : 'rgba(15,23,42,0.3)' }}>Mit DK</span>
         </motion.div>
@@ -2086,7 +2086,7 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
       {/* CTA / Bewerbungsformular */}
       <section className="py-8 md:py-16 px-6">
         <div
-          className="max-w-5xl mx-auto rounded-[3rem] relative overflow-hidden shadow-2xl"
+          className="max-w-5xl mx-auto rounded-[3rem] relative overflow-hidden shadow-2xl text-white"
           style={{ background: `linear-gradient(to bottom, ${color}, #1E293B)`, boxShadow: `0 25px 50px ${color}33` }}
         >
           <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -2097,7 +2097,7 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
             {!showForm ? (
               <motion.div key="cta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }} className="p-12 md:p-24 text-center">
                 <h2 className="text-3xl md:text-6xl font-bold mb-6">Bereit für den<br />nächsten Schritt?</h2>
-                <p className="text-[#0F172A]/70 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+                <p className="text-white/70 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
                   Bewirb dich jetzt und erfahre, ob DK zu dir passt – unverbindlich und auf Augenhöhe.
                 </p>
                 <button
@@ -2107,21 +2107,21 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
                 >
                   Jetzt bewerben
                 </button>
-                <p className="mt-6 text-sm text-[#0F172A]/60">Unverbindlich • 100% kostenlos • In 2 Minuten erledigt</p>
+                <p className="mt-6 text-sm text-white/60">Unverbindlich • 100% kostenlos • In 2 Minuten erledigt</p>
               </motion.div>
             ) : sent ? (
               <motion.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="p-12 md:p-24 text-center">
-                <CheckCircle2 className="w-16 h-16 mx-auto mb-6 text-[#0F172A]" />
+                <CheckCircle2 className="w-16 h-16 mx-auto mb-6 text-white" />
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">Bewerbung eingegangen!</h2>
-                <p className="text-[#0F172A]/70 text-lg mb-10 max-w-xl mx-auto">Vielen Dank! Wir melden uns innerhalb von 3 Werktagen bei dir.</p>
-                <button onClick={resetForm} className="px-8 py-3 bg-[#0F172A]/[0.03] border border-black/8 rounded-full text-sm hover:bg-[#0F172A]/[0.05] transition-colors">
+                <p className="text-white/70 text-lg mb-10 max-w-xl mx-auto">Vielen Dank! Wir melden uns innerhalb von 3 Werktagen bei dir.</p>
+                <button onClick={resetForm} className="px-8 py-3 bg-white/[0.08] border border-white/20 rounded-full text-sm hover:bg-white/[0.14] transition-colors">
                   ← Zurück
                 </button>
               </motion.div>
             ) : (
               <motion.div key="form" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="p-8 md:p-14">
                 <div className="flex items-center gap-4 mb-8">
-                  <button onClick={() => setShowForm(false)} className="text-[#0F172A]/60 hover:text-[#0F172A] transition-colors text-sm flex items-center gap-1.5">
+                  <button onClick={() => setShowForm(false)} className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-1.5">
                     <ChevronRight className="w-4 h-4 rotate-180" /> Zurück
                   </button>
                   <h2 className="text-2xl md:text-4xl font-bold">Deine Bewerbung</h2>
@@ -2132,41 +2132,41 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
                     <input
                       required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                       placeholder="Vorname & Nachname"
-                      className="bg-[#0F172A]/[0.03] border border-black/8 rounded-xl px-4 py-3 text-[#0F172A] placeholder:text-[#0F172A]/45 focus:outline-none focus:border-black/8 text-sm w-full"
+                      className="bg-white/[0.08] border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/45 focus:outline-none focus:border-white/20 text-sm w-full"
                     />
                     <input
                       required type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
                       placeholder="E-Mail-Adresse"
-                      className="bg-[#0F172A]/[0.03] border border-black/8 rounded-xl px-4 py-3 text-[#0F172A] placeholder:text-[#0F172A]/45 focus:outline-none focus:border-black/8 text-sm w-full"
+                      className="bg-white/[0.08] border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/45 focus:outline-none focus:border-white/20 text-sm w-full"
                     />
                   </div>
                   <input
                     value={form.tel} onChange={e => setForm({ ...form, tel: e.target.value })}
                     placeholder="Telefonnummer (optional)"
-                    className="bg-[#0F172A]/[0.03] border border-black/8 rounded-xl px-4 py-3 text-[#0F172A] placeholder:text-[#0F172A]/45 focus:outline-none focus:border-black/8 text-sm w-full"
+                    className="bg-white/[0.08] border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/45 focus:outline-none focus:border-white/20 text-sm w-full"
                   />
                   <textarea
                     required value={form.nachricht} onChange={e => setForm({ ...form, nachricht: e.target.value })}
                     placeholder="Warum möchtest du bei DK durchstarten? Erzähl uns kurz von dir und deiner Motivation..."
                     rows={4}
-                    className="bg-[#0F172A]/[0.03] border border-black/8 rounded-xl px-4 py-3 text-[#0F172A] placeholder:text-[#0F172A]/45 focus:outline-none focus:border-black/8 text-sm w-full resize-none"
+                    className="bg-white/[0.08] border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/45 focus:outline-none focus:border-white/20 text-sm w-full resize-none"
                   />
 
                   {/* File upload */}
                   <div>
-                    <p className="text-sm font-medium text-[#0F172A]/60 mb-2">Unterlagen hochladen</p>
-                    <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-black/8 rounded-xl cursor-pointer hover:border-black/15 bg-[#0F172A]/[0.03] hover:bg-[#0F172A]/[0.05] transition-all">
-                      <Eye className="w-6 h-6 text-[#0F172A]/45 mb-1" />
-                      <span className="text-sm text-[#0F172A]/60">Dateien auswählen oder hierher ziehen</span>
-                      <span className="text-xs text-[#0F172A]/45 mt-1">Lebenslauf, Anschreiben, Zeugnisse · PDF, DOC, JPG bis 10 MB</span>
+                    <p className="text-sm font-medium text-white/60 mb-2">Unterlagen hochladen</p>
+                    <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-white/20 rounded-xl cursor-pointer hover:border-white/35 bg-white/[0.08] hover:bg-white/[0.14] transition-all">
+                      <Eye className="w-6 h-6 text-white/45 mb-1" />
+                      <span className="text-sm text-white/60">Dateien auswählen oder hierher ziehen</span>
+                      <span className="text-xs text-white/45 mt-1">Lebenslauf, Anschreiben, Zeugnisse · PDF, DOC, JPG bis 10 MB</span>
                       <input type="file" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onChange={handleFileChange} className="hidden" />
                     </label>
                     {files.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-2">
                         {files.map((f, i) => (
-                          <span key={i} className="flex items-center gap-1.5 text-xs bg-[#0F172A]/[0.03] border border-black/8 rounded-full px-3 py-1.5 text-[#0F172A]/70">
+                          <span key={i} className="flex items-center gap-1.5 text-xs bg-white/[0.08] border border-white/20 rounded-full px-3 py-1.5 text-white/70">
                             {f.name}
-                            <button type="button" onClick={() => removeFile(i)} className="text-[#0F172A]/45 hover:text-[#0F172A] transition-colors leading-none">×</button>
+                            <button type="button" onClick={() => removeFile(i)} className="text-white/45 hover:text-white transition-colors leading-none">×</button>
                           </span>
                         ))}
                       </div>
@@ -2179,9 +2179,9 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
                       onChange={e => setForm({ ...form, datenschutz: e.target.checked })}
                       className="mt-0.5 w-4 h-4 flex-shrink-0"
                     />
-                    <span className="text-xs text-[#0F172A]/60 leading-relaxed">
+                    <span className="text-xs text-white/60 leading-relaxed">
                       Ich bin einverstanden, dass meine Daten zur Bearbeitung meiner Bewerbung verwendet werden. Weitere Informationen in der{' '}
-                      <button type="button" onClick={() => onPageChange('datenschutz')} className="underline text-[#0F172A]/70">Datenschutzerklärung</button>.
+                      <button type="button" onClick={() => onPageChange('datenschutz')} className="underline text-white/70">Datenschutzerklärung</button>.
                     </span>
                   </label>
 
