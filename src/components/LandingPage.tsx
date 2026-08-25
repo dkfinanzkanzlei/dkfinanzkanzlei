@@ -952,78 +952,6 @@ const SwitchCard = ({ item, on, i }: { item: typeof SWITCH_ITEMS[number]; on: bo
   );
 };
 
-/** Kippschalter: laesst sich hoch- und runterziehen oder anklicken. */
-const ToggleLever = ({ on, setOn }: { on: boolean; setOn: (v: boolean) => void }) => (
-  <div className="flex flex-col items-center gap-3 select-none">
-    <span className="text-xs font-bold tracking-[0.22em] uppercase transition-colors duration-500"
-      style={{ color: on ? 'rgba(255,255,255,0.4)' : '#0F172A' }}>
-      Ohne
-    </span>
-
-    <div
-      onClick={() => setOn(!on)}
-      role="switch"
-      aria-checked={on}
-      aria-label="Vorher-Nachher umschalten"
-      tabIndex={0}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOn(!on); } }}
-      className="relative w-[4.4rem] h-[7.4rem] rounded-[1.3rem] cursor-pointer transition-colors duration-500"
-      style={{
-        backgroundColor: on ? '#24406B' : '#14161E',
-        boxShadow: 'inset 0 3px 8px rgba(0,0,0,0.55), 0 6px 16px -8px rgba(15,23,42,0.5)',
-      }}
-    >
-      {/* Beschriftung auf der Platte */}
-      <span className="absolute top-2 left-0 right-0 text-center text-[9px] font-bold tracking-[0.15em] text-white/25">I</span>
-      <span className="absolute bottom-2 left-0 right-0 text-center text-[9px] font-bold tracking-[0.15em] text-white/25">O</span>
-
-      {/* Hebel: kippt um die Mitte. Wrapper positioniert, motion.div nur fuer Drehung + Drag,
-          sonst wuerde Drag den Positions-Transform ueberschreiben. */}
-      <div className="absolute left-1/2 top-1/2 z-10 h-[3.4rem] w-9 -translate-x-1/2 -translate-y-full">
-        <motion.div
-          drag="y"
-          dragConstraints={{ top: 0, bottom: 0 }}
-          dragElastic={0.5}
-          dragMomentum={false}
-          onDragEnd={(_, info) => {
-            if (info.offset.y > 12 || info.velocity.y > 250) setOn(true);
-            else if (info.offset.y < -12 || info.velocity.y < -250) setOn(false);
-          }}
-          animate={{ rotate: on ? 180 : 0 }}
-          transition={{ type: 'spring', stiffness: 340, damping: 24 }}
-          className="flex h-full w-full flex-col items-center cursor-grab active:cursor-grabbing"
-          style={{ touchAction: 'none', originX: 0.5, originY: 1 }}
-        >
-          {/* Kopf */}
-          <div className="h-9 w-9 flex-shrink-0 rounded-full"
-            style={{
-              background: 'radial-gradient(circle at 36% 28%, #FFFFFF 0%, #DDE2EA 38%, #9AA1B1 78%, #6E7484 100%)',
-              boxShadow: '0 5px 12px rgba(0,0,0,0.5), inset 0 -3px 5px rgba(0,0,0,0.22)',
-            }} />
-          {/* Stange */}
-          <div className="w-[0.82rem] flex-1 -mt-1"
-            style={{ background: 'linear-gradient(90deg, #6A7183 0%, #D2D8E3 42%, #7C8395 100%)' }} />
-        </motion.div>
-      </div>
-
-      {/* Fassung ueber der Stange */}
-      <div className="absolute left-1/2 top-1/2 z-20 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at 50% 30%, #9AA1B1 0%, #666D7D 55%, #3B404C 100%)',
-          boxShadow: 'inset 0 2px 3px rgba(255,255,255,0.3), 0 2px 6px rgba(0,0,0,0.4)',
-        }} />
-      {/* Loch in der Fassung, damit die Stange sichtbar durchgeht */}
-      <div className="absolute left-1/2 top-1/2 z-20 h-[1.15rem] w-[1.15rem] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-        style={{ background: '#2A2F3A', boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.7)' }} />
-    </div>
-
-    <span className="text-xs font-bold tracking-[0.22em] uppercase transition-colors duration-500"
-      style={{ color: on ? '#fff' : 'rgba(15,23,42,0.28)' }}>
-      Mit DK
-    </span>
-  </div>
-);
-
 const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => void }) => {
   const [on, setOn] = useState(false);
 
@@ -1053,9 +981,20 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
           </p>
         </motion.div>
 
-        {/* Kippschalter */}
-        <motion.div {...reveal} className="flex justify-center mb-12">
-          <ToggleLever on={on} setOn={setOn} />
+        {/* Schalter */}
+        <motion.div {...reveal} className="flex items-center justify-center gap-4 mb-10">
+          <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? 'rgba(255,255,255,0.5)' : '#0F172A' }}>Ohne</span>
+          <button onClick={() => setOn(!on)} role="switch" aria-checked={on} aria-label="Vorher-Nachher umschalten"
+            className="relative w-[5rem] h-11 rounded-full transition-colors duration-500 flex-shrink-0"
+            style={{
+              backgroundColor: on ? '#FFFFFF' : '#1B1D2A',
+              boxShadow: on ? '0 0 0 5px rgba(255,255,255,0.18)' : `0 0 0 5px ${GOLD}26`,
+            }}>
+            <motion.span layout transition={{ type: 'spring', stiffness: 480, damping: 32 }}
+              className="absolute top-1.5 w-8 h-8 rounded-full shadow-[0_3px_8px_rgba(0,0,0,0.25)]"
+              style={{ left: on ? 'calc(100% - 2.375rem)' : '0.375rem', backgroundColor: on ? ACCENT : '#FFFFFF' }} />
+          </button>
+          <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? '#fff' : 'rgba(15,23,42,0.3)' }}>Mit DK</span>
         </motion.div>
 
         {/* Karten – Desktop verstreut bzw. um die Mitte, Mobil gestapelt */}
