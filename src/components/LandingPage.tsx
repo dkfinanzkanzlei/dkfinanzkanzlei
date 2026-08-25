@@ -952,6 +952,78 @@ const SwitchCard = ({ item, on, i }: { item: typeof SWITCH_ITEMS[number]; on: bo
   );
 };
 
+/** Kippschalter: laesst sich hoch- und runterziehen oder anklicken. */
+const ToggleLever = ({ on, setOn }: { on: boolean; setOn: (v: boolean) => void }) => (
+  <div className="flex flex-col items-center gap-3 select-none">
+    <span className="text-xs font-bold tracking-[0.22em] uppercase transition-colors duration-500"
+      style={{ color: on ? 'rgba(255,255,255,0.4)' : '#0F172A' }}>
+      Ohne
+    </span>
+
+    <div
+      onClick={() => setOn(!on)}
+      role="switch"
+      aria-checked={on}
+      aria-label="Vorher-Nachher umschalten"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOn(!on); } }}
+      className="relative w-[4.4rem] h-[7.4rem] rounded-[1.3rem] cursor-pointer transition-colors duration-500"
+      style={{
+        backgroundColor: on ? '#24406B' : '#14161E',
+        boxShadow: 'inset 0 3px 8px rgba(0,0,0,0.55), 0 6px 16px -8px rgba(15,23,42,0.5)',
+      }}
+    >
+      {/* Beschriftung auf der Platte */}
+      <span className="absolute top-2 left-0 right-0 text-center text-[9px] font-bold tracking-[0.15em] text-white/25">I</span>
+      <span className="absolute bottom-2 left-0 right-0 text-center text-[9px] font-bold tracking-[0.15em] text-white/25">O</span>
+
+      {/* Hebel: kippt um die Mitte. Wrapper positioniert, motion.div nur fuer Drehung + Drag,
+          sonst wuerde Drag den Positions-Transform ueberschreiben. */}
+      <div className="absolute left-1/2 top-1/2 z-10 h-[3.4rem] w-9 -translate-x-1/2 -translate-y-full">
+        <motion.div
+          drag="y"
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={0.5}
+          dragMomentum={false}
+          onDragEnd={(_, info) => {
+            if (info.offset.y > 12 || info.velocity.y > 250) setOn(true);
+            else if (info.offset.y < -12 || info.velocity.y < -250) setOn(false);
+          }}
+          animate={{ rotate: on ? 180 : 0 }}
+          transition={{ type: 'spring', stiffness: 340, damping: 24 }}
+          className="flex h-full w-full flex-col items-center cursor-grab active:cursor-grabbing"
+          style={{ touchAction: 'none', originX: 0.5, originY: 1 }}
+        >
+          {/* Kopf */}
+          <div className="h-9 w-9 flex-shrink-0 rounded-full"
+            style={{
+              background: 'radial-gradient(circle at 36% 28%, #FFFFFF 0%, #DDE2EA 38%, #9AA1B1 78%, #6E7484 100%)',
+              boxShadow: '0 5px 12px rgba(0,0,0,0.5), inset 0 -3px 5px rgba(0,0,0,0.22)',
+            }} />
+          {/* Stange */}
+          <div className="w-[0.82rem] flex-1 -mt-1"
+            style={{ background: 'linear-gradient(90deg, #6A7183 0%, #D2D8E3 42%, #7C8395 100%)' }} />
+        </motion.div>
+      </div>
+
+      {/* Fassung ueber der Stange */}
+      <div className="absolute left-1/2 top-1/2 z-20 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 50% 30%, #9AA1B1 0%, #666D7D 55%, #3B404C 100%)',
+          boxShadow: 'inset 0 2px 3px rgba(255,255,255,0.3), 0 2px 6px rgba(0,0,0,0.4)',
+        }} />
+      {/* Loch in der Fassung, damit die Stange sichtbar durchgeht */}
+      <div className="absolute left-1/2 top-1/2 z-20 h-[1.15rem] w-[1.15rem] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+        style={{ background: '#2A2F3A', boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.7)' }} />
+    </div>
+
+    <span className="text-xs font-bold tracking-[0.22em] uppercase transition-colors duration-500"
+      style={{ color: on ? '#fff' : 'rgba(15,23,42,0.28)' }}>
+      Mit DK
+    </span>
+  </div>
+);
+
 const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => void }) => {
   const [on, setOn] = useState(false);
 
@@ -981,20 +1053,9 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
           </p>
         </motion.div>
 
-        {/* Schalter */}
-        <motion.div {...reveal} className="flex items-center justify-center gap-4 mb-10">
-          <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? 'rgba(255,255,255,0.5)' : '#0F172A' }}>Ohne</span>
-          <button onClick={() => setOn(!on)} role="switch" aria-checked={on} aria-label="Vorher-Nachher umschalten"
-            className="relative w-[5rem] h-11 rounded-full transition-colors duration-500 flex-shrink-0"
-            style={{
-              backgroundColor: on ? '#FFFFFF' : '#1B1D2A',
-              boxShadow: on ? '0 0 0 5px rgba(255,255,255,0.18)' : `0 0 0 5px ${GOLD}26`,
-            }}>
-            <motion.span layout transition={{ type: 'spring', stiffness: 480, damping: 32 }}
-              className="absolute top-1.5 w-8 h-8 rounded-full shadow-[0_3px_8px_rgba(0,0,0,0.25)]"
-              style={{ left: on ? 'calc(100% - 2.375rem)' : '0.375rem', backgroundColor: on ? ACCENT : '#FFFFFF' }} />
-          </button>
-          <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? '#fff' : 'rgba(15,23,42,0.3)' }}>Mit DK</span>
+        {/* Kippschalter */}
+        <motion.div {...reveal} className="flex justify-center mb-12">
+          <ToggleLever on={on} setOn={setOn} />
         </motion.div>
 
         {/* Karten – Desktop verstreut bzw. um die Mitte, Mobil gestapelt */}
@@ -1902,11 +1963,11 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
 
   const stories = [
     {
-      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/t3-philipp.png', tag: 'Aufsteiger',
+      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png', tag: 'Aufsteiger',
       quote: 'DK hat mir die Möglichkeit gegeben, mein volles Potenzial zu entfalten. Innerhalb eines Jahres bin ich vom Berater zum Vertriebsleiter aufgestiegen – das wäre in einer klassischen Firma nicht möglich gewesen.',
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/t3-julius.png', tag: 'Quereinsteiger',
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 3.png', tag: 'Quereinsteiger',
       quote: 'Als junger Quereinsteiger bin ich direkt bei DK eingestiegen – und durch Schulungen, Coaching und meinen eigenen Antrieb in 2 Jahren zu einem der besten Fachberater geworden. Hier zählt nicht wo du herkommst, sondern wohin du willst.',
     },
   ];
@@ -2256,34 +2317,34 @@ const UeberUnsContent = () => {
 
   const team: TeamMember[] = [
     {
-      name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/t3-joel.png',
+      name: 'Joel Dakaj', role: 'Geschäftsführer', img: '/Joel Logo.png',
       linkedin: 'https://www.linkedin.com/in/joel-dakaj-11766239b/',
       desc: 'Hey, ich bin Joel, Geschäftsführer der DK Finanzkanzlei – und das sind meine Schwerpunkte:',
       bullets: ['Strategie & Vermögensaufbau', 'Lebensversicherung & Investment', 'Immobilienlösungen'],
       funFact: 'Chat-GPT als Mensch',
     },
     {
-      name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/t3-flamur.png',
+      name: 'Flamur Kastrati', role: 'Geschäftsführer', img: '/Flamur 4.png',
       linkedin: 'https://www.linkedin.com/in/flamur-kastrati-75864839b/',
       desc: 'Hi, ich bin Flamur, Geschäftsführer – ich sorge dafür, dass deine Werte optimal abgesichert sind:',
       bullets: ['Sachversicherungen optimieren', 'Risikoanalyse für Vermögenswerte', 'Individuelle Absicherungskonzepte'],
       funFact: 'BMW-Fan',
     },
     {
-      name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/t3-aydan.png',
+      name: 'Aydan Ekinci', role: 'Assistenz der Geschäftsführung', img: '/Aydan.png',
       desc: 'Hi, ich bin Aydan – ich halte im Hintergrund alles am Laufen, damit du dich auf das Wesentliche konzentrieren kannst:',
       bullets: ['Office & Organisation', 'Prozesse & Koordination', 'Ansprechpartnerin im Hintergrund'],
       funFact: 'Büromama',
     },
     {
-      name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/t3-muyooo.png',
+      name: 'Muayyad Anis', role: 'Recruiting & Controlling', img: '/Muyooo.png',
       linkedin: 'https://www.linkedin.com/in/muayyad-anis-b159211b9/',
       desc: 'Hi, ich bin Muayyad – ich sorge dafür, dass die richtigen Menschen im Team sind und alles reibungslos läuft:',
       bullets: ['Recruiting & Teamaufbau', 'Vertriebssteuerung', 'Prozessoptimierung'],
       funFact: 'Vater einer kleinen Prinzessin',
     },
     {
-      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/t3-philipp.png',
+      name: 'Philipp Jagiella', role: 'Vertriebsleiter', img: '/Philipp 2.png',
       linkedin: 'https://www.linkedin.com/in/philipp-scott-jagiella-07ba7233b/',
       website: 'https://philippjagiella.de/',
       desc: 'Hi, ich bin Philipp – ich unterstütze das Team im Vertrieb und sorge für starke Beratung:',
@@ -2291,42 +2352,42 @@ const UeberUnsContent = () => {
       funFact: 'Liebt Wein',
     },
     {
-      name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/t3-jannik.png',
+      name: 'Jannik Förster', role: 'Vertriebsleiter', img: '/Jannik.png',
       desc: 'Hi, ich bin Jannik – ich sorge dafür, dass unser Team stets sorgfältig und auf höchstem Niveau berät:',
       bullets: ['Qualitätssicherung in der Beratung', 'Weiterbildung & Entwicklung des Teams', 'Verlässliche Beratungsstandards'],
     },
     {
-      name: 'Norik Dakaj', role: 'Vertriebsleiter', img: '/t3-norik.png',
+      name: 'Norik Dakaj', role: 'Vertriebsleiter', img: '/Norik.png',
       desc: 'Hi, ich bin Norik – ich begleite dich zuverlässig auf dem Weg zu deinen finanziellen Zielen:',
       bullets: ['Persönliche Finanzberatung', 'Individuelle Absicherungskonzepte', 'Langfristige Kundenbetreuung'],
     },
     {
-      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/t3-julius.png',
+      name: 'Julius Ferreira Schmitz', role: 'Fachberater', img: '/Julius 3.png',
       linkedin: 'https://www.linkedin.com/in/julius-ferreira-schmitz-26a2903b6/',
       desc: 'Hi, ich bin Julius – ich höre genau zu, um die beste Lösung für dich zu finden:',
       bullets: ['Kundenanalyse durch Zuhören', 'Individuelle Lösungsfindung', 'Vertrauensvolle Beratung'],
       funFact: 'RS3-Fan',
     },
     {
-      name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/t3-jamila.png',
+      name: 'Jamila Frydrych', role: 'Fachberaterin', img: '/Jamila.png',
       desc: 'Hi, ich bin Jamila – ich helfe dir, deine Zukunft finanziell sauber aufzustellen:',
       bullets: ['Altersvorsorge-Strategien', 'Ganzheitliche Finanzanalyse', 'Langfristige Planung'],
       funFact: 'Beste Kundenbindung',
     },
     {
-      name: 'Denis Martynewski', role: 'Fachberater', img: '/t3-denis.png',
+      name: 'Denis Martynewski', role: 'Fachberater', img: '/Denis 2.png',
       desc: 'Hi, ich bin Denis – ich sorge dafür, dass deine Werte optimal abgesichert sind:',
       bullets: ['Sachversicherungen', 'Risikoabsicherung', 'Strukturierung von Vermögenswerten'],
       funFact: 'BMW-Fan durch Flamur',
     },
     {
-      name: 'Cesur Ogul', role: 'Fachberater', img: '/t3-cesur.png',
+      name: 'Cesur Ogul', role: 'Fachberater', img: '/Cesur 2.png',
       desc: 'Hi, ich bin Cesur – ich entwickle mich täglich weiter, um dich bestmöglich zu beraten:',
       bullets: ['Kundenbetreuung', 'Entwicklung im Vertrieb', 'Lernbereitschaft'],
       funFact: 'Der netteste Kollege',
     },
     {
-      name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/t3-sara.png',
+      name: 'Sara Abdul Hak', role: 'Fachberaterin', img: '/Sara.png',
       desc: 'Hi, ich bin Sara – ich mache komplexe Themen für dich einfach verständlich:',
       bullets: ['Komplexe Themen erklären', 'Kundenorientierte Beratung', 'Individuelle Lösungen'],
       funFact: 'Chillige Kollegin',
@@ -2338,7 +2399,7 @@ const UeberUnsContent = () => {
       bullets: ['Persönliche Bedarfsanalyse', 'Passgenaue Absicherung', 'Verlässliche Betreuung'],
     },
     {
-      name: 'Ceylin Demir', role: 'Assistentin', img: '/t3-ceylin.png',
+      name: 'Ceylin Demir', role: 'Assistentin', img: '/Ceylin.png',
       desc: 'Hi, ich bin Ceylin – ich sorge im Hintergrund für Struktur und Ordnung:',
       bullets: ['Organisation & Dokumente', 'Backoffice-Struktur', 'Sichere Abläufe'],
       funFact: 'Galatasaray-Fan',
