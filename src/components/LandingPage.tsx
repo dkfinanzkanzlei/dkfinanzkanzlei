@@ -1102,7 +1102,7 @@ const AboutSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =>
         </p>
         <p className="text-[#0F172A]/60 leading-relaxed mb-8">
           Beraten wird persönlich in Aachen oder deutschlandweit per Video-Call – montags bis samstags von
-          10 bis 21 Uhr. Die Erstberatung ist kostenlos und unverbindlich, weil wir über die Anbieter vergütet
+          10 bis 20 Uhr. Die Erstberatung ist kostenlos und unverbindlich, weil wir über die Anbieter vergütet
           werden und nicht über dich.
         </p>
         <button onClick={() => onPageChange('ueberuns')}
@@ -1117,12 +1117,13 @@ const AboutSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =>
             className="rounded-2xl object-cover w-full aspect-[4/5] shadow-[0_24px_50px_-30px_rgba(15,23,42,0.5)]" />
           <div className="rounded-2xl p-6 text-white shadow-[0_24px_50px_-30px_rgba(15,23,42,0.5)]" style={{ backgroundColor: ACCENT }}>
             <p className="text-3xl font-extrabold leading-none mb-1">Mo&nbsp;–&nbsp;Sa</p>
-            <p className="text-sm text-white/75 leading-snug">10 bis 21 Uhr erreichbar – vor Ort in Aachen oder per Video-Call.</p>
+            <p className="text-sm text-white/75 leading-snug">10 bis 20 Uhr erreichbar – vor Ort in Aachen oder per Video-Call.</p>
           </div>
         </div>
         <div className="flex flex-col gap-4">
           <img src="/joel-flamur.png" alt="Joel Dakaj und Flamur von der DK Finanzkanzlei" loading="lazy" decoding="async"
-            className="rounded-2xl object-cover object-top w-full aspect-square shadow-[0_24px_50px_-30px_rgba(15,23,42,0.5)]" />
+            className="rounded-2xl object-cover w-full aspect-square shadow-[0_24px_50px_-30px_rgba(15,23,42,0.5)]"
+            style={{ objectPosition: "50% 72%" }} />
           <img src="/DK Finanz BG.jpeg" alt="Standort der DK Finanzkanzlei in Aachen-Eilendorf" loading="lazy" decoding="async"
             className="rounded-2xl object-cover w-full aspect-[4/5] shadow-[0_24px_50px_-30px_rgba(15,23,42,0.5)]" />
         </div>
@@ -1136,7 +1137,7 @@ const NUMBERS = [
   { value: 100, suffix: '+', label: 'geprüfte Anbieter im Vergleich' },
   { value: 1287, suffix: ' €', label: 'Ø Ersparnis pro Jahr und Mandant' },
   { value: 14, suffix: '', label: 'Leistungsfelder aus einer Hand' },
-  { value: 11, suffix: ' h', label: 'täglich erreichbar, Mo bis Sa' },
+  { value: 10, suffix: ' h', label: 'täglich erreichbar, Mo bis Sa' },
 ];
 
 const NumbersSection = () => (
@@ -1343,7 +1344,7 @@ const HOME_FAQ = [
   { q: 'Was kostet mich die Beratung?', a: 'Nichts. Wir werden über die Anbieter vergütet, nicht über dich. Für dich entstehen weder Beratungs- noch Vermittlungskosten – auch nicht, wenn du dich am Ende gegen eine Umsetzung entscheidest.' },
   { q: 'Seid ihr an bestimmte Anbieter gebunden?', a: 'Nein. Wir haben keinen Exklusivvertrag mit einer Bank oder Versicherung und vergleichen über 100 geprüfte Anbieter am Markt. Welche Empfehlung am Ende steht, entscheidet die Rechnung – nicht die Provision.' },
   { q: 'Für wen lohnt sich das?', a: 'Für alle, die mehr aus ihrem Einkommen machen wollen: Berufseinsteiger, Angestellte, Familien, Selbstständige und Beamte. Du brauchst kein Vorwissen und kein großes Vermögen – nur die Bereitschaft, dir einmal eine Stunde Zeit zu nehmen.' },
-  { q: 'Wie schnell bekomme ich einen Termin?', a: 'In der Regel innerhalb weniger Tage. Wir beraten montags bis samstags von 10 bis 21 Uhr, persönlich in Aachen oder deutschlandweit per Video-Call – auch abends nach Feierabend.' },
+  { q: 'Wie schnell bekomme ich einen Termin?', a: 'In der Regel innerhalb weniger Tage. Wir beraten montags bis samstags von 10 bis 20 Uhr, persönlich in Aachen oder deutschlandweit per Video-Call – auch abends nach Feierabend.' },
   { q: 'Was passiert nach dem Erstgespräch?', a: 'Du bekommst deine Auswertung schriftlich mit konkreten Empfehlungen. Wenn du etwas umsetzen willst, übernehmen wir Anträge und Schriftverkehr. Wenn nicht, hast du trotzdem einen klaren Überblick – ohne Nachfassen und ohne Verkaufsdruck.' },
 ];
 
@@ -3401,7 +3402,7 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             </span>
             <div>
-              <p className="text-xs text-[#0F172A]/40 mb-0.5">Mo–Sa, 10–21 Uhr</p>
+              <p className="text-xs text-[#0F172A]/40 mb-0.5">Mo–Sa, 10–20 Uhr</p>
               <p className="font-bold text-[#0F172A]">+49 173 1038570</p>
             </div>
           </a>
