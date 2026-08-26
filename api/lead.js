@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   const isMagnet = b.type === 'leadmagnet';
   const name = String(b.name || '').slice(0, 200);
   // Landet immer im Vercel-Log – so geht auch ohne Mailversand kein Lead verloren.
-  console.log('[lead]', JSON.stringify({ type: b.type, name, email, guide: b.guide, plz: b.plz, tel: b.tel }));
+  console.log('[lead]', JSON.stringify({ type: b.type, thema: b.thema, name, email, guide: b.guide, plz: b.plz, tel: b.tel, qualifizierung: b.qualifizierung }));
 
   if (!process.env.RESEND_API_KEY) {
     console.warn('[lead] RESEND_API_KEY fehlt – Lead wurde nur geloggt.');
@@ -50,8 +50,11 @@ export default async function handler(req, res) {
     ['E-Mail', email],
     ['Telefon', b.tel],
     ['PLZ', b.plz],
+    ['Thema', b.thema],
     ['Nachricht', b.nachricht],
+    ['Qualifizierung', b.qualifizierung],
     ['Angefordert', b.guide],
+    ['Newsletter', b.newsletter ? 'ja' : ''],
     ['Einwilligung', b.consent || b.datenschutz ? 'ja' : 'nein'],
   ].filter(([, v]) => v);
 
@@ -59,7 +62,9 @@ export default async function handler(req, res) {
     await sendMail({
       to: [TO],
       reply_to: email,
-      subject: isMagnet ? `Neuer Download-Lead: ${b.guide || 'Übersicht'}` : `Neue Kontaktanfrage von ${name || email}`,
+      subject: isMagnet
+        ? `Neuer Download-Lead: ${b.guide || 'Übersicht'}`
+        : `Neue ${b.thema ? `${b.thema}-Anfrage` : 'Kontaktanfrage'} von ${name || email}`,
       html: `<h2>${isMagnet ? 'Download-Lead' : 'Kontaktanfrage'}</h2><table cellpadding="6">${rows
         .map(([k, v]) => `<tr><td><b>${esc(k)}</b></td><td>${esc(v).replace(/\n/g, '<br>')}</td></tr>`)
         .join('')}</table>`,

@@ -10,7 +10,7 @@ import { SERVICE_DATA, type ServiceKey, type ServicePageData } from '../serviceC
 
 // ─── Brand Configuration ────────────────────────────────────────────────────────
 type Brand = 'dk' | 'vorsorge' | 'immo' | 'consulting';
-type Page = 'home' | 'ueberuns' | 'impressum' | 'datenschutz' | 'kontakt' | 'leistungen' | 'service' | 'karriere';
+type Page = 'home' | 'ueberuns' | 'impressum' | 'datenschutz' | 'kontakt' | 'leistungen' | 'service' | 'karriere' | 'pkv' | 'av';
 
 
 const BRANDS = {
@@ -3208,7 +3208,8 @@ const FunnelInput = ({ label, value, onChange, type = 'text', required }: {
   </label>
 );
 
-const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p: Page) => void }) => {
+/** Wiederverwendbarer Qualifizierungs-Funnel: Fragen → Kontaktdaten → Zusammenfassung → Versand. */
+const QualiFunnel = ({ questions, thema, onPageChange }: { questions: typeof QUALI_QUESTIONS; thema?: string; onPageChange: (p: Page) => void }) => {
   const [step, setStep] = useState(1);
   const [qi, setQi] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -3216,21 +3217,19 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior }); }, []);
-
-  const q = QUALI_QUESTIONS[qi];
+  const q = questions[qi];
 
   const pick = (opt: string) => {
     setAnswers((a) => ({ ...a, [q.key]: opt }));
     setTimeout(() => {
-      if (qi < QUALI_QUESTIONS.length - 1) setQi(qi + 1);
+      if (qi < questions.length - 1) setQi(qi + 1);
       else setStep(2);
     }, 260);
   };
 
   const back = () => {
     if (step === 1 && qi > 0) setQi(qi - 1);
-    else if (step === 2) { setStep(1); setQi(QUALI_QUESTIONS.length - 1); }
+    else if (step === 2) { setStep(1); setQi(questions.length - 1); }
     else if (step === 3) setStep(2);
   };
 
@@ -3239,34 +3238,21 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
     setSending(true);
     await postLead({
       type: 'kontakt',
+      thema,
       name: `${data.vorname} ${data.nachname}`.trim(),
       email: data.email,
       tel: data.tel,
       nachricht: data.nachricht,
       newsletter: data.newsletter,
       datenschutz: data.datenschutz,
-      qualifizierung: QUALI_QUESTIONS.map((x) => `${x.q} ${answers[x.key] ?? '–'}`).join(' | '),
+      qualifizierung: questions.map((x) => `${x.q} ${answers[x.key] ?? '–'}`).join(' | '),
     });
     setSending(false);
     setSent(true);
   };
 
   return (
-    <div className="min-h-screen bg-white pt-28 md:pt-36 pb-24 px-6">
-      <div className="max-w-2xl mx-auto">
-
-        {/* Breadcrumb */}
-        <div className="flex items-center justify-center gap-2 text-sm text-[#0F172A]/40 mb-6">
-          <button onClick={() => onPageChange('home')} className="hover:text-[#0F172A]/70 transition-colors">Home</button>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="px-3 py-1 rounded-full text-xs font-semibold" style={{ backgroundColor: ACCENT + '18', color: ACCENT }}>Kontakt</span>
-        </div>
-
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-[#0F172A] text-center mb-4">Lass uns sprechen</h1>
-        <p className="text-[#0F172A]/50 text-center max-w-lg mx-auto leading-relaxed mb-12">
-          Beantworte ein paar kurze Fragen, damit wir deine Situation vorab einordnen können. Dauert keine zwei Minuten.
-        </p>
-
+    <>
         {sent ? (
           <div className="rounded-3xl border border-black/5 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.4)] bg-white p-10 md:p-14 text-center">
             <CheckCircle2 className="w-14 h-14 mx-auto mb-5" style={{ color: ACCENT }} />
@@ -3290,7 +3276,7 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
                 {step === 1 && (
                   <motion.div key={`q-${qi}`} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }}
                     transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}>
-                    <p className="text-sm text-[#0F172A]/40 mb-1">Frage {qi + 1} von {QUALI_QUESTIONS.length}</p>
+                    <p className="text-sm text-[#0F172A]/40 mb-1">Frage {qi + 1} von {questions.length}</p>
                     <h2 className="text-xl md:text-2xl font-bold text-[#0F172A] mb-7">{q.q}</h2>
                     <div className="flex flex-col gap-3">
                       {q.options.map((opt) => {
@@ -3367,7 +3353,7 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
                     <p className="text-sm text-[#0F172A]/45 mb-7">Kurz prüfen, dann schicken wir dir Terminvorschläge.</p>
 
                     <dl className="rounded-2xl bg-[#0F172A]/[0.03] p-6 mb-7 flex flex-col gap-3">
-                      {QUALI_QUESTIONS.map((x) => (
+                      {questions.map((x) => (
                         <div key={x.key} className="flex justify-between gap-6 text-sm">
                           <dt className="text-[#0F172A]/45">{x.q}</dt>
                           <dd className="font-semibold text-[#0F172A] text-right flex-shrink-0">{answers[x.key] ?? '–'}</dd>
@@ -3397,6 +3383,31 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
             </div>
           </>
         )}
+    </>
+  );
+};
+
+// ─── Kontakt Page ────────────────────────────────────────────────────────────────
+const KontaktPage = ({ color: _color, onPageChange }: { color: string; onPageChange: (p: Page) => void }) => {
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior }); }, []);
+
+  return (
+    <div className="min-h-screen bg-white pt-28 md:pt-36 pb-24 px-6">
+      <div className="max-w-2xl mx-auto">
+
+        {/* Breadcrumb */}
+        <div className="flex items-center justify-center gap-2 text-sm text-[#0F172A]/40 mb-6">
+          <button onClick={() => onPageChange('home')} className="hover:text-[#0F172A]/70 transition-colors">Home</button>
+          <ChevronRight className="w-3.5 h-3.5" />
+          <span className="px-3 py-1 rounded-full text-xs font-semibold" style={{ backgroundColor: ACCENT + '18', color: ACCENT }}>Kontakt</span>
+        </div>
+
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-[#0F172A] text-center mb-4">Lass uns sprechen</h1>
+        <p className="text-[#0F172A]/50 text-center max-w-lg mx-auto leading-relaxed mb-12">
+          Beantworte ein paar kurze Fragen, damit wir deine Situation vorab einordnen können. Dauert keine zwei Minuten.
+        </p>
+
+        <QualiFunnel questions={QUALI_QUESTIONS} onPageChange={onPageChange} />
 
         {/* ── Direkter Draht ── */}
         <div className="mt-14 grid sm:grid-cols-2 gap-4">
@@ -3438,6 +3449,370 @@ const KontaktPage = ({ color, onPageChange }: { color: string; onPageChange: (p:
   );
 };
 
+// ─── Funnel-Landingpages (/pkv & /altersvorsorge) ────────────────────────────────
+type FunnelKey = 'pkv' | 'av';
+
+interface FunnelConfig {
+  thema: string;                                   // taucht im Mail-Betreff auf
+  badge: string;
+  heroTitle: React.ReactNode;
+  audience: string;                                // für wen die Seite gedacht ist
+  heroSub: string;
+  heroPoints: string[];                            // Einwände/Trust – stehen UNTER dem CTA
+  ctaLabel: string;
+  pains: { icon: React.ReactNode; title: string; text: string }[];
+  painsHeading: string;
+  painsSub: string;
+  statsHeading: string;
+  stats: { value: string; label: string }[];
+  stepsHeading: string;
+  stepsSub: string;
+  steps: { title: string; text: string }[];
+  stepsCta: string;
+  magnet: NonNullable<ServicePageData['leadMagnet']>;
+  faq: { q: string; a: string }[];
+  funnelHeading: string;
+  funnelSub: string;
+  questions: typeof QUALI_QUESTIONS;
+}
+
+const FUNNELS: Record<FunnelKey, FunnelConfig> = {
+  pkv: {
+    thema: 'PKV',
+    badge: 'Kostenloser PKV-Check · 2 Minuten',
+    heroTitle: <>Bessere Leistungen als die GKV – <span style={{ color: ACCENT }}>oft für weniger Beitrag.</span></>,
+    audience: 'Für Angestellte mit gutem Einkommen, Selbstständige, Beamte und Studenten.',
+    heroSub: 'Finde in 2 Minuten heraus, ob sich die private Krankenversicherung für dich rechnet. Wer im falschen System bleibt, zahlt über die Jahre Zehntausende zu viel – oder bekommt im Ernstfall nur Grundversorgung. Wir vergleichen über 500 Tarife und sagen dir ehrlich, was das Beste für dich ist: GKV, PKV oder Zusatzbausteine.',
+    heroPoints: ['100 % kostenlos & unverbindlich', 'Anonyme Voranfrage – keine Spuren in deiner Akte', 'Ehrliche Antwort – auch wenn sie „bleib in der GKV" lautet'],
+    ctaLabel: 'Jetzt kostenlosen PKV-Check starten',
+    painsHeading: 'Die falsche Krankenversicherung kostet dich jeden Monat bares Geld',
+    painsSub: 'Drei Dinge, die passieren, wenn du deine Versicherung einfach weiterlaufen lässt:',
+    pains: [
+      { icon: <Wallet className="w-5 h-5" />, title: 'Dein GKV-Beitrag steigt weiter', text: 'Die Zusatzbeiträge der Krankenkassen steigen Jahr für Jahr. Wer gut verdient, zahlt schnell den Höchstbeitrag – oft mehr, als eine leistungsstärkere PKV kosten würde.' },
+      { icon: <Heart className="w-5 h-5" />, title: 'Leistungen werden gekürzt', text: 'Die GKV ist Grundversorgung: lange Wartezeiten beim Facharzt, Festzuschüsse beim Zahnersatz, kaum Spielraum bei Medikamenten und Vorsorge. Die Lücken zahlst du selbst.' },
+      { icon: <Eye className="w-5 h-5" />, title: 'Ein Wechsel ohne Plan wird teuer', text: 'Falscher Tarif, keine Beitragsentlastung im Alter, Gesundheitsfragen falsch beantwortet – Fehler beim PKV-Einstieg kosten Tausende. Genau die verhindern wir.' },
+    ],
+    statsHeading: 'PKV in Zahlen',
+    stats: SERVICE_DATA.krankenversicherung.stats,
+    stepsHeading: 'Die Lösung: ein ehrlicher Vergleich aus über 500 Tarifen',
+    stepsSub: 'Und so einfach kommst du hin – kein Papierkram, kein Verkaufsdruck, drei Schritte.',
+    steps: [
+      { title: 'Fragen beantworten', text: 'Beantworte unten ein paar kurze Fragen zu deiner Situation. Dauert keine 2 Minuten und ist völlig unverbindlich.' },
+      { title: 'Kostenloses Erstgespräch', text: 'Wir melden uns innerhalb von 48 Stunden und analysieren im Video-Call deine Situation: GKV optimieren, Zusatzbausteine oder PKV-Wechsel.' },
+      { title: 'Dein Tarifvergleich', text: 'Du bekommst einen ehrlichen Vergleich aus über 500 Tarifen – inklusive anonymer Risikovoranfrage und Langfristrechnung bis ins Rentenalter.' },
+    ],
+    stepsCta: 'PKV-Check starten – kostenlos',
+    magnet: SERVICE_DATA.krankenversicherung.leadMagnet!,
+    // Einwandbehandlung statt generischer FAQ
+    faq: [
+      { q: '„Die PKV wird im Alter unbezahlbar" – stimmt das?',
+        a: 'Das passiert, wenn der Tarif falsch gewählt ist. Gute Tarife haben eine stabile Beitragshistorie, Altersrückstellungen und einen Beitragsentlastungsbaustein – genau darauf prüfen wir jeden Tarif in der Langfristrechnung bis ins Rentenalter. Und wenn die Rechnung für dich nicht aufgeht, sagen wir dir das klar: Dann bleibst du besser in der GKV.' },
+      { q: '„Aus der PKV komme ich nie wieder raus."',
+        a: 'Die PKV ist eine langfristige Entscheidung, aber keine Einbahnstraße: Bis 55 gibt es definierte Rückwege in die GKV, etwa über eine Anstellung unter der Versicherungspflichtgrenze. Genau deshalb rechnen wir vor dem Wechsel beide Szenarien durch – damit du die Entscheidung einmal richtig triffst.' },
+      { q: '„Mit meinen Vorerkrankungen nimmt mich sowieso keiner."',
+        a: 'Dafür gibt es die anonyme Risikovoranfrage: Wir fragen bei mehreren Versicherern an, ohne dass dein Name fällt. Du bekommst verbindliche Einschätzungen ohne Spuren in deiner Akte – und weißt vorher, welcher Versicherer dich zu welchen Konditionen nimmt.' },
+      { q: '„Ich bin doch zufrieden mit meiner GKV."',
+        a: 'Vielleicht bleibt es auch dabei – einem großen Teil unserer Mandanten empfehlen wir, in der GKV zu bleiben und nur gezielt Lücken mit Zusatzbausteinen zu schließen. Der Check zeigt dir schwarz auf weiß, ob du optimal aufgestellt bist. Nachrechnen kostet dich nichts, nicht nachrechnen möglicherweise viel.' },
+      { q: '„Was kostet mich die Beratung?"',
+        a: 'Nichts. Wir werden im Abschlussfall vom Versicherer vergütet, deshalb ist die Beratung für dich kostenlos. Und weil wir mit über 500 Tarifen vieler Gesellschaften arbeiten, haben wir keinen Grund, dir ein bestimmtes Produkt zu verkaufen.' },
+      { q: '„Muss ich danach etwas abschließen?"',
+        a: 'Nein. Erstgespräch und Vergleich sind unverbindlich – kein Vertrag, keine Verpflichtung, kein Nachfassen im Wochentakt. Du bekommst die Zahlen, wir beantworten deine Fragen, die Entscheidung triffst du.' },
+    ],
+    funnelHeading: 'Starte jetzt deinen kostenlosen PKV-Check',
+    funnelSub: 'Beantworte ein paar kurze Fragen, damit wir deine Situation vorab einordnen können. Danach melden wir uns mit Terminvorschlägen – kostenlos und unverbindlich.',
+    questions: [
+      { key: 'beruf', q: 'Was beschreibt deine berufliche Situation?',
+        options: ['Angestellt', 'Selbstständig / Freiberuflich', 'Beamter/Beamtin', 'Student/in'] },
+      { key: 'einkommen', q: 'Wie hoch ist dein Bruttoeinkommen pro Jahr?',
+        options: ['Unter 66.600 €', 'Über 66.600 €', 'Weiß ich nicht'] },
+      { key: 'alter', q: 'Wie alt bist du?',
+        options: ['Unter 30', '30–40', '41–50', 'Über 50'] },
+      { key: 'status', q: 'Wie bist du aktuell krankenversichert?',
+        options: ['Gesetzlich (GKV)', 'Privat (PKV)', 'Familienversichert'] },
+      { key: 'ziel', q: 'Was ist dir am wichtigsten?',
+        options: ['Beitrag senken', 'Bessere Leistungen', 'Beides ehrlich vergleichen'] },
+    ],
+  },
+  av: {
+    thema: 'Altersvorsorge',
+    badge: 'Kostenloser Renten-Check · 2 Minuten',
+    heroTitle: <>Deine gesetzliche Rente wird nicht reichen. <span style={{ color: ACCENT }}>Deine Vorsorge schon.</span></>,
+    audience: 'Für Angestellte, Selbstständige und Beamte, die sich nicht auf den Staat verlassen wollen.',
+    heroSub: 'Wer heute 40 ist, bekommt im Alter nur noch rund 48 % seines letzten Nettogehalts als Rente – im Schnitt fehlen 500 € im Monat. Und jedes Jahr Aufschieben treibt die nötige Sparrate weiter nach oben. Finde in 2 Minuten heraus, wie groß deine Lücke ist und wie du sie mit Förderung, Steuervorteilen und Zinseszins am effizientesten schließt.',
+    heroPoints: ['100 % kostenlos & unverbindlich', 'Kein Produktdruck – auch „ETF-Depot reicht dir" ist ein Ergebnis', 'Sinnvoll schon ab 50 € im Monat'],
+    ctaLabel: 'Jetzt kostenlosen Renten-Check starten',
+    painsHeading: 'Die Rentenlücke ist real – und sie wächst jeden Monat',
+    painsSub: 'Drei Dinge, die passieren, wenn du deine Vorsorge weiter aufschiebst:',
+    pains: [
+      { icon: <BarChart3 className="w-5 h-5" />, title: 'Das Rentenniveau sinkt', text: 'Prognose für 2040: nur noch 48 % des letzten Nettogehalts. Die durchschnittliche Nettorente liegt heute schon bei nur 978 € im Monat – Tendenz relativ fallend.' },
+      { icon: <Wallet className="w-5 h-5" />, title: 'Warten kostet dich am meisten', text: 'Wer mit 25 startet, braucht für dasselbe Rentenkapital nur etwa die Hälfte der monatlichen Sparrate wie jemand, der mit 40 beginnt. Der Zinseszins arbeitet nur für die, die anfangen.' },
+      { icon: <Calculator className="w-5 h-5" />, title: 'Förderung bleibt liegen', text: 'Riester-Zulagen, Rürup-Steuervorteile, 15 % Pflicht-Arbeitgeberzuschuss bei der bAV – viele verschenken jedes Jahr vierstellige Beträge, weil niemand es ihnen durchrechnet.' },
+    ],
+    statsHeading: 'Altersvorsorge in Zahlen',
+    stats: SERVICE_DATA.vorsorge.stats,
+    stepsHeading: 'Die Lösung: ein Vorsorgekonzept, das mit deinen echten Zahlen rechnet',
+    stepsSub: 'Und so einfach kommst du hin – kein Papierkram, kein Verkaufsdruck, drei Schritte.',
+    steps: [
+      { title: 'Fragen beantworten', text: 'Beantworte unten ein paar kurze Fragen zu deiner Situation. Dauert keine 2 Minuten und ist völlig unverbindlich.' },
+      { title: 'Kostenloses Erstgespräch', text: 'Wir melden uns innerhalb von 48 Stunden und berechnen im Video-Call deine echte Rentenlücke – inflationsbereinigt, mit deinen Zahlen.' },
+      { title: 'Dein Vorsorgekonzept', text: 'Du bekommst ein Konzept, das Förderung, Steuern und Kosten sauber gegeneinander rechnet – vom ETF-Depot bis zur Fondspolice. In deinem Tempo, ohne Druck.' },
+    ],
+    stepsCta: 'Renten-Check starten – kostenlos',
+    magnet: SERVICE_DATA.vorsorge.leadMagnet!,
+    // Einwandbehandlung statt generischer FAQ
+    faq: [
+      { q: '„Ich habe dafür gerade kein Geld übrig."',
+        a: 'Sinnvolle Vorsorge beginnt ab etwa 50 € im Monat – und oft finanziert sich ein Teil davon über Förderungen und Steuervorteile, die dir heute schon zustehen, aber ungenutzt liegen bleiben. Genau das rechnen wir durch: Was ist mit deinem Budget möglich, und was bringt es konkret?' },
+      { q: '„Das hat noch Zeit – ich bin noch jung."',
+        a: 'Zeit ist beim Vermögensaufbau dein größter Hebel: Wer mit 25 startet, braucht für dasselbe Rentenkapital nur rund die Hälfte der Sparrate wie jemand, der mit 40 beginnt. Jedes Jahr Aufschieben macht die Lücke nicht kleiner, sondern teurer.' },
+      { q: '„Einen ETF-Sparplan kann ich auch selbst anlegen – wozu Beratung?"',
+        a: 'Stimmt – und manchmal ist genau das unser Ergebnis. Wir stellen Depot und Fondspolice mit identischen Annahmen nebeneinander, inklusive aller Kosten, Steuern und Förderungen, und empfehlen dir das ETF-Depot, wenn es rechnerisch besser abschneidet. Was du privat nicht abbilden kannst: bAV mit 15 % Pflicht-Arbeitgeberzuschuss oder Riester- und Rürup-Vorteile.' },
+      { q: '„Versicherungen wollen mir doch nur etwas verkaufen."',
+        a: 'Deshalb arbeiten wir andersherum: erst Bedarf, Lücke und Sparrate, dann die Produktfrage. Wir vergleichen über viele Gesellschaften hinweg und legen Kosten über die Effektivkostenquote offen – die eine Kennzahl, die Produkte wirklich vergleichbar macht.' },
+      { q: '„Was kostet mich die Beratung?"',
+        a: 'Nichts. Wir werden im Abschlussfall vom Anbieter vergütet, deshalb ist die Beratung für dich kostenlos – inklusive Rentenlücken-Berechnung und Konzept.' },
+      { q: '„Bin ich danach an einen Vertrag gebunden?"',
+        a: 'Nein. Erstgespräch und Konzept sind unverbindlich – kein Vertrag, keine Verpflichtung. Du bekommst deine Zahlen schwarz auf weiß, die Entscheidung triffst du in deinem Tempo.' },
+    ],
+    funnelHeading: 'Starte jetzt deinen kostenlosen Renten-Check',
+    funnelSub: 'Beantworte ein paar kurze Fragen, damit wir deine Situation vorab einordnen können. Danach melden wir uns mit Terminvorschlägen – kostenlos und unverbindlich.',
+    questions: [
+      { key: 'alter', q: 'Wie alt bist du?',
+        options: ['Unter 25', '25–35', '36–45', 'Über 45'] },
+      { key: 'situation', q: 'Was beschreibt deine berufliche Situation?',
+        options: ['Angestellt', 'Selbstständig / Freiberuflich', 'Beamter/Beamtin', 'Student/in / Ausbildung'] },
+      { key: 'vorsorge', q: 'Sorgst du bereits fürs Alter vor?',
+        options: ['Ja, regelmäßig', 'Ja, aber unstrukturiert', 'Nein, noch nicht'] },
+      { key: 'rate', q: 'Wie viel könntest du monatlich zurücklegen?',
+        options: ['Unter 50 €', '50–150 €', '150–300 €', 'Über 300 €'] },
+      { key: 'ziel', q: 'Was ist dein wichtigstes Ziel?',
+        options: ['Rentenlücke schließen', 'Steuern & Förderung nutzen', 'Vermögen aufbauen', 'Erstmal Überblick bekommen'] },
+    ],
+  },
+};
+
+const scrollToFunnel = () => document.getElementById('dk-funnel')?.scrollIntoView({ behavior: 'smooth' });
+
+/** CTA-Button der Funnel-Seiten – scrollt immer zum Funnel. */
+const FunnelCta = ({ label, className = '' }: { label: string; className?: string }) => (
+  <button onClick={scrollToFunnel}
+    className={`shine inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-bold text-sm md:text-base hover:opacity-90 transition-opacity shadow-lg ${className}`}
+    style={{ backgroundColor: ACCENT }}>
+    {label} <ArrowRight className="w-4 h-4" />
+  </button>
+);
+
+const FunnelLandingPage = ({ funnel, onPageChange }: { funnel: FunnelKey; onPageChange: (p: Page) => void }) => {
+  const cfg = FUNNELS[funnel];
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior }); }, [funnel]);
+
+  return (
+    <div className="bg-white pb-20 md:pb-0">
+
+      {/* ── Schlanker Header: Logo, Telefon, CTA ── */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+          <button onClick={() => onPageChange('home')} className="flex-shrink-0">
+            <img src="/dk-logo-wide.png" alt="DK Finanzkanzlei" className="h-8 w-auto" />
+          </button>
+          <div className="flex items-center gap-4">
+            <a href="tel:+491731038570" className="hidden sm:block text-sm font-semibold text-[#0F172A]/60 hover:text-[#0F172A] transition-colors">+49 173 1038570</a>
+            <button onClick={scrollToFunnel} className="px-5 py-2.5 rounded-full text-white font-bold text-sm hover:opacity-90 transition-opacity" style={{ backgroundColor: ACCENT }}>
+              Kostenloser Check
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* ── Hero ── */}
+      <section className="relative pt-28 md:pt-36 pb-14 md:pb-20 px-6 overflow-hidden">
+        <div className="absolute inset-0 -z-10 dot-grid" />
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
+            <span className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.14em] uppercase px-4 py-1.5 rounded-full mb-6" style={{ backgroundColor: ACCENT + '14', color: ACCENT }}>
+              <Zap className="w-3.5 h-3.5" /> {cfg.badge}
+            </span>
+            <h1 className="text-[2.35rem] leading-[1.05] md:text-5xl lg:text-6xl font-extrabold tracking-[-0.03em] text-[#0F172A] mb-4">
+              {cfg.heroTitle}
+            </h1>
+            <p className="text-sm md:text-base font-semibold mb-4" style={{ color: ACCENT }}>{cfg.audience}</p>
+            <p className="text-base md:text-lg text-[#0F172A]/55 max-w-2xl mx-auto leading-relaxed mb-8">{cfg.heroSub}</p>
+
+            {/* Ein dominanter CTA, PDF nur als untergeordneter Textlink */}
+            <div className="flex flex-col items-center gap-4 mb-8">
+              <FunnelCta label={cfg.ctaLabel} />
+              <a href="#dk-pdf" className="inline-flex items-center gap-1.5 text-sm text-[#0F172A]/50 underline underline-offset-4 decoration-[#0F172A]/20 hover:text-[#0F172A]/80 transition-colors">
+                <FileText className="w-3.5 h-3.5" /> Oder erst die kostenlose {cfg.magnet.fileLabel} ansehen
+              </a>
+            </div>
+
+            {/* Trust + Einwand-Behandlung unter dem CTA */}
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <div className="flex -space-x-2.5">
+                {HERO_AVATARS.map((src) => (
+                  <img key={src} src={src} alt="" loading="lazy" decoding="async" className="w-9 h-9 rounded-full object-cover object-top ring-2 ring-white bg-[#E8EDF5]" />
+                ))}
+              </div>
+              <span className="flex items-center gap-1.5 text-sm text-[#0F172A]/55">
+                <ShieldCheck className="w-4 h-4" style={{ color: ACCENT }} /> Ausgezeichnet bewertet bei Google
+              </span>
+            </div>
+            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              {cfg.heroPoints.map((p) => (
+                <li key={p} className="flex items-center gap-1.5 text-xs md:text-sm text-[#0F172A]/55">
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: ACCENT }} /> {p}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Partnerlogos ── */}
+      <section className="bg-[#0F172A] py-4">
+        <LogoMarquee />
+      </section>
+
+      {/* ── Pain Points ── */}
+      <section className="py-16 md:py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-[#0F172A] mb-4">{cfg.painsHeading}</h2>
+            <p className="text-[#0F172A]/50 leading-relaxed">{cfg.painsSub}</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5 mb-12">
+            {cfg.pains.map((p) => (
+              <div key={p.title} className="lift rounded-2xl border border-black/5 bg-white p-7 shadow-[0_14px_36px_-30px_rgba(15,23,42,0.45)]">
+                <span className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: ACCENT + '14', color: ACCENT }}>{p.icon}</span>
+                <h3 className="font-bold text-[#0F172A] mb-2">{p.title}</h3>
+                <p className="text-sm text-[#0F172A]/55 leading-relaxed">{p.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center"><FunnelCta label={cfg.ctaLabel} /></div>
+        </div>
+      </section>
+
+      {/* ── Zahlen ── */}
+      <section className="py-14 md:py-16 px-6" style={{ backgroundColor: '#0F172A' }}>
+        <div className="max-w-6xl mx-auto">
+          <p className="text-center text-xs font-bold tracking-[0.18em] uppercase text-white/35 mb-8">{cfg.statsHeading}</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {cfg.stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <p className="text-3xl md:text-4xl font-extrabold text-white mb-1.5">{s.value}</p>
+                <p className="text-xs md:text-sm text-white/45">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Leadmagnet: PDF-Übersicht ── */}
+      <section id="dk-pdf" className="py-16 md:py-24 px-6 scroll-mt-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#0F172A]/35 mb-2">Noch nicht bereit für ein Gespräch?</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-[#0F172A]">Hol dir erst die kostenlose {cfg.magnet.fileLabel}</h2>
+          </div>
+          <LeadMagnetForm magnet={cfg.magnet} color={ACCENT} onPageChange={onPageChange} />
+        </div>
+      </section>
+
+      {/* ── So läuft's ab ── */}
+      <section className="py-16 md:py-24 px-6" style={{ backgroundColor: 'rgba(15,23,42,0.025)' }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-[#0F172A] mb-4">{cfg.stepsHeading}</h2>
+            <p className="text-[#0F172A]/50 leading-relaxed">{cfg.stepsSub}</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5 mb-12">
+            {cfg.steps.map((s, i) => (
+              <div key={s.title} className="rounded-2xl border border-black/5 bg-white p-7 shadow-[0_14px_36px_-30px_rgba(15,23,42,0.45)]">
+                <span className="w-11 h-11 rounded-full flex items-center justify-center mb-5 font-extrabold text-white" style={{ backgroundColor: ACCENT }}>{i + 1}</span>
+                <h3 className="font-bold text-[#0F172A] mb-2">{s.title}</h3>
+                <p className="text-sm text-[#0F172A]/55 leading-relaxed">{s.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center"><FunnelCta label={cfg.stepsCta} /></div>
+        </div>
+      </section>
+
+      {/* ── Bewertungen ── */}
+      <section className="py-16 md:py-24 px-6" style={{ backgroundColor: '#0F172A' }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="inline-flex items-center gap-1.5 text-sm text-white/55 mb-3"><Star className="w-4 h-4 fill-current" style={{ color: GOLD }} /> Ausgezeichnet bewertet bei Google</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-white">Das sagen unsere Mandanten</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {ALL_TESTIMONIALS.slice(0, 3).map((t) => (
+              <div key={t.name + t.date} className="rounded-2xl border border-white/5 bg-white/[0.03] p-6 flex flex-col">
+                <StarRating stars={5} />
+                <p className="text-white/65 italic leading-relaxed text-sm flex-1">„{t.text}"</p>
+                <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
+                  <p className="font-bold text-sm text-white">{t.name}</p>
+                  <p className="text-xs text-white/30">{t.date}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-16 md:py-24 px-6">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-[#0F172A] text-center mb-3">Häufige Einwände – ehrlich beantwortet</h2>
+          <p className="text-[#0F172A]/50 text-center leading-relaxed mb-10">Was uns Mandanten vor dem ersten Gespräch am häufigsten sagen.</p>
+          <div className="flex flex-col gap-3">
+            {cfg.faq.map((f, i) => (
+              <div key={f.q} className="rounded-2xl border border-black/5 bg-white shadow-[0_14px_36px_-30px_rgba(15,23,42,0.35)] overflow-hidden">
+                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left">
+                  <span className="font-bold text-[#0F172A] text-sm md:text-base">{f.q}</span>
+                  <ChevronRight className={`w-4 h-4 flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-90' : ''}`} style={{ color: ACCENT }} />
+                </button>
+                {openFaq === i && <p className="px-6 pb-5 text-sm text-[#0F172A]/55 leading-relaxed">{f.a}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Funnel ── */}
+      <section id="dk-funnel" className="py-16 md:py-24 px-6 scroll-mt-16" style={{ backgroundColor: 'rgba(15,23,42,0.025)' }}>
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-[-0.03em] text-[#0F172A] text-center mb-4">{cfg.funnelHeading}</h2>
+          <p className="text-[#0F172A]/50 text-center max-w-lg mx-auto leading-relaxed mb-12">{cfg.funnelSub}</p>
+          <QualiFunnel questions={cfg.questions} thema={cfg.thema} onPageChange={onPageChange} />
+        </div>
+      </section>
+
+      {/* ── Mini-Footer ── */}
+      <footer className="py-10 px-6 border-t border-black/5">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#0F172A]/45">
+          <p>© {new Date().getFullYear()} DK Finanzkanzlei · Eilendorfer Straße 215, 52078 Aachen</p>
+          <div className="flex items-center gap-5">
+            <a href="tel:+491731038570" className="hover:text-[#0F172A] transition-colors">+49 173 1038570</a>
+            <button onClick={() => onPageChange('impressum')} className="hover:text-[#0F172A] transition-colors">Impressum</button>
+            <button onClick={() => onPageChange('datenschutz')} className="hover:text-[#0F172A] transition-colors">Datenschutz</button>
+          </div>
+        </div>
+      </footer>
+
+      {/* ── Sticky CTA (mobil) ── */}
+      <div className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-white/95 backdrop-blur-md border-t border-black/10 p-3">
+        <button onClick={scrollToFunnel} className="w-full py-3.5 rounded-full text-white font-bold text-sm" style={{ backgroundColor: ACCENT }}>
+          {cfg.ctaLabel}
+        </button>
+      </div>
+    </div>
+  );
+};
+
 // ─── URL routing ─────────────────────────────────────────────────────────────────
 const PAGE_TO_PATH: Record<Page, string> = {
   home:        '/',
@@ -3448,6 +3823,8 @@ const PAGE_TO_PATH: Record<Page, string> = {
   leistungen:  '/leistungen',
   service:     '/leistungen', // overridden per-service below
   karriere:    '/karriere',
+  pkv:         '/pkv',
+  av:          '/altersvorsorge',
 };
 
 const PATH_TO_PAGE: Record<string, Page> = {
@@ -3458,6 +3835,8 @@ const PATH_TO_PAGE: Record<string, Page> = {
   '/kontakt':     'kontakt',
   '/leistungen':  'leistungen',
   '/karriere':    'karriere',
+  '/pkv':           'pkv',
+  '/altersvorsorge': 'av',
 };
 
 const SERVICE_KEYS: ServiceKey[] = ['krankenversicherung','arbeitskraft','kfz','sach','gewerbe','rente','hinterbliebene','immobilien','sparprodukte','geldanlagen','vorsorge','finanzierungen','aktien','vwl'];
@@ -3552,9 +3931,13 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white text-[#0F172A] selection:bg-[#4d7abd] selection:text-white">
       <CookieBanner onDatenschutz={() => navigate('datenschutz')} />
-      <Navbar onPageChange={navigate} currentPage={page} onService={goToService} />
+      {page !== 'pkv' && page !== 'av' && <Navbar onPageChange={navigate} currentPage={page} onService={goToService} />}
       <AnimatePresence mode="wait">
-        {page === 'karriere' ? (
+        {page === 'pkv' || page === 'av' ? (
+          <motion.div key={`funnel-${page}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
+            <FunnelLandingPage funnel={page} onPageChange={navigate} />
+          </motion.div>
+        ) : page === 'karriere' ? (
           <motion.div key="karriere" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             <KarrierePage onPageChange={navigate} />
             <Footer color={BRANDS.dk.color} onPageChange={navigate} />

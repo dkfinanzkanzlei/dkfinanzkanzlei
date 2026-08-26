@@ -17,6 +17,8 @@ export type RouteKey =
   | 'kontakt'
   | 'impressum'
   | 'datenschutz'
+  | 'pkv'
+  | 'av'
   | `service:${string}`;
 
 export interface SeoData {
@@ -359,6 +361,38 @@ const STATIC_ROUTES: Record<Exclude<RouteKey, `service:${string}`>, SeoData> = {
       },
     ],
   },
+  pkv: {
+    path: '/pkv',
+    title: 'PKV-Check in 2 Minuten – Lohnt sich die private Krankenversicherung? | DK Finanzkanzlei',
+    description:
+      'Finde in 2 Minuten heraus, ob sich die private Krankenversicherung für dich lohnt. Über 500 Tarife im Vergleich, kostenlose PKV-Übersicht als PDF – unverbindliche Beratung aus Aachen für ganz Deutschland.',
+    keywords: `PKV Vergleich, private Krankenversicherung Check, PKV Wechsel, GKV vs PKV, PKV Beratung Aachen, ${LOCAL_KEYWORDS_BASE}`,
+    prerenderH1: 'Bessere Leistungen als die GKV – oft für weniger Beitrag',
+    prerenderBody:
+      'Beantworte ein paar kurze Fragen und finde heraus, ob GKV, PKV oder eine Zusatzversicherung die beste Lösung für dich ist. Über 500 Tarife im Vergleich – kostenlos, unverbindlich und digital per Video-Call.',
+    jsonLd: [
+      breadcrumb([
+        { name: 'Startseite', path: '/' },
+        { name: 'PKV-Check', path: '/pkv' },
+      ]),
+    ],
+  },
+  av: {
+    path: '/altersvorsorge',
+    title: 'Altersvorsorge-Check in 2 Minuten – Rentenlücke berechnen & schließen | DK Finanzkanzlei',
+    description:
+      'Wie groß ist deine Rentenlücke – und wie schließt du sie am effizientesten? Kostenloser Vorsorge-Check in 2 Minuten, inklusive Altersvorsorge-Übersicht als PDF. Beratung aus Aachen für ganz Deutschland.',
+    keywords: `Altersvorsorge Check, Rentenlücke berechnen, private Rentenversicherung, Riester Rürup bAV Vergleich, Altersvorsorge Beratung Aachen, ${LOCAL_KEYWORDS_BASE}`,
+    prerenderH1: 'Deine gesetzliche Rente wird nicht reichen. Deine Vorsorge schon.',
+    prerenderBody:
+      'Beantworte ein paar kurze Fragen und erfahre, wie groß deine Rentenlücke ist und welcher Vorsorgeweg zu dir passt – Riester, Rürup, bAV, Fondspolice oder ETF. Kostenlos, unverbindlich und digital.',
+    jsonLd: [
+      breadcrumb([
+        { name: 'Startseite', path: '/' },
+        { name: 'Altersvorsorge-Check', path: '/altersvorsorge' },
+      ]),
+    ],
+  },
   impressum: {
     path: '/impressum',
     title: 'Impressum | DK Finanzkanzlei Aachen',
@@ -486,7 +520,7 @@ export function applySeo(data: SeoData) {
 }
 
 export function routeKeyForPage(
-  page: 'home' | 'ueberuns' | 'impressum' | 'datenschutz' | 'kontakt' | 'leistungen' | 'service' | 'karriere',
+  page: 'home' | 'ueberuns' | 'impressum' | 'datenschutz' | 'kontakt' | 'leistungen' | 'service' | 'karriere' | 'pkv' | 'av',
   service?: string,
 ): RouteKey {
   if (page === 'service' && service) return `service:${service}` as RouteKey;
