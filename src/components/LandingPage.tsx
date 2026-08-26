@@ -623,12 +623,12 @@ const Navbar = ({ onPageChange, currentPage, onService }: { onPageChange: (p: Pa
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl transition-shadow ${scrolled ? 'shadow-[0_1px_0_rgba(15,23,42,0.08),0_8px_24px_-16px_rgba(15,23,42,0.25)]' : 'border-b border-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 lg:h-20 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 lg:px-6 h-14 lg:h-16 flex items-center justify-between gap-6">
 
           <button onClick={() => onPageChange('home')} className="cursor-pointer flex-shrink-0 flex items-center gap-2.5" aria-label="Zur Startseite">
             <img src="/dk-mark.png" alt="" width="830" height="830" fetchPriority="high" decoding="async"
-              className="h-9 md:h-11 w-auto object-contain" style={{ filter: "saturate(1.3) brightness(0.82)" }} />
-            <span className="text-[1.05rem] md:text-xl font-extrabold tracking-[-0.02em] text-[#0F172A] whitespace-nowrap">
+              className="h-8 md:h-9 w-auto object-contain" style={{ filter: "saturate(1.3) brightness(0.82)" }} />
+            <span className="text-[1.05rem] md:text-lg font-extrabold tracking-[-0.02em] text-[#0F172A] whitespace-nowrap">
               DK Finanzkanzlei
             </span>
           </button>
@@ -647,7 +647,7 @@ const Navbar = ({ onPageChange, currentPage, onService }: { onPageChange: (p: Pa
             <button onClick={() => onPageChange(currentPage === 'karriere' ? 'home' : 'karriere')} className={`${link} ${currentPage === 'karriere' ? 'text-[#4d7abd]' : ''}`}>Karriere</button>
             <a href={CONSULTING_URL} className={link}>Consulting</a>
             <button onClick={() => onPageChange('kontakt')}
-              className="shine group px-5 py-2.5 text-white rounded-full text-sm font-bold inline-flex items-center gap-1.5 hover:opacity-90 transition-opacity shadow-[0_6px_18px_-8px_rgba(77,122,189,0.9)]"
+              className="shine group px-5 py-2 text-white rounded-full text-sm font-bold inline-flex items-center gap-1.5 hover:opacity-90 transition-opacity shadow-[0_6px_18px_-8px_rgba(77,122,189,0.9)]"
               style={{ backgroundColor: ACCENT }}>
               Kostenlos starten <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
@@ -664,7 +664,7 @@ const Navbar = ({ onPageChange, currentPage, onService }: { onPageChange: (p: Pa
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="fixed left-0 right-0 z-40 bg-white border-b border-black/10 p-6 flex flex-col gap-5 text-[#0F172A] overflow-y-auto lg:hidden"
-          style={{ top: '4rem', maxHeight: 'calc(100dvh - 4rem)' }}
+          style={{ top: '3.5rem', maxHeight: 'calc(100dvh - 3.5rem)' }}
         >
           <div>
             <button onClick={() => { setIsOpen(false); onPageChange('leistungen'); }} className="font-bold text-left w-full">Leistungen</button>
@@ -897,57 +897,71 @@ const GuidesBlock = () => (
 );
 
 
-/** Herzstück: ein Schalter, der das Chaos in eine Struktur um die DK-Mitte kippt. */
+/** Herzstück: frei schwebende Punkte, das DK-Logo als Knopf – ein Druck stapelt alles zu einer Reihe mit Ergebnis. */
 const SWITCH_ITEMS = [
   { icon: <Calculator className="w-4 h-4" />, tilt: 1.8,
-    scattered: { left: '2%', top: '10%' }, grid: { left: '25%', top: '4%' },
+    scattered: { left: '2%', top: '8%' },
     off: { title: 'Steuervorteile', note: 'Jahr für Jahr verschenkt' },
     on:  { title: 'Steuervorteile', note: 'Erledigt' } },
   { icon: <ShieldCheck className="w-4 h-4" />, tilt: -1.6,
-    scattered: { left: '58%', top: '0%' }, grid: { left: '53%', top: '4%' },
+    scattered: { left: '60%', top: '0%' },
     off: { title: 'Versicherung teurer', note: 'Beitrag erneut erhöht' },
     on:  { title: 'Versicherungen', note: 'Geprüft und optimiert' } },
   { icon: <Search className="w-4 h-4" />, tilt: -1.2,
-    scattered: { left: '26%', top: '44%' }, grid: { left: '4%', top: '42%' },
+    scattered: { left: '10%', top: '44%' },
     off: { title: 'etf sparplan welcher', note: '1.240.000 Ergebnisse' },
     on:  { title: 'ETF-Sparplan', note: 'Eingerichtet' } },
   { icon: <Heart className="w-4 h-4" />, tilt: 1.4,
-    scattered: { left: '74%', top: '30%' }, grid: { left: '74%', top: '42%' },
+    scattered: { left: '76%', top: '34%' },
     off: { title: 'BU-Schutz', note: 'Seit Jahren aufgeschoben' },
     on:  { title: 'BU-Schutz', note: 'Steht' } },
   { icon: <Home className="w-4 h-4" />, tilt: 1.6,
-    scattered: { left: '0%', top: '76%' }, grid: { left: '25%', top: '80%' },
+    scattered: { left: '4%', top: '80%' },
     off: { title: 'Immobilie kaufen?', note: 'Eigenkapital fehlt' },
     on:  { title: 'Immobilie', note: 'In Reichweite' } },
   { icon: <PieChart className="w-4 h-4" />, tilt: -1.8,
-    scattered: { left: '50%', top: '74%' }, grid: { left: '53%', top: '80%' },
+    scattered: { left: '58%', top: '76%' },
     off: { title: 'GKV oder PKV?', note: 'Ungeklärt seit Jahren' },
     on:  { title: 'PKV-Frage', note: 'Geklärt' } },
 ];
 
+// Reihen-Positionen: zentrierte Spalte von oben nach unten
+const rowPos = (i: number) => ({ left: '36%', top: `${i * 16.5}%` });
+
 const SwitchCard = ({ item, on, i }: { item: typeof SWITCH_ITEMS[number]; on: boolean; i: number }) => {
   const s = on ? item.on : item.off;
+  // Schwebe-Amplituden pro Karte leicht verschieden, damit nichts synchron wirkt
+  const ax = 8 + (i % 3) * 5, ay = 10 + ((i + 1) % 3) * 5;
   return (
     <motion.div
       initial={false}
-      animate={{ ...(on ? item.grid : item.scattered), rotate: on ? 0 : item.tilt }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.03 }}
-      className="lg:absolute w-full lg:w-[22%] z-10"
+      animate={{ ...(on ? rowPos(i) : item.scattered), rotate: on ? 0 : item.tilt }}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: on ? i * 0.09 : i * 0.03 }}
+      className="lg:absolute w-full lg:w-[28%] z-10"
     >
-      <div className={`rounded-full px-5 py-3.5 flex items-center gap-3 transition-shadow duration-500 ${on ? 'bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)]' : 'bg-white shadow-[0_14px_34px_-18px_rgba(15,23,42,0.3)]'}`}>
-        <span className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-500"
-          style={on ? { backgroundColor: ACCENT + '1F', color: ACCENT } : { backgroundColor: 'rgba(15,23,42,0.04)', color: 'rgba(15,23,42,0.45)' }}>
-          {on ? <CheckCircle2 className="w-4 h-4" /> : item.icon}
-        </span>
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div key={on ? 'on' : 'off'}
-            initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}
-            transition={{ duration: 0.2 }} className="min-w-0">
-            <p className="font-bold text-sm text-[#0F172A] leading-tight">{s.title}</p>
-            <p className="text-xs mt-0.5" style={{ color: on ? '#16A34A' : '#EF4444' }}>{s.note}</p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <motion.div
+        animate={on
+          ? { x: 0, y: 0, rotate: 0 }
+          : { x: [0, ax, -ax * 0.6, ax * 0.4, 0], y: [0, -ay, ay * 0.5, -ay * 0.3, 0], rotate: [0, -item.tilt, item.tilt, 0] }}
+        transition={on
+          ? { duration: 0.4 }
+          : { duration: 9 + i * 1.4, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <div className={`rounded-full px-5 py-3.5 flex items-center gap-3 transition-shadow duration-500 ${on ? 'bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)]' : 'bg-white shadow-[0_14px_34px_-18px_rgba(15,23,42,0.3)]'}`}>
+          <span className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-500"
+            style={on ? { backgroundColor: ACCENT + '1F', color: ACCENT } : { backgroundColor: 'rgba(15,23,42,0.04)', color: 'rgba(15,23,42,0.45)' }}>
+            {on ? <CheckCircle2 className="w-4 h-4" /> : item.icon}
+          </span>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={on ? 'on' : 'off'}
+              initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.2 }} className="min-w-0">
+              <p className="font-bold text-sm text-[#0F172A] leading-tight">{s.title}</p>
+              <p className="text-xs mt-0.5" style={{ color: on ? '#16A34A' : '#EF4444' }}>{s.note}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -955,19 +969,16 @@ const SwitchCard = ({ item, on, i }: { item: typeof SWITCH_ITEMS[number]; on: bo
 const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) => void }) => {
   const [on, setOn] = useState(false);
 
-  // Endpunkte der Speichen im 1000x600-Koordinatensystem der SVG
-  const spokes = [[367, 60], [632, 60], [170, 300], [830, 300], [367, 540], [632, 540]];
-
   return (
     <motion.section
       animate={{ backgroundColor: on ? ACCENT : '#F5F7FA' }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="relative py-16 md:py-20 px-6 overflow-hidden"
     >
-      {/* Punktraster nur im Ohne-Zustand, im Mit-Zustand traegt das Blau */}
+      {/* Punktraster nur im Chaos-Zustand, danach traegt das Blau */}
       <div className="absolute inset-0 dot-grid-full pointer-events-none transition-opacity duration-500" style={{ opacity: on ? 0 : 1 }} />
       <div className="relative max-w-5xl mx-auto">
-        <motion.div {...reveal} className="text-center mb-8">
+        <motion.div {...reveal} className="text-center mb-10">
           <h2 className="text-3xl md:text-[2.6rem] font-extrabold tracking-[-0.02em] mb-3 transition-colors duration-500"
             style={{ color: on ? '#fff' : '#0F172A' }}>
             {on
@@ -976,79 +987,63 @@ const SwitchSection = ({ onPageChange }: { onPageChange: (p: Page, t?: string) =
           </h2>
           <p className="max-w-lg mx-auto leading-relaxed transition-colors duration-500" style={{ color: on ? 'rgba(255,255,255,0.7)' : 'rgba(15,23,42,0.45)' }}>
             {on
-              ? 'Wir kümmern uns. Du behältst mehr Geld, bist besser abgesichert und hast den Kopf frei.'
+              ? 'Wir kümmern uns. Du behältst den Kopf frei.'
               : 'Zwischen ungeöffneter Post, offenen Tabs und gutem Vorsatz.'}
           </p>
         </motion.div>
 
-        {/* Schalter */}
-        <motion.div {...reveal} className="flex items-center justify-center gap-4 mb-10">
-          <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? 'rgba(255,255,255,0.5)' : '#0F172A' }}>Ohne</span>
-          <button onClick={() => setOn(!on)} role="switch" aria-checked={on} aria-label="Vorher-Nachher umschalten"
-            className="relative w-[5rem] h-11 rounded-full transition-colors duration-500 flex-shrink-0"
-            style={{
-              backgroundColor: on ? '#FFFFFF' : '#1B1D2A',
-              boxShadow: on ? '0 0 0 5px rgba(255,255,255,0.18)' : `0 0 0 5px ${GOLD}26`,
-            }}>
-            <motion.span animate={{ x: on ? 36 : 0 }} transition={{ type: 'spring', stiffness: 480, damping: 32 }}
-              className="absolute top-1.5 left-1.5 w-8 h-8 rounded-full shadow-[0_3px_8px_rgba(0,0,0,0.25)]"
-              style={{ backgroundColor: on ? ACCENT : '#FFFFFF' }} />
-          </button>
-          <span className="text-base font-medium transition-colors duration-500" style={{ color: on ? '#fff' : 'rgba(15,23,42,0.3)' }}>Mit DK</span>
-        </motion.div>
-
-        {/* Karten – Desktop verstreut bzw. um die Mitte, Mobil gestapelt */}
-        <div className="relative lg:h-[24rem] flex flex-col gap-3 lg:block">
+        {/* Karten – Desktop frei schwebend bzw. als Reihe, Mobil gestapelt */}
+        <div className="relative lg:h-[26rem] flex flex-col gap-3 lg:block">
+          {/* Struktur: senkrechte Linie hinter der Reihe */}
           <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-            {/* Chaos: lose Kurven */}
-            <g style={{ opacity: on ? 0 : 1, transition: 'opacity .4s' }}>
-              {['M 190 120 C 280 190, 320 210, 360 250', 'M 640 60 C 720 90, 780 140, 810 200',
-                'M 830 320 C 790 400, 700 450, 620 480', 'M 560 500 C 430 530, 300 530, 190 500',
-                'M 150 470 C 190 420, 250 370, 320 300'].map((d, i) => (
-                <path key={i} d={d} fill="none" stroke="rgba(15,23,42,0.18)" strokeWidth="1.5" strokeDasharray="6 8" vectorEffect="non-scaling-stroke" />
-              ))}
-            </g>
-            {/* Struktur: Speichen zur Mitte */}
-            <g style={{ opacity: on ? 1 : 0, transition: 'opacity .5s .15s' }}>
-              {spokes.map(([x, y], i) => (
-                <line key={i} x1="500" y1="300" x2={x} y2={y} stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeDasharray="6 7" vectorEffect="non-scaling-stroke" />
-              ))}
-            </g>
+            <line x1="500" y1="20" x2="500" y2="590" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeDasharray="6 7" vectorEffect="non-scaling-stroke"
+              style={{ opacity: on ? 1 : 0, transition: 'opacity .5s .2s' }} />
           </svg>
 
-          {/* DK-Logo in der Mitte */}
-          <motion.div
+          {/* DK-Logo als Knopf – Mitte im Chaos, verschwindet, sobald die Reihe steht */}
+          <motion.button
+            onClick={() => setOn(!on)} aria-pressed={on} aria-label="Ordnung herstellen"
             initial={false}
-            animate={{ opacity: on ? 1 : 0, scale: on ? 1 : 0.6 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: on ? 0.2 : 0 }}
-            className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full items-center justify-center z-20"
-            style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}
+            animate={{ opacity: on ? 0 : 1, scale: on ? 0.5 : 1 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={on ? undefined : { scale: 1.08 }} whileTap={{ scale: 0.94 }}
+            className="order-first self-center lg:self-auto lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 flex flex-col items-center gap-3"
+            style={{ pointerEvents: on ? 'none' : 'auto' }}
           >
-            <img src="/dk-mark.png" alt="" width="830" height="830" loading="lazy" decoding="async"
-              className="w-12 h-12 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
-          </motion.div>
+            <motion.span
+              animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-24 h-24 rounded-full bg-white shadow-[0_18px_45px_-18px_rgba(15,23,42,0.4)] flex items-center justify-center"
+            >
+              <img src="/dk-mark.png" alt="" width="830" height="830" loading="lazy" decoding="async"
+                className="w-14 h-14 object-contain" style={{ filter: 'grayscale(1)' }} />
+            </motion.span>
+            <span className="text-sm font-bold text-[#0F172A]/60 tracking-wide">Hier drücken</span>
+          </motion.button>
 
           {SWITCH_ITEMS.map((item, i) => <SwitchCard key={i} item={item} on={on} i={i} />)}
         </div>
 
-        <motion.div {...reveal} className="text-center mt-10 lg:mt-4">
-          <AnimatePresence mode="wait" initial={false}>
-            {on ? (
-              <motion.div key="cta" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-                <button onClick={() => onPageChange('kontakt')}
-                  className="shine group px-8 py-3.5 rounded-full bg-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
-                  style={{ color: ACCENT }}>
-                  Kostenloses Erstgespräch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <p className="text-xs text-white/60 mt-4">Kostenlos · Unverbindlich · Antwort innerhalb von 48 Stunden</p>
-              </motion.div>
-            ) : (
-              <motion.p key="hint" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-sm text-[#0F172A]/35">
-                Leg den Schalter um.
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </motion.div>
+        {/* Ergebnis: = Mehr Geld. Weniger Steuern. Mehr Vermögen. */}
+        <AnimatePresence initial={false}>
+          {on && (
+            <motion.div key="result"
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.5, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center mt-8 lg:mt-4"
+            >
+              <span className="block text-5xl md:text-6xl font-extrabold text-white/90 leading-none mb-4" aria-hidden="true">=</span>
+              <p className="text-xl md:text-2xl font-extrabold text-white mb-8">
+                Mehr Geld. Weniger Steuern. <span style={{ color: GOLD }}>Mehr Vermögen.</span>
+              </p>
+              <button onClick={() => onPageChange('kontakt')}
+                className="shine group px-8 py-3.5 rounded-full bg-white font-bold inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+                style={{ color: ACCENT }}>
+                Kostenloses Erstgespräch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <p className="text-xs text-white/60 mt-4">Kostenlos · Unverbindlich · Antwort innerhalb von 48 Stunden</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.section>
   );
@@ -3610,7 +3605,7 @@ const FunnelLandingPage = ({ funnel, onPageChange }: { funnel: FunnelKey; onPage
 
       {/* ── Schlanker Header: Logo, Telefon, CTA ── */}
       <header className="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/5">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
           <button onClick={() => onPageChange('home')} className="flex-shrink-0">
             <img src="/dk-logo-wide.png" alt="DK Finanzkanzlei" className="h-8 w-auto" />
           </button>
