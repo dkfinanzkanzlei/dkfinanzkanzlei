@@ -3640,12 +3640,8 @@ const FunnelLandingPage = ({ funnel, onPageChange }: { funnel: FunnelKey; onPage
             <p className="text-sm md:text-base font-semibold mb-4" style={{ color: ACCENT }}>{cfg.audience}</p>
             <p className="text-base md:text-lg text-[#0F172A]/55 max-w-2xl mx-auto leading-relaxed mb-8">{cfg.heroSub}</p>
 
-            {/* Ein dominanter CTA, PDF nur als untergeordneter Textlink */}
-            <div className="flex flex-col items-center gap-4 mb-8">
+            <div className="flex flex-col items-center mb-8">
               <FunnelCta label={cfg.ctaLabel} />
-              <a href="#dk-pdf" className="inline-flex items-center gap-1.5 text-sm text-[#0F172A]/50 underline underline-offset-4 decoration-[#0F172A]/20 hover:text-[#0F172A]/80 transition-colors">
-                <FileText className="w-3.5 h-3.5" /> Oder erst die kostenlose {cfg.magnet.fileLabel} ansehen
-              </a>
             </div>
 
             {/* Trust + Einwand-Behandlung unter dem CTA */}
