@@ -60,8 +60,8 @@ export const SERVICE_DATA: Record<ServiceKey, ServicePageData> = {
     hook: 'Die falsche Krankenversicherung kostet dich jeden Monat bares Geld – und du merkst es erst, wenn du sie wirklich brauchst.',
     intro: 'In Deutschland besteht Krankenversicherungspflicht. Die entscheidende Frage ist nicht ob, sondern wie du versichert bist. GKV oder PKV, Basistarif oder Premiumschutz: Wir helfen dir, die richtige Entscheidung zu treffen.',
     stats: [
-      { value: '11,5 %', label: 'GKV-Beitragssatz 2024' },
-      { value: '66.600 €', label: 'Versicherungspflichtgrenze p.a.' },
+      { value: '17,5 %', label: 'Ø GKV-Beitragssatz 2026 (inkl. Zusatzbeitrag)' },
+      { value: '77.400 €', label: 'Versicherungspflichtgrenze 2026 p.a.' },
       { value: '∅ 40 %', label: 'bessere Leistungen in der PKV' },
       { value: '500+', label: 'Tarifoptionen im Vergleich' },
     ],
@@ -96,7 +96,7 @@ export const SERVICE_DATA: Record<ServiceKey, ServicePageData> = {
     solution: 'Wir vergleichen kundenorientiert alle gesetzlichen und privaten Anbieter – ohne Provisionsinteressen. Du bekommst unsere ehrliche Empfehlung, welches Modell wirklich zu deiner Lebenssituation, deinem Einkommen und deinen Gesundheitswünschen passt.',
     cta: 'Kostenlose Analyse starten',
     faq: [
-      { q: 'Wer kann in die PKV wechseln?', a: 'Angestellte, die die Versicherungspflichtgrenze (66.600 € Brutto p.a. in 2024) überschreiten, Selbstständige, Beamte und Studenten können sich privat versichern.' },
+      { q: 'Wer kann in die PKV wechseln?', a: 'Angestellte, die die Versicherungspflichtgrenze (77.400 € Brutto p.a. in 2026) überschreiten, Selbstständige, Beamte und Studenten können sich privat versichern.' },
       { q: 'Lohnt sich ein Wechsel der gesetzlichen Krankenkasse?', a: 'Ja – Beitragssätze, Zusatzbeiträge und Leistungen unterscheiden sich deutlich. Ein Vergleich kann Hunderte Euro jährlich sparen.' },
       { q: 'Kann ich aus der PKV zurück in die GKV?', a: 'Das ist möglich, aber schwierig. Unter die Versicherungspflichtgrenze zu fallen (z.B. durch Jobwechsel) oder das Rentenalter zu erreichen sind typische Wege.' },
       { q: 'Was kostet eine Kranken-Zusatzversicherung?', a: 'Je nach Leistungsumfang und Alter ab ca. 10–50 € monatlich. Zahnzusatz, Krankenhaustagegeld oder Auslandsschutz lassen sich gezielt kombinieren.' },
@@ -337,7 +337,7 @@ export const SERVICE_DATA: Record<ServiceKey, ServicePageData> = {
     stats: [
       { value: '48 %', label: 'Rentenniveau – Prognose 2040' },
       { value: '∅ 978 €', label: 'monatliche Nettorente (2023)' },
-      { value: '~500 €', label: 'monatliche Rentenlücke im Schnitt' },
+      { value: '~1.500 €', label: 'monatliche Rentenlücke im Schnitt' },
       { value: '175 €', label: 'Riester-Grundzulage p.a.' },
     ],
     comparison: {
@@ -359,7 +359,7 @@ export const SERVICE_DATA: Record<ServiceKey, ServicePageData> = {
     },
     types: [
       { title: 'Riester-Rente', desc: 'Mit staatlichen Zulagen (175 € Grundzulage, bis zu 300 € Kinderzulage) und Steuervorteilen. Ideal für Angestellte mit Kindern.', tag: 'Für Angestellte' },
-      { title: 'Rürup-Rente (Basisrente)', desc: 'Steuerlich hochattraktiv, besonders für Selbstständige. Beiträge bis zu 27.566 € (2024) jährlich steuerlich absetzbar.', tag: 'Für Selbstständige' },
+      { title: 'Rürup-Rente (Basisrente)', desc: 'Steuerlich hochattraktiv, besonders für Selbstständige. Beiträge bis zu 30.826 € (2026) jährlich steuerlich absetzbar.', tag: 'Für Selbstständige' },
       { title: 'Betriebliche Altersvorsorge (bAV)', desc: 'Arbeitgeber zahlt mit. Beiträge direkt vom Bruttolohn – steuer- und sozialabgabenfrei. Seit 2019 muss der Arbeitgeber 15 % zuschießen.', tag: 'Mit Arbeitgeberbeteiligung' },
       { title: 'Private Rentenversicherung / ETF-Police', desc: 'Maximale Flexibilität, hohe Renditechancen. Keine staatliche Förderung, aber freie Gestaltung von Laufzeit und Auszahlung.', tag: 'Flexibel' },
     ],
@@ -586,8 +586,8 @@ export const SERVICE_DATA: Record<ServiceKey, ServicePageData> = {
     hook: 'Die Rentenlücke ist real. Und je später du handelst, desto teurer wird es.',
     intro: 'Viele unterschätzen, wie viel Geld sie im Alter wirklich brauchen. Gleichzeitig werden staatliche Förderungen kaum genutzt. Wir entwickeln dein persönliches Vorsorgekonzept – mit allem, was der Staat dir bietet.',
     stats: [
-      { value: '~500 €', label: 'monatliche Rentenlücke im Schnitt' },
-      { value: '27.566 €', label: 'steuerlich absetzbar per Rürup (2024)' },
+      { value: '~1.500 €', label: 'monatliche Rentenlücke im Schnitt' },
+      { value: '30.826 €', label: 'steuerlich absetzbar per Rürup (2026)' },
       { value: '300 €', label: 'Riester-Kinderzulage pro Kind (ab 2008)' },
       { value: '15 %', label: 'Pflicht-Arbeitgeberzuschuss bei bAV' },
     ],
@@ -601,7 +601,7 @@ export const SERVICE_DATA: Record<ServiceKey, ServicePageData> = {
         { text: 'Staatliche Garantie der Einzahlungen', pos: true },
       ]},
       right: { label: 'Rürup-Rente (Basisrente)', points: [
-        { text: 'Bis zu 27.566 € jährlich absetzbar (2024)', pos: true },
+        { text: 'Bis zu 30.826 € jährlich absetzbar (2026)', pos: true },
         { text: 'Ideal für Selbstständige & Gutverdiener', pos: true },
         { text: 'Nicht kapitalisierbar oder übertragbar', pos: false },
         { text: 'Im Alter nachgelagert zu versteuern', pos: false },

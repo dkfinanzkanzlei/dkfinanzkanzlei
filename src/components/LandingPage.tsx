@@ -3469,7 +3469,6 @@ interface FunnelConfig {
   stepsSub: string;
   steps: { title: string; text: string }[];
   stepsCta: string;
-  magnet: NonNullable<ServicePageData['leadMagnet']>;
   faq: { q: string; a: string }[];
   funnelHeading: string;
   funnelSub: string;
@@ -3502,7 +3501,6 @@ const FUNNELS: Record<FunnelKey, FunnelConfig> = {
       { title: 'Dein Tarifvergleich', text: 'Du bekommst einen ehrlichen Vergleich aus über 500 Tarifen – inklusive anonymer Risikovoranfrage und Langfristrechnung bis ins Rentenalter.' },
     ],
     stepsCta: 'PKV-Check starten – kostenlos',
-    magnet: SERVICE_DATA.krankenversicherung.leadMagnet!,
     // Einwandbehandlung statt generischer FAQ
     faq: [
       { q: '„Die PKV wird im Alter unbezahlbar" – stimmt das?',
@@ -3524,7 +3522,7 @@ const FUNNELS: Record<FunnelKey, FunnelConfig> = {
       { key: 'beruf', q: 'Was beschreibt deine berufliche Situation?',
         options: ['Angestellt', 'Selbstständig / Freiberuflich', 'Beamter/Beamtin', 'Student/in'] },
       { key: 'einkommen', q: 'Wie hoch ist dein Bruttoeinkommen pro Jahr?',
-        options: ['Unter 66.600 €', 'Über 66.600 €', 'Weiß ich nicht'] },
+        options: ['Unter 77.400 €', 'Über 77.400 €', 'Weiß ich nicht'] },
       { key: 'alter', q: 'Wie alt bist du?',
         options: ['Unter 30', '30–40', '41–50', 'Über 50'] },
       { key: 'status', q: 'Wie bist du aktuell krankenversichert?',
@@ -3538,13 +3536,13 @@ const FUNNELS: Record<FunnelKey, FunnelConfig> = {
     badge: 'Kostenloser Renten-Check · 2 Minuten',
     heroTitle: <>Deine gesetzliche Rente wird nicht reichen. <span style={{ color: ACCENT }}>Deine Vorsorge schon.</span></>,
     audience: 'Für Angestellte, Selbstständige und Beamte, die sich nicht auf den Staat verlassen wollen.',
-    heroSub: 'Wer heute 40 ist, bekommt im Alter nur noch rund 48 % seines letzten Nettogehalts als Rente – im Schnitt fehlen 500 € im Monat. Und jedes Jahr Aufschieben treibt die nötige Sparrate weiter nach oben. Finde in 2 Minuten heraus, wie groß deine Lücke ist und wie du sie mit Förderung, Steuervorteilen und Zinseszins am effizientesten schließt.',
+    heroSub: 'Wer heute 40 ist, bekommt im Alter nur noch rund 48 % seines letzten Nettogehalts als Rente – im Schnitt fehlen rund 1.500 € im Monat, um den Lebensstandard zu halten. Und jedes Jahr Aufschieben treibt die nötige Sparrate weiter nach oben. Finde in 2 Minuten heraus, wie groß deine Lücke ist und wie du sie mit Förderung, Steuervorteilen und Zinseszins am effizientesten schließt.',
     heroPoints: ['100 % kostenlos & unverbindlich', 'Kein Produktdruck – auch „ETF-Depot reicht dir" ist ein Ergebnis', 'Sinnvoll schon ab 50 € im Monat'],
     ctaLabel: 'Jetzt kostenlosen Renten-Check starten',
     painsHeading: 'Die Rentenlücke ist real – und sie wächst jeden Monat',
     painsSub: 'Drei Dinge, die passieren, wenn du deine Vorsorge weiter aufschiebst:',
     pains: [
-      { icon: <BarChart3 className="w-5 h-5" />, title: 'Das Rentenniveau sinkt', text: 'Prognose für 2040: nur noch 48 % des letzten Nettogehalts. Die durchschnittliche Nettorente liegt heute schon bei nur 978 € im Monat – Tendenz relativ fallend.' },
+      { icon: <BarChart3 className="w-5 h-5" />, title: 'Das Rentenniveau sinkt', text: 'Prognose für 2040: nur noch 48 % des letzten Nettogehalts. Im Schnitt fehlen im Ruhestand rund 1.500 € im Monat, um den gewohnten Lebensstandard zu halten.' },
       { icon: <Wallet className="w-5 h-5" />, title: 'Warten kostet dich am meisten', text: 'Wer mit 25 startet, braucht für dasselbe Rentenkapital nur etwa die Hälfte der monatlichen Sparrate wie jemand, der mit 40 beginnt. Der Zinseszins arbeitet nur für die, die anfangen.' },
       { icon: <Calculator className="w-5 h-5" />, title: 'Förderung bleibt liegen', text: 'Riester-Zulagen, Rürup-Steuervorteile, 15 % Pflicht-Arbeitgeberzuschuss bei der bAV – viele verschenken jedes Jahr vierstellige Beträge, weil niemand es ihnen durchrechnet.' },
     ],
@@ -3558,7 +3556,6 @@ const FUNNELS: Record<FunnelKey, FunnelConfig> = {
       { title: 'Dein Vorsorgekonzept', text: 'Du bekommst ein Konzept, das Förderung, Steuern und Kosten sauber gegeneinander rechnet – vom ETF-Depot bis zur Fondspolice. In deinem Tempo, ohne Druck.' },
     ],
     stepsCta: 'Renten-Check starten – kostenlos',
-    magnet: SERVICE_DATA.vorsorge.leadMagnet!,
     // Einwandbehandlung statt generischer FAQ
     faq: [
       { q: '„Ich habe dafür gerade kein Geld übrig."',
@@ -3703,17 +3700,6 @@ const FunnelLandingPage = ({ funnel, onPageChange }: { funnel: FunnelKey; onPage
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── Leadmagnet: PDF-Übersicht ── */}
-      <section id="dk-pdf" className="py-16 md:py-24 px-6 scroll-mt-20">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="text-xs font-bold tracking-[0.18em] uppercase text-[#0F172A]/35 mb-2">Noch nicht bereit für ein Gespräch?</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.02em] text-[#0F172A]">Hol dir erst die kostenlose {cfg.magnet.fileLabel}</h2>
-          </div>
-          <LeadMagnetForm magnet={cfg.magnet} color={ACCENT} onPageChange={onPageChange} />
         </div>
       </section>
 
