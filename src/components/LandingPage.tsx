@@ -2328,7 +2328,7 @@ const UeberUnsContent = () => {
       funFact: 'Chillige Kollegin',
     },
     {
-      name: 'Arda Askin', role: 'Fachberater', img: '/Arda.jpg',
+      name: 'Arda Askin', role: 'Fachberater', img: '/Arda-2.jpg',
       desc: 'Hi, ich bin Arda – ich finde die Absicherung, die wirklich zu dir passt:',
       bullets: ['Persönliche Bedarfsanalyse', 'Passgenaue Absicherung', 'Verlässliche Betreuung'],
     },
