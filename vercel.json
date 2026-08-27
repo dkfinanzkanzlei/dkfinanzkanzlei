@@ -47,6 +47,8 @@
   ],
   "rewrites": [
     { "source": "/vermoegensaufbau-guide", "destination": "/vermoegensaufbau-guide.pdf" },
+    { "source": "/guideline", "destination": "/guideline.html" },
+    { "source": "/branding-guideline", "destination": "/guideline.html" },
     { "source": "/leistungen/:slug", "destination": "/leistungen/:slug/index.html" },
     { "source": "/guides/:slug", "destination": "/guides/:slug.html" },
     { "source": "/((?!api|assets|.*\\..*).*)", "destination": "/index.html" }
