@@ -2328,8 +2328,7 @@ const UeberUnsContent = () => {
       funFact: 'Chillige Kollegin',
     },
     {
-      // ponytail: Platzhalter-Foto – durch /Arda.png ersetzen, sobald das Foto da ist
-      name: 'Arda Askin', role: 'Fachberater', img: '/dk-logo-small.png',
+      name: 'Arda Askin', role: 'Fachberater', img: '/Arda.jpg',
       desc: 'Hi, ich bin Arda – ich finde die Absicherung, die wirklich zu dir passt:',
       bullets: ['Persönliche Bedarfsanalyse', 'Passgenaue Absicherung', 'Verlässliche Betreuung'],
     },
