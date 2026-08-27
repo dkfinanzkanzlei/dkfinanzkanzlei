@@ -752,14 +752,14 @@ const FloatCard = ({ icon, label, value, sub, className, delay, tone }: {
     transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
     className={`absolute ${className} z-20`}
   >
-    <div className="card-float rounded-2xl bg-white shadow-[0_18px_45px_-18px_rgba(15,23,42,0.35)] border border-black/5 px-4 py-3 min-w-[9rem] md:min-w-[10rem]"
+    <div className="card-float rounded-xl md:rounded-2xl bg-white shadow-[0_18px_45px_-18px_rgba(15,23,42,0.35)] border border-black/5 px-2.5 py-2 md:px-4 md:py-3 min-w-0 md:min-w-[10rem]"
       style={{ animationDelay: `${delay * 2}s` }}>
-      <div className="flex items-center gap-2 mb-1.5">
-        <span className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: tone + '1F', color: tone }}>{icon}</span>
-        <span className="text-[11px] md:text-xs font-semibold text-[#0F172A]/60">{label}</span>
+      <div className="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-1.5">
+        <span className="w-4 h-4 md:w-5 md:h-5 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: tone + '1F', color: tone }}>{icon}</span>
+        <span className="text-[10px] md:text-xs font-semibold text-[#0F172A]/60 whitespace-nowrap">{label}</span>
       </div>
-      <p className="text-lg md:text-xl font-extrabold text-[#0F172A] leading-none">{value}</p>
-      <p className="text-[11px] text-[#0F172A]/45 mt-1">{sub}</p>
+      <p className="text-sm md:text-xl font-extrabold text-[#0F172A] leading-none">{value}</p>
+      <p className="text-[9px] md:text-[11px] text-[#0F172A]/45 mt-0.5 md:mt-1 whitespace-nowrap">{sub}</p>
     </div>
   </motion.div>
 );
