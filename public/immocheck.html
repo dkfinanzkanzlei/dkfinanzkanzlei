@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Immo-Check – DK Finanzkanzlei</title>
+<link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700;800&display=swap">
+<style>
+:root{
+  --page:#FBFAF8; --sand:#D6C6B7; --sand-2:#CDBBAA;
+  --line:#B9A695; --card:#E4D9CD;
+  --ink:#1A1512; --muted:#564C43;
+  --orange:#F07523; --orange-dark:#D25F12;
+  --go:#175A27; --wait:#6A4707; --stop:#96291E;
+  --body:"Karla","Helvetica Neue",Arial,sans-serif;
+  --col:min(760px,100% - 2rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;background:var(--page);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  min-height:100dvh;display:flex;flex-direction:column;
+}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.12;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit}
+a{color:inherit}
+
+/* Kopfleiste */
+.bar{border-bottom:1px solid #E7E1DA;background:var(--page)}
+.bar-in{width:var(--col);margin-inline:auto;display:flex;align-items:center;gap:1rem;padding:1rem 0;min-height:56px}
+.brand{font-weight:800;font-size:1.02rem;letter-spacing:-.02em}
+.steps{margin-left:auto;font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.track{height:3px;background:#E7E1DA}
+.fill{height:100%;width:0;background:var(--orange);transition:width .35s cubic-bezier(.2,.7,.3,1)}
+
+main{flex:1;width:var(--col);margin-inline:auto;padding:2rem 0 2.5rem}
+
+/* Die Box */
+.box{
+  background:var(--sand);border-radius:6px;
+  padding:clamp(2rem,6vw,3.4rem) clamp(1.3rem,5vw,3rem);
+}
+.screen{display:none}
+.screen.on{display:block}
+
+.eyebrow{font-size:1rem;color:var(--muted);font-weight:500}
+
+/* Start */
+.start{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.15rem}
+.start h1{
+  font-size:clamp(1.75rem,5.6vw,2.6rem);
+  border-bottom:3px solid var(--orange);
+  padding-bottom:.28rem;display:inline-block;
+}
+.start .sub{font-size:clamp(1rem,2.5vw,1.1rem);max-width:46ch;color:var(--ink)}
+
+.cta{
+  border:0;cursor:pointer;background:var(--orange);color:#16110C;
+  font-weight:800;font-size:1.1rem;letter-spacing:-.01em;
+  padding:1rem 2.4rem;border-radius:6px;
+  transition:background .12s,transform .1s;
+}
+.cta:hover{background:var(--orange-dark)}
+.cta:active{transform:scale(.985)}
+.cta.wide{display:block;width:100%;padding:1rem 1.4rem}
+.cta.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);font-weight:700}
+.cta.ghost:hover{background:var(--sand-2)}
+.fineprint{font-size:.85rem;color:var(--muted)}
+
+/* Frage */
+.q .step{font-size:.85rem;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.q h2{font-size:clamp(1.35rem,4.4vw,1.85rem);margin:.5rem 0 .35rem}
+.q .hint{font-size:.95rem;color:var(--muted);margin-bottom:1.5rem}
+.opts{display:flex;flex-direction:column;gap:.6rem}
+.opt{
+  display:flex;align-items:center;gap:.9rem;width:100%;text-align:left;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:6px;
+  padding:.95rem 1.1rem;font-size:1rem;
+  transition:border-color .12s,background .12s,transform .1s;
+}
+.opt:hover{border-color:var(--orange);background:#EDE5DC}
+.opt:active{transform:scale(.99)}
+.opt .key{
+  flex:0 0 auto;width:1.55rem;height:1.55rem;border-radius:50%;
+  border:1px solid var(--line);display:grid;place-items:center;
+  font-size:.75rem;color:var(--muted);font-weight:700;
+}
+.opt:hover .key{border-color:var(--orange);color:var(--orange-dark)}
+.back{margin-top:1.5rem;background:none;border:0;cursor:pointer;color:var(--muted);font-size:.92rem;padding:.4rem 0;text-decoration:underline}
+.back:hover{color:var(--ink)}
+
+/* Ergebnis */
+.res h2{font-size:clamp(1.5rem,4.6vw,2.15rem);line-height:1.18}
+.res .sub{font-size:clamp(1rem,2.4vw,1.1rem);max-width:48ch;color:var(--ink)}
+
+/* Formular */
+.form{display:flex;flex-direction:column;gap:.75rem;margin-top:2rem}
+.form input{
+  background:var(--page);border:1px solid var(--line);border-radius:6px;
+  padding:1.05rem 1.1rem;color:var(--ink);font:inherit;font-size:1.02rem;width:100%;
+}
+.form input::placeholder{color:#8A7C70}
+.form input:focus{outline:2px solid var(--orange);outline-offset:1px}
+.tel{display:flex;align-items:stretch;background:var(--page);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tel span{display:grid;place-items:center;padding:0 1rem;font-weight:700;border-right:1px solid var(--line);background:#F2ECE6;white-space:nowrap}
+.tel input{border:0;border-radius:0;background:transparent}
+.tel input:focus{outline:2px solid var(--orange);outline-offset:-2px}
+.consent{display:flex;gap:.7rem;align-items:flex-start;font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.3rem}
+.consent input{margin-top:.25rem;width:1.1rem;height:1.1rem;accent-color:var(--orange);flex:0 0 auto}
+.err{color:var(--stop);font-size:.87rem;font-weight:700;min-height:1.2em}
+.disclaimer{margin-top:1.4rem;font-size:.8rem;color:var(--muted);line-height:1.55;text-align:center}
+
+footer{
+  width:var(--col);margin-inline:auto;padding:1.4rem 0 2.5rem;
+  font-size:.85rem;color:var(--muted);text-align:center;
+}
+footer a{text-decoration:underline}
+:focus-visible{outline:2px solid var(--orange-dark);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+</style>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="brand">DK Finanzkanzlei</div>
+    <div class="steps" id="steps"></div>
+  </div>
+  <div class="track"><div class="fill" id="fill"></div></div>
+</div>
+
+<main>
+  <div class="box">
+
+    <!-- Start -->
+    <section class="screen on" id="s-start">
+      <div class="start">
+        <p class="eyebrow">Flamur Kastrati</p>
+        <h1>Dein persönlicher Immo-Check</h1>
+        <p class="sub">In 3 bis 5 Minuten prüfen, ob du auch ohne Eigenkapital in Immobilien investieren kannst.</p>
+        <button class="cta" id="btn-start">Jetzt starten</button>
+        <p class="fineprint">Kostenlos und unverbindlich. Keine Finanzierungszusage.</p>
+      </div>
+    </section>
+
+    <!-- Frage -->
+    <section class="screen" id="s-q">
+      <div class="q">
+        <span class="step" id="q-num"></span>
+        <h2 id="q-title"></h2>
+        <p class="hint" id="q-hint"></p>
+        <div class="opts" id="q-opts"></div>
+        <button class="back" id="btn-back">Zurück</button>
+      </div>
+    </section>
+
+    <!-- Ergebnis -->
+    <section class="screen" id="s-result">
+      <div class="start res">
+        <h2>Herzlichen Glückwunsch! Wir können dir sehr wahrscheinlich weiterhelfen. 🚀</h2>
+        <p class="sub">Lass uns kurz deine Kontaktdaten da, damit wir gemeinsam checken können, ob du wirklich in Immobilien investieren kannst. 👇</p>
+      </div>
+
+      <form class="form" id="form" novalidate>
+        <input id="n" placeholder="Dein Name *" autocomplete="given-name" aria-label="Dein Name">
+        <div class="tel"><span>+49</span><input id="t" type="tel" inputmode="tel" placeholder="Deine Telefonnummer" autocomplete="tel" aria-label="Deine Telefonnummer"></div>
+        <input id="e" type="email" inputmode="email" placeholder="Deine E-Mail-Adresse *" autocomplete="email" aria-label="Deine E-Mail-Adresse">
+        <label class="consent"><input type="checkbox" id="c">
+          <span>Ich möchte zu meinem Ergebnis kontaktiert werden und habe die <a href="https://www.dk-finanzkanzlei.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen. Widerruf jederzeit möglich.</span></label>
+        <p class="err" id="err"></p>
+        <button class="cta wide" type="submit" id="btn-send">Kontaktdaten jetzt absenden</button>
+      </form>
+
+      <p class="disclaimer">Unverbindliche Ersteinschätzung auf Basis deiner Angaben — keine Finanzierungszusage und keine Anlageberatung.</p>
+    </section>
+
+    <!-- Danke -->
+    <section class="screen" id="s-done">
+      <div class="start">
+        <h1 id="d-title">Danke — ich melde mich.</h1>
+        <p class="sub">Wir melden uns in den nächsten 24 Stunden bei dir und gehen deine Angaben gemeinsam durch.</p>
+        <button class="cta ghost" id="btn-again">Check nochmal machen</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <a href="https://www.dk-finanzkanzlei.de/impressum" target="_blank" rel="noopener">Impressum</a>
+  und
+  <a href="https://www.dk-finanzkanzlei.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+</footer>
+
+<script>
+// ponytail: Fragen als Daten. Neue Frage = ein Objekt mehr, keine Code-Änderung.
+// s = Punkte, ko:true = harter Ausschluss, f = Engpass-Text fürs Ergebnis.
+const QUESTIONS = [
+  { t:"Wo wohnst du?", h:"Finanziert werden Objekte in Deutschland.",
+    o:["Deutschland","Österreich","Schweiz","Anderes Land"] },
+
+  { t:"Wie alt bist du?", h:"Das Alter bestimmt, wie lange die Bank tilgen lässt.",
+    o:["Unter 25","25 bis 35","36 bis 45","46 bis 55","Über 55"] },
+
+  { t:"Wie arbeitest du gerade?", h:"Banken schauen zuerst auf die Art des Einkommens.",
+    o:["Angestellt, unbefristet","Beamter oder öffentlicher Dienst","Angestellt, befristet oder in Probezeit",
+       "Selbstständig oder Gewerbe","Azubi, Student oder Elternzeit","Aktuell ohne Beschäftigung"] },
+
+  { t:"Wie lange schon in dieser Tätigkeit?", h:"Unter sechs Monaten wird es fast überall eng.",
+    o:["Unter 6 Monaten","6 bis 12 Monate","1 bis 3 Jahre","Länger als 3 Jahre"] },
+
+  { t:"Wie hoch ist dein Netto-Haushaltseinkommen im Monat?", h:"Alles zusammen, was regelmäßig reinkommt.",
+    o:["Unter 2.000 €","2.000 bis 3.000 €","3.000 bis 4.500 €","Über 4.500 €"] },
+
+  { t:"Wie sieht deine SCHUFA aus?", h:"Ehrlich — das prüft die Bank ohnehin als Erstes.",
+    o:["Sauber, keine laufenden Kredite","Sauber, ein laufender Kredit oder Leasing","Mehrere laufende Kredite",
+       "Negativeintrag vorhanden","Weiß ich nicht"] },
+
+  { t:"Wie viel Erspartes könntest du einsetzen?", h:"Für die Kaufnebenkosten, nicht für den Kaufpreis.",
+    o:["Nichts","Bis 10.000 €","10.000 bis 25.000 €","Mehr als 25.000 €"] },
+
+  { t:"Wann willst du loslegen?", h:"",
+    o:["So schnell wie möglich","In den nächsten 3 Monaten","Dieses Jahr noch","Erstmal nur informieren"] }
+];
+
+const $ = id => document.getElementById(id);
+const screens = {start:$("s-start"), q:$("s-q"), result:$("s-result"), done:$("s-done")};
+let i = 0, answers = [];
+
+function show(name){
+  for(const k in screens) screens[k].classList.toggle("on", k===name);
+  window.scrollTo({top:0,behavior:"instant"});
+}
+function progress(done){
+  $("fill").style.width = (done/QUESTIONS.length*100)+"%";
+  $("steps").textContent = done && done<=QUESTIONS.length ? `${done} / ${QUESTIONS.length}` : "";
+}
+function renderQ(){
+  const q = QUESTIONS[i];
+  $("q-num").textContent = `Frage ${i+1} von ${QUESTIONS.length}`;
+  $("q-title").textContent = q.t;
+  $("q-hint").textContent = q.h;
+  $("q-hint").style.display = q.h ? "" : "none";
+  $("btn-back").style.visibility = i===0 ? "hidden" : "visible";
+  const box = $("q-opts");
+  box.textContent = "";
+  q.o.forEach((o,n)=>{
+    const b = document.createElement("button");
+    b.type="button"; b.className="opt";
+    b.innerHTML = `<span class="key">${n+1}</span><span></span>`;
+    b.lastElementChild.textContent = o;
+    b.onclick = ()=>pick(o);
+    box.appendChild(b);
+  });
+  progress(i);
+  show("q");
+}
+function pick(o){
+  answers[i] = o;
+  answers.length = i+1;            // spätere Antworten verwerfen, wenn zurückgesprungen wurde
+  i++;
+  i < QUESTIONS.length ? renderQ() : finish();
+}
+function finish(){
+  progress(QUESTIONS.length);
+  show("result");
+}
+
+$("btn-start").onclick = ()=>{ i=0; answers=[]; renderQ(); };
+$("btn-back").onclick  = ()=>{ if(i>0){ i--; renderQ(); } };
+$("btn-again").onclick = ()=>{ i=0; answers=[]; progress(0); show("start"); };
+
+$("form").onsubmit = ev=>{
+  ev.preventDefault();
+  const n=$("n").value.trim(), e=$("e").value.trim();
+  if(!n) return fail("Bitte trag deinen Vornamen ein.");
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)) return fail("Diese E-Mail-Adresse sieht nicht richtig aus.");
+  if(!$("c").checked) return fail("Ohne dein Einverständnis dürfen wir dich nicht kontaktieren.");
+  $("err").textContent = "";
+
+  const payload = {
+    thema:"Immo-Check", name:n, email:e, consent:true,
+    tel:$("t").value.trim() ? "+49 "+$("t").value.trim() : "",
+    qualifizierung:QUESTIONS.map((q,k)=>`${q.t} ${answers[k]||"-"}`).join("\n")
+  };
+  $("btn-send").disabled = true;
+  fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+    .then(r=>{ if(!r.ok) throw 0;
+      $("d-title").textContent = `Danke, ${n} — wir melden uns.`;
+      progress(0); show("done");
+    })
+    .catch(()=>fail("Das hat gerade nicht geklappt. Bitte versuch es gleich nochmal."))
+    .finally(()=>{ $("btn-send").disabled = false; });
+};
+function fail(msg){ $("err").textContent = msg; return false; }
+
+progress(0);
+</script>
+</body>
+</html>
