@@ -5,6 +5,7 @@
  *   RESEND_API_KEY  – API-Key von resend.com (ohne Key wird nur geloggt)
  *   LEAD_TO         – Empfaengeradresse fuer Lead-Benachrichtigungen
  *   LEAD_FROM       – Absender, Domain muss bei Resend verifiziert sein
+ *   LEAD_SHEET_URL  – Web-App-URL des Google-Apps-Scripts (scripts/leads-sheet.gs), traegt jeden Lead in die Tabelle ein
  */
 
 const SITE = 'https://www.dk-finanzkanzlei.de';
@@ -42,6 +43,16 @@ export default async function handler(req, res) {
   const name = String(b.name || '').slice(0, 200);
   // Landet immer im Vercel-Log – so geht auch ohne Mailversand kein Lead verloren.
   console.log('[lead]', JSON.stringify({ type: b.type, thema: b.thema, name, email, guide: b.guide, plz: b.plz, tel: b.tel, qualifizierung: b.qualifizierung }));
+
+  // Google-Sheet: Zeile anhaengen. Fehler blockieren den Lead nicht, er steht ja im Log.
+  if (process.env.LEAD_SHEET_URL) {
+    await fetch(process.env.LEAD_SHEET_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' }, // text/plain vermeidet den CORS-Preflight bei Apps Script
+      body: JSON.stringify({ ...b, name, email, tel }),
+    }).then((r) => { if (!r.ok) throw new Error(`sheet ${r.status}`); })
+      .catch((err) => console.error('[lead] Sheet-Eintrag fehlgeschlagen:', err));
+  }
 
   if (!process.env.RESEND_API_KEY) {
     console.warn('[lead] RESEND_API_KEY fehlt – Lead wurde nur geloggt.');
