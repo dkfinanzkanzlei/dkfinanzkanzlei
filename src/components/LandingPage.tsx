@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useInView } from 'motion/react';
 import {
   TrendingUp, ShieldCheck, PieChart, ArrowRight, CheckCircle2, ChevronRight,
   Menu, X, Wallet, Calculator, Building2, Home, Heart, BarChart3, Users,
-  Star, Eye, Zap, Leaf, UserCircle, Briefcase, GraduationCap, Wrench, MousePointerClick, Globe, Download, FileText, Play, Search
+  Star, Eye, Zap, Leaf, UserCircle, Briefcase, GraduationCap, Wrench, MousePointerClick, Globe, Download, FileText, Play, Search, Trophy
 } from 'lucide-react';
 import { applySeo, getSeoForRoute, routeKeyForPage } from '../seo';
 import { SERVICE_DATA, type ServiceKey, type ServicePageData } from '../serviceContent';
@@ -865,30 +865,45 @@ const GUIDES = [
 const GuidesBlock = () => (
   <section className="py-20 md:py-28 px-6" style={{ backgroundColor: ACCENT }}>
     <div className="max-w-7xl mx-auto">
-      <motion.div {...reveal} className="text-center mb-14">
+      <motion.div {...reveal} className="text-center mb-10">
         <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-[-0.02em] mb-4">Dein Finanzstart</h2>
         <p className="text-white/70 max-w-xl mx-auto leading-relaxed">
-          Vier kostenlose Übersichten, mit denen du die wichtigsten Entscheidungen selbst einordnen kannst – ohne Termin, ohne Verpflichtung.
+          Starte mit dem Vermögensaufbau-Guide. Die vier Übersichten vertiefen danach die einzelnen Themen – alles kostenlos, ohne Termin, ohne Verpflichtung.
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {/* Hauptstück: der Guide als goldener Pokal */}
+      <motion.a href="/vermoegensaufbau-guide-2026" target="_blank" rel="noopener noreferrer" {...reveal}
+        className="lift group relative mx-auto mb-8 flex max-w-3xl flex-col items-center gap-6 overflow-hidden rounded-3xl bg-white p-8 text-center shadow-[0_30px_60px_-30px_rgba(0,0,0,0.55)] md:flex-row md:p-10 md:text-left"
+        style={{ outline: `2px solid ${GOLD}`, outlineOffset: '-2px' }}>
+        <span className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full" style={{ background: `radial-gradient(circle, ${GOLD}33, transparent 70%)` }} />
+        <span className="relative flex h-24 w-24 flex-shrink-0 items-center justify-center rounded-full shadow-[0_16px_32px_-14px_rgba(196,161,53,0.9)] transition-transform duration-300 group-hover:scale-105 md:h-28 md:w-28"
+          style={{ background: `linear-gradient(145deg, #F1DE8E 0%, ${GOLD} 55%, #8A7024 100%)` }}>
+          <Trophy className="h-11 w-11 text-white md:h-14 md:w-14" strokeWidth={1.75} />
+        </span>
+        <span className="flex-1">
+          <span className="mb-2 inline-block rounded-full px-2.5 py-1 text-[11px] font-bold" style={{ backgroundColor: GOLD + '22', color: '#8A7024' }}>Hier starten · 28 Seiten</span>
+          <h3 className="text-2xl font-extrabold tracking-[-0.02em] text-[#0F172A] md:text-3xl">Vermögensaufbau-Guide 2026</h3>
+          <p className="mt-2 text-[15px] leading-relaxed text-[#0F172A]/60">Geld verstehen, Geld behalten, Geld wachsen lassen. Die richtige Reihenfolge, das Fundament und der Einstieg ins Investieren – ohne Fachchinesisch.</p>
+          <span className="mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition-all group-hover:gap-3" style={{ backgroundColor: ACCENT }}>
+            Guide kostenlos erhalten <ArrowRight className="h-4 w-4" />
+          </span>
+        </span>
+      </motion.a>
+
+      {/* Die vier Übersichten: kompakt darunter */}
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 lg:grid-cols-4">
         {GUIDES.map((g, i) => (
           <motion.a key={g.href} href={g.href} target="_blank" rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-            className="lift group flex flex-col rounded-2xl bg-white p-7 shadow-[0_20px_45px_-30px_rgba(0,0,0,0.5)]">
-            <span className="w-11 h-11 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: ACCENT + '18', color: ACCENT }}>{g.icon}</span>
-            <h3 className="text-base font-bold text-[#0F172A] mb-2">{g.title}</h3>
-            <p className="text-sm text-[#0F172A]/55 leading-relaxed flex-1">{g.desc}</p>
-            <div className="mt-6 flex items-center justify-between">
-              {g.badge
-                ? <span className="text-[11px] font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: GOLD + '22', color: '#8A7024' }}>{g.badge}</span>
-                : <span />}
-              <span className="text-sm font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all" style={{ color: ACCENT }}>
-                Ansehen <ArrowRight className="w-3.5 h-3.5" />
-              </span>
-            </div>
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.45, delay: 0.15 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+            className="group flex items-center gap-3 rounded-xl bg-white/10 px-4 py-3 ring-1 ring-white/15 transition-colors hover:bg-white/20">
+            <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/15 text-white">{g.icon}</span>
+            <span className="min-w-0 flex-1">
+              <span className="block truncate text-sm font-bold text-white">{g.title}</span>
+              <span className="block text-[11px] text-white/60">Kostenlose Übersicht</span>
+            </span>
+            <ArrowRight className="h-4 w-4 flex-shrink-0 text-white/60 transition-all group-hover:translate-x-0.5 group-hover:text-white" />
           </motion.a>
         ))}
       </div>
