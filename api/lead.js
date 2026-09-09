@@ -49,7 +49,7 @@ export default async function handler(req, res) {
     await fetch(process.env.LEAD_SHEET_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' }, // text/plain vermeidet den CORS-Preflight bei Apps Script
-      body: JSON.stringify({ ...b, name, email, tel }),
+      body: JSON.stringify({ ...b, name, email, tel: tel.replace(/^\+/, "") }), // ohne "+", sonst liest Sheets eine Formel
     }).then((r) => { if (!r.ok) throw new Error(`sheet ${r.status}`); })
       .catch((err) => console.error('[lead] Sheet-Eintrag fehlgeschlagen:', err));
   }
