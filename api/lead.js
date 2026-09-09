@@ -72,13 +72,14 @@ export default async function handler(req, res) {
 
     if (isMagnet && b.href) {
       const url = `${SITE}${b.href}`;
+      const isPdf = /\.pdf$/i.test(b.href);
       await sendMail({
         to: [email],
         subject: `Deine ${b.guide || 'Übersicht'} von der DK Finanzkanzlei`,
         html: `<p>Hallo ${esc(name) || 'und danke für dein Interesse'},</p>
 <p>hier ist deine <b>${esc(b.guide || 'Übersicht')}</b>:</p>
-<p><a href="${esc(url)}" style="background:#4d7abd;color:#fff;padding:12px 22px;border-radius:999px;text-decoration:none;display:inline-block">Übersicht öffnen</a></p>
-<p style="color:#64748b;font-size:14px">Tipp: Im Browser über „Drucken → Als PDF sichern" speicherst du dir die Übersicht ab.</p>
+<p><a href="${esc(url)}" style="background:#4d7abd;color:#fff;padding:12px 22px;border-radius:999px;text-decoration:none;display:inline-block">${isPdf ? 'Guide herunterladen (PDF)' : 'Übersicht öffnen'}</a></p>
+${isPdf ? '' : '<p style="color:#64748b;font-size:14px">Tipp: Im Browser über „Drucken → Als PDF sichern" speicherst du dir die Übersicht ab.</p>'}
 <p>Wenn du deine Situation konkret durchrechnen lassen willst, melde dich einfach – das Erstgespräch ist kostenlos und unverbindlich.</p>
 <p>Viele Grüße<br>Joel Dakaj<br>DK Finanzkanzlei · <a href="tel:+491731038570">+49 173 1038570</a></p>`,
       });
