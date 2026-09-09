@@ -866,7 +866,7 @@ const GuidesBlock = () => (
   <section className="py-20 md:py-28 px-6" style={{ backgroundColor: ACCENT }}>
     <div className="max-w-7xl mx-auto">
       <motion.div {...reveal} className="text-center mb-10">
-        <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-[-0.02em] mb-4">Dein Finanzstart</h2>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-[-0.02em] mb-4">Dein kostenloser Finanzstart</h2>
         <p className="text-white/70 max-w-xl mx-auto leading-relaxed">
           Starte mit dem Vermögensaufbau-Guide. Die vier Übersichten vertiefen danach die einzelnen Themen – alles kostenlos, ohne Termin, ohne Verpflichtung.
         </p>
