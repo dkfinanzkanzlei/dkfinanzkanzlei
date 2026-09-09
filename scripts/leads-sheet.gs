@@ -18,12 +18,15 @@ function doPost(e) {
   const i = name.indexOf(' ');
   const vorname = i > 0 ? name.slice(0, i) : name;
   const nachname = i > 0 ? name.slice(i + 1) : '';
-  sheet.appendRow([
+  // Spalten ab "Quelle" als Text formatieren, sonst wird "+49 …" als Formel gelesen (#ERROR!).
+  const row = sheet.getLastRow() + 1;
+  sheet.getRange(row, 2, 1, COLS.length - 1).setNumberFormat('@');
+  sheet.getRange(row, 1, 1, COLS.length).setValues([[
     new Date(),
     d.guide || d.thema || (d.type === 'leadmagnet' ? 'Download' : 'Kontakt'),
     vorname, nachname,
     d.tel || '', d.email || '', d.thema || '', d.plz || '', d.nachricht || '', d.qualifizierung || '',
     d.consent || d.datenschutz ? 'ja' : 'nein',
-  ]);
+  ]]);
   return ContentService.createTextOutput('ok');
 }
