@@ -31,7 +31,10 @@ export default async function handler(req, res) {
 
   const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {};
   const email = String(b.email || '').trim();
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || email.length > 200) {
+  const tel = String(b.tel || '').trim();
+  const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) && email.length <= 200;
+  // E-Mail ist Pflicht, ausser der Lead kommt nur mit Handynummer (WhatsApp-Guide).
+  if (!emailOk && tel.replace(/\D/g, '').length < 8) {
     return res.status(400).json({ ok: false, error: 'invalid email' });
   }
 
@@ -61,7 +64,7 @@ export default async function handler(req, res) {
   try {
     await sendMail({
       to: [TO],
-      reply_to: email,
+      ...(emailOk ? { reply_to: email } : {}),
       subject: isMagnet
         ? `Neuer Download-Lead: ${b.guide || 'Übersicht'}`
         : `Neue ${b.thema ? `${b.thema}-Anfrage` : 'Kontaktanfrage'} von ${name || email}`,
@@ -70,7 +73,7 @@ export default async function handler(req, res) {
         .join('')}</table>`,
     });
 
-    if (isMagnet && b.href) {
+    if (isMagnet && b.href && emailOk) {
       const url = `${SITE}${b.href}`;
       const isPdf = /\.pdf$/i.test(b.href);
       await sendMail({

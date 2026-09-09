@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vermögensaufbau-Guide 2026 kostenlos – DK Finanzkanzlei</title>
-<meta name="description" content="28 Seiten: Geld verstehen, Geld behalten, Geld wachsen lassen. Der kostenlose Vermögensaufbau-Guide 2026 der DK Finanzkanzlei – per E-Mail oder WhatsApp.">
+<meta name="description" content="28 Seiten: Geld verstehen, Geld behalten, Geld wachsen lassen. Der kostenlose Vermögensaufbau-Guide 2026 der DK Finanzkanzlei – direkt per WhatsApp.">
 <link rel="icon" href="/dk-logo-small.png">
 </head>
 <body>
@@ -61,11 +61,6 @@ img{max-width:100%;display:block}
 .tel:focus-within{border-color:rgba(30,41,59,.55)}
 .tel span{display:grid;place-items:center;padding:0 .9rem;font-weight:700;font-size:.9rem;background:var(--surface);border-right:1px solid rgba(30,41,59,.12);color:var(--navy)}
 .form .tel input{border:0;border-radius:0}
-.choice{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.choice label{display:flex;align-items:center;justify-content:center;gap:.55rem;cursor:pointer;border:1px solid rgba(30,41,59,.2);border-radius:.6rem;padding:.75rem .9rem;font-weight:700;font-size:.9rem;color:var(--navy);transition:border-color .15s,background .15s}
-.choice label:has(input:checked){border-color:var(--accent);background:rgba(77,122,189,.08);color:var(--accent-dark)}
-.choice input{position:absolute;opacity:0;width:0;height:0}
-.choice svg{width:1.05rem;height:1.05rem}
 .consent{display:flex;gap:.7rem;align-items:flex-start;font-size:.78rem;color:rgba(30,41,59,.55);line-height:1.5;cursor:pointer}
 .consent input{margin-top:.15rem;width:1rem;height:1rem;accent-color:var(--navy);flex:0 0 auto}
 .consent a{text-decoration:underline;color:var(--accent)}
@@ -123,7 +118,6 @@ footer a{text-decoration:underline}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.7a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </svg>
@@ -152,17 +146,13 @@ footer a{text-decoration:underline}
     <div class="card">
       <section class="screen on" id="s-form">
         <h2>Jetzt kostenlos anfordern</h2>
-        <p class="lead">Vorname und E-Mail genügen. Du bekommst den Guide sofort.</p>
+        <p class="lead">Name und Handynummer genügen. Du bekommst den Guide direkt per WhatsApp.</p>
         <form class="form" id="form" novalidate>
           <input id="n" placeholder="Dein Vorname *" autocomplete="given-name" aria-label="Dein Vorname">
-          <input id="e" type="email" inputmode="email" placeholder="Deine E-Mail-Adresse *" autocomplete="email" aria-label="Deine E-Mail-Adresse">
-          <div class="choice" role="radiogroup" aria-label="Wohin soll der Guide?">
-            <label><input type="radio" name="via" value="E-Mail" checked><svg><use href="#i-mail"/></svg>Per E-Mail</label>
-            <label><input type="radio" name="via" value="WhatsApp"><svg><use href="#i-wa"/></svg>Per WhatsApp</label>
-          </div>
-          <div class="tel"><span>+49</span><input id="t" type="tel" inputmode="tel" placeholder="Deine Handynummer (optional)" autocomplete="tel" aria-label="Deine Handynummer"></div>
+          <input id="ln" placeholder="Dein Nachname *" autocomplete="family-name" aria-label="Dein Nachname">
+          <div class="tel"><span>+49</span><input id="t" type="tel" inputmode="tel" placeholder="Deine Handynummer (WhatsApp) *" autocomplete="tel" aria-label="Deine Handynummer"></div>
           <label class="consent"><input type="checkbox" id="c">
-            <span>Ja, schickt mir den Guide. Die DK Finanzkanzlei darf mich dazu kontaktieren. Es gilt die <a href="https://www.dk-finanzkanzlei.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>. Widerruf jederzeit möglich.</span></label>
+            <span>Ja, schickt mir den Guide per WhatsApp. Die DK Finanzkanzlei darf mich dazu kontaktieren. Es gilt die <a href="https://www.dk-finanzkanzlei.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>. Widerruf jederzeit möglich.</span></label>
           <p class="err" id="err"></p>
           <button class="cta" type="submit" id="btn-send">Guide kostenlos erhalten <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
           <div class="trust"><span>✓ 100 % kostenlos</span><span>✓ Kein Verkaufsgespräch</span><span>✓ Kein Spam</span></div>
@@ -172,9 +162,8 @@ footer a{text-decoration:underline}
       <section class="screen done" id="s-done">
         <div class="ok"><svg><use href="#i-check"/></svg></div>
         <h2 id="d-title">Danke!</h2>
-        <p id="d-mail">Der Guide ist unterwegs. Schau in dein Postfach und zur Sicherheit auch in den Spam-Ordner.</p>
-        <p id="d-wa" hidden>Noch ein Klick: Öffne WhatsApp, die Nachricht ist schon vorbereitet. Wir schicken dir den Guide direkt in den Chat. Als Backup liegt er auch in deinem E-Mail-Postfach.</p>
-        <a class="cta wa" id="btn-wa" hidden target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-wa"/></svg> Guide per WhatsApp anfordern</a>
+        <p id="d-wa">Noch ein Klick: Öffne WhatsApp, die Nachricht ist schon vorbereitet. Wir schicken dir den Guide direkt in den Chat.</p>
+        <a class="cta wa" id="btn-wa" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-wa"/></svg> Guide per WhatsApp anfordern</a>
       </section>
     </div>
   </div>
@@ -222,7 +211,7 @@ footer a{text-decoration:underline}
     <details><summary>Was kostet der Guide?</summary><p>Nichts. Kein Abo, keine versteckten Kosten, keine Kreditkarte.</p></details>
     <details><summary>Werde ich danach angerufen oder zugespamt?</summary><p>Nein. Du bekommst den Guide und sonst nichts. Wenn du danach ein Gespräch willst, meldest du dich bei uns, nicht umgekehrt.</p></details>
     <details><summary>Ich habe null Ahnung von Finanzen. Ist das trotzdem was für mich?</summary><p>Genau dafür ist er geschrieben. Jede Etappe baut auf der vorherigen auf, ohne Fachchinesisch.</p></details>
-    <details><summary>Warum braucht ihr meine Daten?</summary><p>Damit wir dir den Guide schicken können. Für WhatsApp brauchen wir deine Handynummer, sonst nur die E-Mail. Widerruf jederzeit mit einer Nachricht.</p></details>
+    <details><summary>Warum braucht ihr meine Daten?</summary><p>Damit wir dir den Guide schicken können. Wir schicken ihn dir per WhatsApp, dafür brauchen wir deine Handynummer. Widerruf jederzeit mit einer Nachricht.</p></details>
     <details><summary>Ich habe schon einen ETF-Sparplan. Bringt mir das noch was?</summary><p>Ja. Die meisten Fehler passieren nicht beim ETF, sondern davor: fehlender Notgroschen, falsche Konten, falscher Zeithorizont.</p></details>
   </div>
 </section>
@@ -230,7 +219,7 @@ footer a{text-decoration:underline}
 <section class="sec alt final">
   <div class="sec-in">
     <h2 style="margin-inline:auto">Bereit für den ersten Schritt?</h2>
-    <p class="txt">Trag dich oben ein und du hast den Guide in einer Minute im Postfach oder auf WhatsApp.</p>
+    <p class="txt">Trag dich oben ein und du hast den Guide in einer Minute auf WhatsApp.</p>
     <a class="cta" href="#form">Guide kostenlos erhalten <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
   </div>
 </section>
@@ -249,29 +238,23 @@ const HREF  = "/downloads/dk-vermoegensaufbau-guide-2026-x9k2.pdf";
 const WA    = "491731038570"; // DK-WhatsApp (Joel Dakaj)
 
 const $ = id => document.getElementById(id);
-const via = () => document.querySelector('input[name="via"]:checked').value;
-
-document.querySelectorAll('input[name="via"]').forEach(r => r.onchange = () => {
-  $("t").placeholder = via()==="WhatsApp" ? "Deine Handynummer (für WhatsApp) *" : "Deine Handynummer (optional)";
-});
 
 $("form").onsubmit = ev => {
   ev.preventDefault();
-  const n=$("n").value.trim(), e=$("e").value.trim(), t=$("t").value.trim(), w=via()==="WhatsApp";
+  const n=$("n").value.trim(), ln=$("ln").value.trim(), t=$("t").value.trim();
   if(!n) return fail("Bitte trag deinen Vornamen ein.");
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)) return fail("Diese E-Mail-Adresse sieht nicht richtig aus.");
-  if(w && t.replace(/\D/g,"").length < 8) return fail("Für WhatsApp brauchen wir deine Handynummer.");
+  if(!ln) return fail("Bitte trag deinen Nachnamen ein.");
+  if(t.replace(/\D/g,"").length < 8) return fail("Für WhatsApp brauchen wir deine Handynummer.");
   if(!$("c").checked) return fail("Ohne dein Einverständnis dürfen wir dir den Guide nicht schicken.");
   $("err").textContent = "";
 
-  const payload = { type:"leadmagnet", guide:GUIDE, href:HREF, name:n, email:e, consent:true,
-    tel: t ? "+49 "+t : "", nachricht:"Zustellung gewünscht: "+via() };
+  const payload = { type:"leadmagnet", guide:GUIDE, href:HREF, name:n+" "+ln, consent:true,
+    tel:"+49 "+t, nachricht:"Zustellung gewünscht: WhatsApp" };
   $("btn-send").disabled = true;
   fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
     .then(r => { if(!r.ok) throw 0;
       $("d-title").textContent = `Danke, ${n}!`;
-      $("d-mail").hidden = w; $("d-wa").hidden = !w; $("btn-wa").hidden = !w;
-      if(w) $("btn-wa").href = `https://wa.me/${WA}?text=${encodeURIComponent(`Hallo, ich bin ${n} und habe mich gerade für den ${GUIDE} eingetragen. Bitte schickt ihn mir hier per WhatsApp.`)}`;
+      $("btn-wa").href = `https://wa.me/${WA}?text=${encodeURIComponent(`Hallo, ich bin ${n} ${ln} und habe mich gerade für den ${GUIDE} eingetragen. Bitte schickt ihn mir hier per WhatsApp.`)}`;
       $("s-form").classList.remove("on"); $("s-done").classList.add("on");
       $("s-done").scrollIntoView({block:"center"});
     })
