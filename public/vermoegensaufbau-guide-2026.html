@@ -5,180 +5,242 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vermögensaufbau-Guide 2026 kostenlos – DK Finanzkanzlei</title>
 <meta name="description" content="28 Seiten: Geld verstehen, Geld behalten, Geld wachsen lassen. Der kostenlose Vermögensaufbau-Guide 2026 der DK Finanzkanzlei – per E-Mail oder WhatsApp.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
+<link rel="icon" href="/dk-logo-small.png">
 </head>
 <body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap">
 <style>
 :root{
-  --page:#FBFAF8; --sand:#D6C6B7; --sand-2:#CDBBAA;
-  --line:#B9A695; --card:#E4D9CD;
-  --ink:#1A1512; --muted:#564C43;
-  --orange:#F07523; --orange-dark:#D25F12;
-  --stop:#96291E;
-  --body:"Karla","Helvetica Neue",Arial,sans-serif;
-  --col:min(760px,100% - 2rem);
+  --bg:#FFFFFF; --surface:#F5F7FA; --ink:#0F172A; --navy:#1E293B; --muted:#64748B;
+  --line:rgba(15,23,42,.08); --accent:#4d7abd; --accent-dark:#3A5F96; --gold:#C4A135; --green:#22C55E;
+  --wa:#25D366; --stop:#B91C1C;
+  --font:"Figtree",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --col:min(1120px,100% - 2.5rem);
 }
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--page);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100dvh;display:flex;flex-direction:column}
-h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.12;text-wrap:balance}
+html{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100dvh;display:flex;flex-direction:column}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
 p{margin:0}
 button{font:inherit;color:inherit}
 a{color:inherit}
+img{max-width:100%;display:block}
 
-.bar{border-bottom:1px solid #E7E1DA;background:var(--page)}
-.bar-in{width:var(--col);margin-inline:auto;display:flex;align-items:center;gap:1rem;padding:1rem 0;min-height:56px}
-.brand{font-weight:800;font-size:1.02rem;letter-spacing:-.02em}
-.bar .tag{margin-left:auto;font-size:.8rem;color:var(--muted)}
+/* Kopfleiste wie auf der Hauptseite */
+.bar{border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);backdrop-filter:blur(8px);position:sticky;top:0;z-index:5}
+.bar-in{width:var(--col);margin-inline:auto;display:flex;align-items:center;gap:.6rem;min-height:56px}
+.bar-in img{height:32px;width:auto}
+.brand{font-weight:700;font-size:1rem;letter-spacing:-.01em;text-decoration:none}
+.bar .tag{margin-left:auto;font-size:.78rem;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
 
-main{flex:1;width:var(--col);margin-inline:auto;padding:2rem 0 2.5rem;display:flex;flex-direction:column;gap:1.5rem}
-.box{background:var(--sand);border-radius:6px;padding:clamp(2rem,6vw,3.4rem) clamp(1.3rem,5vw,3rem)}
-.screen{display:none}
-.screen.on{display:block}
+/* Hero: Punktraster wie auf der Startseite */
+.hero{background-image:radial-gradient(rgba(15,23,42,.10) 1px,transparent 1px);background-size:22px 22px;padding:clamp(2rem,5vw,4rem) 0 clamp(2.5rem,6vw,4.5rem)}
+.hero-in{width:var(--col);margin-inline:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.eyebrow::before{content:"";width:1.6rem;height:2px;background:var(--gold);border-radius:2px}
+.hero h1{font-size:clamp(2.2rem,4.6vw,3.4rem);margin-bottom:1.1rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .sub{font-size:clamp(1rem,1.5vw,1.15rem);color:rgba(15,23,42,.6);max-width:44ch;margin-bottom:1rem}
+.hero .who{font-size:.95rem;color:var(--muted);max-width:44ch;margin-bottom:1.6rem}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.checks li{display:flex;gap:.65rem;align-items:flex-start;font-size:.95rem;color:rgba(15,23,42,.75)}
+.checks svg{flex:0 0 auto;width:1.15rem;height:1.15rem;margin-top:.15rem;color:var(--green)}
 
-.start{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.15rem}
-.eyebrow{font-size:.85rem;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-.start h1{font-size:clamp(1.75rem,5.6vw,2.6rem);border-bottom:3px solid var(--orange);padding-bottom:.28rem;display:inline-block}
-.start .sub{font-size:clamp(1rem,2.5vw,1.1rem);max-width:46ch}
-.who{font-size:.95rem;color:var(--muted);max-width:46ch}
-
-.cta{border:0;cursor:pointer;background:var(--orange);color:#16110C;font-weight:800;font-size:1.1rem;letter-spacing:-.01em;padding:1rem 2.4rem;border-radius:6px;transition:background .12s,transform .1s;text-decoration:none;display:inline-block}
-.cta:hover{background:var(--orange-dark)}
-.cta:active{transform:scale(.985)}
-.cta.wide{display:block;width:100%;padding:1rem 1.4rem;text-align:center}
-.cta.wa{background:#25D366}
-.cta.wa:hover{background:#1DA851}
-.fineprint{font-size:.85rem;color:var(--muted)}
-
-.form{display:flex;flex-direction:column;gap:.75rem;margin-top:1.6rem;text-align:left}
-.form input:not([type=radio]):not([type=checkbox]){background:var(--page);border:1px solid var(--line);border-radius:6px;padding:1.05rem 1.1rem;color:var(--ink);font:inherit;font-size:1.02rem;width:100%}
-.form input::placeholder{color:#8A7C70}
-.form input:focus{outline:2px solid var(--orange);outline-offset:1px}
-.tel{display:flex;align-items:stretch;background:var(--page);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.tel span{display:grid;place-items:center;padding:0 1rem;font-weight:700;border-right:1px solid var(--line);background:#F2ECE6;white-space:nowrap}
-.form .tel input{border:0;border-radius:0;background:transparent}
-.form .tel input:focus{outline:2px solid var(--orange);outline-offset:-2px}
+/* Formularkarte wie die Leadmagnet-Karte der Startseite */
+.card{background:#fff;border:1px solid var(--line);border-radius:1.5rem;padding:clamp(1.4rem,3vw,2.25rem);box-shadow:0 30px 60px -30px rgba(15,23,42,.25)}
+.card h2{font-size:1.25rem;margin-bottom:.25rem}
+.card .lead{font-size:.85rem;color:var(--muted);margin-bottom:1.2rem}
+.screen{display:none}.screen.on{display:block}
+.form{display:flex;flex-direction:column;gap:.7rem}
+.form input:not([type=radio]):not([type=checkbox]){width:100%;background:#fff;border:1px solid rgba(30,41,59,.2);border-radius:.6rem;padding:.85rem 1rem;font:inherit;font-size:.95rem;color:var(--ink);transition:border-color .15s}
+.form input::placeholder{color:rgba(30,41,59,.4)}
+.form input:focus{outline:none;border-color:rgba(30,41,59,.55)}
+.tel{display:flex;align-items:stretch;border:1px solid rgba(30,41,59,.2);border-radius:.6rem;overflow:hidden;transition:border-color .15s}
+.tel:focus-within{border-color:rgba(30,41,59,.55)}
+.tel span{display:grid;place-items:center;padding:0 .9rem;font-weight:700;font-size:.9rem;background:var(--surface);border-right:1px solid rgba(30,41,59,.12);color:var(--navy)}
+.form .tel input{border:0;border-radius:0}
 .choice{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.choice label{display:flex;align-items:center;gap:.6rem;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.85rem 1rem;font-weight:700;font-size:1rem}
-.choice label:has(input:checked){border-color:var(--orange);background:#EDE5DC}
-.choice input{accent-color:var(--orange);width:1.1rem;height:1.1rem;margin:0}
-.consent{display:flex;gap:.7rem;align-items:flex-start;font-size:.85rem;color:var(--muted);line-height:1.5;margin-top:.3rem}
-.consent input{margin-top:.25rem;width:1.1rem;height:1.1rem;accent-color:var(--orange);flex:0 0 auto}
-.err{color:var(--stop);font-size:.87rem;font-weight:700;min-height:1.2em}
-.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.2rem;font-size:.85rem;color:var(--muted);margin-top:.4rem}
+.choice label{display:flex;align-items:center;justify-content:center;gap:.55rem;cursor:pointer;border:1px solid rgba(30,41,59,.2);border-radius:.6rem;padding:.75rem .9rem;font-weight:700;font-size:.9rem;color:var(--navy);transition:border-color .15s,background .15s}
+.choice label:has(input:checked){border-color:var(--accent);background:rgba(77,122,189,.08);color:var(--accent-dark)}
+.choice input{position:absolute;opacity:0;width:0;height:0}
+.choice svg{width:1.05rem;height:1.05rem}
+.consent{display:flex;gap:.7rem;align-items:flex-start;font-size:.78rem;color:rgba(30,41,59,.55);line-height:1.5;cursor:pointer}
+.consent input{margin-top:.15rem;width:1rem;height:1rem;accent-color:var(--navy);flex:0 0 auto}
+.consent a{text-decoration:underline;color:var(--accent)}
+.err{color:var(--stop);font-size:.82rem;font-weight:600;min-height:1.1em}
 
-/* Inhalt unter dem Formular */
-.sec h2{font-size:clamp(1.35rem,4.4vw,1.85rem);margin-bottom:.9rem}
-.sec p{color:var(--ink)}
-.list{display:grid;gap:.6rem;margin:0;padding:0;list-style:none}
-.list li{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.85rem 1rem;display:flex;gap:.8rem;align-items:flex-start}
-.list li b{flex:0 0 auto;width:1.55rem;height:1.55rem;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:.75rem;color:var(--muted)}
-.list li span{font-size:1rem}
-.list li span strong{display:block;font-weight:800}
-.pain{border-left:3px solid var(--orange);padding-left:1rem;margin-top:1rem;color:var(--ink)}
-.faq details{border-bottom:1px solid var(--line);padding:.75rem 0}
-.faq summary{cursor:pointer;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:1rem}
-.faq summary::after{content:"+";color:var(--orange-dark);font-weight:800}
+.cta{position:relative;overflow:hidden;isolation:isolate;border:0;cursor:pointer;background:var(--accent);color:#fff;font-weight:700;font-size:.95rem;padding:1rem 1.6rem;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;width:100%;box-shadow:0 14px 32px -14px rgba(77,122,189,.95);transition:opacity .15s,transform .1s}
+.cta:hover{opacity:.9}.cta:active{transform:scale(.99)}.cta:disabled{opacity:.6;cursor:default}
+.cta::after{content:"";position:absolute;top:-20%;left:-70%;width:42%;height:140%;background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.55) 50%,transparent 100%);transform:skewX(-18deg);pointer-events:none;animation:shine 4.5s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes shine{0%{left:-70%}45%{left:130%}100%{left:130%}}
+.cta.wa{background:var(--wa);box-shadow:0 14px 32px -14px rgba(37,211,102,.9)}
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem 1rem;font-size:.75rem;color:rgba(30,41,59,.45);margin-top:.2rem}
+
+/* Danke */
+.done{text-align:center;padding:.5rem 0}
+.done .ok{width:3.2rem;height:3.2rem;border-radius:50%;background:rgba(34,197,94,.12);color:var(--green);display:grid;place-items:center;margin:0 auto 1rem}
+.done .ok svg{width:1.6rem;height:1.6rem}
+.done h2{font-size:1.5rem;margin-bottom:.5rem}
+.done p{color:var(--muted);font-size:.95rem;max-width:36ch;margin-inline:auto}
+.done .cta{margin-top:1.2rem;width:auto}
+
+/* Abschnitte darunter */
+.sec{padding:clamp(2.5rem,6vw,4.5rem) 0}
+.sec.alt{background:var(--surface)}
+.sec-in{width:var(--col);margin-inline:auto}
+.sec .kicker{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.sec h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:1rem;max-width:22ch}
+.sec .txt{color:rgba(15,23,42,.6);max-width:60ch;font-size:1.02rem}
+.pain{margin-top:1.4rem;background:var(--navy);color:#fff;border-radius:1rem;padding:1.3rem 1.5rem;max-width:60ch;font-size:.98rem}
+.pain b{color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1.8rem}
+.tile{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:1.3rem 1.3rem 1.4rem}
+.tile .num{width:2.1rem;height:2.1rem;border-radius:50%;background:rgba(77,122,189,.1);color:var(--accent);font-weight:800;font-size:.85rem;display:grid;place-items:center;margin-bottom:.8rem}
+.tile h3{font-size:1.02rem;margin-bottom:.35rem;letter-spacing:-.01em}
+.tile p{font-size:.9rem;color:var(--muted)}
+.about{display:flex;gap:1.2rem;align-items:center;max-width:64ch}
+.faces{display:flex;flex:0 0 auto}.faces img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid #fff;box-shadow:0 6px 16px -8px rgba(15,23,42,.4)}.faces img+img{margin-left:-14px}
+.faq{max-width:760px}
+.faq details{border-bottom:1px solid var(--line);padding:.9rem 0}
+.faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--accent);font-weight:800;font-size:1.2rem;line-height:1}
 .faq details[open] summary::after{content:"–"}
-.faq details p{margin-top:.5rem;color:var(--muted);font-size:.97rem}
-.about{display:flex;gap:1rem;align-items:flex-start;font-size:.97rem}
+.faq details p{margin-top:.5rem;color:var(--muted);font-size:.95rem;max-width:62ch}
+.final{text-align:center}
+.final .cta{width:auto;padding:1rem 2.2rem}
+.final p.txt{margin:0 auto 1.4rem}
 
-footer{width:var(--col);margin-inline:auto;padding:1.4rem 0 2.5rem;font-size:.85rem;color:var(--muted);text-align:center}
+footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;font-size:.82rem;color:var(--muted);text-align:center}
 footer a{text-decoration:underline}
-:focus-visible{outline:2px solid var(--orange-dark);outline-offset:2px}
-@media (max-width:480px){.choice{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:860px){.hero-in{grid-template-columns:1fr}.bar .tag{display:none}}
+@media (max-width:420px){.choice{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.cta::after{animation:none;opacity:0}}
 </style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.7a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
 
 <div class="bar">
   <div class="bar-in">
-    <div class="brand">DK Finanzkanzlei</div>
-    <div class="tag">Kostenloser Guide · Ausgabe 2026</div>
+    <a class="brand" href="https://www.dk-finanzkanzlei.de"><img src="/dk-logo-wide.png" alt="DK Finanzkanzlei"></a>
+    <span class="tag">Kostenloser Guide · Ausgabe 2026</span>
   </div>
 </div>
 
-<main>
-  <div class="box">
-
-    <!-- Eintragen -->
-    <section class="screen on" id="s-form">
-      <div class="start">
-        <p class="eyebrow">28 Seiten · Kostenlos · Ohne Vorwissen</p>
-        <h1>Der Vermögensaufbau-Guide 2026</h1>
-        <p class="sub">Geld verstehen, Geld behalten, Geld wachsen lassen. In 5 Etappen vom ersten Haushaltsbuch bis zum passenden Welt-ETF.</p>
-        <p class="who">Für alle, die endlich anfangen wollen, ohne teure Fehler zu machen – egal, ob du 50 € oder 500 € im Monat übrig hast.</p>
-      </div>
-
-      <form class="form" id="form" novalidate>
-        <input id="n" placeholder="Dein Vorname *" autocomplete="given-name" aria-label="Dein Vorname">
-        <input id="e" type="email" inputmode="email" placeholder="Deine E-Mail-Adresse *" autocomplete="email" aria-label="Deine E-Mail-Adresse">
-        <div class="choice" role="radiogroup" aria-label="Wohin soll der Guide?">
-          <label><input type="radio" name="via" value="E-Mail" checked> Per E-Mail</label>
-          <label><input type="radio" name="via" value="WhatsApp"> Per WhatsApp</label>
-        </div>
-        <div class="tel" id="tel-wrap"><span>+49</span><input id="t" type="tel" inputmode="tel" placeholder="Deine Handynummer (für WhatsApp)" autocomplete="tel" aria-label="Deine Handynummer"></div>
-        <label class="consent"><input type="checkbox" id="c">
-          <span>Ja, schickt mir den Guide. Die DK Finanzkanzlei darf mich dazu kontaktieren. Es gilt die <a href="https://www.dk-finanzkanzlei.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>. Widerruf jederzeit möglich.</span></label>
-        <p class="err" id="err"></p>
-        <button class="cta wide" type="submit" id="btn-send">Guide jetzt kostenlos erhalten</button>
-        <div class="trust"><span>✓ 100 % kostenlos</span><span>✓ Kein Verkaufsgespräch</span><span>✓ Kein Newsletter-Spam</span></div>
-      </form>
-    </section>
-
-    <!-- Danke -->
-    <section class="screen" id="s-done">
-      <div class="start">
-        <h1 id="d-title">Danke!</h1>
-        <p class="sub" id="d-mail">Der Guide ist unterwegs. Schau in dein Postfach – und zur Sicherheit auch in den Spam-Ordner.</p>
-        <p class="sub" id="d-wa" hidden>Noch ein Klick: Öffne WhatsApp, die Nachricht ist schon vorbereitet. Wir schicken dir den Guide direkt in den Chat. Als Backup liegt er auch in deinem E-Mail-Postfach.</p>
-        <a class="cta wa" id="btn-wa" hidden target="_blank" rel="noopener">Guide per WhatsApp anfordern</a>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- Problem -->
-  <section class="box sec">
-    <h2>Die meisten fangen am falschen Ende an.</h2>
-    <p>Sie fragen „Welchen ETF soll ich kaufen?“, wissen aber nicht, wie viel am Monatsende übrig bleibt. Sie starten einen Sparplan ohne Notgroschen und müssen beim ersten Autoschaden im Kurstief verkaufen.</p>
-    <p class="pain">Was das kostet: Jedes Jahr, das du wartest, verdoppelt fast die Sparrate, die du später für dasselbe Ziel brauchst. 50 € im Monat werden über 40 Jahre zu rund 132.000 €. Davon hast du nur 24.000 € selbst eingezahlt.</p>
-  </section>
-
-  <!-- Lösung -->
-  <section class="box sec">
-    <h2>Was im Guide steht</h2>
-    <ul class="list">
-      <li><b>1</b><span><strong>Die richtige Reihenfolge</strong>Fünf Schritte, die die meisten teuren Fehler von vornherein verhindern.</span></li>
-      <li><b>2</b><span><strong>Das Fundament</strong>Haushaltsbuch, Vier-Konten-Modell, Notgroschen. Damit deine Sparrate zu deinem Leben passt.</span></li>
-      <li><b>3</b><span><strong>Investieren, einfach erklärt</strong>Was ein ETF ist, aktiver Fonds vs. ETF, die drei Grundregeln, Welt-ETFs im Vergleich.</span></li>
-      <li><b>4</b><span><strong>Deine drei Zeithorizonte</strong>Welches Geld in welchen Topf gehört: kurz-, mittel- und langfristig.</span></li>
-      <li><b>5</b><span><strong>Warum Geduld gewinnt</strong>Mit echten Zahlen statt Versprechen.</span></li>
-    </ul>
-  </section>
-
-  <!-- Wer -->
-  <section class="box sec">
-    <h2>Wer dahinter steht</h2>
-    <div class="about">
-      <p>Joel Dakaj und Flamur Kastrati, Geschäftsführer der DK Finanzkanzlei in Aachen. Unser Grundsatz: erst zuhören, dann rechnen, dann empfehlen. Der Guide verkauft dir nichts. Er zeigt dir, worauf es in deiner Situation ankommt.</p>
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <p class="eyebrow">28 Seiten · Kostenlos · Ohne Vorwissen</p>
+      <h1>Der Vermögensaufbau-<br>Guide <em>2026</em></h1>
+      <p class="sub">Geld verstehen, Geld behalten, Geld wachsen lassen. In 5 Etappen vom ersten Haushaltsbuch bis zum passenden Welt-ETF.</p>
+      <p class="who">Für alle, die endlich anfangen wollen, ohne teure Fehler zu machen. Egal, ob du 50 € oder 500 € im Monat übrig hast.</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg>Die richtige Reihenfolge: fünf Schritte, die die teuersten Fehler verhindern</li>
+        <li><svg><use href="#i-check"/></svg>Haushaltsbuch, Vier-Konten-Modell und Notgroschen, einfach erklärt</li>
+        <li><svg><use href="#i-check"/></svg>ETF vs. aktiver Fonds und Welt-ETFs im Vergleich, mit echten Zahlen</li>
+      </ul>
     </div>
-  </section>
 
-  <!-- Einwände -->
-  <section class="box sec faq">
-    <h2>Häufige Fragen</h2>
+    <div class="card">
+      <section class="screen on" id="s-form">
+        <h2>Jetzt kostenlos anfordern</h2>
+        <p class="lead">Vorname und E-Mail genügen. Du bekommst den Guide sofort.</p>
+        <form class="form" id="form" novalidate>
+          <input id="n" placeholder="Dein Vorname *" autocomplete="given-name" aria-label="Dein Vorname">
+          <input id="e" type="email" inputmode="email" placeholder="Deine E-Mail-Adresse *" autocomplete="email" aria-label="Deine E-Mail-Adresse">
+          <div class="choice" role="radiogroup" aria-label="Wohin soll der Guide?">
+            <label><input type="radio" name="via" value="E-Mail" checked><svg><use href="#i-mail"/></svg>Per E-Mail</label>
+            <label><input type="radio" name="via" value="WhatsApp"><svg><use href="#i-wa"/></svg>Per WhatsApp</label>
+          </div>
+          <div class="tel"><span>+49</span><input id="t" type="tel" inputmode="tel" placeholder="Deine Handynummer (optional)" autocomplete="tel" aria-label="Deine Handynummer"></div>
+          <label class="consent"><input type="checkbox" id="c">
+            <span>Ja, schickt mir den Guide. Die DK Finanzkanzlei darf mich dazu kontaktieren. Es gilt die <a href="https://www.dk-finanzkanzlei.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a>. Widerruf jederzeit möglich.</span></label>
+          <p class="err" id="err"></p>
+          <button class="cta" type="submit" id="btn-send">Guide kostenlos erhalten <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+          <div class="trust"><span>✓ 100 % kostenlos</span><span>✓ Kein Verkaufsgespräch</span><span>✓ Kein Spam</span></div>
+        </form>
+      </section>
+
+      <section class="screen done" id="s-done">
+        <div class="ok"><svg><use href="#i-check"/></svg></div>
+        <h2 id="d-title">Danke!</h2>
+        <p id="d-mail">Der Guide ist unterwegs. Schau in dein Postfach und zur Sicherheit auch in den Spam-Ordner.</p>
+        <p id="d-wa" hidden>Noch ein Klick: Öffne WhatsApp, die Nachricht ist schon vorbereitet. Wir schicken dir den Guide direkt in den Chat. Als Backup liegt er auch in deinem E-Mail-Postfach.</p>
+        <a class="cta wa" id="btn-wa" hidden target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-wa"/></svg> Guide per WhatsApp anfordern</a>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="sec-in">
+    <p class="kicker">Das Problem</p>
+    <h2>Die meisten fangen am falschen Ende an.</h2>
+    <p class="txt">Sie fragen „Welchen ETF soll ich kaufen?“, wissen aber nicht, wie viel am Monatsende übrig bleibt. Sie starten einen Sparplan ohne Notgroschen und müssen beim ersten Autoschaden im Kurstief verkaufen.</p>
+    <p class="pain">Was das kostet: Jedes Jahr, das du wartest, verdoppelt fast die Sparrate, die du später für dasselbe Ziel brauchst. <b>50 € im Monat werden über 40 Jahre zu rund 132.000 €.</b> Davon hast du nur 24.000 € selbst eingezahlt.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in">
+    <p class="kicker">Die Lösung</p>
+    <h2>Was im Guide steht</h2>
+    <p class="txt">Der Guide ist wie eine Treppe aufgebaut. Jede Stufe baut auf der vorherigen auf.</p>
+    <div class="grid">
+      <div class="tile"><div class="num">1</div><h3>Die richtige Reihenfolge</h3><p>Fünf Schritte, die die meisten teuren Fehler von vornherein verhindern.</p></div>
+      <div class="tile"><div class="num">2</div><h3>Das Fundament</h3><p>Haushaltsbuch, Vier-Konten-Modell, Notgroschen. Damit deine Sparrate zu deinem Leben passt.</p></div>
+      <div class="tile"><div class="num">3</div><h3>Investieren, einfach erklärt</h3><p>Was ein ETF ist, aktiver Fonds vs. ETF, die drei Grundregeln, Welt-ETFs im Vergleich.</p></div>
+      <div class="tile"><div class="num">4</div><h3>Deine drei Zeithorizonte</h3><p>Welches Geld in welchen Topf gehört: kurz-, mittel- und langfristig.</p></div>
+      <div class="tile"><div class="num">5</div><h3>Warum Geduld gewinnt</h3><p>Mit echten Zahlen statt Versprechen.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="sec-in">
+    <p class="kicker">Wer dahinter steht</p>
+    <h2>Erst zuhören. Dann rechnen. Dann empfehlen.</h2>
+    <div class="about">
+      <div class="faces"><img src="/Joel Logo.png" alt="Joel Dakaj"><img src="/Flamur 4.png" alt="Flamur Kastrati"></div>
+      <p class="txt">Joel Dakaj und Flamur Kastrati, Geschäftsführer der DK Finanzkanzlei in Aachen. Der Guide verkauft dir nichts. Er zeigt dir, worauf es in deiner Situation ankommt.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-in faq">
+    <p class="kicker">Häufige Fragen</p>
+    <h2>Was du vielleicht noch wissen willst</h2>
     <details><summary>Was kostet der Guide?</summary><p>Nichts. Kein Abo, keine versteckten Kosten, keine Kreditkarte.</p></details>
     <details><summary>Werde ich danach angerufen oder zugespamt?</summary><p>Nein. Du bekommst den Guide und sonst nichts. Wenn du danach ein Gespräch willst, meldest du dich bei uns, nicht umgekehrt.</p></details>
     <details><summary>Ich habe null Ahnung von Finanzen. Ist das trotzdem was für mich?</summary><p>Genau dafür ist er geschrieben. Jede Etappe baut auf der vorherigen auf, ohne Fachchinesisch.</p></details>
     <details><summary>Warum braucht ihr meine Daten?</summary><p>Damit wir dir den Guide schicken können. Für WhatsApp brauchen wir deine Handynummer, sonst nur die E-Mail. Widerruf jederzeit mit einer Nachricht.</p></details>
     <details><summary>Ich habe schon einen ETF-Sparplan. Bringt mir das noch was?</summary><p>Ja. Die meisten Fehler passieren nicht beim ETF, sondern davor: fehlender Notgroschen, falsche Konten, falscher Zeithorizont.</p></details>
-  </section>
-</main>
+  </div>
+</section>
+
+<section class="sec alt final">
+  <div class="sec-in">
+    <h2 style="margin-inline:auto">Bereit für den ersten Schritt?</h2>
+    <p class="txt">Trag dich oben ein und du hast den Guide in einer Minute im Postfach oder auf WhatsApp.</p>
+    <a class="cta" href="#form">Guide kostenlos erhalten <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
 
 <footer>
   <a href="https://www.dk-finanzkanzlei.de/impressum" target="_blank" rel="noopener">Impressum</a>
-  und
+  ·
   <a href="https://www.dk-finanzkanzlei.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+  ·
+  <a href="https://www.dk-finanzkanzlei.de">dk-finanzkanzlei.de</a>
 </footer>
 
 <script>
@@ -211,7 +273,7 @@ $("form").onsubmit = ev => {
       $("d-mail").hidden = w; $("d-wa").hidden = !w; $("btn-wa").hidden = !w;
       if(w) $("btn-wa").href = `https://wa.me/${WA}?text=${encodeURIComponent(`Hallo, ich bin ${n} und habe mich gerade für den ${GUIDE} eingetragen. Bitte schickt ihn mir hier per WhatsApp.`)}`;
       $("s-form").classList.remove("on"); $("s-done").classList.add("on");
-      window.scrollTo({top:0,behavior:"instant"});
+      $("s-done").scrollIntoView({block:"center"});
     })
     .catch(() => fail("Das hat gerade nicht geklappt. Bitte versuch es gleich nochmal."))
     .finally(() => { $("btn-send").disabled = false; });
