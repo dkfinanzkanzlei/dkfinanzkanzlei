@@ -2152,8 +2152,8 @@ const KarrierePage = ({ onPageChange }: { onPageChange: (p: Page) => void }) => 
                     />
                   </div>
                   <input
-                    value={form.tel} onChange={e => setForm({ ...form, tel: e.target.value })}
-                    placeholder="Telefonnummer (optional)"
+                    required type="tel" minLength={8} value={form.tel} onChange={e => setForm({ ...form, tel: e.target.value })}
+                    placeholder="Handynummer"
                     className="bg-white/[0.08] border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-white/45 focus:outline-none focus:border-white/20 text-sm w-full"
                   />
                   <textarea
@@ -2642,14 +2642,14 @@ const CtaBand = ({ color, headline, sub, label, onPageChange }: { color: string;
 
 /** Leadgen-Formular fuer die PDF-Uebersicht einer Leistungsseite. */
 const LeadMagnetForm = ({ magnet, color, onPageChange }: { magnet: NonNullable<ServicePageData['leadMagnet']>; color: string; onPageChange: (p: Page) => void }) => {
-  const [form, setForm] = useState({ name: '', email: '', consent: false });
+  const [form, setForm] = useState({ name: '', email: '', tel: '', consent: false });
   const [state, setState] = useState<'idle' | 'sending' | 'done'>('idle');
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (state === 'sending') return;
     setState('sending');
-    await postLead({ type: 'leadmagnet', guide: magnet.fileLabel, href: magnet.href, name: form.name, email: form.email, consent: form.consent });
+    await postLead({ type: 'leadmagnet', guide: magnet.fileLabel, href: magnet.href, name: form.name, email: form.email, tel: form.tel, consent: form.consent });
     setState('done');
   };
 
@@ -2689,11 +2689,13 @@ const LeadMagnetForm = ({ magnet, color, onPageChange }: { magnet: NonNullable<S
             <form onSubmit={submit} className="flex flex-col gap-4">
               <div>
                 <h4 className="text-lg font-bold text-[#1E293B] mb-1">Jetzt kostenlos anfordern</h4>
-                <p className="text-xs text-[#1E293B]/50">Name und E-Mail genügen – du bekommst den Link sofort.</p>
+                <p className="text-xs text-[#1E293B]/50">Name, E-Mail und Handynummer – du bekommst den Link sofort.</p>
               </div>
               <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Vorname und Nachname"
                 className="border border-[#1E293B]/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E293B]/50 bg-white text-[#1E293B] placeholder:text-[#1E293B]/40" />
               <input required type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="E-Mail-Adresse"
+                className="border border-[#1E293B]/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E293B]/50 bg-white text-[#1E293B] placeholder:text-[#1E293B]/40" />
+              <input required type="tel" minLength={8} value={form.tel} onChange={e => setForm({ ...form, tel: e.target.value })} placeholder="Handynummer"
                 className="border border-[#1E293B]/20 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E293B]/50 bg-white text-[#1E293B] placeholder:text-[#1E293B]/40" />
               <label className="flex items-start gap-3 cursor-pointer">
                 <input type="checkbox" required checked={form.consent} onChange={e => setForm({ ...form, consent: e.target.checked })} className="mt-0.5 w-4 h-4 flex-shrink-0 accent-[#1E293B]" />
@@ -3320,7 +3322,7 @@ const QualiFunnel = ({ questions, thema, onPageChange }: { questions: typeof QUA
                       <FunnelInput label="Nachname" value={data.nachname} onChange={(v) => setData({ ...data, nachname: v })} required />
                     </div>
                     <div className="mb-5"><FunnelInput label="E-Mail" type="email" value={data.email} onChange={(v) => setData({ ...data, email: v })} required /></div>
-                    <div className="mb-5"><FunnelInput label="Telefon" type="tel" value={data.tel} onChange={(v) => setData({ ...data, tel: v })} /></div>
+                    <div className="mb-5"><FunnelInput label="Handynummer" type="tel" value={data.tel} onChange={(v) => setData({ ...data, tel: v })} required /></div>
                     <div className="mb-7">
                       <span className="block text-sm text-[#0F172A]/45 mb-1">Willst du uns vorab etwas mitgeben? (optional)</span>
                       <textarea value={data.nachricht} onChange={(e) => setData({ ...data, nachricht: e.target.value })} rows={3}

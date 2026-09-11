@@ -34,10 +34,9 @@ export default async function handler(req, res) {
   const email = String(b.email || '').trim();
   const tel = String(b.tel || '').trim();
   const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) && email.length <= 200;
-  // E-Mail ist Pflicht, ausser der Lead kommt nur mit Handynummer (WhatsApp-Guide).
-  if (!emailOk && tel.replace(/\D/g, '').length < 8) {
-    return res.status(400).json({ ok: false, error: 'invalid email' });
-  }
+  // Handynummer ist immer Pflicht. E-Mail nur, wenn eine mitgeschickt wird (WhatsApp-Guide hat keine).
+  if (tel.replace(/\D/g, '').length < 8) return res.status(400).json({ ok: false, error: 'invalid tel' });
+  if (email && !emailOk) return res.status(400).json({ ok: false, error: 'invalid email' });
 
   const isMagnet = b.type === 'leadmagnet';
   const name = String(b.name || '').slice(0, 200);

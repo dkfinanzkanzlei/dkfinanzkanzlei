@@ -168,7 +168,7 @@ footer a{text-decoration:underline}
 
       <form class="form" id="form" novalidate>
         <input id="n" placeholder="Dein Name *" autocomplete="given-name" aria-label="Dein Name">
-        <div class="tel"><span>+49</span><input id="t" type="tel" inputmode="tel" placeholder="Deine Telefonnummer" autocomplete="tel" aria-label="Deine Telefonnummer"></div>
+        <div class="tel"><span>+49</span><input id="t" type="tel" inputmode="tel" required placeholder="Deine Handynummer" autocomplete="tel" aria-label="Deine Telefonnummer"></div>
         <input id="e" type="email" inputmode="email" placeholder="Deine E-Mail-Adresse *" autocomplete="email" aria-label="Deine E-Mail-Adresse">
         <label class="consent"><input type="checkbox" id="c">
           <span>Ich möchte zu meinem Ergebnis kontaktiert werden und habe die <a href="https://www.dk-finanzkanzlei.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen. Widerruf jederzeit möglich.</span></label>
@@ -277,15 +277,16 @@ $("btn-again").onclick = ()=>{ i=0; answers=[]; progress(0); show("start"); };
 
 $("form").onsubmit = ev=>{
   ev.preventDefault();
-  const n=$("n").value.trim(), e=$("e").value.trim();
+  const n=$("n").value.trim(), e=$("e").value.trim(), t=$("t").value.trim();
   if(!n) return fail("Bitte trag deinen Vornamen ein.");
+  if(t.replace(/\D/g,"").length < 8) return fail("Bitte trag deine Handynummer ein.");
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)) return fail("Diese E-Mail-Adresse sieht nicht richtig aus.");
   if(!$("c").checked) return fail("Ohne dein Einverständnis dürfen wir dich nicht kontaktieren.");
   $("err").textContent = "";
 
   const payload = {
     thema:"Immo-Check", name:n, email:e, consent:true,
-    tel:$("t").value.trim() ? "+49 "+$("t").value.trim() : "",
+    tel:"+49 "+t,
     qualifizierung:QUESTIONS.map((q,k)=>`${q.t} ${answers[k]||"-"}`).join("\n")
   };
   $("btn-send").disabled = true;
